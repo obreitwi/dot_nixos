@@ -144,6 +144,7 @@
     nixd
 
     # tools
+    gh
     # miller # useful tool
   ];
 
