@@ -2,8 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
+let
+  tmuxPlugins = with pkgs.tmuxPlugins; [ sensible yank gruvbox ];
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -146,9 +149,10 @@
     # tools
     gh
     # miller # useful tool
-  ];
+  ] ++ tmuxPlugins;
 
   environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+  environment.etc."tmux/load-plugins".text = lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
  
   programs.neovim = {
     viAlias = true;
