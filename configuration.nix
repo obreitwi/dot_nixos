@@ -134,7 +134,7 @@ in
     # python3
     ripgrep
     ruby # only needed for neovim plugins
-    tmux
+    tmux # + plugins below
     ugrep
     xclip
     zsh
@@ -143,12 +143,18 @@ in
     # own stuff
     (callPackage /home/obreitwi/git/toolbox/pydemx {})
 
+    # desktop environment
+    xss-lock
+
     # lsps
     nixd
 
     # tools
+    dua
+    duf
     gh
     # miller # useful tool
+
   ] ++ tmuxPlugins;
 
   environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
