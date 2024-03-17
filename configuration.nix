@@ -148,6 +148,9 @@ in
     # lsps
     nixd
 
+    # desktop setup
+    dunst # notifications
+
     # tools
     dua
     duf
