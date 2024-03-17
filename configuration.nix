@@ -156,6 +156,7 @@ in
     duf
     gh
     # miller # useful tool
+    zoxide
 
   ] ++ tmuxPlugins;
 
