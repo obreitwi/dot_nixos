@@ -130,7 +130,6 @@ in
     gnused
     lsd
     mr
-    neovim
     # python3
     ripgrep
     ruby # only needed for neovim plugins
@@ -161,6 +160,7 @@ in
   environment.etc."tmux/load-plugins".text = lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
  
   programs.neovim = {
+    enable = true;
     viAlias = true;
     vimAlias = true;
   };
