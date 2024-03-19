@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1710695816,
+        "narHash": "sha256-3Eh7fhEID17pv9ZxrPwCLfqXnYP006RKzSs0JptsN84=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "614b4613980a522ba49f0d194531beddbb7220d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pydemx": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710202729,
+        "narHash": "sha256-YLpWlXmQQZMVvnlebaCuK8wxNc8j6Il2Readtts14OA=",
+        "owner": "obreitwi",
+        "repo": "pydemx",
+        "rev": "c8a50d7c1ad134f6b1757762e2f3f477f3e7d151",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obreitwi",
+        "repo": "pydemx",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "pydemx": "pydemx"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
