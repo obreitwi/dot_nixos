@@ -2,22 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, pkgs, ... }:
+inputs: { lib, config, pkgs, ... }:
 
 let
   tmuxPlugins = with pkgs.tmuxPlugins; [ sensible yank gruvbox ];
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nimir"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -139,7 +137,7 @@ in
     zsh-vi-mode
 
     # own stuff
-    (callPackage /home/obreitwi/git/toolbox/pydemx {})
+    (callPackage (import "${inputs.pydemx}") {}) # hacky way to include flake
 
     # desktop environment
     xss-lock
