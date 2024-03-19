@@ -2,10 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-inputs: { lib, config, pkgs, ... }:
-
+{ lib, config, pkgs, inputPkgs, ... }:
 let
-  tmuxPlugins = with pkgs.tmuxPlugins; [ sensible yank gruvbox ];
+  tmuxPlugins = import ../modules/tmux-plugins.nix pkgs;
+  shellPackages = import ../modules/shell-packages.nix {inherit pkgs; inherit inputPkgs;};
 in
 {
   nixpkgs.config.permittedInsecurePackages = [
@@ -107,55 +107,23 @@ in
   environment.variables.EDITOR = "nvim";
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
   environment.systemPackages = with pkgs; [
-    # base setup
+    # desktop environment
     alacritty  
-    bash
-    bat
-    carapace
-    cmake
-    coreutils-full
-    curl
-    delta
+    dunst # notifications
     earlyoom
     feh # image viewer
-    fzf
-    gawk
-    gcc
-    git
-    gnumake
-    gnused
-    lsd
-    mr
-    # python3
-    ripgrep
-    ruby # only needed for neovim plugins
-    tmux # + plugins below
-    ugrep
     xclip
-    zsh
-    zsh-vi-mode
-
-    # own stuff
-    (callPackage (import "${inputs.pydemx}") {}) # hacky way to include flake
-
-    # desktop environment
     xss-lock
 
-    # lsps
-    nixd
-
-    # desktop setup
-    dunst # notifications
-
-    # tools
-    dua
-    duf
-    gh
-    # miller # useful tool
-    zoxide
-
-  ] ++ tmuxPlugins;
+    # system package
+    cmake
+    coreutils-full
+    gcc
+  ]
+  ++ shellPackages
+  ++ tmuxPlugins;
 
   environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
   environment.etc."tmux/load-plugins".text = lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
