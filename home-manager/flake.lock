@@ -1,0 +1,66 @@
+{
+  "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1710888565,
+        "narHash": "sha256-s9Hi4RHhc6yut4EcYD50sZWRDKsugBJHSbON8KFwoTw=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "f33900124c23c4eca5831b9b5eb32ea5894375ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-23.11",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1710951922,
+        "narHash": "sha256-FOOBJ3DQenLpTNdxMHR2CpGZmYuctb92gF0lpiirZ30=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f091af045dff8347d66d186a62d42aceff159456",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pydemx": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710202729,
+        "narHash": "sha256-YLpWlXmQQZMVvnlebaCuK8wxNc8j6Il2Readtts14OA=",
+        "owner": "obreitwi",
+        "repo": "pydemx",
+        "rev": "c8a50d7c1ad134f6b1757762e2f3f477f3e7d151",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obreitwi",
+        "repo": "pydemx",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
+        "pydemx": "pydemx"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
