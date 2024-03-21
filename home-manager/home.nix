@@ -1,13 +1,17 @@
-{ lib, config, pkgs, inputPkgs, isNixOS ? false, ... }:
+{ lib, config, pkgs, inputPkgs, isNixOS, ... }:
 let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs;
-  shellPackages = import ../modules/shell-packages.nix {inherit pkgs; inherit inputPkgs;};
-in
-{
+  shellPackages = import ../modules/shell-packages.nix {
+    inherit pkgs;
+    inherit inputPkgs;
+  };
+in {
   home.packages = shellPackages ++ tmuxPlugins;
 
   home.username = "obreitwi";
   home.homeDirectory = "/home/obreitwi";
+
+  targets.genericLinux.enable = !isNixOS;
 
   programs.zsh.enable = false; # will overwrite zshrc
 
@@ -18,17 +22,6 @@ in
   # originally installed.
   home.stateVersion = "23.11";
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/obreitwi/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     # EDITOR = "nvim";
   };

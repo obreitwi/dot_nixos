@@ -20,7 +20,7 @@
 
   outputs = { self, nixpkgs, home-manager, pydemx, ... }@inputs:
     let
-      specialArgs = { inputPkgs = { inherit pydemx; }; };
+      specialArgs = { inputPkgs = { inherit pydemx; }; isNixOS = true; };
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
