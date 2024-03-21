@@ -5,9 +5,11 @@
 { lib, config, pkgs, inputPkgs, ... }:
 let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs;
-  shellPackages = import ../modules/shell-packages.nix {inherit pkgs; inherit inputPkgs;};
-in
-{
+  shellPackages = import ../modules/shell-packages.nix {
+    inherit pkgs;
+    inherit inputPkgs;
+  };
+in {
   nixpkgs.config.permittedInsecurePackages = [
     "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
   ];
@@ -55,7 +57,8 @@ in
     layout = "us";
     xkbVariant = "altgr-intl";
     xkbModel = "pc105";
-    xkbOptions = "compose:menu compose:prsc lv3:ralt_switch  eurosign:e nbsp:level3n";
+    xkbOptions =
+      "compose:menu compose:prsc lv3:ralt_switch  eurosign:e nbsp:level3n";
   };
 
   # Enable CUPS to print documents.
@@ -83,19 +86,18 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  services.openssh = {
-    enable = true;
-  };
+  services.openssh = { enable = true; };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.obreitwi = {
     isNormalUser = true;
     description = "Oliver Breitwieser";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        firefox
+        #  thunderbird
+      ];
     shell = pkgs.zsh;
   };
 
@@ -108,26 +110,27 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
-  environment.systemPackages = with pkgs; [
-    # desktop environment
-    alacritty  
-    dunst # notifications
-    earlyoom
-    feh # image viewer
-    xclip
-    xss-lock
+  environment.systemPackages = with pkgs;
+    [
+      # desktop environment
+      alacritty
+      dunst # notifications
+      earlyoom
+      feh # image viewer
+      xclip
+      xss-lock
 
-    # system package
-    cmake
-    coreutils-full
-    gcc
-  ]
-  ++ shellPackages
-  ++ tmuxPlugins;
+      # system package
+      cmake
+      coreutils-full
+      gcc
+    ] ++ shellPackages ++ tmuxPlugins;
 
-  environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-  environment.etc."tmux/load-plugins".text = lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
- 
+  environment.etc."zsh/vi-mode.zsh".source =
+    "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+  environment.etc."tmux/load-plugins".text =
+    lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
+
   programs.neovim = {
     enable = true;
     viAlias = true;
