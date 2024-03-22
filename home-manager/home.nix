@@ -1,6 +1,6 @@
 { lib, config, pkgs, pkgs-unstable, pkgs-input, isNixOS, ... }:
 let
-  tmuxPlugins = import ../modules/tmux-plugins.nix pkgs;
+  tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
     inherit pkgs;
     inherit pkgs-unstable;
@@ -11,6 +11,9 @@ in {
 
   home.username = "obreitwi";
   home.homeDirectory = "/home/obreitwi";
+
+  home.file."${config.xdg.configHome}/tmux/load-plugins".text =
+    lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
 
   targets.genericLinux.enable = !isNixOS;
 
