@@ -1,6 +1,6 @@
 { pkgs, pkgs-unstable, pkgs-input }:
 let
-  tmuxPlugins = import ./tmux-plugins.nix pkgs;
+  tmuxPlugins = import ./tmux-plugins.nix pkgs-unstable;
 in
 with pkgs-unstable; [
   # base setup
