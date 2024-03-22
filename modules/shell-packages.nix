@@ -7,6 +7,7 @@ with pkgs; [
   bash
   bat
   carapace
+  coreutils-full
   curl
   delta
   fzf
@@ -16,7 +17,7 @@ with pkgs; [
   gnused
   lsd
   mr
-  # python3
+  neovim
   ripgrep
   ruby # only needed for neovim plugins
   tmux # + plugins

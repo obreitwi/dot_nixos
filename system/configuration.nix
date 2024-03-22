@@ -122,7 +122,6 @@ in {
 
       # system package
       cmake
-      coreutils-full
       gcc
     ] ++ shellPackages ++ tmuxPlugins;
 
