@@ -17,7 +17,7 @@ with pkgs-unstable; [
   gnused
   lsd
   mr
-  # neovim
+  neovim # added by home-manager
   tree-sitter
   ripgrep
   ruby # only needed for neovim plugins
@@ -28,6 +28,9 @@ with pkgs-unstable; [
 
   # own stuff
   (callPackage (import "${pkgs-input.pydemx}") { }) # hacky way to include flake
+
+  # dev
+  gcc
 
   # lsps
   nixd
