@@ -7,7 +7,11 @@ let
     inherit pkgs-input;
   };
 in {
-  home.packages = shellPackages ++ tmuxPlugins;
+  home.packages = with pkgs-unstable; [
+    # xmonad-with-packages
+    # xmonad-contrib
+    # xmonad-extras
+  ] ++ shellPackages ++ tmuxPlugins;
 
   home.username = "obreitwi";
   home.homeDirectory = "/home/obreitwi";
@@ -18,6 +22,14 @@ in {
   targets.genericLinux.enable = !isNixOS;
 
   programs.zsh.enable = false; # will overwrite zshrc
+  # programs.neovim.extraPackages = [ pkgs-unstable.gcc ];
+
+  # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
+  # programs.neovim.enable = true;
+  # programs.neovim.package = pkgs-unstable.neovim-unwrapped;
+  # programs.neovim.plugins = [
+    # pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars
+  # ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -27,6 +39,8 @@ in {
   home.stateVersion = "23.11";
 
   home.sessionVariables = {
+    # needed for treesitter grammar
+    LD_LIBRARY_PATH = (when !isNixOS "${pkgs-unstable.stdenv.cc.cc.lib}/lib");
     # EDITOR = "nvim";
   };
 }
