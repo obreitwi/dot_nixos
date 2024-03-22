@@ -37,6 +37,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1711119864,
+        "narHash": "sha256-2Dw0WIq7H8ogixzPX8QeXE7Ji3w4KEtUvKTMpYL6uDw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c3d5b0c0c6905a5f20ff70cb08a2fcd1f6b9046b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pydemx": {
       "flake": false,
       "locked": {
@@ -57,6 +73,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "pydemx": "pydemx"
       }
     }

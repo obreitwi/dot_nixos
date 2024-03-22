@@ -1,8 +1,8 @@
-{ inputPkgs, pkgs }:
+{ pkgs, pkgs-unstable, pkgs-input }:
 let
   tmuxPlugins = import ./tmux-plugins.nix pkgs;
 in
-with pkgs; [
+with pkgs-unstable; [
   # base setup
   bash
   bat
@@ -17,7 +17,7 @@ with pkgs; [
   gnused
   lsd
   mr
-  neovim
+  pkgs-unstable.neovim
   ripgrep
   ruby # only needed for neovim plugins
   tmux # + plugins
@@ -26,12 +26,13 @@ with pkgs; [
   zsh-vi-mode
 
   # own stuff
-  (callPackage (import "${inputPkgs.pydemx}") { }) # hacky way to include flake
+  (callPackage (import "${pkgs-input.pydemx}") { }) # hacky way to include flake
 
   # lsps
   nixd
 
   # tools
+  pkgs-unstable.btop
   dua
   duf
   gh
