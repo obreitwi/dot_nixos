@@ -17,7 +17,8 @@ with pkgs-unstable; [
   gnused
   lsd
   mr
-  pkgs-unstable.neovim
+  # neovim
+  tree-sitter
   ripgrep
   ruby # only needed for neovim plugins
   tmux # + plugins
@@ -32,7 +33,7 @@ with pkgs-unstable; [
   nixd
 
   # tools
-  pkgs-unstable.btop
+  btop
   dua
   duf
   gh
