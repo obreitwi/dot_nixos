@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, pkgs, inputPkgs, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-input, ... }:
 let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs;
   shellPackages = import ../modules/shell-packages.nix {
     inherit pkgs;
-    inherit inputPkgs;
+    inherit pkgs-input;
+    inherit pkgs-unstable;
   };
 in {
   nixpkgs.config.permittedInsecurePackages = [

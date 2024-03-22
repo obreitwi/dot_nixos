@@ -1,9 +1,10 @@
-{ lib, config, pkgs, inputPkgs, isNixOS, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-input, isNixOS, ... }:
 let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs;
   shellPackages = import ../modules/shell-packages.nix {
     inherit pkgs;
-    inherit inputPkgs;
+    inherit pkgs-unstable;
+    inherit pkgs-input;
   };
 in {
   home.packages = shellPackages ++ tmuxPlugins;
