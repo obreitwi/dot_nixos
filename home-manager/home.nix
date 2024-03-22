@@ -7,11 +7,12 @@ let
     inherit pkgs-input;
   };
 in {
-  home.packages = with pkgs-unstable; [
-    # xmonad-with-packages
-    # xmonad-contrib
-    # xmonad-extras
-  ] ++ shellPackages ++ tmuxPlugins;
+  home.packages = with pkgs-unstable;
+    [
+      # xmonad-with-packages
+      # xmonad-contrib
+      # xmonad-extras
+    ] ++ shellPackages ++ tmuxPlugins;
 
   home.username = "obreitwi";
   home.homeDirectory = "/home/obreitwi";
@@ -28,7 +29,7 @@ in {
   # programs.neovim.enable = true;
   # programs.neovim.package = pkgs-unstable.neovim-unwrapped;
   # programs.neovim.plugins = [
-    # pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars
+  # pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars
   # ];
 
   # Let Home Manager install and manage itself.
@@ -38,9 +39,13 @@ in {
   # originally installed.
   home.stateVersion = "23.11";
 
-  home.sessionVariables = {
-    # needed for treesitter grammar
-    LD_LIBRARY_PATH = (when !isNixOS "${pkgs-unstable.stdenv.cc.cc.lib}/lib");
-    # EDITOR = "nvim";
-  };
+  home.sessionVariables = lib.mkMerge [
+    (if isNixOS then
+      { }
+    else {
+      # needed for treesitter grammar
+      LD_LIBRARY_PATH = "${pkgs-unstable.stdenv.cc.cc.lib}/lib";
+      # EDITOR = "nvim";
+    })
+  ];
 }
