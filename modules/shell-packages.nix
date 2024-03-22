@@ -1,8 +1,6 @@
 { pkgs, pkgs-unstable, pkgs-input }:
-let
-  tmuxPlugins = import ./tmux-plugins.nix pkgs-unstable;
-in
-with pkgs-unstable; [
+let tmuxPlugins = import ./tmux-plugins.nix pkgs-unstable;
+in with pkgs-unstable; [
   # base setup
   bash
   bat
@@ -31,6 +29,7 @@ with pkgs-unstable; [
 
   # dev
   gcc
+  nodejs
 
   # lsps
   nixd
