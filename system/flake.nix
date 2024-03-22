@@ -19,12 +19,23 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, pydemx, ... }@inputs:
+  outputs =
+    { self, nixpkgs, nixpkgs-unstable, home-manager, pydemx, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; config = { allowUnfree = true; }; };
-      pkgs-unstable = import nixpkgs-unstable { inherit system; config = { allowUnfree = true; }; };
-      specialArgs = { inputPkgs = { inherit pydemx; }; isNixOS = true; inherit pkgs-unstable; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      specialArgs = {
+        pkgs-input = { inherit pydemx; };
+        isNixOS = true;
+        inherit pkgs-unstable;
+      };
     in {
       nixosConfigurations.nimir = nixpkgs.lib.nixosSystem {
         inherit system;

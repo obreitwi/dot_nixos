@@ -4,7 +4,7 @@
 
 { lib, config, pkgs, pkgs-unstable, pkgs-input, ... }:
 let
-  tmuxPlugins = import ../modules/tmux-plugins.nix pkgs;
+  tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
     inherit pkgs;
     inherit pkgs-input;
