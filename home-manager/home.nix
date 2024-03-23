@@ -8,6 +8,8 @@ let
     inherit pkgs-input;
   };
 in {
+  imports = [ ] ++ (if isNixOS then [ ./home-desktop.nix ] else [ ]);
+
   home.packages = with pkgs-unstable;
     [
       # xmonad-with-packages
@@ -20,22 +22,6 @@ in {
 
   home.file."${config.xdg.configHome}/tmux/load-plugins".text =
     lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
-
-  home.file."${config.home.homeDirectory}/.xinitrc".source =
-    "${dot-desktop}/x11/xinitrc";
-
-  # xmonad config
-  home.file."${config.home.homeDirectory}/.xmonad/lib" = {
-    source = "${dot-desktop}/xmonad/lib";
-    recursive = true;
-  };
-  home.file."${config.home.homeDirectory}/.xmonad/xmonad.hs" = {
-    source = "${dot-desktop}/xmonad/xmonad.hs";
-  };
-  home.file."${config.home.homeDirectory}/.xmonad/xmobar" = {
-    source = "${dot-desktop}/xmonad/xmobar.${hostname}";
-  };
-  services.keynav.enable = true;
 
   programs.zsh.enable = false; # will overwrite zshrc
   # programs.neovim.extraPackages = [ pkgs-unstable.gcc ];
