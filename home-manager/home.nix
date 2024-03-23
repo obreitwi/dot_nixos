@@ -35,8 +35,7 @@ in {
   home.file."${config.home.homeDirectory}/.xmonad/xmobar" = {
     source = "${dot-desktop}/xmonad/xmobar.${hostname}";
   };
-
-  targets.genericLinux.enable = !isNixOS;
+  services.keynav.enable = true;
 
   programs.zsh.enable = false; # will overwrite zshrc
   # programs.neovim.extraPackages = [ pkgs-unstable.gcc ];
@@ -54,6 +53,8 @@ in {
   # The state version is required and should stay at the version you
   # originally installed.
   home.stateVersion = "23.11";
+
+  targets.genericLinux.enable = !isNixOS;
 
   home.sessionVariables = lib.mkMerge [
     (if isNixOS then

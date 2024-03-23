@@ -57,14 +57,10 @@ in {
       enable = true;
 
       # disabling mouse acceleration
-      mouse = {
-        accelProfile = "flat";
-      };
+      mouse = { accelProfile = "flat"; };
 
       # disabling touchpad acceleration
-      touchpad = {
-        accelProfile = "flat";
-      };
+      touchpad = { accelProfile = "flat"; };
     };
 
     layout = "us";
@@ -96,7 +92,6 @@ in {
   };
 
   services.earlyoom.enable = true;
-  services.keynav.enable = true;
   services.picom.enable = true;
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -135,7 +130,6 @@ in {
 
       # window manager
       xmobar
-      keynav
 
       #  thunderbird
     ];
@@ -150,6 +144,14 @@ in {
   environment.variables.EDITOR = "nvim";
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  fonts.enableDefaultPackages = true;
+  fonts.packages = with pkgs;
+    [
+      (nerdfonts.override {
+        fonts = [ "DejaVuSansMono" "Iosevka" "IosevkaTerm" "Mononoki" ];
+      })
+    ];
 
   environment.systemPackages = with pkgs;
     [
