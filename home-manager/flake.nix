@@ -35,6 +35,7 @@
         pkgs-input = { inherit pydemx; };
         isNixOS = false;
         inherit pkgs-unstable;
+        hostname = "mimir";
       };
       system = "x86_64-linux";
       # pkgs = nixpkgs.legacyPackages.${system};
