@@ -48,10 +48,24 @@ in {
 
   # Configure keymap in X11
   services.xserver = {
+    enable = true;
+
     autoRepeatDelay = 250;
     autoRepeatInterval = 30;
 
-    enable = true;
+    libinput = {
+      enable = true;
+
+      # disabling mouse acceleration
+      mouse = {
+        accelProfile = "flat";
+      };
+
+      # disabling touchpad acceleration
+      touchpad = {
+        accelProfile = "flat";
+      };
+    };
 
     layout = "us";
     xkbVariant = "altgr-intl";
@@ -65,8 +79,8 @@ in {
       gdm.enable = false;
 
       lightdm.enable = true;
-      # defaultSession = "none+xmonad";
-      defaultSession = "myxmonad";
+      defaultSession = "none+xmonad";
+      # defaultSession = "myxmonad";
 
       session = [{
         manage = "desktop";
@@ -81,12 +95,11 @@ in {
     };
   };
 
+  services.earlyoom.enable = true;
+  services.keynav.enable = true;
+  services.picom.enable = true;
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  services.picom.enable = true;
-
-  services.earlyoom.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -104,9 +117,6 @@ in {
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   services.unclutter.enable = true;
 
@@ -148,10 +158,10 @@ in {
       autorandr
       earlyoom
       feh # image viewer
+      rofi
       trayer
       xclip
       xss-lock
-      xorg.xmodmap
 
       # system package
       cmake
