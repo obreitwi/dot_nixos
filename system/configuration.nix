@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, pkgs, pkgs-unstable, pkgs-input, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-input, dot-desktop, ... }:
 let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
@@ -46,24 +46,45 @@ in {
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver = {
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 30;
+
+    enable = true;
+
     layout = "us";
     xkbVariant = "altgr-intl";
     xkbModel = "pc105";
     xkbOptions =
-      "compose:menu compose:prsc lv3:ralt_switch  eurosign:e nbsp:level3n";
+      "compose:menu compose:prsc lv3:ralt_switch eurosign:e nbsp:level3n caps:escape";
+
+    desktopManager = { gnome = { enable = false; }; };
+
+    displayManager = {
+      gdm.enable = false;
+
+      lightdm.enable = true;
+      # defaultSession = "none+xmonad";
+      defaultSession = "myxmonad";
+
+      session = [{
+        manage = "desktop";
+        name = "myxmonad";
+        start = "exec $HOME/.xinitrc";
+      }];
+    };
+
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+    };
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  services.picom.enable = true;
 
   services.earlyoom.enable = true;
 
@@ -87,18 +108,27 @@ in {
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  services.openssh = { enable = true; };
+  services.unclutter.enable = true;
+
+  services.openssh.enable = true;
+
+  # TODO: apparenlty no service for dunst
+  # services.dunst.enable = true; # notifications
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.obreitwi = {
     isNormalUser = true;
     description = "Oliver Breitwieser";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        firefox
-        #  thunderbird
-      ];
+    packages = with pkgs; [
+      firefox
+
+      # window manager
+      xmobar
+      keynav
+
+      #  thunderbird
+    ];
     shell = pkgs.zsh;
   };
 
@@ -115,11 +145,13 @@ in {
     [
       # desktop environment
       alacritty
-      dunst # notifications
+      autorandr
       earlyoom
       feh # image viewer
+      trayer
       xclip
       xss-lock
+      xorg.xmodmap
 
       # system package
       cmake

@@ -1,4 +1,5 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-input, isNixOS, ... }:
+{ lib, config, pkgs, pkgs-unstable, pkgs-input, isNixOS, dot-desktop, hostname
+, ... }:
 let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
@@ -19,6 +20,21 @@ in {
 
   home.file."${config.xdg.configHome}/tmux/load-plugins".text =
     lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
+
+  home.file."${config.home.homeDirectory}/.xinitrc".source =
+    "${dot-desktop}/x11/xinitrc";
+
+  # xmonad config
+  home.file."${config.home.homeDirectory}/.xmonad/lib" = {
+    source = "${dot-desktop}/xmonad/lib";
+    recursive = true;
+  };
+  home.file."${config.home.homeDirectory}/.xmonad/xmonad.hs" = {
+    source = "${dot-desktop}/xmonad/xmonad.hs";
+  };
+  home.file."${config.home.homeDirectory}/.xmonad/xmobar" = {
+    source = "${dot-desktop}/xmonad/xmobar.${hostname}";
+  };
 
   targets.genericLinux.enable = !isNixOS;
 

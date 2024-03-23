@@ -13,13 +13,14 @@ in with pkgs-unstable; [
   git
   gnumake
   gnused
+  killall
   lsd
   mr
   neovim # added by home-manager
-  tree-sitter
   ripgrep
   ruby # only needed for neovim plugins
   tmux # + plugins
+  tree-sitter
   ugrep
   zsh
   zsh-vi-mode
