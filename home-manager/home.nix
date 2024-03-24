@@ -8,10 +8,13 @@ let
     inherit pkgs-input;
   };
 in {
-  imports = [ ] ++ (if isNixOS then [ ./home-desktop.nix ] else [ ]);
+  imports = [ ] ++ (if isNixOS then [ ./home-nixos.nix ] else [ ]);
 
   home.packages = with pkgs-unstable;
     [
+      # deps xmonad
+      xorg.libxcb.dev
+
       # xmonad-with-packages
       # xmonad-contrib
       # xmonad-extras
