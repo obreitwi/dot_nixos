@@ -1,5 +1,13 @@
-{ lib, config, pkgs, pkgs-unstable, pkgs-input, isNixOS, dot-desktop, hostname
-, ... }:
+{ lib
+, config
+, pkgs
+, pkgs-unstable
+, pkgs-input
+, isNixOS
+, dot-desktop
+, hostname
+, ...
+}:
 let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
@@ -7,7 +15,8 @@ let
     inherit pkgs-unstable;
     inherit pkgs-input;
   };
-in {
+in
+{
   home.packages = with pkgs-unstable;
     [
       # # deps xmonad

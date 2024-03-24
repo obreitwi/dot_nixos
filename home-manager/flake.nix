@@ -24,8 +24,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, pydemx, dot-desktop
-    , ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , nixpkgs-unstable
+    , home-manager
+    , pydemx
+    , dot-desktop
+    , ...
+    }@inputs:
     let
       pkgs = import nixpkgs {
         inherit system;
@@ -44,7 +51,8 @@
       };
       system = "x86_64-linux";
       # pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       homeConfigurations."obreitwi" =
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
