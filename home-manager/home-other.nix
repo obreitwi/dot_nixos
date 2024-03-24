@@ -1,16 +1,15 @@
 # home manager config only used on desktops not running nixOS
-{ lib
-, config
-, pkgs
-, pkgs-unstable
-, pkgs-input
-, isNixOS
-, dot-desktop
-, hostname
-, ...
-}:
-let
-
+{
+  lib,
+  config,
+  pkgs,
+  pkgs-unstable,
+  pkgs-input,
+  isNixOS,
+  dot-desktop,
+  hostname,
+  ...
+}: let
 in {
   imports = [
     ../modules/alacritty.nix
@@ -21,5 +20,4 @@ in {
     enable = true;
     enableContribAndExtras = true;
   };
-
 }

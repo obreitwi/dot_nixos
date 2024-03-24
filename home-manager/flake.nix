@@ -24,42 +24,38 @@
     };
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , home-manager
-    , pydemx
-    , dot-desktop
-    , ...
-    }@inputs:
-    let
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-      specialArgs = {
-        pkgs-input = { inherit pydemx; };
-        isNixOS = false;
-        inherit pkgs-unstable;
-        inherit dot-desktop;
-        hostname = "mimir";
-      };
-      system = "x86_64-linux";
-      # pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      homeConfigurations."obreitwi" =
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules =
-            [ ./home.nix { _module.args = specialArgs; } ./home-other.nix ];
-        };
-
-      formatter.${system} = pkgs.nixfmt;
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    pydemx,
+    dot-desktop,
+    ...
+  } @ inputs: let
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {allowUnfree = true;};
     };
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config = {allowUnfree = true;};
+    };
+    specialArgs = {
+      pkgs-input = {inherit pydemx;};
+      isNixOS = false;
+      inherit pkgs-unstable;
+      inherit dot-desktop;
+      hostname = "mimir";
+    };
+    system = "x86_64-linux";
+    # pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    homeConfigurations."obreitwi" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [./home.nix {_module.args = specialArgs;} ./home-other.nix];
+    };
+
+    formatter.${system} = pkgs.nixfmt;
+  };
 }
