@@ -12,8 +12,10 @@
 let
 
 in {
-  # TODO: import xmonad
-  imports = [ ../modules/xmonad.nix ];
+  imports = [
+    ../modules/alacritty.nix
+    ../modules/xmonad.nix
+  ];
 
   xsession.windowManager.xmonad = {
     enable = true;
