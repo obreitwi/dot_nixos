@@ -25,8 +25,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, pydemx, dot-desktop
-    , ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , nixpkgs-unstable
+    , home-manager
+    , pydemx
+    , dot-desktop
+    , ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -58,7 +65,8 @@
               home-manager.extraSpecialArgs = specialArgs;
             };
 
-        in nixpkgs.lib.nixosSystem {
+        in
+        nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
@@ -78,7 +86,8 @@
             (import ./home-manager/home-nixos.nix)
           ];
         };
-    in {
+    in
+    {
       nixosConfigurations.nimir = mySystem "nimir";
       formatter.${system} = pkgs.nixfmt;
     };

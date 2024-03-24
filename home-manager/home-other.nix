@@ -1,6 +1,14 @@
 # home manager config only used on desktops not running nixOS
-{ lib, config, pkgs, pkgs-unstable, pkgs-input, isNixOS, dot-desktop, hostname
-, ... }:
+{ lib
+, config
+, pkgs
+, pkgs-unstable
+, pkgs-input
+, isNixOS
+, dot-desktop
+, hostname
+, ...
+}:
 let
 
 in {

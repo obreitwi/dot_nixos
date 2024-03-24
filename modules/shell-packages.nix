@@ -34,6 +34,7 @@ in with pkgs-unstable; [
 
   # lsps
   nixd
+  nixpkgs-fmt
 
   # tools
   btop

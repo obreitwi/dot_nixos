@@ -10,7 +10,8 @@ let
     inherit pkgs-input;
     inherit pkgs-unstable;
   };
-in {
+in
+{
   nixpkgs.config.permittedInsecurePackages = [
     "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
   ];
