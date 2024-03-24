@@ -1,1 +1,1 @@
-pkgs: with pkgs.tmuxPlugins; [ sensible yank gruvbox ]
+pkgs: with pkgs.tmuxPlugins; [sensible yank gruvbox]

@@ -1,27 +1,28 @@
-{ lib
-, config
-, pkgs
-, pkgs-unstable
-, pkgs-input
-, isNixOS
-, dot-desktop
-, hostname
-, ...
-}:
-let
+{
+  lib,
+  config,
+  pkgs,
+  pkgs-unstable,
+  pkgs-input,
+  isNixOS,
+  dot-desktop,
+  hostname,
+  ...
+}: let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
     inherit pkgs;
     inherit pkgs-unstable;
     inherit pkgs-input;
   };
-in
-{
+in {
   home.packages = with pkgs-unstable;
     [
       # # deps xmonad
       # xorg.libxcb.dev
-    ] ++ shellPackages ++ tmuxPlugins;
+    ]
+    ++ shellPackages
+    ++ tmuxPlugins;
 
   home.username = "obreitwi";
   home.homeDirectory = "/home/obreitwi";
@@ -49,12 +50,14 @@ in
   targets.genericLinux.enable = !isNixOS;
 
   home.sessionVariables = lib.mkMerge [
-    (if isNixOS then
-      { }
-    else {
-      # needed for treesitter grammar
-      LD_LIBRARY_PATH = "${pkgs-unstable.stdenv.cc.cc.lib}/lib";
-      # EDITOR = "nvim";
-    })
+    (
+      if isNixOS
+      then {}
+      else {
+        # needed for treesitter grammar
+        LD_LIBRARY_PATH = "${pkgs-unstable.stdenv.cc.cc.lib}/lib";
+        # EDITOR = "nvim";
+      }
+    )
   ];
 }

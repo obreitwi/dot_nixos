@@ -1,13 +1,14 @@
 # home manager config for xmonad
-{ lib
-, config
-, pkgs
-, pkgs-unstable
-, pkgs-input
-, isNixOS
-, dot-desktop
-, hostname
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  pkgs-unstable,
+  pkgs-input,
+  isNixOS,
+  dot-desktop,
+  hostname,
+  ...
 }: {
   home.file."${config.home.homeDirectory}/.xmonad/lib" = {
     source = "${dot-desktop}/xmonad/lib";
@@ -26,6 +27,6 @@
   programs.xmobar = {
     enable = true;
     extraConfig =
-      (builtins.readFile "${dot-desktop}/xmonad/xmobar.${hostname}");
+      builtins.readFile "${dot-desktop}/xmonad/xmobar.${hostname}";
   };
 }

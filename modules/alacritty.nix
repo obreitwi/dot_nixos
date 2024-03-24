@@ -1,15 +1,18 @@
-{ lib
-, config
-, pkgs
-, pkgs-unstable
-, pkgs-input
-, isNixOS
-, dot-desktop
-, hostname
-, ...
-}:
-let
-  bindings = /* toml */
+{
+  lib,
+  config,
+  pkgs,
+  pkgs-unstable,
+  pkgs-input,
+  isNixOS,
+  dot-desktop,
+  hostname,
+  ...
+}: let
+  bindings =
+    /*
+    toml
+    */
     ''
       [[keyboard.bindings]]
       action = "SpawnNewInstance"
@@ -37,7 +40,10 @@ let
       mods = "Alt|Shift"
     '';
 
-  colors = /* toml */
+  colors =
+    /*
+    toml
+    */
     ''
       [colors.bright]
       black = "0x808080"
@@ -69,33 +75,40 @@ let
     '';
 
   font = {
-    mimir = /* toml */ ''
-      [font]
-      size = 10
+    mimir =
+      /*
+      toml
+      */
+      ''
+        [font]
+        size = 10
 
-      [font.glyph_offset]
-      x = 0
-      y = 0
+        [font.glyph_offset]
+        x = 0
+        y = 0
 
-      [font.offset]
-      x = 0
-      y = 0
+        [font.offset]
+        x = 0
+        y = 0
 
-      [font.bold]
-      family = "IosevkaTerm NF"
-      style = "Bold"
+        [font.bold]
+        family = "IosevkaTerm NF"
+        style = "Bold"
 
-      [font.italic]
-      family = "IosevkaTerm NF"
-      style = "Oblique"
+        [font.italic]
+        family = "IosevkaTerm NF"
+        style = "Oblique"
 
-      [font.normal]
-      family = "IosevkaTerm NF"
-      style = "Regular"
-    '';
+        [font.normal]
+        family = "IosevkaTerm NF"
+        style = "Regular"
+      '';
   };
 
-  hints = /* toml */
+  hints =
+    /*
+    toml
+    */
     ''
       [[hints.enabled]]
       command = "xdg-open"
@@ -124,13 +137,16 @@ let
       mods = "Shift"
     '';
 
-  window = /* toml */ ''
-    [window]
-    opacity = 0.75
-  '';
-in
-{
-  home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings [ bindings colors font.${hostname} hints window ];
+  window =
+    /*
+    toml
+    */
+    ''
+      [window]
+      opacity = 0.75
+    '';
+in {
+  home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings [bindings colors font.${hostname} hints window];
 
   programs.alacritty = {
     enable = false; # no OpenGL version found

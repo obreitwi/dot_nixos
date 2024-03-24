@@ -1,17 +1,22 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ lib, config, pkgs, pkgs-unstable, pkgs-input, dot-desktop, ... }:
-let
+{
+  lib,
+  config,
+  pkgs,
+  pkgs-unstable,
+  pkgs-input,
+  dot-desktop,
+  ...
+}: let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
     inherit pkgs;
     inherit pkgs-input;
     inherit pkgs-unstable;
   };
-in
-{
+in {
   nixpkgs.config.permittedInsecurePackages = [
     "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
   ];
@@ -58,19 +63,18 @@ in
       enable = true;
 
       # disabling mouse acceleration
-      mouse = { accelProfile = "flat"; };
+      mouse = {accelProfile = "flat";};
 
       # disabling touchpad acceleration
-      touchpad = { accelProfile = "flat"; };
+      touchpad = {accelProfile = "flat";};
     };
 
     layout = "us";
     xkbVariant = "altgr-intl";
     xkbModel = "pc105";
-    xkbOptions =
-      "compose:menu compose:prsc lv3:ralt_switch eurosign:e nbsp:level3n caps:escape";
+    xkbOptions = "compose:menu compose:prsc lv3:ralt_switch eurosign:e nbsp:level3n caps:escape";
 
-    desktopManager = { gnome = { enable = false; }; };
+    desktopManager = {gnome = {enable = false;};};
 
     displayManager = {
       gdm.enable = false;
@@ -79,11 +83,13 @@ in
       defaultSession = "none+xmonad";
       # defaultSession = "myxmonad";
 
-      session = [{
-        manage = "desktop";
-        name = "myxmonad";
-        start = "exec $HOME/.xinitrc";
-      }];
+      session = [
+        {
+          manage = "desktop";
+          name = "myxmonad";
+          start = "exec $HOME/.xinitrc";
+        }
+      ];
     };
 
     windowManager.xmonad = {
@@ -125,7 +131,7 @@ in
   users.users.obreitwi = {
     isNormalUser = true;
     description = "Oliver Breitwieser";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
 
@@ -147,12 +153,11 @@ in
   # $ nix search wget
 
   fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs;
-    [
-      (nerdfonts.override {
-        fonts = [ "DejaVuSansMono" "Iosevka" "IosevkaTerm" "Mononoki" ];
-      })
-    ];
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = ["DejaVuSansMono" "Iosevka" "IosevkaTerm" "Mononoki"];
+    })
+  ];
 
   environment.systemPackages = with pkgs;
     [
@@ -169,10 +174,11 @@ in
       # system package
       cmake
       gcc
-    ] ++ shellPackages ++ tmuxPlugins;
+    ]
+    ++ shellPackages
+    ++ tmuxPlugins;
 
-  environment.etc."zsh/vi-mode.zsh".source =
-    "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+  environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
   environment.etc."tmux/load-plugins".text =
     lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
 
@@ -213,5 +219,5 @@ in
 
   nix.settings.auto-optimise-store = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 }
