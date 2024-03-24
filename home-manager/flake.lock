@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dot-desktop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711203126,
+        "narHash": "sha256-A4wGJZz+YCgcxq3Aj+ABZ3gmBet0Di5d426RtaKrcGE=",
+        "owner": "obreitwi",
+        "repo": "dotfiles_desktop",
+        "rev": "047a7ef02b474e74ce69697d8aa838f1e3182114",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obreitwi",
+        "repo": "dotfiles_desktop",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -71,6 +87,7 @@
     },
     "root": {
       "inputs": {
+        "dot-desktop": "dot-desktop",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

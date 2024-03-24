@@ -14,14 +14,18 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dot-desktop = {
+      url = "github:obreitwi/dotfiles_desktop";
+      flake = false;
+    };
     pydemx = {
       url = "github:obreitwi/pydemx";
       flake = false;
     };
   };
 
-  outputs =
-    { self, nixpkgs, nixpkgs-unstable, home-manager, pydemx, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, pydemx, dot-desktop
+    , ... }@inputs:
     let
       pkgs = import nixpkgs {
         inherit system;
@@ -35,6 +39,7 @@
         pkgs-input = { inherit pydemx; };
         isNixOS = false;
         inherit pkgs-unstable;
+        inherit dot-desktop;
         hostname = "mimir";
       };
       system = "x86_64-linux";
@@ -43,7 +48,8 @@
       homeConfigurations."obreitwi" =
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home.nix { _module.args = specialArgs; } ];
+          modules =
+            [ ./home.nix { _module.args = specialArgs; } ./home-other.nix ];
         };
 
       formatter.${system} = pkgs.nixfmt;
