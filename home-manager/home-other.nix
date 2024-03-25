@@ -18,7 +18,7 @@ in {
   isNixOS = false;
 
   # home.packages = with pkgs-unstable; [
-     # nixgl.auto.nixGLDefault
+  # nixgl.auto.nixGLDefault
   # ];
 
   xsession.windowManager.xmonad = {
