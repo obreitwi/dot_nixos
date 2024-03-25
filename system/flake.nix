@@ -15,6 +15,7 @@
     };
 
     # custom (own) packages:
+    backlight.url =  "github:obreitwi/backlight";
     dot-desktop = {
       url = "github:obreitwi/dotfiles_desktop";
       flake = false;
