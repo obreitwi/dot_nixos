@@ -45,18 +45,16 @@
       config = {allowUnfree = true;};
       # overlays = [nixgl.overlay];
     };
-    specialArgs = {
+    specialArgs = hostname: {
       pkgs-input = {inherit pydemx;};
-      inherit pkgs-unstable;
-      inherit dot-desktop;
-      hostname = "mimir";
+      inherit pkgs-unstable dot-desktop hostname;
     };
     system = "x86_64-linux";
     # pkgs = nixpkgs.legacyPackages.${system};
   in {
-    homeConfigurations."obreitwi" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./home.nix {_module.args = specialArgs;} ./home-other.nix];
+      modules = [./home.nix {_module.args = specialArgs "mimir";} ./home-other.nix];
     };
 
     formatter.${system} = pkgs.nixfmt;
