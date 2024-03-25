@@ -54,16 +54,13 @@ in {
 
     targets.genericLinux.enable = !config.isNixOS;
 
-    home.sessionVariables = lib.mkMerge [
-      (
-        lib.mkIf (!config.isNixOS) {
-          # needed for treesitter grammar
-          LD_LIBRARY_PATH = "${pkgs-unstable.stdenv.cc.cc.lib}/lib";
-        }
-      )
-      {
-        # EDITOR = "nvim";
+    home.sessionVariables =
+      lib.mkIf (!config.isNixOS) {
+        # needed for treesitter grammar
+        LD_LIBRARY_PATH = "${pkgs-unstable.stdenv.cc.cc.lib}/lib";
       }
-    ];
+      // {
+        # EDITOR = "nvim";
+      };
   };
 }
