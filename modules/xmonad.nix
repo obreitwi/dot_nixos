@@ -5,7 +5,6 @@
   pkgs,
   pkgs-unstable,
   pkgs-input,
-  isNixOS,
   dot-desktop,
   hostname,
   ...

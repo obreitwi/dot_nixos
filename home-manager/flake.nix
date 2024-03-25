@@ -14,6 +14,7 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # nixgl.url = "github:nix-community/nixGL";
     dot-desktop = {
       url = "github:obreitwi/dotfiles_desktop";
       flake = false;
@@ -26,24 +27,26 @@
 
   outputs = {
     self,
+    dot-desktop,
+    home-manager,
+    # nixgl,
     nixpkgs,
     nixpkgs-unstable,
-    home-manager,
     pydemx,
-    dot-desktop,
     ...
   } @ inputs: let
     pkgs = import nixpkgs {
       inherit system;
       config = {allowUnfree = true;};
+      # overlays = [nixgl.overlay];
     };
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config = {allowUnfree = true;};
+      # overlays = [nixgl.overlay];
     };
     specialArgs = {
       pkgs-input = {inherit pydemx;};
-      isNixOS = false;
       inherit pkgs-unstable;
       inherit dot-desktop;
       hostname = "mimir";

@@ -5,7 +5,6 @@
   pkgs,
   pkgs-unstable,
   pkgs-input,
-  isNixOS,
   dot-desktop,
   hostname,
   ...
@@ -15,6 +14,12 @@ in {
     ../modules/alacritty.nix
     ../modules/xmonad.nix
   ];
+
+  isNixOS = false;
+
+  # home.packages = with pkgs-unstable; [
+     # nixgl.auto.nixGLDefault
+  # ];
 
   xsession.windowManager.xmonad = {
     enable = true;

@@ -4,7 +4,6 @@
   pkgs,
   pkgs-unstable,
   pkgs-input,
-  isNixOS,
   dot-desktop,
   hostname,
   ...
@@ -146,10 +145,10 @@
       opacity = 0.75
     '';
 in {
-  home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings [bindings colors font.${hostname} hints window];
+  home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font.${hostname} hints window]);
 
   programs.alacritty = {
-    enable = false; # no OpenGL version found
+    enable = true;
 
     package = pkgs-unstable.alacritty;
 
