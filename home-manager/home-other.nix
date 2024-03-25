@@ -6,6 +6,7 @@
   pkgs-unstable,
   pkgs-input,
   dot-desktop,
+  backlight,
   hostname,
   ...
 }: let
@@ -18,7 +19,7 @@ in {
   isNixOS = false;
 
   home.packages = with pkgs-unstable; [
-    xorg.xbacklight
+    backlight
   ];
 
   xsession.windowManager.xmonad = {

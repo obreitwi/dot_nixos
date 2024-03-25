@@ -5,6 +5,7 @@
   pkgs,
   pkgs-unstable,
   pkgs-input,
+  backlight,
   dot-desktop,
   hostname,
   ...
@@ -16,7 +17,7 @@
   home.file."${config.home.homeDirectory}/.xinitrc".source = "${dot-desktop}/x11/xinitrc";
 
   # needed for xmobar
-  home.packages = with pkgs-unstable; [ttf-envy-code-r];
+  home.packages = with pkgs-unstable; [backlight ttf-envy-code-r];
 
   services.keynav.enable = true;
 }

@@ -19,6 +19,7 @@
       url = "github:obreitwi/dotfiles_desktop";
       flake = false;
     };
+    backlight.url = "github:obreitwi/backlight";
     pydemx = {
       url = "github:obreitwi/pydemx";
       flake = false;
@@ -33,6 +34,7 @@
     nixpkgs,
     nixpkgs-unstable,
     pydemx,
+    backlight,
     ...
   } @ inputs: let
     pkgs = import nixpkgs {
@@ -47,7 +49,7 @@
     };
     specialArgs = hostname: {
       pkgs-input = {inherit pydemx;};
-      inherit pkgs-unstable dot-desktop hostname;
+      inherit pkgs-unstable dot-desktop hostname backlight;
     };
     system = "x86_64-linux";
     # pkgs = nixpkgs.legacyPackages.${system};
