@@ -46,9 +46,7 @@
     mySystem = hostname: let
       specialArgs = {
         pkgs-input = {inherit pydemx;};
-        inherit pkgs-unstable;
-        inherit dot-desktop;
-        inherit hostname;
+        inherit pkgs-unstable dot-desktop hostname;
       };
 
       homeMangerModule = module:
