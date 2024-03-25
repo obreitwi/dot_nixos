@@ -46,7 +46,6 @@
     mySystem = hostname: let
       specialArgs = {
         pkgs-input = {inherit pydemx;};
-        isNixOS = true;
         inherit pkgs-unstable;
         inherit dot-desktop;
         inherit hostname;

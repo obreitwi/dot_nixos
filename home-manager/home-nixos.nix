@@ -5,12 +5,13 @@
   pkgs,
   pkgs-unstable,
   pkgs-input,
-  isNixOS,
   dot-desktop,
   hostname,
   ...
 }: {
   imports = [../modules/xmonad.hs];
+
+  isNixOS = true;
 
   home.file."${config.home.homeDirectory}/.xinitrc".source = "${dot-desktop}/x11/xinitrc";
 
