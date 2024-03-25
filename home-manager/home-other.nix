@@ -17,9 +17,9 @@ in {
 
   isNixOS = false;
 
-  # home.packages = with pkgs-unstable; [
-  # nixgl.auto.nixGLDefault
-  # ];
+  home.packages = with pkgs-unstable; [
+    xorg.xbacklight
+  ];
 
   xsession.windowManager.xmonad = {
     enable = true;
