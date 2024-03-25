@@ -45,6 +45,11 @@ in {
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "23.11";
