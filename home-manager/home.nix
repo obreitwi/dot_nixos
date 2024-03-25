@@ -10,9 +10,7 @@
 }: let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
-    inherit pkgs;
-    inherit pkgs-unstable;
-    inherit pkgs-input;
+    inherit pkgs pkgs-unstable pkgs-input;
   };
 in {
   options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";

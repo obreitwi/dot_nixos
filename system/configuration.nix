@@ -12,9 +12,7 @@
 }: let
   tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
   shellPackages = import ../modules/shell-packages.nix {
-    inherit pkgs;
-    inherit pkgs-input;
-    inherit pkgs-unstable;
+    inherit pkgs pkgs-input pkgs-unstable;
   };
 in {
   nixpkgs.config.permittedInsecurePackages = [
