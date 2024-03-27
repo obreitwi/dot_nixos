@@ -1,13 +1,31 @@
 {
   "nodes": {
+    "backlight": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1711401250,
+        "narHash": "sha256-FuOmbg1SiwSsw7ZegLM/OiXrbxoVwev9OCSpt4dcaCw=",
+        "owner": "obreitwi",
+        "repo": "backlight",
+        "rev": "07085a696ecd294e51ce83ec7d9039825ff1a193",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obreitwi",
+        "repo": "backlight",
+        "type": "github"
+      }
+    },
     "dot-desktop": {
       "flake": false,
       "locked": {
-        "lastModified": 1711203126,
-        "narHash": "sha256-A4wGJZz+YCgcxq3Aj+ABZ3gmBet0Di5d426RtaKrcGE=",
+        "lastModified": 1711305889,
+        "narHash": "sha256-i68TUIjg6dc1XKYU9Pv73Ynjj58EfmvnqQ5Rr9SVZec=",
         "owner": "obreitwi",
         "repo": "dotfiles_desktop",
-        "rev": "047a7ef02b474e74ce69697d8aa838f1e3182114",
+        "rev": "67c364ab5cdafe38496feb61c0d264cab64c7689",
         "type": "github"
       },
       "original": {
@@ -55,16 +73,32 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1711204320,
-        "narHash": "sha256-oiGbYDbXpcyQvQL/gMHoRCM+KzyXhpbASckA/9blsRk=",
+        "lastModified": 1711534918,
+        "narHash": "sha256-OEwXQn2MLnrtHd5p2OsMcjMWDg9hBmpvOFUtQ5FiXjM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d462bfebeb7a538b2cdf926d013238fe123cd77b",
+        "rev": "0a8eead0410014371a5f3ec683c6601a7bfd6422",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1711124224,
+        "narHash": "sha256-l0zlN/3CiodvWDtfBOVxeTwYSRz93muVbXWSpaMjXxM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "56528ee42526794d413d6f244648aaee4a7b56c0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -87,9 +121,10 @@
     },
     "root": {
       "inputs": {
+        "backlight": "backlight",
         "dot-desktop": "dot-desktop",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pydemx": "pydemx"
       }

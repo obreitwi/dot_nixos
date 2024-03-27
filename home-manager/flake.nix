@@ -56,7 +56,7 @@
   in {
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./home.nix {_module.args = specialArgs "mimir";} ./home-other.nix];
+      modules = [./home-other.nix {_module.args = specialArgs "mimir";}];
     };
 
     formatter.${system} = pkgs.nixfmt;
