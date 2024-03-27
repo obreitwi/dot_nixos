@@ -33,6 +33,7 @@
     home-manager,
     pydemx,
     dot-desktop,
+    backlight,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -47,15 +48,15 @@
     mySystem = hostname: let
       specialArgs = {
         pkgs-input = {inherit pydemx;};
-        inherit pkgs-unstable dot-desktop hostname;
+        inherit pkgs-unstable dot-desktop backlight hostname;
       };
 
-      homeMangerModule = module:
+      homeManagerModule = path:
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.users.obreitwi = module;
+          home-manager.users.obreitwi = import "${path}";
 
           # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           home-manager.extraSpecialArgs = specialArgs;
@@ -75,10 +76,17 @@
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          homeMangerModule
-          (import ./home-manager/home.nix)
-          homeMangerModule
-          (import ./home-manager/home-nixos.nix)
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.obreitwi = import ../home-manager/home-nixos.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          # (homeManagerModule ../home-manager/home.nix)
+          # (homeManagerModule (import ../home-manager/home-nixos.nix))
         ];
       };
   in {

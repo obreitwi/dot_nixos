@@ -10,7 +10,7 @@
   hostname,
   ...
 }: {
-  imports = [../modules/xmonad.hs];
+  imports = [./home.nix ../modules/xmonad.nix];
 
   isNixOS = true;
 

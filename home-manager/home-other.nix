@@ -12,6 +12,7 @@
 }: let
 in {
   imports = [
+    ./home.nix
     ../modules/alacritty.nix
     ../modules/xmonad.nix
   ];
