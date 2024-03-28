@@ -7,7 +7,7 @@
 in
   with pkgs-unstable; [
     # base setup
-    bash
+    bashInteractive
     bat
     carapace
     coreutils-full
