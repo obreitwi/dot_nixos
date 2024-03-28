@@ -8,14 +8,14 @@
   hostname,
   ...
 }: let
-  tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
-  shellPackages = import ../modules/shell-packages.nix {
+  tmuxPlugins = import ../utility/tmux-plugins.nix pkgs-unstable;
+  shellPackages = import ../utility/shell-packages.nix {
     inherit pkgs pkgs-unstable pkgs-input;
   };
 in {
   options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
-  imports = [../modules/readline.nix];
+  imports = [../home-modules/readline.nix];
 
   config = {
     home.packages = with pkgs-unstable;

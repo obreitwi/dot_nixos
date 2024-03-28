@@ -10,8 +10,8 @@
   dot-desktop,
   ...
 }: let
-  tmuxPlugins = import ../modules/tmux-plugins.nix pkgs-unstable;
-  shellPackages = import ../modules/shell-packages.nix {
+  tmuxPlugins = import ../home-modules/tmux-plugins.nix pkgs-unstable;
+  shellPackages = import ../home-modules/shell-packages.nix {
     inherit pkgs pkgs-input pkgs-unstable;
   };
 in {
