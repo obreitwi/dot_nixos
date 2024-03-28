@@ -69,7 +69,7 @@
           ./configuration.nix
           {
             _module.args =
-              specialArgs; # make sure that regular modules can access special args as well
+              specialArgs; # make sure that regular home-modules can access special args as well
           }
           ./hardware-configuration/${hostname}.nix
           ./hardware-customization/${hostname}.nix

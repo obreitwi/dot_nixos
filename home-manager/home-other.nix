@@ -13,8 +13,8 @@
 in {
   imports = [
     ./home.nix
-    ../modules/alacritty.nix
-    ../modules/xmonad.nix
+    ../home-modules/alacritty.nix
+    ../home-modules/xmonad.nix
   ];
 
   isNixOS = false;
