@@ -15,7 +15,7 @@
 in {
   options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
-  imports = [../home-modules/readline.nix];
+  imports = [../home-modules/readline.nix ../home-modules/disable-news.nix];
 
   config = {
     home.packages = with pkgs-unstable;
