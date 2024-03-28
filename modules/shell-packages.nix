@@ -36,6 +36,9 @@ in
     # dev
     gcc
     nodejs
+    kubecolor
+    kubectl
+    k9s
 
     # lsps
     nixd
