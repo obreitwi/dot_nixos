@@ -25,6 +25,8 @@ in {
   config = {
     home.packages = with pkgs-unstable;
       [
+        pkgs-input.backlight
+        # pkgs-input.blobdrop # TODO: conflicts with backlight because of README.md ?!
         # # deps xmonad
         # xorg.libxcb.dev
       ]

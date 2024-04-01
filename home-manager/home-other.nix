@@ -6,7 +6,6 @@
   pkgs-unstable,
   pkgs-input,
   dot-desktop,
-  backlight,
   hostname,
   ...
 }: let
@@ -14,10 +13,6 @@ in {
   imports = [../home-modules];
 
   isNixOS = false;
-
-  home.packages = with pkgs-unstable; [
-    backlight
-  ];
 
   xsession.windowManager.xmonad = {
     enable = true;

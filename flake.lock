@@ -5,16 +5,34 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1711401250,
-        "narHash": "sha256-FuOmbg1SiwSsw7ZegLM/OiXrbxoVwev9OCSpt4dcaCw=",
+        "lastModified": 1712006572,
+        "narHash": "sha256-Kmcj05IpJGG7bMSw9eyAg9R6Xo4TA6Dt54lNH7FU9Cw=",
         "owner": "obreitwi",
         "repo": "backlight",
-        "rev": "07085a696ecd294e51ce83ec7d9039825ff1a193",
+        "rev": "f5a8a46aab426e46ce3b49f6c43801cc3f345263",
         "type": "github"
       },
       "original": {
         "owner": "obreitwi",
         "repo": "backlight",
+        "type": "github"
+      }
+    },
+    "blobdrop": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1711399363,
+        "narHash": "sha256-fddPfOHpcBACAUL7XGl7yFxQP0ZkYYb9Lmtcatw1dXQ=",
+        "owner": "vimpostor",
+        "repo": "blobdrop",
+        "rev": "dea22ddbe04e72c600524838d3d0f4b8169c85ad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vimpostor",
+        "repo": "blobdrop",
         "type": "github"
       }
     },
@@ -73,11 +91,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1712002401,
-        "narHash": "sha256-Go0SUTasdso4eCgnCIgF/NdKfw2CE9bDHsXemJElCUE=",
+        "lastModified": 1712006244,
+        "narHash": "sha256-qRu7Zys/BYkN105MNP6o8acxHdumCf6weXgqd0LO/II=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ab2ef75bc47c2a9c96f941f25a081fee812044d5",
+        "rev": "127c06803636f1e2c1de2e63bd767cf39f8d6c2c",
         "type": "github"
       },
       "original": {
@@ -88,6 +106,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1710451336,
+        "narHash": "sha256-pP86Pcfu3BrAvRO7R64x7hs+GaQrjFes+mEPowCfkxY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d691274a972b3165335d261cc4671335f5c67de9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1711668574,
         "narHash": "sha256-u1dfs0ASQIEr1icTVrsKwg2xToIpn7ZXxW3RHfHxshg=",
@@ -122,9 +156,10 @@
     "root": {
       "inputs": {
         "backlight": "backlight",
+        "blobdrop": "blobdrop",
         "dot-desktop": "dot-desktop",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pydemx": "pydemx"
       }
