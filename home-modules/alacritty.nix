@@ -145,14 +145,20 @@
       opacity = 0.75
     '';
 in {
-  home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font.${hostname} hints window]);
+  options.my.alacritty.enable = lib.mkOption {
+    default = true;
+  };
 
-  programs.alacritty = {
-    enable = true;
+  config = lib.mkIf config.my.alacritty.enable {
+    home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font.${hostname} hints window]);
 
-    package = pkgs-unstable.alacritty;
+    programs.alacritty = {
+      enable = true;
 
-    # NOTE: Settings defaults to yml, retry after next update.
-    # settings = lib.strings.concatStrings [ bindings colors font.${hostname} hints window ];
+      package = pkgs-unstable.alacritty;
+
+      # NOTE: Settings defaults to yml, retry after next update.
+      # settings = lib.strings.concatStrings [ bindings colors font.${hostname} hints window ];
+    };
   };
 }

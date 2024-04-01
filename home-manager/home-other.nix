@@ -11,11 +11,7 @@
   ...
 }: let
 in {
-  imports = [
-    ./home.nix
-    ../home-modules/alacritty.nix
-    ../home-modules/xmonad.nix
-  ];
+  imports = [../home-modules];
 
   isNixOS = false;
 
