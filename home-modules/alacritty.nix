@@ -102,6 +102,8 @@
         family = "IosevkaTerm NF"
         style = "Regular"
       '';
+
+    nimir = font.mimir;
   };
 
   hints =
