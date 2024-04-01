@@ -1,0 +1,8 @@
+#!/usr/bin/env nix
+# nix shell --file ``<nixpkgs-unstable>`` cargo cargo-update --command bash
+
+# NOTE: This is, at most, a crutch as it does not reference the same nixpkgs-unstable version as the current flake.lock.
+#       Nevertheless, it can be used to run `cargo install-update -a` which is still needed in the transition phase.
+#       Run `nix-channel --update` to update global channels.
+
+exec cargo "$@"
