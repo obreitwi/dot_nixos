@@ -11,8 +11,8 @@
   hostname,
   ...
 }: let
-  tmuxPlugins = import ../home-modules/tmux-plugins.nix pkgs-unstable;
-  shellPackages = import ../home-modules/shell-packages.nix {
+  tmuxPlugins = import ../utility/tmux-plugins.nix pkgs-unstable;
+  shellPackages = import ../utility/shell-packages.nix {
     inherit pkgs pkgs-input pkgs-unstable;
   };
 in {

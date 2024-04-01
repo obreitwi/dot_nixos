@@ -13,9 +13,14 @@
     inherit pkgs pkgs-unstable pkgs-input;
   };
 in {
-  options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
+  imports = [
+    ./alacritty.nix
+    ./disable-news.nix
+    ./readline.nix
+    ./xmonad.nix
+  ];
 
-  imports = [../home-modules/readline.nix ../home-modules/disable-news.nix];
+  options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
   config = {
     home.packages = with pkgs-unstable;

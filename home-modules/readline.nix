@@ -1,13 +1,20 @@
-{ ... }:
 {
-  programs.readline = {
-    enable = true;
+  lib,
+  config,
+  ...
+}: {
+  options.my.readline.enable = lib.mkOption {default = true;};
 
-    variables = {
-      show-all-if-ambiguous = true;
-      visible-stats = true;
-      editing-mode = "vi";
-      keymap = "vi";
+  config = lib.mkIf config.my.readline.enable {
+    programs.readline = {
+      enable = true;
+
+      variables = {
+        show-all-if-ambiguous = true;
+        visible-stats = true;
+        editing-mode = "vi";
+        keymap = "vi";
+      };
     };
   };
 }

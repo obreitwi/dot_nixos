@@ -9,23 +9,30 @@
   hostname,
   ...
 }: {
-  home.file."${config.home.homeDirectory}/.xmonad/lib" = {
-    source = "${dot-desktop}/xmonad/lib";
-    recursive = true;
+  options.my.xmonad.enable = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
   };
 
-  home.file."${config.home.homeDirectory}/.xmonad/xmonad.hs" = {
-    source = "${dot-desktop}/xmonad/xmonad.hs";
-  };
+  config = lib.mkIf config.my.xmonad.enable {
+    home.file."${config.home.homeDirectory}/.xmonad/lib" = {
+      source = "${dot-desktop}/xmonad/lib";
+      recursive = true;
+    };
 
-  home.packages = with pkgs-unstable; [
-    ttf-envy-code-r # xmoba
-    trayer # xmonad
-  ];
+    home.file."${config.home.homeDirectory}/.xmonad/xmonad.hs" = {
+      source = "${dot-desktop}/xmonad/xmonad.hs";
+    };
 
-  programs.xmobar = {
-    enable = true;
-    extraConfig =
-      builtins.readFile "${dot-desktop}/xmonad/xmobar.${hostname}";
+    home.packages = with pkgs-unstable; [
+      ttf-envy-code-r # xmobar
+      trayer # xmonad
+    ];
+
+    programs.xmobar = {
+      enable = true;
+      extraConfig =
+        builtins.readFile "${dot-desktop}/xmonad/xmobar.${hostname}";
+    };
   };
 }

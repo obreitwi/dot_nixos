@@ -15,7 +15,7 @@
     };
 
     # custom (own) packages:
-    backlight.url =  "github:obreitwi/backlight";
+    backlight.url = "github:obreitwi/backlight";
     dot-desktop = {
       url = "github:obreitwi/dotfiles_desktop";
       flake = false;
@@ -76,7 +76,8 @@
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager {
+          home-manager.nixosModules.home-manager
+          {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
@@ -85,8 +86,6 @@
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
             home-manager.extraSpecialArgs = specialArgs;
           }
-          # (homeManagerModule ../home-manager/home.nix)
-          # (homeManagerModule (import ../home-manager/home-nixos.nix))
         ];
       };
   in {

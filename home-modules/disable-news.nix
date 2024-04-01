@@ -4,12 +4,17 @@
 #
 # Include this in the `modules` passed to
 # `inputs.home-manager.lib.homeManagerConfiguration`.
-{lib, ...}:
 {
-  # disabledModules = [ "misc/news.nix" ];
-  config = {
+  lib,
+  config,
+  ...
+}: {
+  options.my.disableHomeManagerNews.enable = lib.mkOption {default = true;};
+
+  config = lib.mkIf config.my.disableHomeManagerNews.enable {
+    # disabledModules = [ "misc/news.nix" ];
     news.display = "silent";
-    news.json = lib.mkForce { };
-    news.entries = lib.mkForce [ ];
+    news.json = lib.mkForce {};
+    news.entries = lib.mkForce [];
   };
 }
