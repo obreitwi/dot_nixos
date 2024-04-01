@@ -24,6 +24,9 @@
       url = "github:obreitwi/pydemx";
       flake = false;
     };
+
+    # other packages:
+    blobdrop.url = "github:vimpostor/blobdrop";
   };
 
   outputs = {
@@ -34,6 +37,7 @@
     pydemx,
     dot-desktop,
     backlight,
+    blobdrop,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -46,13 +50,8 @@
       config = {allowUnfree = true;};
     };
     specialArgs = hostname: {
-      pkgs-input = {inherit pydemx;};
-      inherit
-        backlight
-        dot-desktop
-        hostname
-        pkgs-unstable
-        ;
+      pkgs-input = {inherit backlight blobdrop pydemx;};
+      inherit dot-desktop hostname pkgs-unstable;
     };
     mySystem = hostname:
       nixpkgs.lib.nixosSystem {

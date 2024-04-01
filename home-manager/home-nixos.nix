@@ -16,8 +16,5 @@
 
   home.file."${config.home.homeDirectory}/.xinitrc".source = "${dot-desktop}/x11/xinitrc";
 
-  # needed for xmobar
-  home.packages = with pkgs-unstable; [backlight];
-
   services.keynav.enable = true;
 }

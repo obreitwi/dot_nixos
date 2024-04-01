@@ -46,10 +46,12 @@ in
     alejandra
 
     # tools
+    # pkgs-input.blobdrop  # not yet packaged
     btop
     dua
     duf
     gh
     # miller # useful tool
+    ripdrag
     zoxide
   ]
