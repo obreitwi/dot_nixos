@@ -45,34 +45,26 @@
       inherit system;
       config = {allowUnfree = true;};
     };
-    mySystem = hostname: let
-      specialArgs = {
-        pkgs-input = {inherit pydemx;};
-        inherit pkgs-unstable dot-desktop backlight hostname;
-      };
-
-      homeManagerModule = path:
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.users.obreitwi = import "${path}";
-
-          # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-          home-manager.extraSpecialArgs = specialArgs;
-        };
-    in
+    specialArgs = hostname: {
+      pkgs-input = {inherit pydemx;};
+      inherit
+        backlight
+        dot-desktop
+        hostname
+        pkgs-unstable
+        ;
+    };
+    mySystem = hostname:
       nixpkgs.lib.nixosSystem {
         inherit system;
 
         modules = [
-          ./configuration.nix
+          ./system/configuration.nix
           {
-            _module.args =
-              specialArgs; # make sure that regular home-modules can access special args as well
+            _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
           }
-          ./hardware-configuration/${hostname}.nix
-          ./hardware-customization/${hostname}.nix
+          ./system/hardware-configuration/${hostname}.nix
+          ./system/hardware-customization/${hostname}.nix
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -81,15 +73,21 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.obreitwi = import ../home-manager/home-nixos.nix;
+            home-manager.users.obreitwi = import ./home-manager/home-nixos.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.extraSpecialArgs = specialArgs hostname;
           }
         ];
       };
   in {
     nixosConfigurations.nimir = mySystem "nimir";
+
+    homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [./home-manager/home-other.nix {_module.args = specialArgs "mimir";}];
+    };
+
     formatter.${system} = pkgs.nixfmt;
   };
 }
