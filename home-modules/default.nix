@@ -44,11 +44,27 @@ in {
     # programs.neovim.extraPackages = [ pkgs-unstable.gcc ];
 
     # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
-    # programs.neovim.enable = true;
-    # programs.neovim.package = pkgs-unstable.neovim-unwrapped;
-    # programs.neovim.plugins = [
-    # pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars
-    # ];
+    programs.neovim = {
+      enable = true;
+      package = pkgs-unstable.neovim-unwrapped;
+      plugins = [
+        pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars
+      ];
+
+      viAlias = true;
+      vimAlias = true;
+
+      extraConfig =
+        /*
+        vim
+        */
+        ''
+          set runtimepath^=~/.vim runtimepath+=~/.vim/after
+          let &packpath = &runtimepath
+          let g:nix_enabled = 1
+          source ~/.vimrc
+        '';
+    };
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
