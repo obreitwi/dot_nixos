@@ -2,14 +2,16 @@
   "nodes": {
     "backlight": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
       },
       "locked": {
-        "lastModified": 1712006572,
-        "narHash": "sha256-Kmcj05IpJGG7bMSw9eyAg9R6Xo4TA6Dt54lNH7FU9Cw=",
+        "lastModified": 1712090069,
+        "narHash": "sha256-7++8Lt0UN7Pykyu+cqsQw3DMSYCyqwWZu8KXUQxq8dg=",
         "owner": "obreitwi",
         "repo": "backlight",
-        "rev": "f5a8a46aab426e46ce3b49f6c43801cc3f345263",
+        "rev": "7eddb0a64a811ca96c046596bab2bdc81bd593c0",
         "type": "github"
       },
       "original": {
@@ -20,7 +22,9 @@
     },
     "blobdrop": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
       },
       "locked": {
         "lastModified": 1711399363,
@@ -91,48 +95,16 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1712006244,
-        "narHash": "sha256-qRu7Zys/BYkN105MNP6o8acxHdumCf6weXgqd0LO/II=",
+        "lastModified": 1712087109,
+        "narHash": "sha256-BDW4TABqZ/1h9VJKxtQyE2vEZDoZmzoHkQoF14JP1kY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "127c06803636f1e2c1de2e63bd767cf39f8d6c2c",
+        "rev": "8a22284f51fcd7771ee65ba124175bf9b90505ad",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1710451336,
-        "narHash": "sha256-pP86Pcfu3BrAvRO7R64x7hs+GaQrjFes+mEPowCfkxY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d691274a972b3165335d261cc4671335f5c67de9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1711668574,
-        "narHash": "sha256-u1dfs0ASQIEr1icTVrsKwg2xToIpn7ZXxW3RHfHxshg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "219951b495fc2eac67b1456824cc1ec1fd2ee659",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-23.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -159,7 +131,7 @@
         "blobdrop": "blobdrop",
         "dot-desktop": "dot-desktop",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pydemx": "pydemx"
       }
