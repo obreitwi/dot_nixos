@@ -55,8 +55,8 @@
       inherit system;
       config = {allowUnfree = true;};
       overlays = [
-        backlight.overlays.${system}
-        (_: _: {blobdrop = blobdrop.packages.${system}.default;})
+        backlight.overlays.default
+        (prev: _: {blobdrop = blobdrop.packages.${prev.system}.default;})
       ];
     };
     specialArgs = hostname: {
