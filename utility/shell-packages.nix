@@ -21,7 +21,7 @@ in
     killall
     lsd
     mr
-    neovim # added by home-manager
+    # neovim # added by home-manager
     ripgrep
     ruby # only needed for neovim plugins
     tmux # + plugins
