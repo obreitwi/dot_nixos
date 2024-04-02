@@ -16,6 +16,7 @@ in {
   imports = [
     ./alacritty.nix
     ./disable-news.nix
+    ./neovim.nix
     ./readline.nix
     ./xmonad.nix
   ];
@@ -43,29 +44,6 @@ in {
     programs.zsh.enable = false; # will overwrite zshrc
     # programs.neovim.extraPackages = [ pkgs-unstable.gcc ];
 
-    # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
-    programs.neovim = {
-      enable = true;
-      package = pkgs-unstable.neovim-unwrapped;
-      plugins = [
-        pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars
-      ];
-
-      viAlias = true;
-      vimAlias = true;
-
-      extraConfig =
-        /*
-        vim
-        */
-        ''
-          set runtimepath^=~/.vim runtimepath+=~/.vim/after
-          let &packpath = &runtimepath
-          let g:nix_enabled = 1
-          source ~/.vimrc
-        '';
-    };
-
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
@@ -80,13 +58,8 @@ in {
 
     targets.genericLinux.enable = !config.isNixOS;
 
-    home.sessionVariables =
-      lib.mkIf (!config.isNixOS) {
-        # needed for treesitter grammar
-        LD_LIBRARY_PATH = "${pkgs-unstable.stdenv.cc.cc.lib}/lib";
-      }
-      // {
-        # EDITOR = "nvim";
-      };
+    home.sessionVariables = {
+      # EDITOR = "nvim";
+    };
   };
 }
