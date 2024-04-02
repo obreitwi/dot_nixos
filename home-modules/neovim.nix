@@ -5,26 +5,44 @@
   pkgs-unstable,
   pkgs-input,
   dot-desktop,
+  dot-vim,
   hostname,
   ...
-}: {
+}: let
+  treesitter_plugins = with pkgs-unstable.vimPlugins; [
+    (
+      nvim-treesitter.withPlugins (
+        _:
+          nvim-treesitter.allGrammars
+          ++ [
+            (
+              pkgs-unstable.tree-sitter.buildGrammar {
+                language = "timesheet";
+                version = dot-vim.rev;
+                src = "${dot-vim}/utils/treesitter-timesheet";
+                generate = true;
+              }
+            )
+          ]
+      )
+    )
+    nvim-treesitter-context
+    nvim-treesitter-textobjects
+    playground
+    rainbow-delimiters-nvim
+    pretty-fold-nvim
+    nvim-autopairs
+    tabout-nvim
+    treesj
+  ];
+in {
   # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
   programs.neovim = {
     enable = true;
 
     package = pkgs-unstable.neovim-unwrapped;
 
-    plugins = with pkgs-unstable.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-      nvim-treesitter-context
-      nvim-treesitter-textobjects
-      playground
-      rainbow-delimiters-nvim
-      pretty-fold-nvim
-      nvim-autopairs
-      tabout-nvim
-      treesj
-    ];
+    plugins = treesitter_plugins;
 
     viAlias = true;
     vimAlias = true;
