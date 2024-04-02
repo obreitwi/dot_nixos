@@ -23,6 +23,10 @@
       url = "github:obreitwi/dotfiles_desktop";
       flake = false;
     };
+    dot-vim = {
+      url = "github:obreitwi/dot_vim";
+      flake = false;
+    };
     pydemx = {
       url = "github:obreitwi/pydemx";
       flake = false;
@@ -42,6 +46,7 @@
     home-manager,
     pydemx,
     dot-desktop,
+    dot-vim,
     backlight,
     blobdrop,
     ...
@@ -61,7 +66,7 @@
     };
     specialArgs = hostname: {
       pkgs-input = {inherit backlight blobdrop pydemx;};
-      inherit dot-desktop hostname pkgs-unstable;
+      inherit dot-desktop dot-vim hostname pkgs-unstable;
     };
     mySystem = hostname:
       nixpkgs.lib.nixosSystem {
