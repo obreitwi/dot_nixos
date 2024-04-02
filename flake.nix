@@ -15,7 +15,10 @@
     };
 
     # custom (own) packages:
-    backlight.url = "github:obreitwi/backlight";
+    backlight = {
+      url = "github:obreitwi/backlight";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     dot-desktop = {
       url = "github:obreitwi/dotfiles_desktop";
       flake = false;
@@ -26,7 +29,10 @@
     };
 
     # other packages:
-    blobdrop.url = "github:vimpostor/blobdrop";
+    blobdrop = {
+      url = "github:vimpostor/blobdrop";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = {
@@ -48,6 +54,10 @@
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config = {allowUnfree = true;};
+      overlays = [
+        backlight.overlays.${system}
+        (_: _: {blobdrop = blobdrop.packages.${system}.default;})
+      ];
     };
     specialArgs = hostname: {
       pkgs-input = {inherit backlight blobdrop pydemx;};
