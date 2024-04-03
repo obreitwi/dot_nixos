@@ -26,6 +26,8 @@
       [
         backlight
         blobdrop
+
+        # i3lock-fancy-rapid # not working in standalone
       ];
 
     home.username = "obreitwi";

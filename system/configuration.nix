@@ -10,8 +10,9 @@
   dot-desktop,
   hostname,
   ...
-}:
-{
+}: {
+  imports = [../nixos-modules];
+
   nixpkgs.config.permittedInsecurePackages = [
     "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
   ];
@@ -159,22 +160,23 @@
     })
   ];
 
-  environment.systemPackages = with pkgs;
-    [
-      # desktop environment
-      alacritty
-      autorandr
-      earlyoom
-      feh # image viewer
-      rofi
-      trayer
-      xclip
-      xss-lock
+  environment.systemPackages = with pkgs; [
+    # desktop environment
+    alacritty
+    autorandr
+    earlyoom
+    feh # image viewer
+    rofi
+    trayer
+    xclip
+    xss-lock
 
-      # system package
-      cmake
-      gcc
-    ];
+    # system package
+    cmake
+    gcc
+  ];
+
+  # environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
 
   programs.neovim = {
     enable = true;
@@ -216,7 +218,10 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   services.tlp = {
-    enable = if hostname == "mimir" then true else false;
+    enable =
+      if hostname == "mimir"
+      then true
+      else false;
     settings = {
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;

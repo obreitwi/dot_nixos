@@ -1,7 +1,7 @@
-{hostname, ...}:
+{lib, config, hostname, ...}:
 {
-    services.tlp = {
-        enable = if hostname == "mimir" then true else false;
+    services.tlp = lib.mkIf (hostname == "mimir" ){
+        enable = true;
         settings = {
             CPU_MIN_PERF_ON_AC = 0;
             CPU_MAX_PERF_ON_AC = 100;
