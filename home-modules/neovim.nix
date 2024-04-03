@@ -3,7 +3,6 @@
   config,
   pkgs,
   pkgs-unstable,
-  pkgs-input,
   dot-desktop,
   dot-vim,
   hostname,

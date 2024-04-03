@@ -10,12 +10,8 @@
   dot-desktop,
   hostname,
   ...
-}: let
-  tmuxPlugins = import ../utility/tmux-plugins.nix pkgs-unstable;
-  shellPackages = import ../utility/shell-packages.nix {
-    inherit pkgs pkgs-input pkgs-unstable;
-  };
-in {
+}:
+{
   nixpkgs.config.permittedInsecurePackages = [
     "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
   ];
@@ -178,13 +174,7 @@ in {
       # system package
       cmake
       gcc
-    ]
-    ++ shellPackages
-    ++ tmuxPlugins;
-
-  environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-  environment.etc."tmux/load-plugins".text =
-    lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
+    ];
 
   programs.neovim = {
     enable = true;

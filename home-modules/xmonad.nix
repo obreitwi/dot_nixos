@@ -4,7 +4,6 @@
   config,
   pkgs,
   pkgs-unstable,
-  pkgs-input,
   dot-desktop,
   hostname,
   ...
