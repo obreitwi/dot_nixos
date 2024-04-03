@@ -1,11 +1,10 @@
 {
-  pkgs,
+  config,
+  lib,
   pkgs-unstable,
-  pkgs-input,
-}: let
-  tmuxPlugins = import ./tmux-plugins.nix pkgs-unstable;
-in
-  with pkgs-unstable; [
+  ...
+}: {
+  home.packages = with pkgs-unstable; [
     # base setup
     bashInteractive
     bat
@@ -27,11 +26,9 @@ in
     tmux # + plugins
     tree-sitter
     ugrep
-    zsh
-    zsh-vi-mode
 
     # own stuff
-    (callPackage (import "${pkgs-input.pydemx}") {}) # hacky way to include flake
+    pydemx
 
     # dev
     gcc
@@ -54,4 +51,5 @@ in
     # miller # useful tool
     ripdrag
     zoxide
-  ]
+  ];
+}

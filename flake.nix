@@ -61,11 +61,13 @@
       config = {allowUnfree = true;};
       overlays = [
         backlight.overlays.default
-        (prev: _: {blobdrop = blobdrop.packages.${prev.system}.default;})
+        (prev: _: {
+          blobdrop = blobdrop.packages.${prev.system}.default;
+          pydemx = (prev.callPackage (import "${pydemx}") {}); # hacky way to include flake
+          })
       ];
     };
     specialArgs = hostname: {
-      pkgs-input = {inherit backlight blobdrop pydemx;};
       inherit dot-desktop dot-vim hostname pkgs-unstable;
     };
     mySystem = hostname:
