@@ -95,7 +95,15 @@
   };
 
   services.earlyoom.enable = true;
-  services.picom.enable = true;
+  services.picom = {
+    enable = true;
+    backend = "glx";
+    settings = {
+      xrender-sync-fence = "";
+      daemon = "";
+    };
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.locate = {
