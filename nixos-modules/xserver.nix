@@ -30,7 +30,10 @@
     layout = "us";
     xkbVariant = "altgr-intl";
     xkbModel = "pc105";
-    xkbOptions = "compose:menu compose:prsc lv3:ralt_switch eurosign:e nbsp:level3n caps:escape";
+    xkbOptions = lib.strings.concatStrings (
+      lib.strings.intersperse " " ["compose:menu" "compose:prsc" "lv3:ralt_switch" "eurosign:e" "nbsp:level3n"]
+      ++ (lib.optionals (hostname != "nimir") ["caps:escape"])
+    );
 
     desktopManager = {gnome = {enable = false;};};
 
