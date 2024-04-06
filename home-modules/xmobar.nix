@@ -73,7 +73,7 @@
       haskell
       */
       ''
-        , Run Wireless "${wirename}}" ["-t","<quality>%","-H","80","-L","20","-l","#FFB6B0","-h","#CEFFAC","-n","#FFFFCC", "-m", "3", "-c", "${pad}"] 5
+        , Run Wireless "${wirename}" ["-t","<quality>%","-H","80","-L","20","-l","#FFB6B0","-h","#CEFFAC","-n","#FFFFCC", "-m", "3", "-c", "${pad}"] 5
       '';
 
   info_coretemp = {
