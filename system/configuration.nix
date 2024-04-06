@@ -50,7 +50,7 @@
 
   services.earlyoom.enable = true;
   services.picom = {
-    enable = true;
+    enable = false;
     backend = "glx";
     settings = {
       xrender-sync-fence = "";
@@ -130,6 +130,7 @@
     earlyoom
     feh # image viewer
     rofi
+    picom
     trayer
     xclip
     xss-lock
