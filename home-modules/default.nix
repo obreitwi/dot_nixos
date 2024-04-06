@@ -15,6 +15,7 @@
     ./readline.nix
     ./shellPackages.nix
     ./tmuxPlugins.nix
+    ./xmobar.nix
     ./xmonad.nix
     ./zsh.nix
   ];

@@ -24,14 +24,7 @@
     };
 
     home.packages = with pkgs-unstable; [
-      ttf-envy-code-r # xmobar
       trayer # xmonad
     ];
-
-    programs.xmobar = {
-      enable = true;
-      extraConfig =
-        builtins.readFile "${dot-desktop}/xmonad/xmobar.${hostname}";
-    };
   };
 }
