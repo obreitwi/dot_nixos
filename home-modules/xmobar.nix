@@ -43,7 +43,7 @@
       haskell
       */
       ''
-        , Run CoreTemp [ "-t", "<core0>C", "-L","40","-H","60","--normal","#CEFFAC","--high","#FFB6B0","-w","2", "-c", "${pad}" ] 10
+        , Run CoreTemp [ "-t", "<core0>C", "-L", "40", "-H", "60", "--normal", "#CEFFAC", "--high", "#FFB6B0", "-w", "2", "-c", "${pad}" ] 10
       '';
   };
 
@@ -53,7 +53,7 @@
       haskell
       */
       ''
-        , Run Battery ["-t","AC <acstatus>, <left>% / <timeleft>","-H","80","-L","20", "-l","#FFB6B0","-h","#CEFFAC","-n","#FFFFCC"] 600
+        , Run Battery ["-t", "AC <acstatus>, <left>% / <timeleft>", "-H", "80", "-L", "20", "-l", "#FFB6B0", "-h", "#CEFFAC", "-n", "#FFFFCC"] 600
       '';
   };
 
@@ -73,7 +73,7 @@
       haskell
       */
       ''
-        , Run Wireless "${wirename}" ["-t","<quality>%","-H","80","-L","20","-l","#FFB6B0","-h","#CEFFAC","-n","#FFFFCC", "-m", "3", "-c", "${pad}"] 5
+        , Run Wireless "${wirename}" ["-t", "<quality>%", "-H", "80", "-L", "20", "-l", "#FFB6B0", "-h", "#CEFFAC", "-n", "#FFFFCC", "-m", "3", "-c", "${pad}"] 5
       '';
 
   info_coretemp = {
@@ -114,10 +114,10 @@ in {
               , position = TopP 0 100
               , lowerOnStart = True
               , commands = [
-              Run MultiCpu ["-t","${cpu}","-L","3","-H","50","--normal","#CEFFAC","--high","#FFB6B0","-w","4", "-c", "${pad}"] 10
+              Run MultiCpu ["-t", "${cpu}", "-L", "3", "-H", "50", "--normal", "#CEFFAC", "--high", "#FFB6B0", "-w", "4", "-c", "${pad}"] 10
               ${temp}
-              , Run DynNetwork ["-t","<rx> / <tx>","-H","3500","-L","100","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC", "-m", "6", "-c", "${pad}"] 10
-              , Run Memory ["-t","<used>M"] 10
+              , Run DynNetwork ["-t", "<rx> / <tx>", "-H", "3500", "-L", "100", "-h", "#FFB6B0", "-l", "#CEFFAC", "-n", "#FFFFCC", "-m", "6", "-c", "${pad}"] 10
+              , Run Memory ["-t", "<used>M"] 10
               ${wireless}
               ${bat}
               , Run Com "bash" ["-c", "awk '!/^0$/ { print \" @ \" $1/1000 \" mW\"}'  /sys/class/power_supply/*/power_now"] "draining" 20
