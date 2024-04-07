@@ -17,6 +17,7 @@
     ./tmuxPlugins.nix
     ./xmobar.nix
     ./xmonad.nix
+    ./zellij.nix
     ./zsh.nix
   ];
 
