@@ -3,10 +3,9 @@
   config,
   pkgs-unstable,
   ...
-}:
-let   package = pkgs-unstable.zellij;
-in
-{
+}: let
+  package = pkgs-unstable.zellij;
+in {
   programs.zellij = {
     enable = true;
     inherit package;
