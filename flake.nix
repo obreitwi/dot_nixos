@@ -75,10 +75,10 @@
         inherit system;
 
         modules = [
-          ./system/configuration.nix
           {
             _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
           }
+          ./system/configuration.nix
           ./system/hardware-configuration/${hostname}.nix
           ./system/hardware-customization/${hostname}.nix
 
