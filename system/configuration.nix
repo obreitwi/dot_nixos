@@ -145,7 +145,6 @@
     gcc
   ];
 
-  # environment.etc."zsh/vi-mode.zsh".source = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
 
   programs.neovim = {
     enable = true;
