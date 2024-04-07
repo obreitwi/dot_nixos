@@ -8,8 +8,7 @@
   dot-desktop,
   hostname,
   ...
-}: let
-in {
+}: {
   imports = [../home-modules];
 
   isNixOS = false;
