@@ -63,8 +63,8 @@
         backlight.overlays.default
         (prev: _: {
           blobdrop = blobdrop.packages.${prev.system}.default;
-          pydemx = (prev.callPackage (import "${pydemx}") {}); # hacky way to include flake
-          })
+          pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
+        })
       ];
     };
     specialArgs = hostname: {
@@ -101,7 +101,7 @@
 
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./home-manager/home-other.nix {_module.args = specialArgs "mimir";}];
+      modules = [{_module.args = specialArgs "mimir";} ./home-manager/home-other.nix];
     };
 
     formatter.${system} = pkgs.nixfmt;
