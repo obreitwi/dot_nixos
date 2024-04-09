@@ -100,14 +100,6 @@
     isNormalUser = true;
     description = "Oliver Breitwieser";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      firefox
-
-      # window manager
-      xmobar
-
-      #  thunderbird
-    ];
     shell = pkgs.zsh;
   };
 
@@ -120,31 +112,6 @@
   environment.variables.LOCALE_ARCHIVE = "/run/current-system/sw/lib/locale/locale-archive";
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-
-  fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = ["DejaVuSansMono" "Iosevka" "IosevkaTerm" "Mononoki"];
-    })
-  ];
-
-  environment.systemPackages = with pkgs; [
-    # desktop environment
-    alacritty
-    autorandr
-    earlyoom
-    feh # image viewer
-    rofi
-    picom
-    trayer
-    xclip
-    xss-lock
-
-    # system package
-    cmake
-    gcc
-  ];
-
 
   programs.neovim = {
     enable = true;
@@ -164,9 +131,6 @@
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -184,23 +148,4 @@
   nix.settings.auto-optimise-store = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  services.tlp = {
-    enable =
-      if hostname == "mimir"
-      then true
-      else false;
-    settings = {
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 30;
-      SCHED_POWERSAVE_ON_AC = 0;
-      SCHED_POWERSAVE_ON_BAT = 1;
-      PLATFORM_PROFILE_ON_AC = "performance";
-      PLATFORM_PROFILE_ON_BAT = "low-power";
-      START_CHARGE_THRESH_BAT0 = 50;
-      STOP_CHARGE_THRESH_BAT0 = 85;
-    };
-  };
 }
