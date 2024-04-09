@@ -13,4 +13,6 @@
   imports = [../home-modules];
 
   isNixOS = true;
+
+  services.keynav.enable = true;
 }
