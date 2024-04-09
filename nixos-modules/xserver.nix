@@ -8,7 +8,7 @@
   hostname,
   ...
 }: let
-  xmonadrc = "${config.home.configHome}/x11/myxmonadrc";
+  xmonadrc = "x11/myxmonadrc";
 in {
   console.useXkbConfig = true;
   # Configure keymap in X11
@@ -50,17 +50,16 @@ in {
         {
           manage = "desktop";
           name = "myxmonad";
-          start = "exec ${xmonadrc}";
+          start = "exec /etc/${xmonadrc}";
         }
       ];
     };
-
-    home.file."${xmonadrc}".source = "${dot-desktop}/x11/xinitrc";
-    services.keynav.enable = true;
 
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
     };
   };
+
+  environment.etc."${xmonadrc}".source = "${dot-desktop}/x11/xinitrc";
 }
