@@ -31,6 +31,7 @@
     pydemx
 
     # dev
+    diffoscope # fails to build with DeprecationWarning: PyPDF2 is deprecated. Please move to the pypdf library instead.
     gcc
     nodejs
     kubecolor
