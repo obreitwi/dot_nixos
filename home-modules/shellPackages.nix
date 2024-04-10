@@ -23,8 +23,6 @@
     # neovim # added by home-manager
     ripgrep
     ruby # only needed for neovim plugins
-    tmux # + plugins
-    tree-sitter
     ugrep
 
     # own stuff
@@ -33,10 +31,10 @@
     # dev
     diffoscope # fails to build with DeprecationWarning: PyPDF2 is deprecated. Please move to the pypdf library instead.
     gcc
-    nodejs
+    k9s
     kubecolor
     kubectl
-    k9s
+    nodejs
 
     # lsps
     nixd
