@@ -11,6 +11,7 @@
   imports = [
     ./alacritty.nix
     ./disable-news.nix
+    ./gui.nix
     ./neovim.nix
     ./readline.nix
     ./shellPackages.nix
