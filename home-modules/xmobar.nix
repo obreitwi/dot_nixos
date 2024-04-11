@@ -77,11 +77,11 @@
       '';
 
   info_coretemp = {
-    default = " %temp_cpu%";
+    default = " %coretemp%";
     mucku = " %temp_cpu% %temp_gpu%";
   };
 
-  info_ct = info_coretemp.${hostname} or "";
+  info_ct = info_coretemp.${hostname} or info_coretemp.default;
 
   bat = battery.${hostname} or "";
 
