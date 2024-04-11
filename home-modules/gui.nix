@@ -12,6 +12,8 @@
   config = lib.mkIf config.my.xmonad.enable {
     home.packages = with pkgs-unstable; [
       bluetuith
+      discord
+      neovide
     ];
   };
 }
