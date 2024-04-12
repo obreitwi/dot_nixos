@@ -2,20 +2,19 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   dot-desktop,
   dot-vim,
   hostname,
   ...
 }: let
-  treesitter_plugins = with pkgs-unstable.vimPlugins; [
+  treesitter_plugins = with pkgs.vimPlugins; [
     (
       nvim-treesitter.withPlugins (
         _:
           nvim-treesitter.allGrammars
           ++ [
             (
-              pkgs-unstable.tree-sitter.buildGrammar {
+              pkgs.tree-sitter.buildGrammar {
                 language = "timesheet";
                 version = dot-vim.rev;
                 src = "${dot-vim}/utils/treesitter-timesheet";
@@ -39,7 +38,7 @@ in {
   programs.neovim = {
     enable = true;
 
-    package = pkgs-unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
 
     plugins = treesitter_plugins;
 
@@ -60,6 +59,6 @@ in {
 
   home.sessionVariables = lib.mkIf (!config.isNixOS) {
     # needed for treesitter grammar
-    LD_LIBRARY_PATH = "${pkgs-unstable.stdenv.cc.cc.lib}/lib";
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   };
 }

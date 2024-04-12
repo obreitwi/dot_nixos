@@ -1,10 +1,10 @@
 {
   lib,
   config,
-  pkgs-unstable,
+  pkgs,
   ...
 }: let
-  package = pkgs-unstable.zellij;
+  package = pkgs.zellij;
 in {
   programs.zellij = {
     enable = true;

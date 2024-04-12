@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   dot-desktop,
   hostname,
   ...
@@ -97,7 +96,7 @@ in {
   };
 
   config = lib.mkIf config.my.xmobar.enable {
-    home.packages = with pkgs-unstable; [
+    home.packages = with pkgs; [
       ttf-envy-code-r # xmobar
     ];
 

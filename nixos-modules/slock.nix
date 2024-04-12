@@ -1,16 +1,16 @@
 {
   lib,
   config,
-  pkgs-unstable,
+  pkgs,
   ...
 }: let
-  patch = pkgs-unstable.fetchurl {
+  patch = pkgs.fetchurl {
     url = "https://tools.suckless.org/slock/patches/pam_auth/slock-pam_auth-20190207-35633d4.diff";
     hash = "sha256-TMuX/JGce7Y8OAEWx/u3gyd95DiLcqHZ4CkyupOLkDY=";
   };
-  slock = pkgs-unstable.slock.overrideAttrs (
+  slock = pkgs.slock.overrideAttrs (
     final: prev: {
-      buildInputs = prev.buildInputs ++ [pkgs-unstable.linux-pam];
+      buildInputs = prev.buildInputs ++ [pkgs.linux-pam];
       patches = prev.patches or [] ++ [patch];
     }
   );

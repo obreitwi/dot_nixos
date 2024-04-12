@@ -1,10 +1,10 @@
 {
   config,
   lib,
-  pkgs-unstable,
+  pkgs,
   ...
 }: {
-  home.packages = with pkgs-unstable; [
+  home.packages = with pkgs; [
     # base setup
     bashInteractive
     bat

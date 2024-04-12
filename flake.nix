@@ -3,10 +3,9 @@
 
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
@@ -17,7 +16,7 @@
     # custom (own) packages:
     backlight = {
       url = "github:obreitwi/backlight";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     dot-desktop = {
       url = "github:obreitwi/dotfiles_desktop";
@@ -35,14 +34,13 @@
     # other packages:
     blobdrop = {
       url = "github:vimpostor/blobdrop";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     pydemx,
     dot-desktop,
@@ -55,10 +53,6 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {allowUnfree = true;};
-    };
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-      config = {allowUnfree = true;};
       overlays = [
         backlight.overlays.default
         (prev: _: {
@@ -68,7 +62,7 @@
       ];
     };
     specialArgs = hostname: {
-      inherit dot-desktop dot-vim hostname pkgs-unstable;
+      inherit dot-desktop dot-vim hostname;
     };
     mySystem = hostname:
       nixpkgs.lib.nixosSystem {
