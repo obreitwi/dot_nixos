@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   dot-desktop,
   hostname,
   ...
@@ -156,7 +155,7 @@ in {
     programs.alacritty = {
       enable = true;
 
-      package = pkgs-unstable.alacritty;
+      package = pkgs.alacritty;
 
       # NOTE: Settings defaults to yml, retry after next update.
       # settings = lib.strings.concatStrings [ bindings colors font.${hostname} hints window ];

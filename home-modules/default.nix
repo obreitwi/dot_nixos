@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   dot-desktop,
   hostname,
   ...
@@ -25,7 +24,7 @@
   options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
   config = {
-    home.packages = with pkgs-unstable;
+    home.packages = with pkgs;
       [
         backlight
         blobdrop
@@ -37,7 +36,7 @@
     home.homeDirectory = "/home/obreitwi";
 
     programs.zsh.enable = false; # will overwrite zshrc
-    # programs.neovim.extraPackages = [ pkgs-unstable.gcc ];
+    # programs.neovim.extraPackages = [ pkgs.gcc ];
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

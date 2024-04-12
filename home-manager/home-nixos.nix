@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   pkgs-input,
   backlight,
   dot-desktop,

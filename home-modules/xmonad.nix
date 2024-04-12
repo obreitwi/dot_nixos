@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   dot-desktop,
   hostname,
   ...
@@ -23,7 +22,7 @@
       source = "${dot-desktop}/xmonad/xmonad.hs";
     };
 
-    home.packages = with pkgs-unstable; [
+    home.packages = with pkgs; [
       trayer # xmonad
     ];
   };

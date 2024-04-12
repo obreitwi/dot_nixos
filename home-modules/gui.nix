@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs-unstable,
+  pkgs,
   ...
 }: {
   options.my.gui-apps.enable = lib.mkOption {
@@ -10,7 +10,7 @@
   };
 
   config = lib.mkIf config.my.xmonad.enable {
-    home.packages = with pkgs-unstable; [
+    home.packages = with pkgs; [
       bluetuith
       discord
       neovide
