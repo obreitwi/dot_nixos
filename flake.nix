@@ -13,6 +13,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neorg-overlay = {
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # custom (own) packages:
     backlight = {
       url = "github:obreitwi/backlight";
@@ -42,6 +47,7 @@
     self,
     nixpkgs,
     home-manager,
+    neorg-overlay,
     pydemx,
     dot-desktop,
     dot-vim,
@@ -50,16 +56,20 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {allowUnfree = true;};
-      overlays = [
+    overlays = {...}: {
+      nixpkgs.overlays = [
+        neorg-overlay.overlays.default
         backlight.overlays.default
+
         (prev: _: {
           blobdrop = blobdrop.packages.${prev.system}.default;
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
         })
       ];
+    };
+    pkgs = import nixpkgs {
+      inherit system overlays;
+      config = {allowUnfree = true;};
     };
     specialArgs = hostname: {
       inherit dot-desktop dot-vim hostname;
@@ -75,6 +85,8 @@
           ./system/configuration.nix
           ./system/hardware-configuration/${hostname}.nix
           ./system/hardware-customization/${hostname}.nix
+
+          overlays
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
