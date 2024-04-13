@@ -144,10 +144,8 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
-  nix.settings.auto-optimise-store = true;
-
   nix.settings = {
-    auto-optimize-store = true;
+    auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];
   };
 }
