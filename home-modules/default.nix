@@ -24,6 +24,8 @@
   options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
   config = {
+    my.neovim.neorg = false;
+
     home.packages = with pkgs;
       [
         backlight
