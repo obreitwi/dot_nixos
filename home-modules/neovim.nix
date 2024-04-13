@@ -10,7 +10,7 @@
   treesitter_plugins = with pkgs.vimPlugins; [
     (
       nvim-treesitter.withPlugins (
-        _:
+        p: with p;
           nvim-treesitter.allGrammars
           ++ [
             (
@@ -21,7 +21,8 @@
                 generate = true;
               }
             )
-          ]
+          tree-sitter-lua
+          ] 
       )
     )
     nvim-treesitter-context
@@ -32,6 +33,10 @@
     nvim-autopairs
     tabout-nvim
     treesj
+
+    # neorg
+    neorg
+    neorg-telescope
   ];
 in {
   # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
