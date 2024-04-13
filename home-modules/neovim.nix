@@ -37,6 +37,8 @@
       nvim-autopairs
       tabout-nvim
       treesj
+
+      oil-nvim
     ]
     ++ lib.optionals (config.my.neovim.neorg) [
       # neorg
