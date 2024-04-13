@@ -13,6 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # currently not used
     neorg-overlay = {
       url = "github:nvim-neorg/nixpkgs-neorg-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +58,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     overlays = [
+      # currently not used
       neorg-overlay.overlays.default
       backlight.overlays.default
 
