@@ -14,6 +14,19 @@
       bluetuith
       discord
       neovide
+      gnupg
     ];
+
+    services.gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 86400;
+      defaultCacheTtlSsh = 86400;
+      maxCacheTtl = 86400;
+      maxCacheTtlSsh = 86400;
+
+      enableSshSupport = true;
+
+      pinentryPackage = pkgs.pinentry-gtk2;
+    };
   };
 }
