@@ -46,7 +46,7 @@
 in {
   options.my.neovim = {
     neorg = lib.mkOption {
-      default = false;
+      default = true;
       type = lib.types.bool;
     };
   };
