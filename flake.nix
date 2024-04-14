@@ -71,6 +71,13 @@
     };
     specialArgs = hostname: {
       inherit dot-desktop dot-vim hostname;
+      myUtils = {
+        toLua = str: ''
+          lua <<EOF
+          ${str}
+          EOF
+        '';
+      };
     };
     mySystem = hostname:
       nixpkgs.lib.nixosSystem {
