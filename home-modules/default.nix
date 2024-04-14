@@ -11,7 +11,7 @@
     ./alacritty.nix
     ./disable-news.nix
     ./gui.nix
-    ./neovim.nix
+    ./neovim
     ./readline.nix
     ./shellPackages.nix
     ./tmuxPlugins.nix
@@ -38,7 +38,6 @@
     home.homeDirectory = "/home/obreitwi";
 
     programs.zsh.enable = false; # will overwrite zshrc
-    # programs.neovim.extraPackages = [ pkgs.gcc ];
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
