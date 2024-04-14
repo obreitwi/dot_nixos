@@ -6,7 +6,7 @@
   hostname,
   myUtils,
   ...
-}:{
+}: {
   imports = [./treesitter.nix];
 
   options.my.neovim = {
