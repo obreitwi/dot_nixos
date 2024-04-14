@@ -4,9 +4,9 @@
   pkgs,
   dot-desktop,
   hostname,
+  myUtils,
   ...
-}:
-{
+}:{
   imports = [./treesitter.nix];
 
   options.my.neovim = {
@@ -22,7 +22,18 @@
 
       plugins = with pkgs.vimPlugins;
         [
-          oil-nvim
+          {
+            plugin = oil-nvim;
+            config =
+              myUtils.toLua
+              /*
+              lua
+              */
+              ''
+                require"oil".setup{}
+                vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+              '';
+          }
         ]
         ++ lib.optionals (config.my.neovim.neorg) [
           # neorg
