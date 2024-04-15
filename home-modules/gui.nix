@@ -11,10 +11,11 @@
 
   config = lib.mkIf config.my.xmonad.enable {
     home.packages = with pkgs; [
+      autorandr
       bluetuith
       discord
-      neovide
       gnupg
+      neovide
     ];
 
     services.gpg-agent = {
