@@ -9,7 +9,7 @@
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.xmonad.enable {
+  config = lib.mkIf config.my.gui-apps.enable {
     home.packages = with pkgs; [
       autorandr
       bluetuith
