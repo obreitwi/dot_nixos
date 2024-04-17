@@ -54,6 +54,7 @@
     targets.genericLinux.enable = !config.isNixOS;
 
     home.sessionVariables = {
+      FLAKE = "/home/obreitwi/git/dot_nixos";
       # EDITOR = "nvim";
     };
   };
