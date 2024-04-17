@@ -34,13 +34,13 @@
     pydemx
 
     # dev
-    diffoscope # fails to build with DeprecationWarning: PyPDF2 is deprecated. Please move to the pypdf library instead.
-    gcc
+    diffoscope
     grpcurl
+    ijq
+    jq
     k9s
     kubecolor
     kubectl
-    nodejs
 
     # lsps
     nixd
