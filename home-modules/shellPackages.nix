@@ -5,6 +5,11 @@
   ...
 }: {
   home.packages = with pkgs; [
+    # helper
+    nh
+    nvd
+    nix-output-monitor
+
     # base setup
     bashInteractive
     bat
