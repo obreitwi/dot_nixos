@@ -52,6 +52,7 @@
     btop
     dua
     duf
+    fastgron
     gh
     miller
     ripdrag
