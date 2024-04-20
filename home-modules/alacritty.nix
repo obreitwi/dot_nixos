@@ -71,8 +71,8 @@
       foreground = "0xffffff"
     '';
 
-  font = {
-    mimir =
+  font_host = {
+    default =
       /*
       toml
       */
@@ -100,9 +100,10 @@
         family = "IosevkaTerm NF"
         style = "Regular"
       '';
-
-    nimir = font.mimir;
   };
+
+
+  font = font_host.${hostname} or font_host.default;
 
   hints =
     /*
@@ -150,7 +151,7 @@ in {
   };
 
   config = lib.mkIf config.my.alacritty.enable {
-    home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font.${hostname} hints window]);
+    home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font hints window]);
 
     programs.alacritty = {
       enable = true;

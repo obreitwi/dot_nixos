@@ -110,10 +110,16 @@
       };
   in {
     nixosConfigurations.nimir = mySystem "nimir";
+    nixosConfigurations.mucku = mySystem "mucku";
 
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [{_module.args = specialArgs "mimir";} ./home-manager/home-other.nix];
+    };
+
+    homeConfigurations."obreitwi@mucku" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [{_module.args = specialArgs "mucku";} ./home-manager/home-other.nix];
     };
 
     formatter.${system} = pkgs.nixfmt;

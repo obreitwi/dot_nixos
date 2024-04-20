@@ -13,5 +13,12 @@ _(to be written)_
 
 #### Non-NixOS
 * Install nix
+  Note to add yourself to `nix-users` on arch…
+
+* Enable experimental features: nix-command flakes
+  Add to `/etc/nix/nix.conf`:
+```
+experimental-features = nix-commadn flakes
+```
 
 * Run `./utils/install-non-nixos.sh`
