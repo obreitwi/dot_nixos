@@ -53,7 +53,7 @@
     dua
     duf
     gh
-    # miller # useful tool
+    miller
     ripdrag
     zoxide
   ];
