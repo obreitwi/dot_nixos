@@ -5,8 +5,9 @@
     earlyoom
     feh # image viewer
     firefox
-    rofi
+    iwd
     picom
+    rofi
     trayer
     xclip
     xss-lock
