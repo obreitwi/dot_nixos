@@ -31,6 +31,10 @@
       url = "github:obreitwi/dot_vim";
       flake = false;
     };
+    dot-zsh = {
+      url = "github:obreitwi/dot_zsh";
+      flake = false;
+    };
     pydemx = {
       url = "github:obreitwi/pydemx";
       flake = false;
@@ -51,6 +55,7 @@
     pydemx,
     dot-desktop,
     dot-vim,
+    dot-zsh,
     backlight,
     blobdrop,
     ...
@@ -70,7 +75,7 @@
       config = {allowUnfree = true;};
     };
     specialArgs = hostname: {
-      inherit dot-desktop dot-vim hostname;
+      inherit dot-desktop dot-vim dot-zsh hostname;
       myUtils = {
         toLua = str: ''
           lua <<EOF
