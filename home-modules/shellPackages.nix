@@ -43,7 +43,10 @@
     kubectl
 
     # lsps
+    gopls
     nixd
+
+    # formatter
     nixpkgs-fmt
     alejandra
 
