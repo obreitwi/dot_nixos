@@ -37,8 +37,6 @@
     home.username = "obreitwi";
     home.homeDirectory = "/home/obreitwi";
 
-    programs.zsh.enable = false; # will overwrite zshrc
-
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
