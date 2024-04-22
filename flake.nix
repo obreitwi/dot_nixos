@@ -65,9 +65,10 @@
       neorg-overlay.overlays.default
       backlight.overlays.default
 
-      (prev: _: {
+      (final: prev: {
         blobdrop = blobdrop.packages.${prev.system}.default;
         pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
+        toggle-bluetooth-audio = (prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {});
       })
     ];
     pkgs = import nixpkgs {
