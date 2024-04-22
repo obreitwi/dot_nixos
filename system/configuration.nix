@@ -109,6 +109,7 @@
   environment.enableAllTerminfo = true;
   environment.variables.EDITOR = "nvim";
   environment.variables.LOCALE_ARCHIVE = "/run/current-system/sw/lib/locale/locale-archive";
+  environment.pathsToLink = [ "/share/zsh" ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
