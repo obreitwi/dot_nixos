@@ -49,6 +49,7 @@
 
     programs.fzf = {
       enable = true;
+      enableZshIntegration = false; # use fzf-tab instead
     };
 
     # The state version is required and should stay at the version you

@@ -21,6 +21,14 @@
 
   initPlugins = with pkgs;
     writeText "zsh-init-plugins.sh" ''
+      source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+      zstyle ":completion:*:git-checkout:*" sort false
+      zstyle ':completion:*:descriptions' format '[%d]'
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+      # resolve issue with carapace
+      zstyle ':fzf-tab:*' query-string prefix first
+
       source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
       autopair-init
 
@@ -32,15 +40,10 @@
       FORGIT_FZF_DEFAULT_OPTS="--preview-window 'down:75%'"
       export FORGIT_FZF_DEFAULT_OPTS
 
-      source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-      zstyle ":completion:*:git-checkout:*" sort false
-      zstyle ':completion:*:descriptions' format '[%d]'
-      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-      zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-      # resolve issue with carapace
-      zstyle ':fzf-tab:*' query-string prefix first
-
       source ${zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+      # bindings for history-substring search
+      bindkey -M vicmd 'k' history-substring-search-up
+      bindkey -M vicmd 'j' history-substring-search-down
 
       source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
