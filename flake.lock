@@ -43,11 +43,11 @@
     "dot-desktop": {
       "flake": false,
       "locked": {
-        "lastModified": 1713616067,
-        "narHash": "sha256-mqJd8nclt9KLYivmTtb2RlqR8GPli76bWld8m2c36G4=",
+        "lastModified": 1713807386,
+        "narHash": "sha256-6sVQUhHobsg2shpHZgN4IX+rqnfnLYOqZXLQX8AAKFI=",
         "owner": "obreitwi",
         "repo": "dotfiles_desktop",
-        "rev": "1e481b819094186a654e7491a493460f431a0f7a",
+        "rev": "7c12b79fafe519ee1890c75edd93f84864f46e76",
         "type": "github"
       },
       "original": {
@@ -75,11 +75,11 @@
     "dot-zsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1713746061,
-        "narHash": "sha256-6w6ew6lFbQo6387cz3rOC9zuX6tlk8lEz+Q3RuyOhMQ=",
+        "lastModified": 1713823290,
+        "narHash": "sha256-73EaqNrlDM98WJlxyAjscNiAJ4+BTd/Z+m5K2t3EK2I=",
         "owner": "obreitwi",
         "repo": "dot_zsh",
-        "rev": "6aa5e59f587d90a0e389c9853437a8610a3b7eab",
+        "rev": "73b5508778ea5cd2c768b2c2b3a51e878cada6e8",
         "type": "github"
       },
       "original": {
