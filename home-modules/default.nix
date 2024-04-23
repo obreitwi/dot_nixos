@@ -9,6 +9,7 @@
 {
   imports = [
     ./alacritty.nix
+    ./azure.nix
     ./disable-news.nix
     ./gui.nix
     ./neovim
