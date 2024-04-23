@@ -68,13 +68,27 @@
       (final: prev: {
         blobdrop = blobdrop.packages.${prev.system}.default;
         pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
-        toggle-bluetooth-audio = (prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {});
+        toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
       })
     ];
-    pkgs = import nixpkgs {
-      inherit system overlays;
-      config = {allowUnfree = true;};
-    };
+    pkgs = let
+      args-import = {
+        inherit system overlays;
+        config = {allowUnfree = true;};
+      };
+      pkgs = import nixpkgs args-import;
+    in
+      import (pkgs.applyPatches {
+        name = "nixpkgs-patched-${nixpkgs.shortRev}";
+        src = nixpkgs;
+        patches = [
+          # azure-devops extension
+          (pkgs.fetchpatch {
+            url = "https://github.com/obreitwi/nixpkgs/commit/f104d62b274da7e5f9296b439fa50a012ecfc3f2.patch";
+            sha256 = "sha256-04CYe7oAvVfReXwTew6pojXfThienSV+9IeiYg0uXHc=";
+          })
+        ];
+      }) args-import;
     specialArgs = hostname: {
       inherit dot-desktop dot-vim dot-zsh hostname;
       myUtils = {
