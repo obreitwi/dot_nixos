@@ -52,12 +52,14 @@
 
     # tools
     # pkgs-input.blobdrop  # not yet packaged
+    ast-grep
     btop
     dua
     duf
     fastgron
     gh
     miller
+    pandoc
     ripdrag
     zoxide
   ];
