@@ -71,14 +71,9 @@
         toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
       })
     ];
-    pkgs = let
-      args-import = {
-        inherit system overlays;
-        config = {allowUnfree = true;};
-      };
-      pkgs = import nixpkgs args-import;
-    in
-      import (pkgs.applyPatches {
+
+    applyPatches = pkgs:
+      pkgs.applyPatches {
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
@@ -88,7 +83,26 @@
             sha256 = "sha256-04CYe7oAvVfReXwTew6pojXfThienSV+9IeiYg0uXHc=";
           })
         ];
-      }) args-import;
+      };
+
+    args-import = {
+      inherit system overlays;
+      config = {allowUnfree = true;};
+    };
+    pkgs-init = import nixpkgs args-import;
+    nixpkgs-patched = pkgs-init.applyPatches {
+        name = "nixpkgs-patched-${nixpkgs.shortRev}";
+        src = nixpkgs;
+        patches = [
+          # azure-devops extension
+          (pkgs-init.fetchpatch {
+            url = "https://github.com/obreitwi/nixpkgs/commit/f104d62b274da7e5f9296b439fa50a012ecfc3f2.patch";
+            sha256 = "sha256-04CYe7oAvVfReXwTew6pojXfThienSV+9IeiYg0uXHc=";
+          })
+        ];
+      };
+    nixospkgs = (import "${nixpkgs-patched}/flake.nix").outputs {inherit self;};
+    pkgs = import nixpkgs-patched args-import;
     specialArgs = hostname: {
       inherit dot-desktop dot-vim dot-zsh hostname;
       myUtils = {
@@ -100,7 +114,7 @@
       };
     };
     mySystem = hostname:
-      nixpkgs.lib.nixosSystem {
+      nixospkgs.lib.nixosSystem {
         inherit system;
 
         modules = [
