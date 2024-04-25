@@ -12,7 +12,8 @@
     */
     ''
       [[keyboard.bindings]]
-      action = "SpawnNewInstance"
+      # action = "SpawnNewInstance"
+      action = "CreateNewWindow"
       key = "Return"
       mods = "Control|Shift"
 
