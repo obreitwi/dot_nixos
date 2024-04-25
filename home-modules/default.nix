@@ -12,6 +12,7 @@
     ./azure.nix
     ./disable-news.nix
     ./gui.nix
+    ./latex.nix
     ./neovim
     ./readline.nix
     ./shellPackages.nix

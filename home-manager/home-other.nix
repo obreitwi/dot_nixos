@@ -12,6 +12,8 @@
 
   isNixOS = false;
 
+  my.latex.enable = hostname == "mimir";
+
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
