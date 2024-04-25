@@ -16,6 +16,7 @@
       discord
       gnupg
       neovide
+      xterm
     ];
 
     services.gpg-agent = {
