@@ -3,23 +3,18 @@
   lib,
   config,
   pkgs,
-  dot-desktop,
   hostname,
   ...
 }: let
-  width = {
-    default = 1820;
-    phaelon = 1340;
-    nurikum = 1700;
-  };
-
   num_cpus = {
     nimir = 4;
     mimir = 12;
     mucku = 16;
   };
 
-  cpu = lib.strings.concatStrings (builtins.genList (i: "<total${toString(i)}>") num_cpus.${hostname});
+  trayWidth = config.my.stalonetray.num-icons * config.my.stalonetray.slot-size;
+
+  cpu = lib.strings.concatStrings (builtins.genList (i: "<total${toString i}>") num_cpus.${hostname});
 
   padding = {
     default = " ";
@@ -62,7 +57,10 @@
   };
   wirename = wireless_name.${hostname} or "";
 
-  info_wl = if (wirename == "") then "" else " :: %${wirename}wi%";
+  info_wl =
+    if (wirename == "")
+    then ""
+    else " :: %${wirename}wi%";
 
   wireless =
     if (wirename == "")
@@ -110,7 +108,7 @@ in {
           Config { font = "Envy Code R Bold 8"
               , bgColor = "#000000"
               , fgColor = "#ffffff"
-              , position = TopP 0 100
+              , position = TopP 0 ${toString trayWidth}
               , lowerOnStart = True
               , commands = [
               Run MultiCpu ["-t", "${cpu}", "-L", "3", "-H", "50", "--normal", "#CEFFAC", "--high", "#FFB6B0", "-w", "4", "-c", "${pad}"] 10
