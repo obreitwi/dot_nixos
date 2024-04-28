@@ -34,7 +34,7 @@
     pydemx
 
     # dev
-    diffoscope
+    # diffoscope # build error
     grpcurl
     ijq
     jq
