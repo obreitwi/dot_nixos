@@ -81,15 +81,6 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-          # azure-devops extension
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/commit/ec6915ff518ff28ea419f798640d6f62839ff06d.patch";
-            sha256 = "ThRA7QutJanyDeOWCoNVYLuU6bqEQREu5d8t2OPXlyM=";
-          })
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/commit/d566b7894a3f6fa043f5637e247650d3fe7db218.patch";
-            sha256 = "nU5BJ1sA3a79UXkBDCcIMBhnJpEQ1nmyVgEhS2wa5bA=";
-          })
         ];
       };
     nixospkgs = (import "${nixpkgs-patched}/flake.nix").outputs {inherit self;};
