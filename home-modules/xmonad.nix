@@ -8,6 +8,8 @@
 }: 
 let
  inherit (config.my.stalonetray) slot-size num-icons;
+
+ trayWidth = slot-size * num-icons;
 in
 {
   options.my.xmonad.enable = lib.mkOption {
@@ -22,7 +24,7 @@ in
     };
 
     slot-size = lib.mkOption {
-      default = 17;
+      default = 18;
       type = lib.types.int;
     };
   };
@@ -43,12 +45,12 @@ in
     ];
 
     services.stalonetray = {
-      enable = true;
+      enable = false;
       config = {
         # back background
         background = "#000000";
         # 8 size icons with padding
-        icon_size = "${toString (slot-size - 1)}";
+        icon_size = "${toString (slot-size - 2)}";
         slot_size = "${toString slot-size}";
         # up to ten icons in top right corner
         geometry = "${toString num-icons}x1-0+0";
@@ -60,6 +62,27 @@ in
         # xmonad handles that
         window_strut = "none";
       };
+    };
+
+    home.file."${config.home.homeDirectory}/.xmonad/run-trayer.sh" = {
+      text = ''
+        #!/usr/bin/env bash
+        trayer \
+        --monitor primary \
+        --edge top \
+        --align right \
+        --width ${toString trayWidth} \
+        --widthtype pixel \
+        --height ${toString slot-size} \
+        --padding 1 \
+        --tint 0x000000 \
+        --transparent true \
+        --alpha 0 \
+        --expand false \
+        --SetDockType true 2>&1 \
+        | systemd-cat -t trayer
+        '';
+      executable = true;
     };
   };
 }
