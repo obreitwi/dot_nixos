@@ -24,7 +24,8 @@ in
     };
 
     slot-size = lib.mkOption {
-      default = 18;
+      # default = 18;
+      default = 16;
       type = lib.types.int;
     };
   };
@@ -73,8 +74,8 @@ in
         --align right \
         --width ${toString trayWidth} \
         --widthtype pixel \
-        --height ${toString slot-size} \
-        --padding 1 \
+        --height ${toString (slot-size + 1)} \
+        --padding 0 \
         --tint 0x000000 \
         --transparent true \
         --alpha 0 \
