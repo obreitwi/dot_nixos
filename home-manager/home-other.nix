@@ -1,10 +1,5 @@
 # home manager config only used on desktops not running nixOS
 {
-  lib,
-  config,
-  pkgs,
-  pkgs-input,
-  dot-desktop,
   hostname,
   ...
 }: {
@@ -13,6 +8,7 @@
   isNixOS = false;
 
   my.latex.enable = hostname == "mimir";
+  my.revcli.enable = hostname == "mimir";
 
   xsession.windowManager.xmonad = {
     enable = true;
