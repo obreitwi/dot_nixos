@@ -13,6 +13,7 @@
   };
 
   trayWidth = config.my.stalonetray.num-icons * config.my.stalonetray.slot-size;
+  barHeight = config.my.stalonetray.slot-size;
 
   cpu = lib.strings.concatStrings (builtins.genList (i: "<total${toString i}>") num_cpus.${hostname});
 
@@ -87,6 +88,7 @@
     then ""
     else "%battery%%draining%";
   temp = temp_sensors.${hostname} or temp_sensors.default;
+
 in {
   options.my.xmobar.enable = lib.mkOption {
     default = true;
@@ -108,7 +110,8 @@ in {
           Config { font = "Envy Code R Bold 8"
               , bgColor = "#000000"
               , fgColor = "#ffffff"
-              , position = TopP 0 ${toString trayWidth}
+              -- <height> <left> <right> <top> <bottom>
+              , position = TopHM ${toString barHeight} 0 ${toString trayWidth} 0 0
               , lowerOnStart = True
               , commands = [
               Run MultiCpu ["-t", "${cpu}", "-L", "3", "-H", "50", "--normal", "#CEFFAC", "--high", "#FFB6B0", "-w", "4", "-c", "${pad}"] 10
@@ -126,7 +129,6 @@ in {
               , alignSep = "}{"
               , template = "}%MyPropertyLog%{ %multicpu%${info_ct}   %memory% %swap%   %dynnetwork%${info_wl}  ${info_bat}  <fc=#FFFFCC>%mydate%</fc>"
             }
-          -- vim: ft=haskell
         '';
     };
   };
