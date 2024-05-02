@@ -40,6 +40,12 @@
       flake = false;
     };
 
+    # private repos:
+    revcli = { # TODO: Confirm that this input only gets checked out if revcli is requested.
+      url = "git+ssh://git@github.com/obreitwi/rev-cli-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # other packages:
     blobdrop = {
       url = "github:vimpostor/blobdrop";
@@ -53,6 +59,7 @@
     home-manager,
     neorg-overlay,
     pydemx,
+    revcli,
     dot-desktop,
     dot-vim,
     dot-zsh,
@@ -69,6 +76,7 @@
         blobdrop = blobdrop.packages.${prev.system}.default;
         pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
         toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
+        revcli = revcli.packages.${prev.system}.default;
       })
     ];
 
