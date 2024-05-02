@@ -13,7 +13,14 @@
   };
 
   trayWidth = config.my.stalonetray.num-icons * config.my.stalonetray.slot-size;
+
   barHeight = config.my.stalonetray.slot-size;
+
+  # modulo = m: n: if (n < m) then n else modulo m (n - m);
+  # minHeight = 16;
+  # offset = if barHeight >= minHeight then barHeight - minHeight else builtins.throw "tray height needs to be at least ${minHeight}";
+  # offsetTop = (offset / 2) + (modulo 2 offset);
+  # offsetBottom = (offset / 2);
 
   cpu = lib.strings.concatStrings (builtins.genList (i: "<total${toString i}>") num_cpus.${hostname});
 

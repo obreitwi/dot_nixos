@@ -15,6 +15,7 @@
     ./latex.nix
     ./neovim
     ./readline.nix
+    ./revcli.nix
     ./shellPackages.nix
     ./tmuxPlugins.nix
     ./xmobar.nix
