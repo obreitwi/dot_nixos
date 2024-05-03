@@ -95,7 +95,6 @@
     then ""
     else "%battery%%draining%";
   temp = temp_sensors.${hostname} or temp_sensors.default;
-
 in {
   options.my.xmobar.enable = lib.mkOption {
     default = true;

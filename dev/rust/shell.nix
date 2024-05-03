@@ -1,5 +1,4 @@
-{ pkgs ? import <nixpkgs-unstable> {}}:
-
+{pkgs ? import <nixpkgs-unstable> {}}:
 pkgs.mkShell {
-  packages = with pkgs; [ cargo cargo-update ];
+  packages = with pkgs; [cargo cargo-update];
 }

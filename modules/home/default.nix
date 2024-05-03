@@ -5,8 +5,7 @@
   dot-desktop,
   hostname,
   ...
-}:
-{
+}: {
   imports = [
     ./alacritty.nix
     ./azure.nix
@@ -30,13 +29,12 @@
   config = {
     my.neovim.neorg = false;
 
-    home.packages = with pkgs;
-      [
-        backlight
-        blobdrop
+    home.packages = with pkgs; [
+      backlight
+      blobdrop
 
-        # i3lock-fancy-rapid # not working in standalone
-      ];
+      # i3lock-fancy-rapid # not working in standalone
+    ];
 
     home.username = "obreitwi";
     home.homeDirectory = "/home/obreitwi";

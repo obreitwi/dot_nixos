@@ -9,7 +9,7 @@
   hostname,
   ...
 }: {
-  imports = [../home-modules];
+  imports = [../modules/home];
 
   isNixOS = true;
 

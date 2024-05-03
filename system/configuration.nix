@@ -10,7 +10,7 @@
   hostname,
   ...
 }: {
-  imports = [../nixos-modules];
+  imports = [../modules/nixos];
 
   nixpkgs.config.permittedInsecurePackages = [
     "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
@@ -36,8 +36,8 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.supportedLocales = [
-   "de_DE.UTF-8/UTF-8"
-   "en_US.UTF-8/UTF-8"
+    "de_DE.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
   ];
 
   i18n.extraLocaleSettings = {
@@ -109,7 +109,7 @@
   environment.enableAllTerminfo = true;
   environment.variables.EDITOR = "nvim";
   environment.variables.LOCALE_ARCHIVE = "/run/current-system/sw/lib/locale/locale-archive";
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = ["/share/zsh"];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 

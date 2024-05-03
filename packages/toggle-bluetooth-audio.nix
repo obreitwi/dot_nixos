@@ -1,4 +1,8 @@
-{pkgs, writeShellApplication, ...}:
+{
+  pkgs,
+  writeShellApplication,
+  ...
+}:
 writeShellApplication {
   name = "toggle-bluetooth-audio";
   runtimeInputs = with pkgs; [jq pulseaudio];
