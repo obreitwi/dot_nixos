@@ -103,7 +103,6 @@
       '';
   };
 
-
   font = font_host.${hostname} or font_host.default;
 
   hints =

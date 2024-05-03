@@ -41,7 +41,8 @@
     };
 
     # private repos:
-    revcli = { # TODO: Confirm that this input only gets checked out if revcli is requested.
+    revcli = {
+      # TODO: Confirm that this input only gets checked out if revcli is requested.
       url = "git+ssh://git@github.com/obreitwi/rev-cli-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -86,11 +87,11 @@
     };
     pkgs-init = import nixpkgs args-import;
     nixpkgs-patched = pkgs-init.applyPatches {
-        name = "nixpkgs-patched-${nixpkgs.shortRev}";
-        src = nixpkgs;
-        patches = [
-        ];
-      };
+      name = "nixpkgs-patched-${nixpkgs.shortRev}";
+      src = nixpkgs;
+      patches = [
+      ];
+    };
     nixospkgs = (import "${nixpkgs-patched}/flake.nix").outputs {inherit self;};
     pkgs = import nixpkgs-patched args-import;
     specialArgs = hostname: {

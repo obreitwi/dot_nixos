@@ -5,13 +5,11 @@
   pkgs,
   dot-desktop,
   ...
-}: 
-let
- inherit (config.my.stalonetray) slot-size num-icons;
+}: let
+  inherit (config.my.stalonetray) slot-size num-icons;
 
- trayWidth = slot-size * num-icons;
-in
-{
+  trayWidth = slot-size * num-icons;
+in {
   options.my.xmonad.enable = lib.mkOption {
     default = true;
     type = lib.types.bool;
@@ -82,7 +80,7 @@ in
         --expand false \
         --SetDockType true 2>&1 \
         | systemd-cat -t trayer
-        '';
+      '';
       executable = true;
     };
   };
