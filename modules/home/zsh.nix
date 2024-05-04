@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   dot-zsh,
   ...
@@ -64,12 +63,17 @@ in {
       + ''
         ZSH_VIA_NIX=1
 
+        unset ZSH_CFG_ROOT
         source ${dot-zsh}/zshrc
       '';
 
     initExtra = ''
       source ${initPlugins}
       source ${dot-zsh}/widgets
+    '';
+
+    profileExtra = ''
+      source ${dot-zsh}/zprofile
     '';
 
     syntaxHighlighting.enable = true;
