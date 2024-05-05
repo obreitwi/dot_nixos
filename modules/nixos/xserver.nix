@@ -63,8 +63,10 @@ in {
   };
 
   services.displayManager = {
-    defaultSession = "none+xmonad";
+    defaultSession = "myxmonad";
   };
 
-  environment.etc."${xmonadrc}".source = "${dot-desktop}/x11/xinitrc";
+  environment.etc."${xmonadrc}" = {
+    source = "${dot-desktop}/x11/xinitrc";
+  };
 }

@@ -80,11 +80,11 @@
     "dot-desktop": {
       "flake": false,
       "locked": {
-        "lastModified": 1714855800,
-        "narHash": "sha256-VOLqmceK2QtkbKbO2niiaV0A/afs/pKKEI7Ru72qyyI=",
+        "lastModified": 1714943921,
+        "narHash": "sha256-Q1d+AlEGBPdH9ndNv9cWW88EJzQwfrnFPt09YZk1vgE=",
         "owner": "obreitwi",
         "repo": "dotfiles_desktop",
-        "rev": "3412bf3b955245225ab05f91da762b5dfd7fc3e2",
+        "rev": "10962a480d6059d0cee9b640607d91bb3d0f9ed1",
         "type": "github"
       },
       "original": {
