@@ -135,7 +135,7 @@
       };
   in {
     nixosConfigurations.nimir = mySystem "nimir";
-    # nixosConfigurations.mucku = mySystem "mucku";
+    nixosConfigurations.mucku = mySystem "mucku";
 
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
