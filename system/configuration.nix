@@ -11,10 +11,6 @@
     "nix-2.16.2" # needed by nixd, is being worked on --2024-03-19
   ];
 
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.useOSProber = true;
-
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -22,7 +18,8 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
+  # networking.wireless.iwd.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
