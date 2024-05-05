@@ -11,12 +11,45 @@
 in {
   console.useXkbConfig = true;
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    exportConfiguration = true;
+  services = {
+    xserver = {
+      enable = true;
+      exportConfiguration = true;
 
-    autoRepeatDelay = 250;
-    autoRepeatInterval = 30;
+      autoRepeatDelay = 250;
+      autoRepeatInterval = 30;
+
+      xkb = {
+        layout = "us";
+        variant = "altgr-intl";
+        model = "pc105";
+        options = lib.strings.concatStrings (
+          lib.strings.intersperse " " ["compose:menu" "compose:prsc" "lv3:ralt_switch" "eurosign:e" "nbsp:level3n"]
+          ++ (lib.optionals (hostname != "nimir") ["caps:escape"])
+        );
+      };
+
+      desktopManager = {gnome = {enable = false;};};
+
+      displayManager = {
+        gdm.enable = false;
+
+        lightdm.enable = true;
+
+        session = [
+          {
+            manage = "desktop";
+            name = "myxmonad";
+            start = "exec /etc/${xmonadrc}";
+          }
+        ];
+      };
+
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
+    };
 
     libinput = {
       enable = true;
@@ -26,37 +59,6 @@ in {
 
       # disabling touchpad acceleration
       touchpad = {accelProfile = "flat";};
-    };
-
-    xkb = {
-      layout = "us";
-      variant = "altgr-intl";
-      model = "pc105";
-      options = lib.strings.concatStrings (
-        lib.strings.intersperse " " ["compose:menu" "compose:prsc" "lv3:ralt_switch" "eurosign:e" "nbsp:level3n"]
-        ++ (lib.optionals (hostname != "nimir") ["caps:escape"])
-      );
-    };
-
-    desktopManager = {gnome = {enable = false;};};
-
-    displayManager = {
-      gdm.enable = false;
-
-      lightdm.enable = true;
-
-      session = [
-        {
-          manage = "desktop";
-          name = "myxmonad";
-          start = "exec /etc/${xmonadrc}";
-        }
-      ];
-    };
-
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
     };
   };
 
