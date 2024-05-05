@@ -38,6 +38,10 @@ in {
       source = "${dot-desktop}/xmonad/xmonad.hs";
     };
 
+    home.file."${config.home.homeDirectory}/.xinitrc" = {
+      source = "${dot-desktop}/x11/xinitrc";
+    };
+
     home.packages = with pkgs; [
       toggle-bluetooth-audio
       trayer # xmonad
