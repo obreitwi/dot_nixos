@@ -4,8 +4,10 @@
     autorandr
     feh # image viewer
     firefox
+    nextcloud-client
     picom
     rofi
+    rofimoji
     trayer
     xclip
     xss-lock
