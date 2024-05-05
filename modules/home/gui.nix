@@ -15,6 +15,7 @@
       bluetuith
       discord
       gnupg
+      keepassxc
       neovide
       xterm
     ];
