@@ -4,7 +4,6 @@
     autorandr
     feh # image viewer
     firefox
-    iwd
     picom
     rofi
     trayer
