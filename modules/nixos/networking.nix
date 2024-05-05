@@ -13,6 +13,7 @@
     networking.wireless.iwd.enable = true;
 
     environment.systemPackages = with pkgs; [
+      snixembed # icons in trayer
       iwgtk
     ];
   };
