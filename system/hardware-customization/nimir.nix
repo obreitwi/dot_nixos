@@ -8,5 +8,5 @@
   boot.loader.grub.device = "/dev/sda";
   networking.hostName = "nimir";
 
-  my.slock.patch = false;
+  my.slock.patch = true;
 }
