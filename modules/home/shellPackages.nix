@@ -12,8 +12,6 @@
 
     # base setup
     bashInteractive
-    bat
-    carapace
     coreutils-full
     curl
     delta
@@ -51,9 +49,11 @@
     alejandra
 
     # tools
-    # pkgs-input.blobdrop  # not yet packaged
     ast-grep
+    bat
+    blobdrop
     btop
+    carapace
     dua
     duf
     fastgron
@@ -61,6 +61,7 @@
     miller
     pandoc
     ripdrag
+    silicon # make nice code screenshots
     zoxide
   ];
 }
