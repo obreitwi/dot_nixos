@@ -52,6 +52,7 @@
     ripdrag
 
     # tools
+    asfa
     ast-grep
     bat
     btop
