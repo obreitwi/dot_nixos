@@ -23,7 +23,6 @@
     killall
     lsd
     mr
-    # neovim # added by home-manager
     ripgrep
     ruby # only needed for neovim plugins
     ugrep
@@ -48,10 +47,13 @@
     nixpkgs-fmt
     alejandra
 
+    # drag & drop from terminal
+    blobdrop
+    ripdrag
+
     # tools
     ast-grep
     bat
-    blobdrop
     btop
     carapace
     dua
@@ -60,7 +62,6 @@
     gh
     miller
     pandoc
-    ripdrag
     silicon # make nice code screenshots
     zoxide
   ];
