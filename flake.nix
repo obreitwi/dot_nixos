@@ -19,6 +19,10 @@
     };
 
     # custom (own) packages:
+    asfa = {
+      url = "github:obreitwi/asfa";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     backlight = {
       url = "github:obreitwi/backlight";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +63,7 @@
     nixpkgs,
     home-manager,
     neorg-overlay,
+    asfa,
     pydemx,
     revcli,
     dot-desktop,
@@ -74,10 +79,11 @@
       backlight.overlays.default
 
       (final: prev: {
+        asfa = asfa.packages.${prev.system}.default;
         blobdrop = blobdrop.packages.${prev.system}.default;
         pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
-        toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
         revcli = revcli.packages.${prev.system}.default;
+        toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
       })
     ];
 
