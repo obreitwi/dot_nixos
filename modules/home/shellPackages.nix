@@ -28,6 +28,7 @@
     ugrep
 
     # own stuff
+    asfa
     pydemx
 
     # dev
@@ -52,7 +53,6 @@
     ripdrag
 
     # tools
-    asfa
     ast-grep
     bat
     btop
