@@ -40,6 +40,8 @@
     kubecolor
     kubectl
 
+    circumflex # browser hackernews from terminal
+
     # lsps
     gopls
     nixd
@@ -61,9 +63,11 @@
     duf
     fastgron
     gh
+    gum # for shell scripts
     miller
     pandoc
     silicon # make nice code screenshots
+    sttr # string conversions
     zoxide
   ];
 }
