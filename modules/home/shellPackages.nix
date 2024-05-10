@@ -65,6 +65,7 @@
     gh
     gum # for shell scripts
     miller
+    numbat # scientific calculator
     pandoc
     silicon # make nice code screenshots
     sttr # string conversions
