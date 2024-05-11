@@ -14,6 +14,7 @@
     ./readline.nix
     ./revcli.nix
     ./shellPackages.nix
+    ./theming.nix
     ./tmux.nix
     ./xmobar.nix
     ./xmonad.nix
@@ -29,7 +30,6 @@
 
     home.packages = with pkgs; [
       backlight
-      blobdrop
 
       # i3lock-fancy-rapid # not working in standalone
     ];
