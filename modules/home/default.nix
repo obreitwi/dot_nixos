@@ -2,8 +2,6 @@
   lib,
   config,
   pkgs,
-  dot-desktop,
-  hostname,
   ...
 }: {
   imports = [
@@ -16,7 +14,7 @@
     ./readline.nix
     ./revcli.nix
     ./shellPackages.nix
-    ./tmuxPlugins.nix
+    ./tmux.nix
     ./xmobar.nix
     ./xmonad.nix
     ./zathura.nix
