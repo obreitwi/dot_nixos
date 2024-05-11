@@ -102,13 +102,7 @@
     pkgs = import nixpkgs-patched args-import;
     specialArgs = hostname: {
       inherit dot-desktop dot-vim dot-zsh hostname;
-      myUtils = {
-        toLua = str: ''
-          lua <<EOF
-          ${str}
-          EOF
-        '';
-      };
+      myUtils = import ./utils/lib.nix;
     };
     mySystem = hostname:
       nixospkgs.lib.nixosSystem {
