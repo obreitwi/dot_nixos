@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./audio.nix
     ./fonts.nix
     ./firewall.nix
     ./networking.nix
