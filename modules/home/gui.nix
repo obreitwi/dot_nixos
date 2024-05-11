@@ -17,6 +17,7 @@
       gnupg
       keepassxc
       neovide
+      spotify
       xterm
     ];
 
