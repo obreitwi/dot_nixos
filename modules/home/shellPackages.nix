@@ -7,8 +7,9 @@
   home.packages = with pkgs; [
     # helper
     nh
-    nvd
     nix-output-monitor
+    nixVersions.nix_2_22
+    nvd
 
     # base setup
     bashInteractive
