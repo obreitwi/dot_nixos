@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # custom (own) packages:
     asfa = {
       url = "github:obreitwi/asfa";
@@ -63,6 +68,7 @@
     nixpkgs,
     home-manager,
     neorg-overlay,
+    nix-index-database,
     asfa,
     pydemx,
     revcli,
@@ -133,18 +139,23 @@
           }
         ];
       };
+
+    hm-modules = [
+      ./home-manager/home-other.nix
+      nix-index-database.hmModules.nix-index
+    ];
   in {
     nixosConfigurations.nimir = mySystem "nimir";
     nixosConfigurations.mucku = mySystem "mucku";
 
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [{_module.args = specialArgs "mimir";} ./home-manager/home-other.nix];
+      modules = [{_module.args = specialArgs "mimir";}] ++ hm-modules;
     };
 
     homeConfigurations."obreitwi@mucku" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [{_module.args = specialArgs "mucku";} ./home-manager/home-other.nix];
+      modules = [{_module.args = specialArgs "mucku";}] ++ hm-modules;
     };
 
     formatter.${system} = pkgs.nixfmt-rfc-style;
