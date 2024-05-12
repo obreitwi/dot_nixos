@@ -38,8 +38,16 @@
     home.username = "obreitwi";
     home.homeDirectory = "/home/obreitwi";
 
-    # Let Home Manager install and manage itself.
-    programs.home-manager.enable = true;
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "23.11";
+
+    targets.genericLinux.enable = !config.isNixOS;
+
+    home.sessionVariables = {
+      FLAKE = "/home/obreitwi/git/dot_nixos";
+      # EDITOR = "nvim";
+    };
 
     programs.broot.enable = true;
 
@@ -53,15 +61,9 @@
       enableZshIntegration = false; # use fzf-tab instead
     };
 
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "23.11";
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
 
-    targets.genericLinux.enable = !config.isNixOS;
-
-    home.sessionVariables = {
-      FLAKE = "/home/obreitwi/git/dot_nixos";
-      # EDITOR = "nvim";
-    };
+    programs.nix-index.enable = true;
   };
 }
