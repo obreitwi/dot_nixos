@@ -1,3 +1,4 @@
+# NOTE keep in sync with ../nixos/gnupg.nix
 {
   config,
   lib,
@@ -5,17 +6,18 @@
   ...
 }: {
   options.my.gnupg.enable = lib.mkOption {
-    default = config.my.gui-apps.enable;
+    default = true;
     type = lib.types.bool;
   };
 
   config = lib.mkIf config.my.gnupg.enable {
-    home.packages = [
-      pkgs.gnupg
+    home.packages = with pkgs; [
+      gnupg
     ];
 
     services.gpg-agent = {
       enable = true;
+      pinentryPackage = pkgs.pinentry-qt;
 
       defaultCacheTtl = 86400;
       defaultCacheTtlSsh = 86400;
@@ -24,10 +26,6 @@
 
       enableSshSupport = true;
       enableExtraSocket = true;
-
-      pinentryPackage = pkgs.pinentry-rofi;
     };
-
-    # NOTE not using nixos module prorams.gnupg.agent until needed!
   };
 }
