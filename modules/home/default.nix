@@ -8,6 +8,7 @@
     ./alacritty.nix
     ./azure.nix
     ./disable-news.nix
+    ./gnupg.nix
     ./gui.nix
     ./latex.nix
     ./neovim
