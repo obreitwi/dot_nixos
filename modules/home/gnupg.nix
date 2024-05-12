@@ -23,6 +23,7 @@
       maxCacheTtlSsh = 86400;
 
       enableSshSupport = true;
+      enableExtraSocket = true;
 
       pinentryPackage = pkgs.pinentry-rofi;
     };
