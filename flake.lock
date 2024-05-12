@@ -428,6 +428,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1715483403,
+        "narHash": "sha256-WMDuQj7J5jbpXI/X/E6FZRKgBFGcaSTvYyVxPnKE6KU=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "f9027322f48b427da23746aa359a6510dfcd0228",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1644486793,
@@ -567,6 +587,7 @@
         "dot-zsh": "dot-zsh",
         "home-manager": "home-manager",
         "neorg-overlay": "neorg-overlay",
+        "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",
         "pydemx": "pydemx",
         "revcli": "revcli"
