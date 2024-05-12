@@ -66,6 +66,9 @@
 
   services.openssh.enable = true;
 
+  # need to enable when rolling own DE
+  programs.dconf.enable = true;
+
   # TODO: apparenlty no service for dunst
   # services.dunst.enable = true; # notifications
 
