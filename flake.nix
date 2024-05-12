@@ -148,5 +148,7 @@
     };
 
     formatter.${system} = pkgs.nixfmt-rfc-style;
+
+    packages.${system} = pkgs;
   };
 }
