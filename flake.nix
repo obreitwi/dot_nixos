@@ -147,6 +147,6 @@
       modules = [{_module.args = specialArgs "mucku";} ./home-manager/home-other.nix];
     };
 
-    formatter.${system} = pkgs.nixfmt;
+    formatter.${system} = pkgs.nixfmt-rfc-style;
   };
 }
