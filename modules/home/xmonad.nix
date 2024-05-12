@@ -9,6 +9,12 @@
   inherit (config.my.stalonetray) slot-size num-icons;
 
   trayWidth = slot-size * num-icons;
+
+  myplayerctl = pkgs.writeShellApplication {
+    name = "myplayerctl";
+    runtimeInputs = with pkgs; [gnugrep playerctl];
+    text = builtins.readFile "${dot-desktop}/scripts/myplayerctl";
+  };
 in {
   options.my.xmonad.enable = lib.mkOption {
     default = true;
@@ -42,9 +48,10 @@ in {
       source = "${dot-desktop}/x11/xinitrc";
     };
 
-    home.packages = with pkgs; [
-      toggle-bluetooth-audio
-      trayer # xmonad
+    home.packages = [
+      myplayerctl
+      pkgs.toggle-bluetooth-audio
+      pkgs.trayer # xmonad
     ];
 
     services.stalonetray = {
