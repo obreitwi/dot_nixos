@@ -5,15 +5,20 @@
   gtk.cursorTheme.package = pkgs.bibata-cursors;
   gtk.cursorTheme.name = "Bibata-Modern-Ice";
 
-  gtk.theme.package = pkgs.adw-gtk3;
-  gtk.theme.name = "adw-gtk3-dark";
+  # Adwaita does not work for GTK2 which then uses an inconsistent default.
+  # gtk.theme.package = pkgs.adw-gtk3;
+  # gtk.theme.name = "adw-gtk3-dark";
+  # gtk.iconTheme.package = pkgs.gruvbox-dark-gtk;
+  # gtk.iconTheme.name = "GruvboxDark";
 
-  gtk.iconTheme.package = pkgs.gruvbox-dark-gtk;
-  gtk.iconTheme.name = "GruvboxDark";
+  # The following themes work from GTK2 till GTK4
+  gtk.theme.package = pkgs.vimix-gtk-themes;
+  gtk.theme.name = "vimix-dark-beryl";
+  gtk.iconTheme.package = pkgs.gnome.adwaita-icon-theme;
+  gtk.iconTheme.name = "Adwaita";
 
-  home.sessionVariables = {
-     GTK_THEME = "Adwaita:dark";
-  };
+  # eliminate warnings
+  home.packages = with pkgs; [gtk-engine-murrine];
 
   # qt
   qt.enable = true;
