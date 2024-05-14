@@ -11,6 +11,10 @@
   gtk.iconTheme.package = pkgs.gruvbox-dark-gtk;
   gtk.iconTheme.name = "GruvboxDark";
 
+  home.sessionVariables = {
+     GTK_THEME = "Adwaita:dark";
+  };
+
   # qt
   qt.enable = true;
   qt.platformTheme = "gtk";
