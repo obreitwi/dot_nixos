@@ -157,11 +157,11 @@
     "dot-vim": {
       "flake": false,
       "locked": {
-        "lastModified": 1715121076,
-        "narHash": "sha256-mWAnV6MoxKuMk3XBPqlEvt9KT96JqUiHKWl0XkS1ftg=",
+        "lastModified": 1715762707,
+        "narHash": "sha256-mEmVSGrTKv9pWR8Yz214gT3eCdAzLpkSbhPpUlS4mwY=",
         "owner": "obreitwi",
         "repo": "dot_vim",
-        "rev": "0cac7150a01880e5590b6c4365e1a28191641506",
+        "rev": "32aad358784fd361942ce8362a1422fed0568671",
         "type": "github"
       },
       "original": {
