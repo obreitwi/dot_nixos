@@ -15,6 +15,7 @@
     ./readline.nix
     ./revcli.nix
     ./shellPackages.nix
+    ./terraform-ls.nix
     ./theming.nix
     ./tmux.nix
     ./xmobar.nix
