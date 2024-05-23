@@ -11,6 +11,7 @@ in
       coreutils-full
       epsonscan2
       jq
+      xdg-utils
       zsh
     ];
     text = ''
