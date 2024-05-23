@@ -18,6 +18,7 @@
     ./terraform-ls.nix
     ./theming.nix
     ./tmux.nix
+    ./wrepson.nix
     ./xmobar.nix
     ./xmonad.nix
     ./zathura.nix
