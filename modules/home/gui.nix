@@ -16,6 +16,7 @@
       discord
       keepassxc
       neovide
+      nextcloud-client
       spotify
       xterm
     ];
