@@ -18,6 +18,7 @@
       neovide
       nextcloud-client
       spotify
+      xdg-utils
       xterm
     ];
   };
