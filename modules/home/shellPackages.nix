@@ -46,10 +46,14 @@
     # lsps
     gopls
     nixd
+    nodePackages.bash-language-server
 
     # formatter
     nixpkgs-fmt
     alejandra
+
+    # pen-and-paper tools
+    haskellPackages.dice
 
     # drag & drop from terminal
     blobdrop
@@ -68,6 +72,7 @@
     miller
     numbat # scientific calculator
     pandoc
+    shellcheck
     silicon # make nice code screenshots
     sttr # string conversions
     zoxide
