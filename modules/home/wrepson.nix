@@ -12,6 +12,6 @@ in {
   };
 
   config = lib.mkIf config.my.wrepson.enable {
-    home.packages = [wrepson];
+    home.packages = [pkgs.epsonscan2 wrepson];
   };
 }
