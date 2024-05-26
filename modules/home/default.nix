@@ -29,7 +29,7 @@
   options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
   config = {
-    my.neovim.neorg = false;
+    my.neovim.neorg = true;
 
     home.packages = with pkgs; [
       backlight
