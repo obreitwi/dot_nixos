@@ -68,6 +68,7 @@
     duf
     fastgron
     gh
+    gifski # create hihg-quality GIFs
     gum # for shell scripts
     miller
     numbat # scientific calculator
