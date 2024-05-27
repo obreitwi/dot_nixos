@@ -45,6 +45,7 @@
 
     # lsps
     gopls
+    marksman
     nixd
     nodePackages.bash-language-server
 
