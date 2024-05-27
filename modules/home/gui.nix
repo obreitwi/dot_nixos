@@ -14,6 +14,7 @@
       autorandr
       bluetuith
       discord
+      flameshot # take screenshots and edit them
       keepassxc
       neovide
       nextcloud-client
