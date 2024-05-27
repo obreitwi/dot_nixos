@@ -68,6 +68,7 @@
     dua
     duf
     fastgron
+    findutils
     gh
     gifski # create hihg-quality GIFs
     gum # for shell scripts
