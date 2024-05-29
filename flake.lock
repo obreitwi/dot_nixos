@@ -173,11 +173,11 @@
     "dot-zsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1716741622,
-        "narHash": "sha256-LSXYrLYzcL2fBFJC0ySOM4xBJBoXdcahrcupbTO3QMM=",
+        "lastModified": 1716971357,
+        "narHash": "sha256-I5XpwKtR8pJaZKDr+UR7I0Nv4yaWBQnCbQwl1SL4P/Y=",
         "owner": "obreitwi",
         "repo": "dot_zsh",
-        "rev": "abce18ba367d31fc44e7bc62a8208a1110fc7212",
+        "rev": "0da0ac8163ad5216c2f8c9cd50f571f54e369d9d",
         "type": "github"
       },
       "original": {
