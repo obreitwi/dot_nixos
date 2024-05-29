@@ -43,6 +43,8 @@
 
     circumflex # browser hackernews from terminal
 
+    terraform
+
     # lsps
     gopls
     marksman
