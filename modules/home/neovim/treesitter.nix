@@ -30,7 +30,14 @@
     nvim-treesitter-textobjects
     playground
     rainbow-delimiters-nvim
-    pretty-fold-nvim
+    (pretty-fold-nvim.overrideAttrs (final: prev: {
+      src = pkgs.fetchFromGitHub {
+        owner = "bbjornstad";
+        repo = "pretty-fold.nvim";
+        rev = "ce302faec7da79ea8afb5a6eec5096b68ba28cb5";
+        hash = "sha256-KeRc1Jc6CSW8qeyiJZhbGelxewviL/jPFDxRW1HsfAk=";
+      };
+    }))
     nvim-autopairs
     tabout-nvim
     treesj
