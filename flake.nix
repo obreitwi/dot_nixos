@@ -85,7 +85,7 @@
       backlight.overlays.default
 
       (final: prev: {
-        asfa = asfa.packages.${prev.system}.default;
+        asfa-dev = asfa.packages.${prev.system}.default;
         blobdrop = blobdrop.packages.${prev.system}.default;
         pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
         revcli = revcli.packages.${prev.system}.default;

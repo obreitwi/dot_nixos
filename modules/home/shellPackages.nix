@@ -29,7 +29,7 @@
     ugrep
 
     # own stuff
-    asfa
+    (callPackage (import ../../packages/asfa.nix) {})
     pydemx
 
     # dev
