@@ -102,6 +102,10 @@
       name = "nixpkgs-patched-${nixpkgs.shortRev}";
       src = nixpkgs;
       patches = [
+        (pkgs-init.fetchpatch {
+          url = "https://github.com/obreitwi/nixpkgs/commit/c39ef4887f57fd58f0ffb47163da01a50ae0145e.patch";
+          sha256 = "sha256-uIJD0sWhdGjsRWCDmBtP3IpWNwR8Om1qx5897yP90ZY=";
+        })
       ];
     };
     nixospkgs = (import "${nixpkgs-patched}/flake.nix").outputs {inherit self;};
