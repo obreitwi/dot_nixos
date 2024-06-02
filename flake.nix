@@ -103,8 +103,8 @@
       src = nixpkgs;
       patches = [
         (pkgs-init.fetchpatch {
-          url = "https://github.com/obreitwi/nixpkgs/commit/c39ef4887f57fd58f0ffb47163da01a50ae0145e.patch";
-          sha256 = "sha256-uIJD0sWhdGjsRWCDmBtP3IpWNwR8Om1qx5897yP90ZY=";
+          url = "https://github.com/obreitwi/nixpkgs/commit/50b745e0ef3231c388ea6a1bf396b051f89d440e.patch";
+          sha256 = "sha256-L2AeSq9b1RigFjH/DJ/tyQKUpzkoKKTt4B9oumYfgog=";
         })
       ];
     };
