@@ -15,7 +15,8 @@
     ];
 
     programs.neovim = {
-      extraConfig = lib.mkAfter
+      extraConfig =
+        lib.mkAfter
         /*
         vim
         */
