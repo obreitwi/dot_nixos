@@ -5,8 +5,8 @@
   ...
 }: let
   # patch = pkgs.fetchurl {
-    # url = "https://tools.suckless.org/slock/patches/pam_auth/slock-pam_auth-20190207-35633d4.diff";
-    # hash = "sha256-TMuX/JGce7Y8OAEWx/u3gyd95DiLcqHZ4CkyupOLkDY=";
+  # url = "https://tools.suckless.org/slock/patches/pam_auth/slock-pam_auth-20190207-35633d4.diff";
+  # hash = "sha256-TMuX/JGce7Y8OAEWx/u3gyd95DiLcqHZ4CkyupOLkDY=";
   # };
   patch = ../../patches/slock/slock-pam_no_priv_drop.patch;
   slock =

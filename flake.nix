@@ -162,7 +162,7 @@
       modules = [{_module.args = specialArgs "mucku";}] ++ hm-modules;
     };
 
-    formatter.${system} = pkgs.nixfmt-rfc-style;
+    formatter.${system} = pkgs.alejandra;
 
     packages.${system} = pkgs;
   };
