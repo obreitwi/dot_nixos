@@ -52,7 +52,8 @@
     nodePackages.bash-language-server
 
     # formatter
-    nixpkgs-fmt
+    # nixpkgs-fmt # not used
+    nixfmt-rfc-style
     alejandra
 
     # pen-and-paper tools
