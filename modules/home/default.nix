@@ -10,6 +10,7 @@
     ./disable-news.nix
     ./git.nix
     ./gnupg.nix
+    ./go.nix
     ./gui.nix
     ./latex.nix
     ./neovim
