@@ -13,7 +13,6 @@
     delta
     fzf
     gawk
-    git
     gnumake
     gnused
     killall
