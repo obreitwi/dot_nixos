@@ -564,11 +564,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717455514,
-        "narHash": "sha256-jEQgrAiQEYXDs/GwtmC9khH2tkXv2SzNocWSmsm4/cY=",
+        "lastModified": 1717625176,
+        "narHash": "sha256-+lLXz1pk8jWLu563GHwdxC6ne1KfbY8bBNj+Zo1DZi8=",
         "ref": "refs/heads/main",
-        "rev": "f770e6b57825955c0f106e20d489797d60eab3ab",
-        "revCount": 419,
+        "rev": "c89f785a26e183d63ade9e4e756547aad17ba919",
+        "revCount": 421,
         "type": "git",
         "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
       },
