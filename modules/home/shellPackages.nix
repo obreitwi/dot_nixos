@@ -19,7 +19,6 @@
     lsd
     mr
     ripgrep
-    ruby # only needed for neovim plugins
     ugrep
 
     # own stuff
