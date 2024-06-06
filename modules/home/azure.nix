@@ -7,7 +7,7 @@
 }: let
   hosts-enabled = ["mimir"];
 
-  azure-cli = pkgs.azure-cli.withExtensions (with pkgs.azure-cli-extensions; [azure-devops fzf]);
+  azure-cli = pkgs.azure-cli.withExtensions (with pkgs.azure-cli-extensions; [azure-devops fzf rdbms-connect]);
 in {
   options.my.azure.enable = lib.mkOption {
     default = builtins.elem hostname hosts-enabled;
