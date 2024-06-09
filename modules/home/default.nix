@@ -8,6 +8,7 @@
     ./alacritty.nix
     ./azure.nix
     ./disable-news.nix
+    ./dunst.nix
     ./git.nix
     ./gnupg.nix
     ./go.nix
