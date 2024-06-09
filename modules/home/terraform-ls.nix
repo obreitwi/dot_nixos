@@ -4,13 +4,14 @@
   pkgs,
   ...
 }: {
-  options.my.terraform-ls.enable = lib.mkOption {
-    default = true;
+  options.my.terraform.enable = lib.mkOption {
+    default = false;
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.terraform-ls.enable {
+  config = lib.mkIf config.my.terraform.enable {
     home.packages = with pkgs; [
+      terraform
       terraform-ls
     ];
 
