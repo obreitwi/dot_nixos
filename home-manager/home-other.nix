@@ -1,6 +1,6 @@
 # home manager config only used on desktops not running nixOS
-{hostname, ...}: {
-  imports = [../modules/home];
+{...}: {
+  imports = [../modules/home ./common.nix];
 
   isNixOS = false;
 
