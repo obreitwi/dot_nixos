@@ -19,6 +19,7 @@
       errcheck
       godef
       golangci-lint
+      golangci-lint-langserver
       gomodifytags
       gopls
       gotags
