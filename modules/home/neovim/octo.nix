@@ -23,6 +23,9 @@
       require("octo").setup({
         default_merge_method = "squash",
         enable_builtin = true,
+        suppress_missing_scope = {
+          projects_v2 = true,
+        },
       })
       -- TODO: set mapleader (https://github.com/nix-community/home-manager/pull/2391)
       vim.keymap.set('n', '<space>O', '<cmd>Octo<cr>', {desc = 'Launch Octo'})
