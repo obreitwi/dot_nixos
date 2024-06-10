@@ -47,6 +47,9 @@
     nixfmt-rfc-style
     alejandra
 
+    # nix tooling
+    update-nix-fetchgit
+
     # pen-and-paper tools
     haskellPackages.dice
 
