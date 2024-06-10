@@ -29,7 +29,7 @@
         },
       })
       -- TODO: set mapleader (https://github.com/nix-community/home-manager/pull/2391)
-      vim.keymap.set('n', '<space>O', '<cmd>Octo<cr>', {desc = 'Launch Octo'})
+      vim.keymap.set('n', '<space>o', '<cmd>Octo<cr>', {desc = 'Launch Octo'})
     '';
 in {
   options.my.neovim = {
