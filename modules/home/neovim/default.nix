@@ -1,10 +1,13 @@
 {
   pkgs,
+  lib,
   myUtils,
   ...
 }: {
   imports = [
     ./neorg.nix
+    ./octo.nix
+    ./prefix.nix
     ./treesitter.nix
   ];
 
