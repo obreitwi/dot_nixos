@@ -76,5 +76,8 @@
     silicon # make nice code screenshots
     sttr # string conversions
     zoxide
+
+    # backup terminal if nixGL is out of date with GPU drivers
+    st
   ];
 }
