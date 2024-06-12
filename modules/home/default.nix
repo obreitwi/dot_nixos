@@ -16,6 +16,7 @@
     ./latex.nix
     ./neovim
     ./readline.nix
+    ./redshift.nix
     ./revcli.nix
     ./shellPackages.nix
     ./terraform-ls.nix
