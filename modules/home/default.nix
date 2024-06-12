@@ -12,7 +12,7 @@
     ./git.nix
     ./gnupg.nix
     ./go.nix
-    ./gui.nix
+    ./gui
     ./latex.nix
     ./neovim
     ./readline.nix
