@@ -4,12 +4,12 @@
   pkgs,
   ...
 }: {
-  options.my.gui-apps.autorandr.enable = lib.mkOption {
+  options.my.gui.autorandr.enable = lib.mkOption {
     default = true;
     type = lib.types.bool;
   };
 
-  config = lib.mkIf (config.my.gui-apps.enable && config.my.gui-apps.autorandr.enable) {
+  config = lib.mkIf (config.my.gui.enable && config.my.gui.autorandr.enable) {
     home.packages = with pkgs; [
       autorandr
     ];

@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    ./alacritty.nix
     ./azure.nix
     ./disable-news.nix
     ./dunst.nix
@@ -16,7 +15,6 @@
     ./latex.nix
     ./neovim
     ./readline.nix
-    ./redshift.nix
     ./revcli.nix
     ./shellPackages.nix
     ./terraform-ls.nix
