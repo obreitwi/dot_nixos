@@ -146,11 +146,11 @@
       opacity = 0.75
     '';
 in {
-  options.my.alacritty.enable = lib.mkOption {
+  options.my.gui.alacritty.enable = lib.mkOption {
     default = true;
   };
 
-  config = lib.mkIf config.my.alacritty.enable {
+  config = lib.mkIf config.my.gui.alacritty.enable {
     home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font hints window]);
 
     programs.alacritty = {
