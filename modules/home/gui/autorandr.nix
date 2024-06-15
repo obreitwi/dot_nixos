@@ -32,11 +32,11 @@
         #!/usr/bin/env bash
 
         set -euo pipefail
+        xmonad --restart
+        picom -b
         if [ -e ~/wallpaper/current ] && which feh>/dev/null; then
           feh --bg-fill ~/wallpaper/current
         fi
-        xmonad --restart
-        picom -b
       '';
   };
 }
