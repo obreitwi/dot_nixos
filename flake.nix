@@ -175,7 +175,5 @@
     };
 
     formatter.${system} = pkgs.alejandra;
-
-    packages.${system} = pkgs;
   };
 }
