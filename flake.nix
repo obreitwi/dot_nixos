@@ -123,15 +123,15 @@
         })
       ];
     };
-    nixospkgs = (import "${nixpkgs-patched}/flake.nix").outputs {inherit self;};
     pkgs = import nixpkgs-patched args-import;
     specialArgs = hostname: {
       inherit dot-desktop dot-vim dot-zsh hostname;
       myUtils = import ./utils/lib.nix;
     };
     mySystem = hostname:
-      nixospkgs.lib.nixosSystem {
+      nixpkgs.lib.nixosSystem {
         inherit system;
+        inherit pkgs;
 
         modules = [
           {
@@ -140,9 +140,6 @@
           ./system/configuration.nix
           ./system/hardware-configuration/${hostname}.nix
           ./system/hardware-customization/${hostname}.nix
-
-          # provide overlays via module
-          ({...}: {nixpkgs = {inherit overlays;};})
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
