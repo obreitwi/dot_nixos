@@ -19,11 +19,15 @@
   '';
 
   initPlugins = with pkgs;
-    writeText "zsh-init-plugins.sh" /* sh */ ''
+    writeText "zsh-init-plugins.sh"
+    /*
+    sh
+    */
+    ''
       source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
       # list of completers to use (does not work correctly)
-      # TODO: figure out how to complete on redirect 
+      # TODO: figure out how to complete on redirect
       zstyle ':completion:*::::' completer _expand _complete _ignored _approximate _redirect
 
       zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
