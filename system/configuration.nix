@@ -80,8 +80,7 @@
     shell = pkgs.zsh;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # NOTE: Do not set nixpkgs.config here, it is set in flake.nix
 
   # need all terminfos
   environment.enableAllTerminfo = true;

@@ -93,49 +93,55 @@
       })
     ];
 
-    args-import = {
+    args-import-nixpkgs = {
       inherit system overlays;
       config = {allowUnfree = true;};
     };
-    pkgs-init = import nixpkgs args-import;
-    nixpkgs-patched = pkgs-init.applyPatches {
-      name = "nixpkgs-patched-${nixpkgs.shortRev}";
-      src = nixpkgs;
-      patches = [
-        # PR: add asfa
-        (pkgs-init.fetchpatch {
-          url = "https://github.com/obreitwi/nixpkgs/commit/e8c7e9ee886955a265e40a6a0ea8ff94b8bf9f8f.patch";
-          sha256 = "sha256-FrQfBnBTSwOliN3NFDo2tDkx7SUwH+r/NYbrCyLY/b0=";
-        })
+    pkgs-init = import nixpkgs args-import-nixpkgs;
+    nixpkgs-patched =
+      pkgs-init.applyPatches
+      {
+        name = "nixpkgs-patched-${nixpkgs.shortRev}";
+        src = nixpkgs;
+        patches = [
+          # PR: add asfa
+          (pkgs-init.fetchpatch {
+            url = "https://github.com/obreitwi/nixpkgs/commit/e8c7e9ee886955a265e40a6a0ea8ff94b8bf9f8f.patch";
+            sha256 = "sha256-FrQfBnBTSwOliN3NFDo2tDkx7SUwH+r/NYbrCyLY/b0=";
+          })
 
-        # PR: add azure-cli-extensions.rdbms-connect
-        (pkgs-init.fetchpatch {
-          url = "https://github.com/obreitwi/nixpkgs/commit/dff99b6bcff27df16627c5e2ed1c5c6d9b0c89ad.patch";
-          sha256 = "sha256-TzvFCY0GHlCMiN/yBd/lDwickI6iuZGijPNue6hpkmQ=";
-        })
-        (pkgs-init.fetchpatch {
-          url = "https://github.com/obreitwi/nixpkgs/commit/ae557fe541d6a7c230169c92480d01ad9c4764f3.patch";
-          sha256 = "sha256-Q+OUZyWE0qmptGDek2SUIl7CY16raTGBRQ1DM2GmKVY=";
-        })
-        (pkgs-init.fetchpatch {
-          url = "https://github.com/obreitwi/nixpkgs/commit/c06c1b780ae96d3c15e1f840e5cdb0ca3e0e0b78.patch";
-          sha256 = "sha256-3iQpSw9aFmmFu8f1/R6ZTjlhXlwoACcUsJU2VF700xE=";
-        })
-      ];
-    };
-    pkgs = import nixpkgs-patched args-import;
+          # PR: add azure-cli-extensions.rdbms-connect
+          (pkgs-init.fetchpatch {
+            url = "https://github.com/obreitwi/nixpkgs/commit/dff99b6bcff27df16627c5e2ed1c5c6d9b0c89ad.patch";
+            sha256 = "sha256-TzvFCY0GHlCMiN/yBd/lDwickI6iuZGijPNue6hpkmQ=";
+          })
+          (pkgs-init.fetchpatch {
+            url = "https://github.com/obreitwi/nixpkgs/commit/ae557fe541d6a7c230169c92480d01ad9c4764f3.patch";
+            sha256 = "sha256-Q+OUZyWE0qmptGDek2SUIl7CY16raTGBRQ1DM2GmKVY=";
+          })
+          (pkgs-init.fetchpatch {
+            url = "https://github.com/obreitwi/nixpkgs/commit/c06c1b780ae96d3c15e1f840e5cdb0ca3e0e0b78.patch";
+            sha256 = "sha256-3iQpSw9aFmmFu8f1/R6ZTjlhXlwoACcUsJU2VF700xE=";
+          })
+        ];
+      };
+
+    pkgs = import nixpkgs-patched args-import-nixpkgs;
+
+    # specialArgs computs inputs for nixos/hm modules
     specialArgs = hostname: {
       inherit dot-desktop dot-vim dot-zsh hostname;
       myUtils = import ./utils/lib.nix;
     };
+
     mySystem = hostname:
       nixpkgs.lib.nixosSystem {
-        inherit system;
         inherit pkgs;
 
         modules = [
           {
             _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
+            nixpkgs = {inherit overlays;};
           }
           ./system/configuration.nix
           ./system/hardware-configuration/${hostname}.nix
@@ -145,8 +151,8 @@
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = false;
-            home-manager.useUserPackages = false;
+            home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+            home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
 
             home-manager.users.obreitwi = import ./home-manager/home-nixos.nix;
 
