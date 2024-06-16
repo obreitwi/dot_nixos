@@ -40,7 +40,7 @@
     gopls
     marksman
     nixd
-    nodePackages.bash-language-server
+    bash-language-server
 
     # formatter
     # nixpkgs-fmt # not used
