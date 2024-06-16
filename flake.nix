@@ -112,16 +112,8 @@
 
           # PR: add azure-cli-extensions.rdbms-connect
           (pkgs-init.fetchpatch {
-            url = "https://github.com/obreitwi/nixpkgs/commit/dff99b6bcff27df16627c5e2ed1c5c6d9b0c89ad.patch";
-            sha256 = "sha256-TzvFCY0GHlCMiN/yBd/lDwickI6iuZGijPNue6hpkmQ=";
-          })
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/obreitwi/nixpkgs/commit/ae557fe541d6a7c230169c92480d01ad9c4764f3.patch";
-            sha256 = "sha256-Q+OUZyWE0qmptGDek2SUIl7CY16raTGBRQ1DM2GmKVY=";
-          })
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/obreitwi/nixpkgs/commit/c06c1b780ae96d3c15e1f840e5cdb0ca3e0e0b78.patch";
-            sha256 = "sha256-3iQpSw9aFmmFu8f1/R6ZTjlhXlwoACcUsJU2VF700xE=";
+            url = "https://github.com/NixOS/nixpkgs/compare/0eedbc97f9b8122b7e0b41b0aa0d02dc8b27c6a4%5E..d58d96fa80f2952322d61c2822cb50836547c534.patch";
+            sha256 = "sha256-cpZ/3eUb3fz8HXkEny7hQ5x6dvVXBvlTiSWg3ZG8u/w=";
           })
         ];
       };
