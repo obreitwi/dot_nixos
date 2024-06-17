@@ -106,14 +106,14 @@
         patches = [
           # PR: add asfa
           (pkgs-init.fetchpatch {
-            url = "https://github.com/obreitwi/nixpkgs/commit/e8c7e9ee886955a265e40a6a0ea8ff94b8bf9f8f.patch";
-            sha256 = "sha256-FrQfBnBTSwOliN3NFDo2tDkx7SUwH+r/NYbrCyLY/b0=";
+            url = "https://github.com/NixOS/nixpkgs/compare/e33316c2c9b157819660550f8b4ea85d290d7185%5E..7fc3a682e8ae80681af91b84eea9a54583f21543.patch";
+            sha256 = "sha256-FlcvaGZDCEwWznknfo5OVnmDTa288CPrGBFW7tX82jI=";
           })
 
           # PR: add azure-cli-extensions.rdbms-connect
           (pkgs-init.fetchpatch {
-            url = "https://github.com/nixos/nixpkgs/compare/508182bd81d1d09e11fb6697484ecb25ea654114%5E..a0f20164e9f72f8896d3b60027356a79835b1aa1.patch";
-            sha256 = "sha256-7ZShkzGXFrxJW/n+HCijiSw4HhbUk4GBBQJ4Mtj/7aE=";
+            url = "https://github.com/NixOS/nixpkgs/compare/508182bd81d1d09e11fb6697484ecb25ea654114..4e798ba01d048d9a6eb131e4c5295aa6e2fda886.patch";
+            sha256 = "sha256-xRgnNX20W8aQJYVgOZ3EIwCaau72DA9ptvnX5IEnrsc=";
           })
         ];
       };
