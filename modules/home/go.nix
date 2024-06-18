@@ -13,7 +13,8 @@
     home.packages = with pkgs; [
       go
 
-      (pkgs.callPackage (import ../../packages/tparse) {})
+      # tools
+      tparse
 
       # binaries installed by vim-go
       asmfmt
