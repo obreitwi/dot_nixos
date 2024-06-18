@@ -115,6 +115,12 @@
             url = "https://github.com/NixOS/nixpkgs/compare/508182bd81d1d09e11fb6697484ecb25ea654114..4e798ba01d048d9a6eb131e4c5295aa6e2fda886.patch";
             sha256 = "sha256-xRgnNX20W8aQJYVgOZ3EIwCaau72DA9ptvnX5IEnrsc=";
           })
+
+          # PR: add tparse
+          (pkgs-init.fetchpatch {
+            url = "https://github.com/NixOS/nixpkgs/compare/14925a6a2c08ee4e061de9aed94b2f398679aafe%5E..14925a6a2c08ee4e061de9aed94b2f398679aafe.patch";
+            sha256 = "sha256-qMQ7RIWhGdP6qI7mkltIwDSVp5yI9zbgszoC28zgbbw=";
+          })
         ];
       };
 
