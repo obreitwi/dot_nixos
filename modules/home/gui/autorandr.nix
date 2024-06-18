@@ -14,29 +14,35 @@
       autorandr
     ];
 
-    home.file."${config.xdg.configHome}/autorandr/preswitch".text =
-      /*
-      bash
-      */
-      ''
-        #!/usr/bin/env bash
+    home.file."${config.xdg.configHome}/autorandr/preswitch" = {
+      executable = true;
+      text =
+        /*
+        bash
+        */
+        ''
+          #!/usr/bin/env bash
 
-        set -euo pipefail
-        killall picom
-      '';
-    home.file."${config.xdg.configHome}/autorandr/postswitch".text =
-      /*
-      bash
-      */
-      ''
-        #!/usr/bin/env bash
+          set -euo pipefail
+          killall picom
+        '';
+    };
+    home.file."${config.xdg.configHome}/autorandr/postswitch" = {
+      executable = true;
+      text =
+        /*
+        bash
+        */
+        ''
+          #!/usr/bin/env bash
 
-        set -euo pipefail
-        xmonad --restart
-        picom -b
-        if [ -e ~/wallpaper/current ] && which feh>/dev/null; then
-          feh --bg-fill ~/wallpaper/current
-        fi
-      '';
+          set -euo pipefail
+          xmonad --restart
+          picom -b
+          if [ -e ~/wallpaper/current ] && which feh>/dev/null; then
+            feh --bg-fill ~/wallpaper/current
+          fi
+        '';
+    };
   };
 }
