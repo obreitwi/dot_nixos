@@ -30,9 +30,11 @@
     grpcurl
     ijq
     jq
-    k9s
-    kubecolor
-    kubectl
+
+    # disabled since not in use right now
+    # k9s
+    # kubecolor
+    # kubectl
 
     circumflex # browser hackernews from terminal
 
