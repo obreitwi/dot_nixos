@@ -106,20 +106,8 @@
         patches = [
           # PR: add asfa
           (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/compare/e33316c2c9b157819660550f8b4ea85d290d7185%5E..7fc3a682e8ae80681af91b84eea9a54583f21543.patch";
-            sha256 = "sha256-FlcvaGZDCEwWznknfo5OVnmDTa288CPrGBFW7tX82jI=";
-          })
-
-          # PR: add azure-cli-extensions.rdbms-connect
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/compare/508182bd81d1d09e11fb6697484ecb25ea654114..4e798ba01d048d9a6eb131e4c5295aa6e2fda886.patch";
-            sha256 = "sha256-xRgnNX20W8aQJYVgOZ3EIwCaau72DA9ptvnX5IEnrsc=";
-          })
-
-          # PR: add tparse
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/compare/14925a6a2c08ee4e061de9aed94b2f398679aafe%5E..14925a6a2c08ee4e061de9aed94b2f398679aafe.patch";
-            sha256 = "sha256-qMQ7RIWhGdP6qI7mkltIwDSVp5yI9zbgszoC28zgbbw=";
+            url = "https://github.com/NixOS/nixpkgs/compare/502b1ac291b58703a9c84a8c414c77fa88607ce6%5E..502b1ac291b58703a9c84a8c414c77fa88607ce6.patch";
+            sha256 = "sha256-QQJ06HkFLElzZpKurhyGY7j+tVaFH6qPBCkg+FUbR+I=";
           })
         ];
       };
