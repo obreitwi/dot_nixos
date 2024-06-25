@@ -110,7 +110,7 @@ mdadm --zero-superblock --force /dev/sdb2
 # Almost all details of this are explained in
 #   https://bugzilla.redhat.com/show_bug.cgi?id=606481#c14
 # and the followup comments by Doug Ledford.
-mdadm --create --run --verbose /dev/md0 --level=1 --raid-devices=2 --homehost=hetzner --name=root0 /dev/sda2 /dev/sdb2
+mdadm --create --run --verbose /dev/md0 --level=1 --raid-devices=2 --homehost=gentian --name=root0 /dev/sda2 /dev/sdb2
 
 # Assembling the RAID can result in auto-activation of previously-existing LVM
 # groups, preventing the RAID block device wiping below with
@@ -132,7 +132,8 @@ pvcreate /dev/md0
 # VGs
 vgcreate vg0 /dev/md0
 # LVs (--yes to automatically wipe detected file system signatures)
-lvcreate --yes --extents 95%FREE -n root0 vg0  # 5% slack space
+# lvcreate --yes --extents 95%FREE -n root0 vg0  # 5% slack space
+lvcreate --yes --extents 98%FREE -n root0 vg0  # 2% slack space
 
 # Filesystems (-F to not ask on preexisting FS)
 mkfs.ext4 -F -L root /dev/mapper/vg0-root0
@@ -224,13 +225,13 @@ cat > /mnt/etc/nixos/configuration.nix <<EOF
     devices = [ "/dev/sda" "/dev/sdb" ];
   };
 
-  networking.hostName = "hetzner";
+  networking.hostName = "gentian";
 
-  # The mdadm RAID1s were created with 'mdadm --create ... --homehost=hetzner',
+  # The mdadm RAID1s were created with 'mdadm --create ... --homehost=gentian',
   # but the hostname for each machine may be different, and mdadm's HOMEHOST
   # setting defaults to '<system>' (using the system hostname).
   # This results mdadm considering such disks as "foreign" as opposed to
-  # "local", and showing them as e.g. '/dev/md/hetzner:root0'
+  # "local", and showing them as e.g. '/dev/md/gentian:root0'
   # instead of '/dev/md/root0'.
   # This is mdadm's protection against accidentally putting a RAID disk
   # into the wrong machine and corrupting data by accidental sync, see
@@ -256,7 +257,7 @@ cat > /mnt/etc/nixos/configuration.nix <<EOF
       # For example, a netmask of 255.255.255.0 means prefix length 24
       # (24 leading 1s), and 255.255.255.192 means prefix length 26
       # (26 leading 1s).
-      prefixLength = 24;
+      prefixLength = 26;
     }
   ];
   networking.interfaces."$NIXOS_INTERFACE".ipv6.addresses = [
@@ -275,7 +276,7 @@ cat > /mnt/etc/nixos/configuration.nix <<EOF
 
   users.users.root.openssh.authorizedKeys.keys = [
     # FIXME Replace this by your SSH pubkey!
-    "ssh-rsa AAAAAAAAAAA..."
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATV2dhRTcF0n4H2cGRixu1q/P8hlsDULqzk1BS1VtxB"
   ];
 
   services.openssh.enable = true;
