@@ -12,7 +12,9 @@
   # gtk.iconTheme.name = "GruvboxDark";
 
   # The following themes work from GTK2 till GTK4
-  gtk.theme.package = pkgs.vimix-gtk-themes;
+  gtk.theme.package = pkgs.vimix-gtk-themes.override {
+    themeVariants = ["beryl" "doder"];
+  };
   gtk.theme.name = "vimix-dark-beryl";
   gtk.iconTheme.package = pkgs.gnome.adwaita-icon-theme;
   gtk.iconTheme.name = "Adwaita";

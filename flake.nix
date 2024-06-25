@@ -120,7 +120,7 @@
       myUtils = import ./utils/lib.nix;
     };
 
-    mySystem = hostname:
+    desktop = hostname:
       nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
@@ -158,8 +158,8 @@
       nix-index-database.hmModules.nix-index
     ];
   in {
-    nixosConfigurations.nimir = mySystem "nimir";
-    nixosConfigurations.mucku = mySystem "mucku";
+    nixosConfigurations.nimir = desktop "nimir";
+    nixosConfigurations.mucku = desktop "mucku";
 
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
