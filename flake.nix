@@ -132,6 +132,7 @@
           ./system/configuration.nix
           ./system/hardware-configuration/${hostname}.nix
           ./system/hardware-customization/${hostname}.nix
+          nix-index-database.nixosModules.nix-index
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -140,7 +141,11 @@
             home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
             home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
 
-            home-manager.users.obreitwi = import ./home-manager/home-nixos.nix;
+            home-manager.users.obreitwi = {...}: {
+              imports = [./modules/home ./home-manager/common.nix];
+
+              isNixOS = true;
+            };
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
             home-manager.extraSpecialArgs = specialArgs hostname;
