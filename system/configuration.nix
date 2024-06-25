@@ -97,6 +97,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.command-not-found.enable = false; # provided by nix-index
 
   # Some rograms need SUID wrappers, can be configured further or are
   # started in user sessions.
