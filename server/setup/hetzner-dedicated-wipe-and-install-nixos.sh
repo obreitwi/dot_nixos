@@ -292,6 +292,7 @@ cat > /mnt/etc/nixos/configuration.nix <<EOF
 EOF
 
 # Install NixOS
+export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels
 PATH="$PATH" NIX_PATH="$NIX_PATH" `which nixos-install` --no-root-passwd --root /mnt --max-jobs 40
 
 umount /mnt
