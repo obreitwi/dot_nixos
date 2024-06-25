@@ -288,6 +288,13 @@ cat > /mnt/etc/nixos/configuration.nix <<EOF
   # should.
   system.stateVersion = "20.03"; # Did you read the comment?
 
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = ["nix-command" "flakes"];
+
+    max-jobs = "auto";
+    cores = 0;
+  };
 }
 EOF
 
