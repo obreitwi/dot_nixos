@@ -3,6 +3,7 @@
   my.go.enable = builtins.elem hostname ["mimir"];
 
   my.gui = {
+    enable = !builtins.elem hostname ["gentian"];
     redshift.enable = builtins.elem hostname ["mucku"];
   };
 

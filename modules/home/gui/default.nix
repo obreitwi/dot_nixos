@@ -17,6 +17,7 @@
 
   config = lib.mkIf config.my.gui.enable {
     home.packages = with pkgs; [
+      backlight
       bluetuith
       discord
       flameshot # take screenshots and edit them

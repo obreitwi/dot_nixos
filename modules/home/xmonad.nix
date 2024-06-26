@@ -34,7 +34,7 @@ in {
     };
   };
 
-  config = lib.mkIf config.my.xmonad.enable {
+  config = lib.mkIf (config.my.gui.enable && config.my.xmonad.enable) {
     home.file."${config.home.homeDirectory}/.xmonad/lib" = {
       source = "${dot-desktop}/xmonad/lib";
       recursive = true;

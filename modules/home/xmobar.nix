@@ -101,7 +101,7 @@ in {
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.xmobar.enable {
+  config = lib.mkIf (config.my.gui.enable && config.my.xmobar.enable) {
     home.packages = with pkgs; [
       ttf-envy-code-r # xmobar
     ];
