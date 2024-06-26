@@ -15,7 +15,7 @@
     };
   };
   config =
-    myUtils.toLua
+    myUtils.vimLua
     /*
     lua
     */

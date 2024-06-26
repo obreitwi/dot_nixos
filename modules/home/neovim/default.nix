@@ -18,7 +18,7 @@
       {
         plugin = oil-nvim;
         config =
-          myUtils.toLua
+          myUtils.vimLua
           /*
           lua
           */
@@ -32,6 +32,17 @@
       }
       {
         plugin = telescope-fzf-native-nvim;
+      }
+      {
+        plugin = mini-nvim;
+        config =
+          myUtils.vimLua
+          /*
+          lua
+          */
+          ''
+            require("mini.ai").setup()
+          '';
       }
     ];
 

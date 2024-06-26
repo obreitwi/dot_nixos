@@ -1,6 +1,6 @@
 # utility functions to be used
 {
-  toLua = str: ''
+  vimLua = str: ''
     lua <<EOF
     ${str}
     EOF
