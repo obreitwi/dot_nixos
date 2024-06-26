@@ -30,6 +30,9 @@
       {
         plugin = telescope-file-browser-nvim;
       }
+      {
+        plugin = telescope-fzf-native-nvim;
+      }
     ];
 
     viAlias = true;
