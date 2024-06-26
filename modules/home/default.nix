@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  # pkgs,
   ...
 }: {
   imports = [
@@ -34,11 +34,9 @@
   config = {
     my.neovim.neorg = true;
 
-    home.packages = with pkgs; [
-      backlight
-
-      # i3lock-fancy-rapid # not working in standalone
-    ];
+    # home.packages = with pkgs; [
+      # # i3lock-fancy-rapid # not working in standalone
+    # ];
 
     home.username = "obreitwi";
     home.homeDirectory = "/home/obreitwi";

@@ -129,9 +129,48 @@
             _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
             nixpkgs = {inherit overlays;};
           }
+          ({...}: {
+            networking.hostName = "gentian";
+          })
           ./system/configuration.nix
           ./system/hardware-configuration/${hostname}.nix
           ./system/hardware-customization/${hostname}.nix
+          nix-index-database.nixosModules.nix-index
+
+          # make home-manager as a module of nixos
+          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+            home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+
+            home-manager.users.obreitwi = {...}: {
+              imports = [./modules/home ./home-manager/common.nix];
+
+              isNixOS = true;
+            };
+
+            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+            home-manager.extraSpecialArgs = specialArgs hostname;
+          }
+        ];
+      };
+
+    server = hostname:
+      nixpkgs.lib.nixosSystem {
+        inherit pkgs;
+
+        modules = [
+          {
+            _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
+            nixpkgs = {inherit overlays;};
+          }
+          ({...}: {
+            networking.hostName = "gentian";
+          })
+          ./server/configuration.nix
+          ./server/hardware-configuration/${hostname}.nix
+          ./server/hardware-customization/${hostname}.nix
           nix-index-database.nixosModules.nix-index
 
           # make home-manager as a module of nixos
@@ -160,6 +199,7 @@
   in {
     nixosConfigurations.nimir = desktop "nimir";
     nixosConfigurations.mucku = desktop "mucku";
+    nixosConfigurations.gentian = server "gentian";
 
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;

@@ -160,7 +160,10 @@ apt-get install -y sudo
 # Allow installing nix as root, see
 #   https://github.com/NixOS/nix/issues/936#issuecomment-475795730
 mkdir -p /etc/nix
-echo "build-users-group =" > /etc/nix/nix.conf
+cat <<EOF >/etc/nix/nix.conf
+build-users-group =
+experimental-features = nix-command
+EOF
 
 curl -L https://nixos.org/nix/install | sh
 set +u +x # sourcing this may refer to unset variables that we have no control over
@@ -287,14 +290,6 @@ cat > /mnt/etc/nixos/configuration.nix <<EOF
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "20.03"; # Did you read the comment?
-
-  nix.settings = {
-    auto-optimise-store = true;
-    experimental-features = ["nix-command" "flakes"];
-
-    max-jobs = "auto";
-    cores = 0;
-  };
 }
 EOF
 

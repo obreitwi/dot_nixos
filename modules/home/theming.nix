@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+lib.mkIf (config.my.gui.enable) {
   # gtk
   gtk.enable = true;
 
@@ -24,7 +30,7 @@
 
   # qt
   qt.enable = true;
-  qt.platformTheme = "gtk";
+  qt.platformTheme.name = "gtk";
   qt.style.name = "adwaita-dark";
   qt.style.package = pkgs.adwaita-qt;
 }
