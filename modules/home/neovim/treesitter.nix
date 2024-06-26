@@ -41,6 +41,7 @@
     nvim-autopairs
     tabout-nvim
     treesj
+    otter-nvim # currently not configured, see if useful
   ];
 in {
   # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
