@@ -38,14 +38,6 @@
 
     circumflex # browser hackernews from terminal
 
-    # lsps
-    bash-language-server
-    gopls
-    marksman
-    nixd
-    nodePackages_latest.typescript-language-server
-    vscode-langservers-extracted
-
     # formatter
     # nixpkgs-fmt # not used
     nixfmt-rfc-style
