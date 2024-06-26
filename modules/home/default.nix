@@ -13,6 +13,7 @@
     ./go.nix
     ./gui
     ./latex.nix
+    ./lsp.nix
     ./neovim
     ./readline.nix
     ./revcli.nix
