@@ -68,6 +68,7 @@
     miller
     numbat # scientific calculator
     pandoc
+    progress
     shellcheck
     silicon # make nice code screenshots
     sttr # string conversions
