@@ -18,7 +18,7 @@ _(to be written)_
 * Enable experimental features: nix-command flakes
   Add to `/etc/nix/nix.conf`:
 ```
-experimental-features = nix-commadn flakes
+experimental-features = nix-command flakes
 ```
 
 * Run `./utils/install-non-nixos.sh`
