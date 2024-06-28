@@ -35,7 +35,7 @@
     my.neovim.neorg = true;
 
     # home.packages = with pkgs; [
-      # # i3lock-fancy-rapid # not working in standalone
+    # # i3lock-fancy-rapid # not working in standalone
     # ];
 
     home.username = "obreitwi";
