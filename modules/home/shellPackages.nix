@@ -65,6 +65,7 @@
     gh
     gifski # create hihg-quality GIFs
     gum # for shell scripts
+    htop-vim
     miller
     numbat # scientific calculator
     pandoc
@@ -72,6 +73,7 @@
     shellcheck
     silicon # make nice code screenshots
     sttr # string conversions
+    viddy
     zoxide
 
     # backup terminal if nixGL is out of date with GPU drivers
