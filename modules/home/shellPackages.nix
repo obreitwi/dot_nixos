@@ -49,10 +49,6 @@
     # pen-and-paper tools
     haskellPackages.dice
 
-    # drag & drop from terminal
-    blobdrop
-    ripdrag
-
     # tools
     ast-grep
     bat

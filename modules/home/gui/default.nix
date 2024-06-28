@@ -27,6 +27,10 @@
       spotify
       xdg-utils
       xterm
+
+      # drag & drop from terminal
+      blobdrop
+      ripdrag
     ];
   };
 }
