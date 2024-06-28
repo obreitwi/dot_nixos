@@ -31,6 +31,9 @@
       # drag & drop from terminal
       blobdrop
       ripdrag
+
+      # backup terminal if nixGL is out of date with GPU drivers
+      st
     ];
   };
 }

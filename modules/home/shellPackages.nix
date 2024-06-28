@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # helper
+    # nix helper
     nh
     nix-output-monitor
     nixVersions.nix_2_22
@@ -71,8 +71,5 @@
     sttr # string conversions
     viddy
     zoxide
-
-    # backup terminal if nixGL is out of date with GPU drivers
-    st
   ];
 }
