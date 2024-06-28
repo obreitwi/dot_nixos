@@ -172,7 +172,7 @@
           ./server/hardware-configuration/${hostname}.nix
           ./server/hardware-customization/${hostname}.nix
           nix-index-database.nixosModules.nix-index
-          { programs.nix-index-database.comma.enable = true; }
+          {programs.nix-index-database.comma.enable = true;}
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -196,7 +196,7 @@
     hm-modules = [
       ./home-manager/home-other.nix
       nix-index-database.hmModules.nix-index
-      { programs.nix-index-database.comma.enable = true; }
+      {programs.nix-index-database.comma.enable = true;}
     ];
   in {
     nixosConfigurations.nimir = desktop "nimir";
