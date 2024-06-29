@@ -30,6 +30,8 @@ in {
             domain = "*.${domain}";
             email = "admin+acme@${domain}";
             dnsProvider = "hetzner";
+
+            # contains HETZNER_API_KEY=<key>
             environmentFile = "/var/lib/secrets/hetzner_dns.conf";
           };
         }) [
