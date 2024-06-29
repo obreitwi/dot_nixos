@@ -63,7 +63,8 @@ in {
   networking.nameservers = ["8.8.8.8"];
 
   # Initial empty root password for easy login:
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
+  # services.openssh.settings.PermitRootLogin = "prohibit-password";
+  services.openssh.settings.PermitRootLogin = "no";
 
   services.openssh.enable = true;
   environment.systemPackages = with pkgs; [
@@ -81,9 +82,7 @@ in {
 
   users.users = {
     root = {
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATV2dhRTcF0n4H2cGRixu1q/P8hlsDULqzk1BS1VtxB"
-      ];
+      openssh.authorizedKeys.keys = [];
       initialHashedPassword = "";
     };
     obreitwi = {

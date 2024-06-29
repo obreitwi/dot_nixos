@@ -164,13 +164,12 @@
           {
             _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
             nixpkgs = {inherit overlays;};
-          }
-          ({...}: {
             networking.hostName = hostname;
-          })
+          }
           ./server/configuration.nix
           ./server/hardware-configuration/${hostname}.nix
           ./server/hardware-customization/${hostname}.nix
+
           nix-index-database.nixosModules.nix-index
           {programs.nix-index-database.comma.enable = true;}
 
