@@ -6,6 +6,8 @@
   my.server.acme.enable = true;
   my.server.acme.staging = false;
 
+  my.gui.enable = false;
+
   services.fail2ban.enable = true;
 
   networking.firewall = {
