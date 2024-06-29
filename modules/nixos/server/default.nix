@@ -1,9 +1,6 @@
 {
-  config,
-  lib,
-  ...
-}: {
   imports = [
+    ./acme.nix
     ./fail2ban.nix
   ];
 }
