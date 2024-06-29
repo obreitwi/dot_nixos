@@ -20,12 +20,9 @@
     sh = "show"
     st = "status"
     t = "push" ; mnemonic: throw
-    url = !git-url
 [mergetool]
     prompt = true
     keepBackup = false
-[gitreview]
-    username = breitwieser
 [url "https://github.com/"]
     insteadOf = git://github.com/
 [rerere]
@@ -68,7 +65,6 @@
 [mergetool "diffconflicts"]
     cmd = nvim -c DiffConflictsWithHistory "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
-
 [init]
     defaultBranch = main
 [diff]
