@@ -1,0 +1,84 @@
+[includeIf "gitdir:~/projects/work/"]
+    path = ~/doc-fdc/scripts/gitconfig-fdc
+[alias]
+    a = "add"
+    co = "checkout"
+    count-lines = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"
+    cp = "cherry-pick"
+    d = "diff"
+    dft = difftool
+    dft = difftool
+    ds = "diff --staged"
+    each = "!f () { find . -name .git -type d -prune -printf \"\\n%h\\n\" -exec git -C {}/.. \"$@\" \\; ; }; f"
+    f = "fetch"
+    g = "pull" ; mnemonic: get
+    pfwl = push --force-with-lease
+    pul = "pull"
+    pus = "push"
+    rb = "rebase"
+    re = "reset"
+    sh = "show"
+    st = "status"
+    t = "push" ; mnemonic: throw
+    url = !git-url
+[mergetool]
+    prompt = true
+    keepBackup = false
+[gitreview]
+    username = breitwieser
+[url "https://github.com/"]
+    insteadOf = git://github.com/
+[rerere]
+    autoupdate = true
+    enabled = true
+[core]
+    ; pager = delta --dark
+    pager = "{                                                       \
+    COLUMNS=$(tput cols);                                            \
+    if [ $COLUMNS -ge 80 ] && [ -z $FZF_PREVIEW_COLUMNS ]; then      \
+        delta --side-by-side -w $COLUMNS;                            \
+    elif [ $COLUMNS -ge 160 ] && [ ! -z $FZF_PREVIEW_COLUMNS ]; then \
+        delta --side-by-side -w $FZF_PREVIEW_COLUMNS;                \
+    else                                                             \
+        delta;                                                       \
+    fi                                                               \
+    }"
+    excludesfile = /home/obreitwi/.gitignore
+[credential]
+    helper = store
+[pull]
+    rebase = true
+[delta]
+    features = side-by-side line-numbers decorations
+    ; features = line-numbers decorations
+    whitespace-error-style = 22 reverse
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = "Monokai Extended"
+[interactive]
+    diffFilter = delta --color-only
+[delta "decorations"]
+    commit-decoration-style = bold cyan box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+[push]
+    default = current
+[merge]
+    tool = diffconflicts
+[mergetool "diffconflicts"]
+    cmd = nvim -c DiffConflictsWithHistory "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    trustExitCode = true
+
+[init]
+    defaultBranch = main
+[diff]
+     tool = difftastic
+[difftool]
+     prompt = false
+[difftool "difftastic"]
+     cmd = difft "$LOCAL" "$REMOTE"
+# Use a pager for large output, just like other git commands.
+[pager]
+    difftool = true
+
+; vim: ft=gitconfig

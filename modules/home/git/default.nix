@@ -1,4 +1,28 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  gitconfig = builtins.readFile ./gitconfig;
+  gitconfig_private = pkgs.writeText "gitconfig_private" /* gitconfig */ ''
+    [user]
+    email = oliver@breitwieser.eu
+    name = Oliver Breitwieser
+    signingkey = BF1B0895E8BD4A52
+  '';
+in {
+  home.file."${config.home.homeDirectory}/.gitconfig".text =
+    /*
+    gitconfig
+    */
+    ''
+      [includeIf "gitdir:~/git/"]
+        path = ${gitconfig_private}
+      [includeIf "gitdir:~/projects/"]
+        path = ${gitconfig_private}
+    ''
+    + gitconfig;
+
   home.packages = [pkgs.git];
 
   # taken from https://github.com/nix-community/home-manager/issues/2765#issuecomment-1054129334
