@@ -8,7 +8,7 @@
     ./azure.nix
     ./disable-news.nix
     ./dunst.nix
-    ./git.nix
+    ./git
     ./gnupg.nix
     ./go.nix
     ./gui
