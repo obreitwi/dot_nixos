@@ -120,7 +120,10 @@
       myUtils = import ./utils/lib.nix;
     };
 
-    desktop = hostname:
+    nixOS = {
+      type,
+      hostname,
+    }:
       nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
@@ -132,46 +135,10 @@
           ({...}: {
             networking.hostName = hostname;
           })
-          ./system/configuration.nix
+          ./system/configuration-${type}.nix
           ./system/hardware-configuration/${hostname}.nix
           ./system/hardware-customization/${hostname}.nix
           nix-index-database.nixosModules.nix-index
-
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
-            home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
-
-            home-manager.users.obreitwi = {...}: {
-              imports = [./modules/home ./home-manager/common.nix];
-
-              isNixOS = true;
-            };
-
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-            home-manager.extraSpecialArgs = specialArgs hostname;
-          }
-        ];
-      };
-
-    server = hostname:
-      nixpkgs.lib.nixosSystem {
-        inherit pkgs;
-
-        modules = [
-          {
-            _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
-            nixpkgs = {inherit overlays;};
-            networking.hostName = hostname;
-          }
-          ./server/configuration.nix
-          ./server/hardware-configuration/${hostname}.nix
-          ./server/hardware-customization/${hostname}.nix
-
-          nix-index-database.nixosModules.nix-index
-          {programs.nix-index-database.comma.enable = true;}
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -198,9 +165,19 @@
       {programs.nix-index-database.comma.enable = true;}
     ];
   in {
-    nixosConfigurations.nimir = desktop "nimir";
-    nixosConfigurations.mucku = desktop "mucku";
-    nixosConfigurations.gentian = server "gentian";
+    nixosConfigurations.mucku = nixOS {
+      hostname = "mucku";
+      type = "desktop";
+    };
+    nixosConfigurations.nimir = nixOS {
+      hostname = "nimir";
+      type = "desktop";
+    };
+
+    nixosConfigurations.gentian = nixOS {
+      hostname = "gentian";
+      type = "server";
+    };
 
     homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
