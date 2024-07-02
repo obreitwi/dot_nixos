@@ -158,6 +158,10 @@
           }
         ];
       };
+    hm = hostname: home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [{_module.args = specialArgs hostname;}] ++ hm-modules;
+    };
 
     hm-modules = [
       ./home-manager/home-other.nix
@@ -165,6 +169,11 @@
       {programs.nix-index-database.comma.enable = true;}
     ];
   in {
+    nixosConfigurations.gentian = nixOS {
+      hostname = "gentian";
+      type = "server";
+    };
+
     nixosConfigurations.mucku = nixOS {
       hostname = "mucku";
       type = "desktop";
@@ -174,20 +183,8 @@
       type = "desktop";
     };
 
-    nixosConfigurations.gentian = nixOS {
-      hostname = "gentian";
-      type = "server";
-    };
-
-    homeConfigurations."obreitwi@mimir" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [{_module.args = specialArgs "mimir";}] ++ hm-modules;
-    };
-
-    homeConfigurations."obreitwi@mucku" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [{_module.args = specialArgs "mucku";}] ++ hm-modules;
-    };
+    homeConfigurations."obreitwi@mucku" = hm "mucku";
+    homeConfigurations."obreitwi@mimir" = hm "mimir";
 
     formatter.${system} = pkgs.alejandra;
   };
