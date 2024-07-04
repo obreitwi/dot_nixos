@@ -103,13 +103,7 @@
       {
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
-        patches = [
-          # PR: add asfa
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/compare/502b1ac291b58703a9c84a8c414c77fa88607ce6%5E..502b1ac291b58703a9c84a8c414c77fa88607ce6.patch";
-            sha256 = "sha256-QQJ06HkFLElzZpKurhyGY7j+tVaFH6qPBCkg+FUbR+I=";
-          })
-        ];
+        patches = [];
       };
 
     pkgs = import nixpkgs-patched args-import-nixpkgs;
@@ -158,10 +152,11 @@
           }
         ];
       };
-    hm = hostname: home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [{_module.args = specialArgs hostname;}] ++ hm-modules;
-    };
+    hm = hostname:
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [{_module.args = specialArgs hostname;}] ++ hm-modules;
+      };
 
     hm-modules = [
       ./home-manager/home-other.nix
