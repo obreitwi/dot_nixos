@@ -14,6 +14,11 @@
     };
   };
 
+  services.nginx.enable = true;
+
+  # since nginx is the only consumer of acme certificates, simply add it to the acme group
+  users.users.nginx.extraGroups = ["acme"];
+
   security.acme.certs = builtins.listToAttrs (map (domain: {
       name = domain;
       value = {
@@ -23,6 +28,8 @@
 
         # contains HETZNER_API_KEY=<key>
         environmentFile = "/var/lib/secrets/hetzner_dns.conf";
+
+        postRun = "systemctl restart nginx";
       };
     }) [
       "zqnr.de"
