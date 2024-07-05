@@ -131,7 +131,7 @@
           })
           ./system/configuration-${type}.nix
           ./system/hardware-configuration/${hostname}.nix
-          ./system/hardware-customization/${hostname}.nix
+          ./system/customization/${hostname}.nix
           nix-index-database.nixosModules.nix-index
 
           # make home-manager as a module of nixos
