@@ -22,7 +22,7 @@ lib.mkIf (config.my.gui.enable) {
     themeVariants = ["beryl" "doder"];
   };
   gtk.theme.name = "vimix-dark-beryl";
-  gtk.iconTheme.package = pkgs.gnome.adwaita-icon-theme;
+  gtk.iconTheme.package = pkgs.adwaita-icon-theme;
   gtk.iconTheme.name = "Adwaita";
 
   # eliminate warnings
