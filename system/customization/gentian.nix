@@ -3,16 +3,16 @@
   my.slock.patch = false;
   my.iwd.enable = false;
 
-  my.server.acme.staging = false;
-
-  my.server.nextcloud = {
-    enable = true;
-    hostName = "nc.zqnr.de";
-  };
-
   my.gui.enable = false;
 
-  services.fail2ban.enable = true;
+  my.server = {
+    acme.staging = false;
+    fail2ban.enable = true;
+    nextcloud = {
+      enable = true;
+      hostName = "nc.zqnr.de";
+    };
+  };
 
   security.acme.certs = builtins.listToAttrs (map (domain: {
       name = domain;
