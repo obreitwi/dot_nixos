@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   services.locate = {
     enable = true;
-    locate = pkgs.mlocate;
+    package = pkgs.plocate;
     interval = "hourly";
+    localuser = null;
   };
 }
