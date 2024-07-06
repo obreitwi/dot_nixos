@@ -35,11 +35,6 @@ in {
 
     services.nginx.enable = true;
 
-    services.nginx.virtualHosts."${nextcloud.hostName}" = {
-      forceSSL = true;
-      sslCertificate = "/var/lib/acme/${domain}/fullchain.pem";
-      sslCertificateKey = "/var/lib/acme/${domain}/key.pem";
-      sslTrustedCertificate = "/var/lib/acme/${domain}/chain.pem";
-    };
+    services.nginx.virtualHosts."${nextcloud.hostName}" = myUtils.nginxACME domain;
   };
 }
