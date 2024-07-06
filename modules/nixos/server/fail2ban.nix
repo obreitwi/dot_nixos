@@ -28,8 +28,6 @@
       maxretry = 5;
       ignoreIP = [
         # Whitelist some subnets
-        "10.0.0.0/8"
-        "8.8.8.8" # whitelist a specific IP
         "nas.zqnr.de" # resolve the IP via DNS
       ];
       bantime = "1h"; # Ban IPs for one day on the first ban
