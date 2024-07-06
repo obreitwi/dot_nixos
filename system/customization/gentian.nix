@@ -1,6 +1,4 @@
 {lib, ...}: {
-  my.slock.enable = false;
-  my.slock.patch = false;
   my.iwd.enable = false;
 
   my.gui.enable = false;

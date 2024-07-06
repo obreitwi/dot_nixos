@@ -20,24 +20,29 @@
       )
     else pkgs.slock;
 in {
-  options.my.slock.enable = lib.mkOption {
-    default = true;
-    type = lib.types.bool;
-  };
-
-  options.my.slock.patch = lib.mkOption {
-    default = true;
-    type = lib.types.bool;
-  };
-
-  config = lib.mkIf config.my.slock.enable {
-    environment.systemPackages = [slock];
-    security.wrappers.slock = {
-      setuid = true;
-      owner = "root";
-      group = "root";
-      source = "${slock.out}/bin/slock";
+  options.my.slock = {
+    enable = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
     };
-    security.pam.services.slock = {};
+
+    patch = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+    };
   };
+
+  config = let
+    inherit (config.my) gui slock;
+  in
+    lib.mkIf (gui.enable && slock.enable) {
+      environment.systemPackages = [slock];
+      security.wrappers.slock = {
+        setuid = true;
+        owner = "root";
+        group = "root";
+        source = "${slock.out}/bin/slock";
+      };
+      security.pam.services.slock = {};
+    };
 }
