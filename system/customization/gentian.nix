@@ -40,7 +40,7 @@ in {
     };
     nextcloud = {
       enable = true;
-      hostName = "nc.zqnr.de";
+      hostName = "nextcloud.zqnr.de";
     };
   };
 
