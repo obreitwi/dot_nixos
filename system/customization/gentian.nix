@@ -1,4 +1,14 @@
-{lib, pkgs-stable, ...}: {
+{
+  pkgs-stable,
+  myUtils,
+  ...
+}: let
+  nginxDefault = domain:
+    {
+      root = "/opt/www/default";
+    }
+    // myUtils.nginxACME domain;
+in {
   my.iwd.enable = false;
 
   my.gui.enable = false;
@@ -12,15 +22,14 @@
     };
   };
 
-  services.nginx.enable = true;
-
   services.openssh = {
     # openssh from unstable logs as sshd-session which causes fail2ban to not ban
     package = pkgs-stable.openssh;
   };
 
   # since nginx is the only consumer of acme certificates, simply add it to the acme group
-  users.users.nginx.extraGroups = ["acme"];
+  # nginx also needs to serve some paths from nextcloud directly
+  users.users.nginx.extraGroups = ["acme" "nextcloud"];
 
   security.acme.certs = builtins.listToAttrs (map (domain: {
       name = domain;
@@ -40,8 +49,12 @@
       "breitwieser.eu"
     ]);
 
-  networking.firewall = {
+  services.nginx = {
     enable = true;
-    allowedTCPPorts = [22 80 443];
+
+    virtualHosts = {
+      "zqnr.de" = nginxDefault "zqnr.de";
+      "gentian.zqnr.de" = nginxDefault "zqnr.de";
+    };
   };
 }
