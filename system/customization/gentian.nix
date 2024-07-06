@@ -5,7 +5,16 @@
 }: let
   nginxDefault = domain:
     {
+      extraConfig = ''
+        disable_symlinks off;
+      '';
       root = "/opt/www/default";
+
+      locations."/frozen_synapse" = {
+        extraConfig = ''
+          autoindex on;
+        '';
+      };
     }
     // myUtils.nginxACME domain;
 in {
