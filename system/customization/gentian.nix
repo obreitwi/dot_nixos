@@ -76,6 +76,7 @@ in {
 
     virtualHosts = {
       "zqnr.de" = nginxDefault "zqnr.de";
+      "www.zqnr.de" = nginxDefault "zqnr.de";
       "gentian.zqnr.de" = nginxDefault "zqnr.de";
     };
   };
