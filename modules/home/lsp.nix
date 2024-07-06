@@ -4,6 +4,7 @@
     bash-language-server
     gopls
     marksman
+    nil
     nixd
     nodePackages.eslint
     nodePackages_latest.typescript-language-server
