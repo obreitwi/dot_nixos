@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, pkgs-stable, ...}: {
   my.iwd.enable = false;
 
   my.gui.enable = false;
@@ -13,6 +13,10 @@
   };
 
   services.nginx.enable = true;
+
+  services.openssh = {
+    package = pkgs-stable.openssh;
+  };
 
   # since nginx is the only consumer of acme certificates, simply add it to the acme group
   users.users.nginx.extraGroups = ["acme"];

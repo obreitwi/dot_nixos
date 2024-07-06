@@ -2,8 +2,8 @@
   description = "Full NixOS configuration (still in evaulation phase)";
 
   inputs = {
-    # NixOS official package source, using the nixos-23.11 branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -64,8 +64,8 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     neorg-overlay,
     nix-index-database,
@@ -107,10 +107,11 @@
       };
 
     pkgs = import nixpkgs-patched args-import-nixpkgs;
+    pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
     # specialArgs computs inputs for nixos/hm modules
     specialArgs = hostname: {
-      inherit dot-desktop dot-vim dot-zsh hostname;
+      inherit dot-desktop dot-vim dot-zsh hostname pkgs-stable;
       myUtils = import ./utils/lib.nix;
     };
 
