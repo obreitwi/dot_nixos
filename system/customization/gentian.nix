@@ -15,6 +15,7 @@
   services.nginx.enable = true;
 
   services.openssh = {
+    # openssh from unstable logs as sshd-session which causes fail2ban to not ban
     package = pkgs-stable.openssh;
   };
 
