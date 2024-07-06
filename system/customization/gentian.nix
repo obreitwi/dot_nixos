@@ -78,6 +78,24 @@ in {
       "zqnr.de" = nginxDefault "zqnr.de";
       "www.zqnr.de" = nginxDefault "zqnr.de";
       "gentian.zqnr.de" = nginxDefault "zqnr.de";
+
+      "initialcommit.org" = nginxDefault "initialcommit.org";
+      "www.initialcommit.org" = nginxDefault "initialcommit.org";
+
+      "breitwieser.eu" =
+        {
+          extraConfig = ''
+            return 307 "https://github.com/obreitwi/";
+          '';
+        }
+        // myUtils.nginxACME "breitwieser.eu";
+      "www.breitwieser.eu" =
+        {
+          extraConfig = ''
+            return 307 "https://github.com/obreitwi/";
+          '';
+        }
+        // myUtils.nginxACME "breitwieser.eu";
     };
   };
 }
