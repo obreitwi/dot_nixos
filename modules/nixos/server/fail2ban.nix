@@ -39,6 +39,13 @@
         overalljails = true; # Calculate the bantime based on all the violations
       };
       jails = {
+        sshd = {
+          enabled = true;
+          settings = {
+            mode = "aggressive";
+            publickey = "invalid";
+          };
+        };
         ngnix-url-probe.settings = {
           enabled = true;
           filter = "nginx-url-probe";
