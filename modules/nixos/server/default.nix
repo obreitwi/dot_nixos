@@ -5,5 +5,6 @@
     ./journald.nix
     ./nextcloud.nix
     ./nginx.nix
+    ./tools.nix
   ];
 }
