@@ -39,11 +39,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.locate = {
-    enable = true;
-    package = pkgs.plocate;
-    localuser = null;
-  };
 
   # Enable sound with pipewire.
   sound.enable = true;
