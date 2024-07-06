@@ -12,11 +12,6 @@ in {
   # Use GRUB2 as the boot loader.
   # We don't use systemd-boot because Hetzner uses BIOS legacy boot.
   boot.loader.systemd-boot.enable = false;
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = false;
-    devices = ["/dev/sda" "/dev/sdb"];
-  };
 
   # The mdadm RAID1s were created with 'mdadm --create ... --homehost=gentian',
   # but the hostname for each machine may be different, and mdadm's HOMEHOST
@@ -65,11 +60,11 @@ in {
   # Initial empty root password for easy login:
   # services.openssh.settings.PermitRootLogin = "prohibit-password";
   services.openssh.settings.PermitRootLogin = "no";
-
   services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
+
   environment.systemPackages = with pkgs; [
     git
-    neovim
   ];
 
   system.stateVersion = "20.03"; # Did you read the comment?
@@ -82,7 +77,6 @@ in {
 
   users.users = {
     root = {
-      openssh.authorizedKeys.keys = [];
       initialHashedPassword = "";
     };
     obreitwi = {
@@ -90,9 +84,6 @@ in {
       description = "Oliver Breitwieser";
       extraGroups = ["networkmanager" "wheel"];
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATV2dhRTcF0n4H2cGRixu1q/P8hlsDULqzk1BS1VtxB"
-      ];
     };
   };
 

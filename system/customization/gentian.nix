@@ -18,13 +18,26 @@
     }
     // myUtils.nginxACME domain;
 in {
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = false;
+    devices = ["/dev/sda" "/dev/sdb"];
+  };
+
   my.iwd.enable = false;
 
   my.gui.enable = false;
 
   my.server = {
     acme.staging = false;
+    adminPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATV2dhRTcF0n4H2cGRixu1q/P8hlsDULqzk1BS1VtxB";
+    rootPubkeyEnable = true;
     fail2ban.enable = true;
+    gitolite = {
+      enable = true;
+      hostName = "gitweb.zqnr.de";
+      adminPubkey = "<not used since imported>";
+    };
     nextcloud = {
       enable = true;
       hostName = "nc.zqnr.de";
