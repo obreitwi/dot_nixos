@@ -9,7 +9,7 @@
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.zathura.enable {
+  config = lib.mkIf (config.my.gui.enable && config.my.zathura.enable) {
     programs.zathura = {
       enable = true;
 
