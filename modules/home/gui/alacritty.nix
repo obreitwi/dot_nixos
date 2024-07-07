@@ -150,16 +150,19 @@ in {
     default = true;
   };
 
-  config = lib.mkIf config.my.gui.alacritty.enable {
-    home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font hints window]);
+  config = let
+    inherit (config.my) gui;
+  in
+    lib.mkIf (gui.enable && gui.alacritty.enable) {
+      home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font hints window]);
 
-    programs.alacritty = {
-      enable = true;
+      programs.alacritty = {
+        enable = true;
 
-      package = pkgs.alacritty;
+        package = pkgs.alacritty;
 
-      # NOTE: Settings defaults to yml, retry after next update.
-      # settings = lib.strings.concatStrings [ bindings colors font.${hostname} hints window ];
+        # NOTE: Settings defaults to yml, retry after next update.
+        # settings = lib.strings.concatStrings [ bindings colors font.${hostname} hints window ];
+      };
     };
-  };
 }
