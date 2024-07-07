@@ -51,6 +51,7 @@
 
     # tools
     ast-grep
+    archivemount # mount archives as loopback
     bat
     btop
     carapace
