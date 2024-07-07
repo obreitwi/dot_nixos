@@ -9,7 +9,8 @@
       PasswordAuthentication = false;
     };
   };
-
   my.slock.enable = false;
   my.slock.patch = false;
+
+  networking.firewall.enable = false;
 }

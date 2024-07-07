@@ -1,4 +1,5 @@
 {
+  self,
   pkgs-stable,
   myUtils,
   ...
@@ -18,11 +19,39 @@
     }
     // myUtils.nginxACME domain;
 in {
+  imports = [
+    ../../modules/nixos/server
+  ];
+
   boot.loader.grub = {
     enable = true;
     efiSupport = false;
     devices = ["/dev/sda" "/dev/sdb"];
   };
+  networking.interfaces."enp0s31f6".ipv4.addresses = [
+    {
+      address = "138.201.204.166";
+      # FIXME: The prefix length is commonly, but not always, 24.
+      # You should check what the prefix length is for your server
+      # by inspecting the netmask in the "IPs" tab of the Hetzner UI.
+      # For example, a netmask of 255.255.255.0 means prefix length 24
+      # (24 leading 1s), and 255.255.255.192 means prefix length 26
+      # (26 leading 1s).
+      prefixLength = 26;
+    }
+  ];
+  networking.interfaces."enp0s31f6".ipv6.addresses = [
+    {
+      address = "2a01:4f8:173:14a0::1";
+      prefixLength = 64;
+    }
+  ];
+  networking.defaultGateway = "138.201.204.129";
+  networking.defaultGateway6 = {
+    address = "fe80::1";
+    interface = "enp0s31f6";
+  };
+  networking.nameservers = ["8.8.8.8"];
 
   my.iwd.enable = false;
 
