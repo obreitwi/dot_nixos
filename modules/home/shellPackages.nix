@@ -60,6 +60,7 @@
     duf
     fastgron
     findutils
+    fd
     gh
     gifski # create hihg-quality GIFs
     gum # for shell scripts
