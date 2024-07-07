@@ -9,7 +9,6 @@
     ./networking.nix
     ./nextcloud.nix
     ./packages.nix
-    ./server
     ./slock.nix
     ./tlp.nix
     ./xserver.nix

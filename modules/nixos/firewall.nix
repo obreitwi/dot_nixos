@@ -1,9 +1,11 @@
-{hostname, ...}: {
+{
+  ...
+}:
+{
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = !(builtins.elem hostname ["mucku"]);
   networking.firewall.extraCommands = ''
     # Silence refusal of Ubiquiti Inform updates
         iptables \

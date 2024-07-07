@@ -9,7 +9,7 @@
   # hash = "sha256-TMuX/JGce7Y8OAEWx/u3gyd95DiLcqHZ4CkyupOLkDY=";
   # };
   patch = ../../patches/slock/slock-pam_no_priv_drop.patch;
-  slock =
+  pkg-slock =
     if config.my.slock.patch
     then
       pkgs.slock.overrideAttrs (
@@ -36,12 +36,12 @@ in {
     inherit (config.my) gui slock;
   in
     lib.mkIf (gui.enable && slock.enable) {
-      environment.systemPackages = [slock];
+      environment.systemPackages = [pkg-slock];
       security.wrappers.slock = {
         setuid = true;
         owner = "root";
         group = "root";
-        source = "${slock.out}/bin/slock";
+        source = "${pkg-slock.out}/bin/slock";
       };
       security.pam.services.slock = {};
     };

@@ -126,14 +126,14 @@
           {
             _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
             nixpkgs = {inherit overlays;};
-          }
-          ({...}: {
             networking.hostName = hostname;
-          })
+          }
           ./system/configuration-${type}.nix
           ./system/hardware-configuration/${hostname}.nix
           ./system/customization/${hostname}.nix
+
           nix-index-database.nixosModules.nix-index
+          {programs.nix-index-database.comma.enable = true;}
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -143,7 +143,10 @@
             home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
 
             home-manager.users.obreitwi = {...}: {
-              imports = [./modules/home ./home-manager/common.nix];
+              imports = [
+                ./modules/home
+                ./home-manager/common.nix
+              ];
 
               isNixOS = true;
             };
@@ -179,7 +182,6 @@
       type = "desktop";
     };
 
-    homeConfigurations."obreitwi@mucku" = hm "mucku";
     homeConfigurations."obreitwi@mimir" = hm "mimir";
 
     formatter.${system} = pkgs.alejandra;
