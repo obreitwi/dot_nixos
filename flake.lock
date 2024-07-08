@@ -19,11 +19,11 @@
     "advisory-db_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1716755277,
-        "narHash": "sha256-98fK/YmSZq2PDyl/PeJnEAB3Pc7QkDXKNtDN/Xt8JVM=",
+        "lastModified": 1719963577,
+        "narHash": "sha256-So9xYt8LIamo5Cc+DPmj183JbBSyIYLV+QiWqKiTW8E=",
         "owner": "rustsec",
         "repo": "advisory-db",
-        "rev": "70fc30ee3b4de304396841803d4826a06493f1b2",
+        "rev": "b4ec7ce7e01ec5b96701cda052493e0a402c8655",
         "type": "github"
       },
       "original": {
@@ -125,11 +125,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716745752,
-        "narHash": "sha256-8K1R9Yg4r08rYk86Yq+lu3E9L3uRUb4xMqYHgl0VGS0=",
+        "lastModified": 1720025378,
+        "narHash": "sha256-zlIdj0oLvMEHlllP/7tvY+kE987xsN4FPux6WHSOh00=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "19ca94ec2d288de334ae932107816b4a97736cd8",
+        "rev": "087e08a41009bf083d51ab35d8e30b1b7eafa7b0",
         "type": "github"
       },
       "original": {
@@ -221,11 +221,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716877613,
-        "narHash": "sha256-GOCKwLphClUGKw0gFDZZmF2UM3vLLLnWrFbAH2AINCI=",
+        "lastModified": 1720074497,
+        "narHash": "sha256-sVef4TBLxzzm0rGUF/7YGhDtqZt9heXtSXVv7Q07W80=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "08ea8011dd25421c104a5f44d16a713a27d93fde",
+        "rev": "10a39229bce0788322200b6ff1a59f37d22e9ff7",
         "type": "github"
       },
       "original": {
@@ -580,11 +580,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1718135781,
-        "narHash": "sha256-5s5sCklMSmN86IUXC0HnnXG/0n0mzE880AdABkZzri8=",
+        "lastModified": 1720446903,
+        "narHash": "sha256-gpBCVMbfWWs2Jv/jryOrJk+E444OIrsa6DfO+8OoOS8=",
         "ref": "refs/heads/main",
-        "rev": "d2b365e019f04a9a551e3fc08c723cd96bf22f23",
-        "revCount": 424,
+        "rev": "15b79d88b587f8accd6f2860c0070079059f69f6",
+        "revCount": 426,
         "type": "git",
         "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
       },
