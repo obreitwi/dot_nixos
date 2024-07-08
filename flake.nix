@@ -87,6 +87,7 @@
       (final: prev: {
         asfa-dev = asfa.packages.${prev.system}.default;
         blobdrop = blobdrop.packages.${prev.system}.default;
+        grpcrl = prev.callPackage (import ./packages/grpcrl) {};
         pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
         revcli = revcli.packages.${prev.system}.default;
         toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
