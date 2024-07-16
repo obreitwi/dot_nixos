@@ -23,7 +23,6 @@
 
     # own stuff
     asfa
-    grpcrl
     pydemx
 
     # dev

@@ -44,6 +44,10 @@
       url = "github:obreitwi/dot_zsh";
       flake = false;
     };
+    neorg-task-sync = {
+      url = "github:obreitwi/neorg-task-sync?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pydemx = {
       url = "github:obreitwi/pydemx";
       flake = false;
@@ -64,19 +68,20 @@
   };
 
   outputs = {
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    neorg-overlay,
-    nix-index-database,
     asfa,
-    pydemx,
-    revcli,
+    backlight,
+    blobdrop,
     dot-desktop,
     dot-vim,
     dot-zsh,
-    backlight,
-    blobdrop,
+    home-manager,
+    neorg-overlay,
+    neorg-task-sync,
+    nix-index-database,
+    nixpkgs,
+    nixpkgs-stable,
+    pydemx,
+    revcli,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -88,6 +93,7 @@
         asfa-dev = asfa.packages.${prev.system}.default;
         blobdrop = blobdrop.packages.${prev.system}.default;
         grpcrl = prev.callPackage (import ./packages/grpcrl) {};
+        neorg-task-sync = neorg-task-sync.packages.${prev.system}.default;
         pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
         revcli = revcli.packages.${prev.system}.default;
         toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
