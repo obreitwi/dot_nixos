@@ -21,6 +21,7 @@
     ./terraform-ls.nix
     ./theming.nix
     ./tmux.nix
+    ./work.nix
     ./wrepson.nix
     ./xmobar.nix
     ./xmonad.nix
