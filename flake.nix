@@ -105,10 +105,6 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/commit/25ddee5f16d510cc4bf3ba79494b7a848429c033.patch";
-            sha256 = "sha256-5dzcoUKCafjj+lRhKgvaAG9otuGMHLKRZhnq7aJEaqQ=";
-          })
         ];
       };
 
