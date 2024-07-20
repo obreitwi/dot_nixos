@@ -178,11 +178,11 @@
     "dot-desktop": {
       "flake": false,
       "locked": {
-        "lastModified": 1714946711,
-        "narHash": "sha256-GSL3bkh1MLs7bmmAL4jS5atXsIimUpnGIAwzmeObJas=",
+        "lastModified": 1721465747,
+        "narHash": "sha256-Qu3vByZg00M/ap46o7bakAuzNnNlqhzI7jfHjo+fnok=",
         "owner": "obreitwi",
         "repo": "dotfiles_desktop",
-        "rev": "69a272165f3a46895fde2e396baaf49e3fbcee60",
+        "rev": "6a53c6748f541e42e25d0bc8f9a9f3a01a3ff00d",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
     "dot-vim": {
       "flake": false,
       "locked": {
-        "lastModified": 1720958486,
-        "narHash": "sha256-hrQMsP6ZGvVqIFZAK8rYeAH3rh8YB/h0nZWUPASg+oo=",
+        "lastModified": 1721466415,
+        "narHash": "sha256-Pag0C5Mf+HlhV6HEC5S6I3KIlVtw7g91R3aH54pg0CU=",
         "owner": "obreitwi",
         "repo": "dot_vim",
-        "rev": "761a0076b944c67db93239d4d040f20445c0d8ac",
+        "rev": "62c1810f5fcf14d7e481d0431eb3c4072bceec3b",
         "type": "github"
       },
       "original": {
@@ -453,11 +453,11 @@
     "neorg": {
       "flake": false,
       "locked": {
-        "lastModified": 1721142742,
-        "narHash": "sha256-GalMCFmUM+7igh5IAnrNAkj0k8O0mIo66sltXY37Wvc=",
+        "lastModified": 1721413252,
+        "narHash": "sha256-9wUM2yVnB3J/KuNdcuOyq7xxNMVdm1FbYHuNdmJgT7I=",
         "owner": "nvim-neorg",
         "repo": "neorg",
-        "rev": "8ddc74ab476f2e33ee9faf5e94ff1e0cd7ff690f",
+        "rev": "32803baa367bfb4d3bef49e6ea58f8256ebc59cf",
         "type": "github"
       },
       "original": {
@@ -478,11 +478,11 @@
         "norg-meta": "norg-meta"
       },
       "locked": {
-        "lastModified": 1721146592,
-        "narHash": "sha256-mKL7pmjQHmiouldKmOz2vF6bVj1LJkowLwYXtZLdoFc=",
+        "lastModified": 1721484729,
+        "narHash": "sha256-ZeXXKSwDVaKZN+spf1YhkqvOmbACSaA2123sIwes198=",
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "f29e519cbd11ce7d241bcbe31623f49f782f513d",
+        "rev": "243062f7463a9da8bc6a02e45dad9b41d2dee0a8",
         "type": "github"
       },
       "original": {
@@ -502,11 +502,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721165352,
-        "narHash": "sha256-MMXkmvbHFOBZMs7GCtKwKU5yqYppq6wzGJAxWYfACos=",
+        "lastModified": 1721490928,
+        "narHash": "sha256-G8/23fAqQcSMQUyuiAohDCtEfMs/YOQE22vTg6beKiM=",
         "owner": "obreitwi",
         "repo": "neorg-task-sync",
-        "rev": "7d26fc0969fefa0d148f712436db82bd9ee37fb1",
+        "rev": "a743e640f6cd9443352589262d5bccad37fca6cb",
         "type": "github"
       },
       "original": {
@@ -518,11 +518,11 @@
     "neorg-telescope": {
       "flake": false,
       "locked": {
-        "lastModified": 1720944314,
-        "narHash": "sha256-/JHVFDzzJ2AeLMYjP8hoOrDgR7BUSALnNEiYv8nYXhQ=",
+        "lastModified": 1721171488,
+        "narHash": "sha256-TJAuph/qRjpNg1ovhuTNr/FUJMZQgLyTK0YqNtFDvgQ=",
         "owner": "nvim-neorg",
         "repo": "neorg-telescope",
-        "rev": "b4ca2f231fdf7dd915848111e6a041fe4355009a",
+        "rev": "2fe2780d539b961ef240f7907802754556ba7bb8",
         "type": "github"
       },
       "original": {
@@ -569,11 +569,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1720954236,
-        "narHash": "sha256-1mEKHp4m9brvfQ0rjCca8P1WHpymK3TOr3v34ydv9bs=",
+        "lastModified": 1721226092,
+        "narHash": "sha256-UBvzVpo5sXSi2S/Av+t+Q+C2mhMIw/LBEZR+d6NMjws=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "53e81e790209e41f0c1efa9ff26ff2fd7ab35e27",
+        "rev": "c716603a63aca44f39bef1986c13402167450e0a",
         "type": "github"
       },
       "original": {
@@ -601,11 +601,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1721080040,
-        "narHash": "sha256-USDsS90/88RJibP3gEcH1AaVt+JpnX4XCUD9bAJP5I4=",
+        "lastModified": 1721435672,
+        "narHash": "sha256-VaBqKvCu4iFWPwKFFigdhOfgccLUDEVByb6Wa2Z9i98=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b2c1f10bfbb3f617ea8e8669ac13f3f56ceb2ea2",
+        "rev": "2d65995365a2a6b05db69e344d3b673c8d541bcd",
         "type": "github"
       },
       "original": {
