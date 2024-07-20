@@ -1,13 +1,13 @@
 {
   lib,
   config,
+  username,
   # pkgs,
   ...
 }: {
   imports = [
     ./azure.nix
     ./disable-news.nix
-    ./dunst.nix
     ./git
     ./gnupg.nix
     ./go.nix
@@ -39,8 +39,8 @@
     # # i3lock-fancy-rapid # not working in standalone
     # ];
 
-    home.username = "obreitwi";
-    home.homeDirectory = "/home/obreitwi";
+    home.username = username;
+    home.homeDirectory = "/home/${username}";
 
     # The state version is required and should stay at the version you
     # originally installed.
@@ -49,7 +49,7 @@
     targets.genericLinux.enable = !config.isNixOS;
 
     home.sessionVariables = {
-      FLAKE = "/home/obreitwi/git/dot_nixos";
+      FLAKE = "/home/${username}/git/dot_nixos";
       # EDITOR = "nvim";
     };
 

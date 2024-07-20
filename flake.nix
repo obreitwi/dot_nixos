@@ -118,21 +118,25 @@
     pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
     # specialArgs computs inputs for nixos/hm modules
-    specialArgs = hostname: {
-      inherit dot-desktop dot-vim dot-zsh hostname pkgs-stable;
+    specialArgs = {
+      hostname,
+      username,
+    }: {
+      inherit dot-desktop dot-vim dot-zsh hostname pkgs-stable username;
       myUtils = import ./utils/lib.nix;
     };
 
     nixOS = {
       type,
       hostname,
+      username ? "obreitwi",
     }:
       nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
         modules = [
           {
-            _module.args = specialArgs hostname; # make sure that regular home-modules can access special args as well
+            _module.args = specialArgs {inherit hostname username;}; # make sure that regular home-modules can access special args as well
             nixpkgs = {inherit overlays;};
             networking.hostName = hostname;
           }
@@ -160,14 +164,17 @@
             };
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-            home-manager.extraSpecialArgs = specialArgs hostname;
+            home-manager.extraSpecialArgs = specialArgs {inherit hostname username;};
           }
         ];
       };
-    hm = hostname:
+    hm = {
+      hostname,
+      username,
+    }:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [{_module.args = specialArgs hostname;}] ++ hm-modules;
+        modules = [{_module.args = specialArgs {inherit hostname username;};}] ++ hm-modules;
       };
 
     hm-modules = [
@@ -190,7 +197,10 @@
       type = "desktop";
     };
 
-    homeConfigurations."obreitwi@mimir" = hm "mimir";
+    homeConfigurations."oliver.breitwieser@mimir" = hm {
+      hostname = "mimir";
+      username = "oliver.breitwieser";
+    };
 
     formatter.${system} = pkgs.alejandra;
   };

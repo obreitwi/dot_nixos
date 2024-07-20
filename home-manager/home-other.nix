@@ -4,6 +4,8 @@
 
   isNixOS = false;
 
+  programs.home-manager.enable = true;
+
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;

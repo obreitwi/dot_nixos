@@ -40,7 +40,7 @@
         delta;                                                       \
     fi                                                               \
     }"
-    excludesfile = /home/obreitwi/.gitignore
+    excludesfile = ~/.gitignore
 [credential]
     helper = store
 [pull]

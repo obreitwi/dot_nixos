@@ -9,7 +9,7 @@
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.dunst.enable {
+  config = lib.mkIf (config.my.gui.enable && config.my.dunst.enable) {
     home.packages = with pkgs; [
       dunst
       ttf-envy-code-r
