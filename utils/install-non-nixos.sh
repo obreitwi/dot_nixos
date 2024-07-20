@@ -6,4 +6,4 @@ sourcedir="$(dirname "$(readlink -m "${BASH_SOURCE[0]}")")"
 nix profile install github:guibou/nixGL --impure
 
 # set up home-manager
-nix run home-manager/master -- init --switch
+nix run home-manager/master -- switch --flake ${sourcedir}

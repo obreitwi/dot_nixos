@@ -1,6 +1,6 @@
 # common configurations in home manager for both nixos and standalone
 {hostname, ...}: {
-  my.azure.enable = builtins.elem hostname ["mimir"]; 
+  my.azure.enable = builtins.elem hostname ["mimir"];
 
   my.go.enable = builtins.elem hostname ["mimir"];
 

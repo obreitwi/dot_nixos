@@ -7,7 +7,12 @@
   imports = [
     ./alacritty.nix
     ./autorandr.nix
+    ./dunst.nix
+    ./firefox.nix
+    ./fonts.nix
+    ./iwd.nix
     ./redshift.nix
+    ./x11base.nix
   ];
 
   options.my.gui.enable = lib.mkOption {
@@ -21,19 +26,16 @@
       bluetuith
       discord
       flameshot # take screenshots and edit them
-      keepassxc
       neovide
-      nextcloud-client
       spotify
-      xdg-utils
-      xterm
+
+      # TODO not really needed on mimir
+      keepassxc
+      nextcloud-client
 
       # drag & drop from terminal
       blobdrop
       ripdrag
-
-      # backup terminal if nixGL is out of date with GPU drivers
-      st
     ];
   };
 }

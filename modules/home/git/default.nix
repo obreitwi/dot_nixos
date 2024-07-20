@@ -4,12 +4,17 @@
   ...
 }: let
   gitconfig = builtins.readFile ./gitconfig;
-  gitconfig_private = pkgs.writeText "gitconfig_private" /* gitconfig */ ''
-    [user]
-    email = oliver@breitwieser.eu
-    name = Oliver Breitwieser
-    signingkey = BF1B0895E8BD4A52
-  '';
+  gitconfig_private =
+    pkgs.writeText "gitconfig_private"
+    /*
+    gitconfig
+    */
+    ''
+      [user]
+      email = oliver@breitwieser.eu
+      name = Oliver Breitwieser
+      signingkey = BF1B0895E8BD4A52
+    '';
 in {
   home.file."${config.home.homeDirectory}/.gitconfig".text =
     /*
