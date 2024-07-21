@@ -7,11 +7,11 @@
 lib.mkIf (config.my.gui.enable) {
   # gtk
   # FIXME dconf reload leads to dbus error
-  # dconf = {
-    # enable = true;
-    # settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  # };
-  # gtk.enable = true;
+  dconf = {
+    enable = true;
+    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  };
+  gtk.enable = true;
 
   gtk.cursorTheme.package = pkgs.bibata-cursors;
   gtk.cursorTheme.name = "Bibata-Modern-Ice";

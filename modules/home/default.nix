@@ -21,8 +21,6 @@
     ./tmux.nix
     ./work.nix
     ./wrepson.nix
-    ./xmobar.nix
-    ./xmonad.nix
     ./zathura.nix
     ./zellij.nix
     ./zsh.nix

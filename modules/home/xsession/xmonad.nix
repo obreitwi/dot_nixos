@@ -35,6 +35,11 @@ in {
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.xmonad.enable) {
+    xsession.windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+    };
+
     home.file.".xmonad/lib" = {
       source = "${dot-desktop}/xmonad/lib";
       recursive = true;

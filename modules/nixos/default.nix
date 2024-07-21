@@ -1,8 +1,8 @@
 {...}: {
   imports = [
     ./audio.nix
-    ./fonts.nix
     ./firewall.nix
+    ./fonts.nix
     ./locate.nix
     # ./gnupg.nix
     ./monitoring.nix
