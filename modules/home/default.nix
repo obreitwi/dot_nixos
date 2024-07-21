@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  # pkgs,
   ...
 }: {
   imports = [
@@ -19,7 +18,6 @@
     ./revcli.nix
     ./shellPackages.nix
     ./terraform-ls.nix
-    ./theming.nix
     ./tmux.nix
     ./work.nix
     ./wrepson.nix

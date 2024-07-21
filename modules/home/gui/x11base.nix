@@ -11,13 +11,17 @@
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.x11base.enable) {
-    home.file."${config.xdg.configHome}/.Xmodmap".source = "${dot-desktop}/x11/Xmodmap";
-    # home.file."${config.xdg.configHome}/.Xdefaults".source = "${dot-desktop}/x11/Xdefaults";
+    home.file.".Xmodmap".source = "${dot-desktop}/x11/Xmodmap";
+    home.file.".Xdefaults".text = ''
+      Xft.dpi: 96
+    '';
 
     home.packages = with pkgs; [
       backlight
+      feh
       picom
       rofi
+      xclip
       xdg-utils
       xterm
 

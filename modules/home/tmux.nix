@@ -8,8 +8,8 @@
 in {
   home.packages = with pkgs; [tmux] ++ tmuxPlugins;
 
-  home.file."${config.xdg.configHome}/tmux/tmux.conf".source = ../../config-files/tmux/tmux.conf;
+  xdg.configFile."tmux/tmux.conf".source = ../../config-files/tmux/tmux.conf;
 
-  home.file."${config.xdg.configHome}/tmux/load-plugins".text =
+  xdg.configFile."tmux/load-plugins".text =
     lib.strings.concatMapStrings (p: "run-shell " + p.rtp + "\n") tmuxPlugins;
 }

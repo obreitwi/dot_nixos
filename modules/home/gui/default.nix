@@ -11,7 +11,10 @@
     ./firefox.nix
     ./fonts.nix
     ./iwd.nix
+    ./keepass.nix
+    ./nextcloud.nix
     ./redshift.nix
+    ./theming.nix
     ./x11base.nix
   ];
 
@@ -29,9 +32,7 @@
       neovide
       spotify
 
-      # TODO not really needed on mimir
-      keepassxc
-      nextcloud-client
+      slack
 
       # drag & drop from terminal
       blobdrop
