@@ -16,7 +16,7 @@
       signingkey = BF1B0895E8BD4A52
     '';
 in {
-  home.file."${config.home.homeDirectory}/.gitconfig".text =
+  home.file.".gitconfig".text =
     /*
     gitconfig
     */

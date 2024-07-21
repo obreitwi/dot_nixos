@@ -35,16 +35,16 @@ in {
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.xmonad.enable) {
-    home.file."${config.home.homeDirectory}/.xmonad/lib" = {
+    home.file.".xmonad/lib" = {
       source = "${dot-desktop}/xmonad/lib";
       recursive = true;
     };
 
-    home.file."${config.home.homeDirectory}/.xmonad/xmonad.hs" = {
+    home.file.".xmonad/xmonad.hs" = {
       source = "${dot-desktop}/xmonad/xmonad.hs";
     };
 
-    home.file."${config.home.homeDirectory}/.xinitrc" = {
+    home.file.".xinitrc" = {
       source = "${dot-desktop}/x11/xinitrc";
     };
 
@@ -74,7 +74,7 @@ in {
       };
     };
 
-    home.file."${config.home.homeDirectory}/.xmonad/run-trayer.sh" = {
+    home.file.".xmonad/run-trayer.sh" = {
       text = ''
         #!/usr/bin/env bash
         trayer \
