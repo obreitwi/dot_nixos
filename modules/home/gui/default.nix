@@ -11,11 +11,11 @@
     ./firefox.nix
     ./fonts.nix
     ./iwd.nix
+    ./keynav.nix
     ./keepass.nix
     ./nextcloud.nix
     ./redshift.nix
     ./theming.nix
-    ./x11base.nix
   ];
 
   options.my.gui.enable = lib.mkOption {
