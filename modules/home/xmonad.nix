@@ -44,10 +44,6 @@ in {
       source = "${dot-desktop}/xmonad/xmonad.hs";
     };
 
-    home.file.".xinitrc" = {
-      source = "${dot-desktop}/x11/xinitrc";
-    };
-
     home.packages = [
       myplayerctl
       pkgs.toggle-bluetooth-audio

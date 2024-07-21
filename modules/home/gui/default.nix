@@ -32,7 +32,7 @@
       neovide
       spotify
 
-      slack
+      # slack # (does not work with home-manager because sandbox needs to be owned by root)
 
       # drag & drop from terminal
       blobdrop
