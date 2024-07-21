@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.my.gui.redshift.enable = lib.mkOption {
@@ -11,7 +12,9 @@
   config = lib.mkIf (config.my.gui.enable && config.my.gui.redshift.enable) {
     services.redshift = {
       enable = true;
-      provider = "geoclue2";
+      provider = "manual";
+      latitude = 53.551086;
+      longitude = 9.993682;
     };
   };
 }
