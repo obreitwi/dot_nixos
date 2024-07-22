@@ -14,6 +14,12 @@
     zsh-vi-mode
   ];
 
+  loadSystemdEnv =
+    pkgs.writeShellScript "load-systemd-env"
+    ''
+      comm -13 <(env | sort) <(systemctl show-environment --user | sort) | grep -v '^NIX_PATH=' |  sed 's:^:export :g'
+    '';
+
   initPluginsFirst = ''
     source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
   '';
@@ -94,8 +100,16 @@ in {
 
     initExtraFirst =
       initPluginsFirst
-      + ''
+      +
+      /*
+      sh
+      */
+      ''
         ZSH_VIA_NIX=1
+
+        if command -v load-systemd-env &>/dev/null; then
+          source <(load-systemd-env)
+        fi
 
         unset ZSH_CFG_ROOT
         source ${dot-zsh}/zshrc
@@ -107,6 +121,7 @@ in {
     '';
 
     profileExtra = ''
+      source <(${loadSystemdEnv})
       source ${dot-zsh}/zprofile
     '';
 
