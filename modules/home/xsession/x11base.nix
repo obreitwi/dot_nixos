@@ -6,8 +6,9 @@
   hostname,
   ...
 }: let
-  prepareBash =
-    pkgs.writeShellScript "prepare-x11-env.sh"
+  # TODO sync with autorand
+  startPicom =
+    pkgs.writeShellScript "start-picom.sh"
     /*
     bash
     */
@@ -18,12 +19,15 @@
           # If we use nvidia as the main renderer -> compose with glx backend
           if [[ "$(hostname)" == "mimir" ]] && [ "$(glxinfo | grep "OpenGL renderer")" = "OpenGL renderer string: NVIDIA RTX A1000 Laptop GPU/PCIe/SSE2" ]; then
               picom_args+=(--backend glx --xrender-sync-fence)
-              # Trying out xrender backend, 10-04-23 17:23:14
-              # Tearing and windows disappearing, 22.04.2023 22:49:59
-              # picom_args+=(--backend xrender)
           fi
           picom "''${picom_args[@]}"
       fi
+    '';
+
+  missingSystemdEnv =
+    pkgs.writeShellScript "missing-systemd-env.sh"
+    ''
+      comm -13 <(env | sort) <(systemctl show-environment --user | sort) | sed 's:^:export :g'
     '';
 in {
   options.my.gui.x11base.enable = lib.mkOption {
@@ -53,7 +57,7 @@ in {
       enable = true;
       windowManager.command = lib.mkForce "nixGL xmonad";
       initExtra = ''
-        bash ${prepareBash}
+        ${startPicom}
 
         # set wallpaper
         feh --bg-fill "$HOME/wallpaper/current"
@@ -71,7 +75,7 @@ in {
 
         # no black x as cursor in tray
         xsetroot -cursor_name left_ptr
-        if [ -f ~/.Xdefaults ]; then 
+        if [ -f ~/.Xdefaults ]; then
             xrdb ~/.Xdefaults &
         fi
 
@@ -86,6 +90,7 @@ in {
         # if command -v gnome-keyring-daemon &>/dev/null; then
             # source <(gnome-keyring-daemon --components=secrets -r -d | sed "s:^:export :g")
         # fi
+        source <(${missingSystemdEnv})
 
         if command -v unclutter &>/dev/null; then
             killall unclutter
