@@ -178,7 +178,7 @@
       };
 
     hm-modules = [
-      ./home-manager/home-other.nix
+      ./home-manager/non-nixos.nix
       nix-index-database.hmModules.nix-index
       {programs.nix-index-database.comma.enable = true;}
     ];

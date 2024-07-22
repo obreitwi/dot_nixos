@@ -16,7 +16,6 @@
     gnumake
     gnused
     killall
-    lsd
     mr
     ripgrep
     ugrep
