@@ -31,8 +31,7 @@
       flameshot # take screenshots and edit them
       neovide
       spotify
-
-      # slack # (does not work with home-manager because sandbox needs to be owned by root)
+      udiskie
 
       # drag & drop from terminal
       blobdrop

@@ -7,12 +7,10 @@
   ...
 }: let
   # TODO sync with autorand
-  startPicom =
-    pkgs.writeShellScript "start-picom.sh"
-    /*
-    bash
-    */
-    ''
+  startPicom = pkgs.writeShellApplication {
+    name = "start-picom";
+    runtimeInputs = [pkgs.picom pkgs.glxinfo];
+    text = ''
       # setup picom
       if command -v picom &>/dev/null; then
           picom_args=(-b)
@@ -23,12 +21,8 @@
           picom "''${picom_args[@]}"
       fi
     '';
+  };
 
-  missingSystemdEnv =
-    pkgs.writeShellScript "missing-systemd-env.sh"
-    ''
-      comm -13 <(env | sort) <(systemctl show-environment --user | sort) | sed 's:^:export :g'
-    '';
 in {
   options.my.gui.x11base.enable = lib.mkOption {
     default = true;
@@ -41,62 +35,53 @@ in {
       Xft.dpi: 96
     '';
 
-    # home.file.".xinitrc" = {
-    # # text = lib.strings.concatStringsSep "\n" [
-    # # # ''
-    # # # #!/usr/bin/env bash
-
-    # # # export DBUS_SESSION_BUS_ADDRESS=$(systemctl --user show-environment | grep '^DBUS_SESSION_BUS_ADDRESS=' | tail -c +26)
-    # # # ''
-    # # (builtins.readFile "${dot-desktop}/x11/xinitrc")
-    # # ];
-    # source = "${dot-desktop}/x11/xinitrc";
-    # };
-
     xsession = {
       enable = true;
       windowManager.command = lib.mkForce "nixGL xmonad";
-      initExtra = ''
-        ${startPicom}
+      initExtra =
+        /*
+        sh
+        */
+        ''
+          start-picom
 
-        # set wallpaper
-        feh --bg-fill "$HOME/wallpaper/current"
-        # lock screen
-        if command -v xss-lock &>/dev/null; then
-          xss-lock -- slock &
-        fi
+          # set wallpaper
+          feh --bg-fill "$HOME/wallpaper/current"
+          # lock screen
+          if command -v xss-lock &>/dev/null; then
+            xss-lock -- slock &
+          fi
 
-        # increase repeat rate
-        xset rate 200 75
-        # no beep
-        xset b off
+          # increase repeat rate
+          xset rate 200 75
+          # no beep
+          xset b off
 
-        # keynav &
+          # keynav &
 
-        # no black x as cursor in tray
-        xsetroot -cursor_name left_ptr
-        if [ -f ~/.Xdefaults ]; then
-            xrdb ~/.Xdefaults &
-        fi
+          # no black x as cursor in tray
+          xsetroot -cursor_name left_ptr
+          if [ -f ~/.Xdefaults ]; then
+              xrdb ~/.Xdefaults &
+          fi
 
-        if command -v iwgtk &>/dev/null; then
-            iwgtk -i &
-        fi
+          if command -v iwgtk &>/dev/null; then
+              iwgtk -i &
+          fi
 
-        if command -v udiskie &>/dev/null; then
-            udiskie --tray &
-        fi
+          if command -v udiskie &>/dev/null; then
+              udiskie --tray &
+          fi
 
-        # if command -v gnome-keyring-daemon &>/dev/null; then
-            # source <(gnome-keyring-daemon --components=secrets -r -d | sed "s:^:export :g")
-        # fi
-        source <(${missingSystemdEnv})
+          # if command -v gnome-keyring-daemon &>/dev/null; then
+              # source <(gnome-keyring-daemon --components=secrets -r -d | sed "s:^:export :g")
+          # fi
 
-        if command -v unclutter &>/dev/null; then
-            killall unclutter
-            unclutter &
-        fi
-      '';
+          if command -v unclutter &>/dev/null; then
+              killall unclutter
+              unclutter &
+          fi
+        '';
     };
 
     # TODO sync with nixOS config
@@ -121,6 +106,8 @@ in {
       xclip
       xdg-utils
       xterm
+
+      startPicom
 
       # backup terminal if nixGL is out of date with GPU drivers
       st

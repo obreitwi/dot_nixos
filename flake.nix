@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -83,7 +84,7 @@
     pydemx,
     revcli,
     ...
-  } @ inputs: let
+  }: let
     system = "x86_64-linux";
     overlays = [
       neorg-overlay.overlays.default
