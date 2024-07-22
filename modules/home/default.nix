@@ -12,6 +12,7 @@
     ./go.nix
     ./gui
     ./latex.nix
+    ./lsd.nix
     ./lsp.nix
     ./neovim
     ./readline.nix
@@ -46,7 +47,6 @@
 
     home.sessionVariables = {
       FLAKE = "/home/${username}/git/dot_nixos";
-      # EDITOR = "nvim";
     };
 
     programs.broot.enable = true;

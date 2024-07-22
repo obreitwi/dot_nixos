@@ -1,6 +1,6 @@
 {
+  config,
   pkgs,
-  lib,
   myUtils,
   ...
 }: {
@@ -59,5 +59,9 @@
         let g:nix_enabled = 1
         source ~/.vimrc
       '';
+  };
+
+  home.sessionVariables = {
+    EDITOR = "${config.programs.neovim.package}/bin/nvim";
   };
 }

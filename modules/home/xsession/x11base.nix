@@ -105,8 +105,11 @@ in {
     };
 
     home.packages = with pkgs; [
+      arandr
+      autorandr
       backlight
       feh
+      glxinfo
       picom
       rofi
       unclutter
