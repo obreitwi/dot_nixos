@@ -24,6 +24,12 @@ in {
       autorandr
       rofi-autorandr
     ];
+    home.file."${config.xdg.configHome}/autorandr/settings.ini" = {
+      text = ''
+        [config]
+        skip-options=gamma
+      '';
+    };
 
     home.file."${config.xdg.configHome}/autorandr/preswitch" = {
       executable = true;
