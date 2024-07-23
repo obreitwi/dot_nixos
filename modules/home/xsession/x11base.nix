@@ -22,7 +22,6 @@
       fi
     '';
   };
-
 in {
   options.my.gui.x11base.enable = lib.mkOption {
     default = true;
@@ -37,7 +36,10 @@ in {
 
     xsession = {
       enable = true;
-      windowManager.command = lib.mkForce "nixGL xmonad";
+      windowManager.command =
+        if config.isNixOS
+        then "xmonad"
+        else lib.mkForce "nixGL xmonad";
       initExtra =
         /*
         sh
