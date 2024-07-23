@@ -96,12 +96,12 @@
     else "%battery%%draining%";
   temp = temp_sensors.${hostname} or temp_sensors.default;
 in {
-  options.my.xmobar.enable = lib.mkOption {
+  options.my.gui.xmobar.enable = lib.mkOption {
     default = true;
     type = lib.types.bool;
   };
 
-  config = lib.mkIf (config.my.gui.enable && config.my.xmobar.enable) {
+  config = lib.mkIf (config.my.gui.enable && config.my.gui.xmobar.enable) {
     home.packages = with pkgs; [
       ttf-envy-code-r # xmobar
     ];

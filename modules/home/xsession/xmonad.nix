@@ -16,7 +16,7 @@
     text = builtins.readFile "${dot-desktop}/scripts/myplayerctl";
   };
 in {
-  options.my.xmonad.enable = lib.mkOption {
+  options.my.gui.xmonad.enable = lib.mkOption {
     default = true;
     type = lib.types.bool;
   };
@@ -34,7 +34,7 @@ in {
     };
   };
 
-  config = lib.mkIf (config.my.gui.enable && config.my.xmonad.enable) {
+  config = lib.mkIf (config.my.gui.enable && config.my.gui.xmonad.enable) {
     xsession.windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;

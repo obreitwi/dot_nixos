@@ -22,6 +22,7 @@
     ./tmux.nix
     ./work.nix
     ./wrepson.nix
+    ./xsession
     ./zathura.nix
     ./zellij.nix
     ./zsh.nix
