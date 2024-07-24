@@ -104,6 +104,7 @@ in {
       glxinfo
       picom
       rofi
+      (python3.withPackages (ps: with ps; [numpy ptpython scipy]))
       unclutter
       xclip
       xdg-utils
