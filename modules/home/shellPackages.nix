@@ -54,6 +54,7 @@
     bat
     btop
     carapace
+    cloc
     dua
     duf
     fastgron
