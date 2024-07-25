@@ -601,11 +601,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1721559948,
-        "narHash": "sha256-cFgdjyK/VBM3hB1RfFHXcI/VOCBVAv813s1upHKX7bI=",
+        "lastModified": 1721622093,
+        "narHash": "sha256-iQ+quy3A1EKeFyLyAtjhgSvZHH7r+xybXZkxMhasN4I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c19d62ad2265b16e2199c5feb4650fe459ca1c46",
+        "rev": "453402b94f39f968a7c27df28e060f69e4a50c3b",
         "type": "github"
       },
       "original": {
@@ -683,11 +683,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720964772,
-        "narHash": "sha256-1JMOOyFf/llVB106aO8qysdEXWFvB7CJsxce6eRPj5M=",
+        "lastModified": 1721921539,
+        "narHash": "sha256-6e50M0F4t/F/QZm4zJP6kSvXPmoqsXzTyR3sLkwzmb8=",
         "ref": "refs/heads/main",
-        "rev": "6f5193165c7c4ce686120225070fd5080f2ac958",
-        "revCount": 431,
+        "rev": "f18cc45fd0e72a3106d0ec5687cb2be59aaad6c6",
+        "revCount": 433,
         "type": "git",
         "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
       },

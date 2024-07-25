@@ -71,6 +71,7 @@
     shellcheck
     silicon # make nice code screenshots
     sttr # string conversions
+    util-linux
     viddy
     zoxide
   ];

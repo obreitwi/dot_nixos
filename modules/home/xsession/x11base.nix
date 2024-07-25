@@ -22,6 +22,15 @@
       fi
     '';
   };
+
+  # ptpython shell for small calculations that does not leak its whole environment
+  ptpython = pkgs.writeShellApplication {
+    name = "ptpython";
+    runtimeInputs = [(pkgs.python3.withPackages (ps: with ps; [numpy ptpython scipy]))];
+    text = ''
+      exec ptpython "$@"
+    '';
+  };
 in {
   options.my.gui.x11base.enable = lib.mkOption {
     default = true;
@@ -96,24 +105,25 @@ in {
         ++ (lib.optionals (hostname != "nimir") ["caps:escape"]);
     };
 
-    home.packages = with pkgs; [
-      arandr
-      autorandr
-      backlight
-      feh
-      glxinfo
-      picom
-      rofi
-      (python3.withPackages (ps: with ps; [numpy ptpython scipy]))
-      unclutter
-      xclip
-      xdg-utils
-      xterm
+    home.packages = with pkgs;
+      [
+        arandr
+        autorandr
+        backlight
+        feh
+        glxinfo
+        picom
+        rofi
+        unclutter
+        xclip
+        xdg-utils
+        xterm
 
-      startPicom
+        startPicom
 
-      # backup terminal if nixGL is out of date with GPU drivers
-      st
-    ];
+        # backup terminal if nixGL is out of date with GPU drivers
+        st
+      ]
+      ++ [ptpython];
   };
 }
