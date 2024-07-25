@@ -12,7 +12,9 @@ in {
 
     keepass.enable = builtins.elem hostname ["mucku"];
     nextcloud.enable = builtins.elem hostname ["mucku"];
+    redshift.enable = builtins.elem hostname ["mimir" "mucku"];
     redshift.enable = isDesktop;
+    slock.enable = false;
     x11base.enable = builtins.elem hostname ["mimir"];
     xmobar.enable = isDesktop;
     xmonad.enable = isDesktop;

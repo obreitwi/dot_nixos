@@ -15,6 +15,7 @@
     ./keepass.nix
     ./nextcloud.nix
     ./redshift.nix
+    ./slock.nix
     ./theming.nix
   ];
 
