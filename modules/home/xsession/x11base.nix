@@ -24,13 +24,16 @@
   };
 
   # ptpython shell for small calculations that does not leak its whole environment
-  ptpython = pkgs.writeShellApplication {
-    name = "ptpython";
-    runtimeInputs = [(pkgs.python3.withPackages (ps: with ps; [numpy ptpython scipy]))];
-    text = ''
-      exec ptpython "$@"
-    '';
-  };
+  ptpython = let
+    wrapped = pkgs.python3.withPackages (ps: [ps.numpy ps.scipy pkgs.python3Packages.ptpython]);
+  in
+    pkgs.writeShellApplication {
+      name = "ptpython";
+      runtimeInputs = [wrapped];
+      text = ''
+        ${wrapped}/bin/ptpython "$@"
+      '';
+    };
 in {
   options.my.gui.x11base.enable = lib.mkOption {
     default = true;
