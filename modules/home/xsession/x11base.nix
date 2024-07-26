@@ -92,6 +92,11 @@ in {
               killall unclutter
               unclutter &
           fi
+
+          # TODO: properly handle this via systemd-xdg-autostart-generator
+          if [ -e /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ]; then
+              /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+          fi
         '';
     };
 
