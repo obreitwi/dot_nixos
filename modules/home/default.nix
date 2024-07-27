@@ -28,7 +28,7 @@
     ./zsh.nix
   ];
 
-  options.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
+  options.my.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
   config = {
     my.neovim.neorg = true;
@@ -44,7 +44,7 @@
     # originally installed.
     home.stateVersion = "23.11";
 
-    targets.genericLinux.enable = !config.isNixOS;
+    targets.genericLinux.enable = !config.my.isNixOS;
 
     home.sessionVariables = {
       FLAKE = "/home/${username}/git/dot_nixos";

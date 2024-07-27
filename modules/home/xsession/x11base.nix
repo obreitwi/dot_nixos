@@ -34,6 +34,56 @@
         ${wrapped}/bin/ptpython "$@"
       '';
     };
+
+  xsession-non-nixOS =
+    /*
+    sh
+    */
+    ''
+      start-picom
+
+      # lock screen
+      if command -v xss-lock &>/dev/null; then
+        xss-lock -- slock &
+      fi
+
+      if command -v unclutter &>/dev/null; then
+          killall unclutter
+          unclutter &
+      fi
+
+      # TODO: properly handle this via systemd-xdg-autostart-generator
+      if [ -e /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ]; then
+          /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+      fi
+    '';
+  xsession-both =
+    /*
+    sh
+    */
+    ''
+      # set wallpaper
+      feh --bg-fill "$HOME/wallpaper/current"
+
+      # increase repeat rate
+      xset rate 200 75
+      # no beep
+      xset b off
+
+      # no black x as cursor in tray
+      xsetroot -cursor_name left_ptr
+      if [ -f ~/.Xdefaults ]; then
+      xrdb ~/.Xdefaults &
+      fi
+
+      if command -v iwgtk &>/dev/null; then
+      iwgtk -i &
+      fi
+
+      if command -v udiskie &>/dev/null; then
+      udiskie --tray &
+      fi
+    '';
 in {
   options.my.gui.x11base.enable = lib.mkOption {
     default = true;
@@ -48,63 +98,17 @@ in {
 
     xsession = {
       enable = true;
-      windowManager.command =
-        if config.isNixOS
-        then "xmonad"
-        else lib.mkForce "nixGL xmonad";
+      windowManager = lib.mkIf (!config.my.isNixOS) {
+        command = lib.mkForce "nixGL xmonad";
+      };
       initExtra =
-        /*
-        sh
-        */
-        ''
-          start-picom
-
-          # set wallpaper
-          feh --bg-fill "$HOME/wallpaper/current"
-          # lock screen
-          if command -v xss-lock &>/dev/null; then
-            xss-lock -- slock &
-          fi
-
-          # increase repeat rate
-          xset rate 200 75
-          # no beep
-          xset b off
-
-          # keynav &
-
-          # no black x as cursor in tray
-          xsetroot -cursor_name left_ptr
-          if [ -f ~/.Xdefaults ]; then
-              xrdb ~/.Xdefaults &
-          fi
-
-          if command -v iwgtk &>/dev/null; then
-              iwgtk -i &
-          fi
-
-          if command -v udiskie &>/dev/null; then
-              udiskie --tray &
-          fi
-
-          # if command -v gnome-keyring-daemon &>/dev/null; then
-              # source <(gnome-keyring-daemon --components=secrets -r -d | sed "s:^:export :g")
-          # fi
-
-          if command -v unclutter &>/dev/null; then
-              killall unclutter
-              unclutter &
-          fi
-
-          # TODO: properly handle this via systemd-xdg-autostart-generator
-          if [ -e /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ]; then
-              /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-          fi
-        '';
+        lib.strings.concatLines
+        ((lib.optionals (!config.my.isNixOS) [xsession-non-nixOS])
+          ++ [xsession-both]);
     };
 
     # TODO sync with nixOS config
-    home.keyboard = {
+    home.keyboard = lib.mkIf (!config.my.isNixOS) {
       layout = "us";
       variant = "altgr-intl";
       model = "pc105";

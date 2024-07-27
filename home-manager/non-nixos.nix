@@ -2,7 +2,7 @@
 {...}: {
   imports = [../modules/home ../modules/home/xsession ./common.nix];
 
-  isNixOS = false;
+  my.isNixOS = false;
 
   programs.home-manager.enable = true;
 }

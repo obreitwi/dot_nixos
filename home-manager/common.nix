@@ -14,7 +14,7 @@ in {
     nextcloud.enable = builtins.elem hostname ["mucku"];
     redshift.enable = isDesktop;
     slock.enable = false;
-    x11base.enable = builtins.elem hostname ["mimir"];
+    x11base.enable = builtins.elem hostname ["mimir" "mucku"];
     xmobar.enable = isDesktop;
     xmonad.enable = isDesktop;
   };

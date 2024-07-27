@@ -27,6 +27,7 @@ in {
         autoRepeatDelay = 250;
         autoRepeatInterval = 30;
 
+        # TODO keep in sync with home manager config in x11base
         xkb = {
           layout = "us";
           variant = "altgr-intl";

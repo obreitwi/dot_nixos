@@ -46,7 +46,7 @@
 in {
   # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
   programs.neovim.plugins = treesitter_plugins;
-  home.sessionVariables = lib.mkIf (!config.isNixOS) {
+  home.sessionVariables = lib.mkIf (!config.my.isNixOS) {
     # needed for treesitter grammar
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   };
