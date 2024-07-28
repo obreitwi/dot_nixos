@@ -57,6 +57,9 @@
           maxretry = 5;
           findtime = 600;
         };
+        postfix = {
+          enabled = true;
+        };
       };
     };
   };
