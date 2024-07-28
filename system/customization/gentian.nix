@@ -92,7 +92,7 @@ in {
         # contains HETZNER_API_KEY=<key>
         environmentFile = "/var/lib/secrets/hetzner_dns.conf";
 
-        postRun = "systemctl restart nginx";
+        postRun = "systemctl restart nginx postfix dovecot2";
       };
     }) [
       "zqnr.de"
@@ -126,5 +126,28 @@ in {
         }
         // myUtils.nginxACME "breitwieser.eu";
     };
+  };
+
+  mailserver = let
+    domains = ["breitwieser.eu" "initialcommit.org" "zqnr.de"];
+    mailDomain = "breitwieser.eu";
+    acme = myUtils.nginxACME mailDomain;
+  in {
+    enable = true;
+
+    fqdn = "mail.${mailDomain}";
+    inherit domains;
+
+    certificateScheme = "manual";
+    certificateFile = acme.sslCertificate;
+    keyFile = acme.sslCertificateKey;
+
+    loginAccounts."oliver@breitwieser.eu" = {
+      hashedPasswordFile = "/var/lib/secrets/mail/obreitwi";
+      catchAll = domains;
+    };
+
+    enablePop3 = true;
+    enablePop3Ssl = true;
   };
 }
