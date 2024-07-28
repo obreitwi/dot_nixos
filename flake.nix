@@ -24,6 +24,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # server packages:
+    mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # custom (own) packages:
     asfa = {
       url = "github:obreitwi/asfa";
@@ -79,6 +85,7 @@
     neorg-overlay,
     neorg-task-sync,
     nix-index-database,
+    mailserver,
     nixpkgs,
     nixpkgs-stable,
     pydemx,
@@ -135,39 +142,41 @@
       nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
-        modules = [
-          {
-            _module.args = specialArgs {inherit hostname username;}; # make sure that regular home-modules can access special args as well
-            nixpkgs = {inherit overlays;};
-            networking.hostName = hostname;
-          }
-          ./system/configuration-${type}.nix
-          ./system/hardware-configuration/${hostname}.nix
-          ./system/customization/${hostname}.nix
+        modules =
+          [
+            {
+              _module.args = specialArgs {inherit hostname username;}; # make sure that regular home-modules can access special args as well
+              nixpkgs = {inherit overlays;};
+              networking.hostName = hostname;
+            }
+            ./system/configuration-${type}.nix
+            ./system/hardware-configuration/${hostname}.nix
+            ./system/customization/${hostname}.nix
 
-          nix-index-database.nixosModules.nix-index
-          {programs.nix-index-database.comma.enable = true;}
+            nix-index-database.nixosModules.nix-index
+            {programs.nix-index-database.comma.enable = true;}
 
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
-            home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+            # make home-manager as a module of nixos
+            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+              home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
 
-            home-manager.users.obreitwi = {...}: {
-              imports = [
-                ./modules/home
-                ./home-manager/common.nix
-              ];
+              home-manager.users.obreitwi = {...}: {
+                imports = [
+                  ./modules/home
+                  ./home-manager/common.nix
+                ];
 
-              my.isNixOS = true;
-            };
+                my.isNixOS = true;
+              };
 
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-            home-manager.extraSpecialArgs = specialArgs {inherit hostname username;};
-          }
-        ];
+              # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+              home-manager.extraSpecialArgs = specialArgs {inherit hostname username;};
+            }
+          ]
+          ++ (nixpkgs.lib.optionals (type == "server") [mailserver.nixosModules.default]);
       };
     hm = {
       hostname,
