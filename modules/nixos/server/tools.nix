@@ -4,5 +4,6 @@
     bat
     dua
     fd
+    openssl
   ];
 }
