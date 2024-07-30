@@ -57,6 +57,7 @@
     cloc
     dua
     duf
+    entr
     fastgron
     findutils
     fd
