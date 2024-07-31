@@ -49,8 +49,8 @@
     haskellPackages.dice
 
     # tools
-    ast-grep
     archivemount # mount archives as loopback
+    ast-grep
     bat
     btop
     carapace
@@ -59,12 +59,14 @@
     duf
     entr
     fastgron
-    findutils
     fd
+    findutils
     gh
     gifski # create hihg-quality GIFs
     gum # for shell scripts
     htop-vim
+    jo
+    jq
     miller
     numbat # scientific calculator
     pandoc
