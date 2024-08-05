@@ -586,6 +586,27 @@
         "type": "github"
       }
     },
+    "nh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1722892805,
+        "narHash": "sha256-0hu7d1kNsMPdt4ZgwJ9FDsigHBOJVhypti1rR5WLJP0=",
+        "owner": "obreitwi",
+        "repo": "nh",
+        "rev": "ea487aacc2aa8eec76c1ff3499ebe0ea99a8bc09",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obreitwi",
+        "ref": "fix/dot_in_user_hostname",
+        "repo": "nh",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -778,6 +799,7 @@
         "mailserver": "mailserver",
         "neorg-overlay": "neorg-overlay",
         "neorg-task-sync": "neorg-task-sync",
+        "nh": "nh",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable",
