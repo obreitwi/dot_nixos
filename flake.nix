@@ -5,6 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 
+    # temporary (until https://github.com/viperML/nh/issues/135 is resolved)
+    nh.url = "github:obreitwi/nh/fix/dot_in_user_hostname";
+    nh.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -90,12 +94,14 @@
     nixpkgs-stable,
     pydemx,
     revcli,
+    nh,
     ...
   }: let
     system = "x86_64-linux";
     overlays = [
       neorg-overlay.overlays.default
       backlight.overlays.default
+      nh.overlays.default
 
       (final: prev: {
         asfa-dev = asfa.packages.${prev.system}.default;
