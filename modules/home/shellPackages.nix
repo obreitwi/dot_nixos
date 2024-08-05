@@ -72,6 +72,7 @@
     pandoc
     progress # show progress of coretuils program (via external inspection)
     silicon # make nice code screenshots
+    speedtest-cli
     sttr # string conversions
     util-linux
     viddy
