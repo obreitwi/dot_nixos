@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # nix helper
-    nh
+    # nh # disabled for local build until https://github.com/viperML/nh/issues/135 is resolved
     nix-output-monitor
     nixVersions.nix_2_22
     nvd
