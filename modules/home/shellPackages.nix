@@ -70,8 +70,7 @@
     miller
     numbat # scientific calculator
     pandoc
-    progress
-    shellcheck
+    progress # show progress of coretuils program (via external inspection)
     silicon # make nice code screenshots
     sttr # string conversions
     util-linux
