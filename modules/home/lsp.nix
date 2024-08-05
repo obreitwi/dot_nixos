@@ -8,6 +8,7 @@
     nixd
     nodePackages.eslint
     nodePackages_latest.typescript-language-server
+    shellcheck
     vscode-langservers-extracted
   ];
 }
