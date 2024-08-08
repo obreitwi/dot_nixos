@@ -53,7 +53,6 @@
     ast-grep
     bat
     btop
-    carapace
     cloc
     dua
     duf
