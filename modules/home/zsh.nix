@@ -86,8 +86,16 @@
 
       source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
+
+  initCarapace =
+    /*
+    sh
+    */
+    ''
+      source <(carapace az zsh)
+    '';
 in {
-  home.packages = plugins;
+  home.packages = plugins ++ [pkgs.carapace];
 
   programs.zsh = {
     enable = true;
@@ -113,7 +121,8 @@ in {
 
         unset ZSH_CFG_ROOT
         source ${dot-zsh}/zshrc
-      '';
+      ''
+      + initCarapace;
 
     initExtra = ''
       source ${initPlugins}
