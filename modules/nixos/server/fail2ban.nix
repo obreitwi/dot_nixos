@@ -60,6 +60,9 @@
         postfix = {
           enabled = true;
         };
+        postfix-sasl = {
+          enabled = true;
+        };
       };
     };
   };
