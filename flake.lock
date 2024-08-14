@@ -533,11 +533,11 @@
         "norg-meta": "norg-meta"
       },
       "locked": {
-        "lastModified": 1723292774,
-        "narHash": "sha256-YiOaxFAbLYxAZGQ+JMcZRFZKgArt+65wUU9VppTmrCw=",
+        "lastModified": 1723623516,
+        "narHash": "sha256-hRiS0peHI3G1/rzeSdupmkK5oZjPxH5fr1JOGm86BAk=",
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "a54a6abe971e935e0e7e91e5c5df52baea596e0e",
+        "rev": "58a8611b151db11a05c0016997fbb24dedfb3d9b",
         "type": "github"
       },
       "original": {
@@ -583,27 +583,6 @@
       "original": {
         "owner": "nvim-neorg",
         "repo": "neorg-telescope",
-        "type": "github"
-      }
-    },
-    "nh": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1722892805,
-        "narHash": "sha256-0hu7d1kNsMPdt4ZgwJ9FDsigHBOJVhypti1rR5WLJP0=",
-        "owner": "obreitwi",
-        "repo": "nh",
-        "rev": "ea487aacc2aa8eec76c1ff3499ebe0ea99a8bc09",
-        "type": "github"
-      },
-      "original": {
-        "owner": "obreitwi",
-        "ref": "fix/dot_in_user_hostname",
-        "repo": "nh",
         "type": "github"
       }
     },
@@ -660,11 +639,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1723282977,
-        "narHash": "sha256-oTK91aOlA/4IsjNAZGMEBz7Sq1zBS0Ltu4/nIQdYDOg=",
+        "lastModified": 1723556749,
+        "narHash": "sha256-+CHVZnTnIYRLYsARInHYoWkujzcRkLY/gXm3s5bE52o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a781ff33ae258bbcfd4ed6e673860c3e923bf2cc",
+        "rev": "4a92571f9207810b559c9eac203d1f4d79830073",
         "type": "github"
       },
       "original": {
@@ -692,11 +671,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1723221148,
-        "narHash": "sha256-7pjpeQlZUNQ4eeVntytU3jkw9dFK3k1Htgk2iuXjaD8=",
+        "lastModified": 1723603349,
+        "narHash": "sha256-VMg6N7MryOuvSJ8Sj6YydarnUCkL7cvMdrMcnsJnJCE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "154bcb95ad51bc257c2ce4043a725de6ca700ef6",
+        "rev": "daf7bb95821b789db24fc1ac21f613db0c1bf2cb",
         "type": "github"
       },
       "original": {
@@ -799,7 +778,6 @@
         "mailserver": "mailserver",
         "neorg-overlay": "neorg-overlay",
         "neorg-task-sync": "neorg-task-sync",
-        "nh": "nh",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable",
