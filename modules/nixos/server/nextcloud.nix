@@ -32,7 +32,7 @@ in {
       # we'll reference the package version specified above
       extraApps = {
         keeweb = pkgs.fetchNextcloudApp {
-          sha256 = "sha256-oF8nE8V9kEg2WxkcvvMnopD9y9NiyQItAGOdlMqzxkg=";
+          sha256 = "sha256-tk+Aoiv1+NMJWwVkY7fsr56rn6dUWl5izx9IWw84NVs=";
           url = "https://github.com/jhass/nextcloud-keeweb/releases/download/v0.6.19/keeweb-0.6.19.tar.gz";
           license = "agpl3Plus";
         };
