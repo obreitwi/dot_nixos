@@ -13,6 +13,7 @@
     home.packages = with pkgs; [
       terraform
       terraform-ls
+      tfautomv
     ];
 
     programs.neovim = {

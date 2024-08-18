@@ -53,7 +53,8 @@
     };
     neorg-task-sync = {
       url = "github:obreitwi/neorg-task-sync?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # TODO: Pending fix in neorg-task-sync dependencies
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     pydemx = {
       url = "github:obreitwi/pydemx";
@@ -62,7 +63,6 @@
 
     # private repos:
     revcli = {
-      # TODO: Confirm that this input only gets checked out if revcli is requested.
       url = "git+ssh://git@github.com/obreitwi/rev-cli-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -119,6 +119,11 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
+          # Tracking https://github.com/NixOS/nixpkgs/pull/335559
+          (pkgs-init.fetchpatch {
+            url = "https://github.com/NixOS/nixpkgs/commit/e4a1022d70fa5ce2979462b652a6871236af4ece.patch";
+            sha256 = "sha256-Q9HVD4ZVVHCX+C/jtH7pE289sXeGoXBxUU0yahvVsqk=";
+          })
         ];
       };
 

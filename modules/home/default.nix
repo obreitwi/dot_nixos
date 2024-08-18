@@ -18,7 +18,7 @@
     ./readline.nix
     ./revcli.nix
     ./shellPackages.nix
-    ./terraform-ls.nix
+    ./terraform.nix
     ./tmux.nix
     ./work.nix
     ./wrepson.nix
