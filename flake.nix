@@ -119,11 +119,6 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-          # Tracking https://github.com/NixOS/nixpkgs/pull/335559
-          (pkgs-init.fetchpatch {
-            url = "https://github.com/NixOS/nixpkgs/commit/e4a1022d70fa5ce2979462b652a6871236af4ece.patch";
-            sha256 = "sha256-Q9HVD4ZVVHCX+C/jtH7pE289sXeGoXBxUU0yahvVsqk=";
-          })
         ];
       };
 
