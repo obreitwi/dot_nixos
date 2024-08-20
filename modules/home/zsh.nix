@@ -1,6 +1,7 @@
 {
   pkgs,
   dot-zsh,
+  lib,
   ...
 }: let
   plugins = with pkgs; [
@@ -107,7 +108,15 @@ in {
     };
 
     initExtraFirst =
-      initPluginsFirst
+      /*
+      sh
+      */
+      ''
+        if [ -n "''${ZSH_ENABLE_PROFILING:-}" ]; then
+          zmodload zsh/zprof
+        fi
+      ''
+      + initPluginsFirst
       +
       /*
       sh
@@ -124,10 +133,18 @@ in {
       ''
       + initCarapace;
 
-    initExtra = ''
-      source ${initPlugins}
-      source ${dot-zsh}/widgets
-    '';
+    initExtra =
+      lib.mkAfter
+      /*
+      sh
+      */
+      ''
+        source ${initPlugins}
+        source ${dot-zsh}/widgets
+        if [ -n "''${ZSH_ENABLE_PROFILING:-}" ]; then
+          zprof
+        fi
+      '';
 
     profileExtra = ''
       source <(${loadSystemdEnv})
@@ -135,5 +152,8 @@ in {
     '';
 
     syntaxHighlighting.enable = true;
+
+    # Already called in my zshrc
+    completionInit = "";
   };
 }
