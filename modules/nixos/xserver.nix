@@ -51,6 +51,11 @@ in {
               name = "myxmonad";
               start = "exec /etc/${xmonadrc}";
             }
+            {
+              manage = "desktop";
+              name = "startx";
+              start = "startx";
+            }
           ];
         };
 

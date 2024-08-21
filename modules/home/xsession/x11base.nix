@@ -40,8 +40,6 @@
     sh
     */
     ''
-      start-picom
-
       # lock screen
       if command -v xss-lock &>/dev/null; then
         xss-lock -- slock &
@@ -62,6 +60,8 @@
     sh
     */
     ''
+      start-picom
+
       # set wallpaper
       feh --bg-fill "$HOME/wallpaper/current"
 
