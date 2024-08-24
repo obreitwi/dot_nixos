@@ -9,6 +9,7 @@
     nodePackages.eslint
     nodePackages_latest.typescript-language-server
     shellcheck
+    tailwindcss-language-server
     vscode-langservers-extracted
   ];
 }
