@@ -51,9 +51,9 @@
         ngnix-url-probe.settings = {
           enabled = true;
           filter = "nginx-url-probe";
-          logpath = "/var/log/nginx/error.log";
           action = "%(action_)s[blocktype=DROP]";
-          backend = "auto"; # Do not forget to specify this if your jail uses a log file
+          backend = "systemd"; # Do not forget to specify this if your jail uses a log file
+          journalmatch = "_SYSTEMD_UNIT=nginx";
           maxretry = 5;
           findtime = 600;
         };
