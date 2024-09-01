@@ -83,5 +83,7 @@ in {
     environment.etc."${xmonadrc}" = {
       source = "${dot-desktop}/x11/xinitrc";
     };
+
+    home.packages = [pkgs.xdotool];
   };
 }
