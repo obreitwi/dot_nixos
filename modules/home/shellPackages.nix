@@ -48,6 +48,11 @@
     # pen-and-paper tools
     haskellPackages.dice
 
+    # videos
+    mpv
+    vlc
+    yt-dlp
+
     # tools
     archivemount # mount archives as loopback
     ast-grep
