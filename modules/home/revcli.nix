@@ -9,9 +9,16 @@
     Description = "Sync backlog periodically on weekdays.";
   };
 in {
-  options.my.revcli.enable = lib.mkOption {
-    default = false;
-    type = lib.types.bool;
+  options.my.revcli = {
+    enable = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+    };
+
+    sync-job = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+    };
   };
 
   config = lib.mkIf config.my.revcli.enable {
@@ -30,7 +37,7 @@ in {
       };
     };
 
-    systemd.user.timers.revcli-sync-backlog = {
+    systemd.user.timers.revcli-sync-backlog = lib.mkIf config.my.revcli.sync-job {
       Unit =
         unit
         // {
