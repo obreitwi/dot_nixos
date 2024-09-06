@@ -119,6 +119,7 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
+          ./patches/nixpkgs/revert_pr_319233.patch
         ];
       };
 
