@@ -37,6 +37,8 @@
       # drag & drop from terminal
       blobdrop
       ripdrag
+
+      xdotool
     ];
   };
 }

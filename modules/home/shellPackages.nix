@@ -1,4 +1,8 @@
-{pkgs, pkgs-stable, ...}: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   home.packages = with pkgs; [
     # nix helper
     nh
