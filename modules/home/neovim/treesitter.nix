@@ -5,7 +5,7 @@
   dot-vim,
   ...
 }: let
-  treesitter_plugins = with pkgs.vimPlugins; [
+  treesitter-plugins = with pkgs.vimPlugins; [
     (
       nvim-treesitter.withPlugins (
         p:
@@ -45,7 +45,7 @@
   ];
 in {
   # NOTE: Currently treesitter parsers fail to load libstdc++6.so -> use LD_LIBRARY_PATH workaround from below
-  programs.neovim.plugins = treesitter_plugins;
+  programs.neovim.plugins = treesitter-plugins;
   home.sessionVariables = lib.mkIf (!config.my.isNixOS) {
     # needed for treesitter grammar
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
