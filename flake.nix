@@ -70,7 +70,6 @@
     # other packages:
     blobdrop = {
       url = "github:vimpostor/blobdrop";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -119,7 +118,6 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-          ./patches/nixpkgs/revert_pr_319233.patch
         ];
       };
 
