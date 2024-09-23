@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./neorg.nix
+    ./neogit.nix
     ./octo.nix
     ./prefix.nix
     ./treesitter.nix
