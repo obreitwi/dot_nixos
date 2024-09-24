@@ -1,6 +1,6 @@
 {
-  self,
   pkgs-stable,
+  pkgs,
   myUtils,
   ...
 }: let
@@ -81,6 +81,15 @@ in {
   # since nginx is the only consumer of acme certificates, simply add it to the acme group
   # nginx also needs to serve some paths from nextcloud directly
   users.users.nginx.extraGroups = ["acme" "nextcloud"];
+
+  users.users.vkarasen = {
+    isNormalUser = true;
+    extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXgwQ23wvtnp8gkh6OUSP1I7SEfBMR4QYePWHhyl6eD default"
+    ];
+  };
 
   security.acme.certs = builtins.listToAttrs (map (domain: {
       name = domain;
