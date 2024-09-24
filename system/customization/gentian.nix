@@ -111,20 +111,16 @@ in {
       "initialcommit.org" = nginxDefault "initialcommit.org";
       "www.initialcommit.org" = nginxDefault "initialcommit.org";
 
+      "github.breitwieser.eu" =
+        {
+          extraConfig = ''
+            return 307 "https://github.com/obreitwi/";
+          '';
+        }
+        // myUtils.nginxACME "breitwieser.eu";
       "breitwieser.eu" =
-        {
-          extraConfig = ''
-            return 307 "https://github.com/obreitwi/";
-          '';
-        }
-        // myUtils.nginxACME "breitwieser.eu";
-      "www.breitwieser.eu" =
-        {
-          extraConfig = ''
-            return 307 "https://github.com/obreitwi/";
-          '';
-        }
-        // myUtils.nginxACME "breitwieser.eu";
+        nginxDefault "breitwieser.eu";
+      "www.breitwieser.eu" = nginxDefault "breitwieser.eu";
     };
   };
 
