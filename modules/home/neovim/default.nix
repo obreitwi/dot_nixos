@@ -13,7 +13,7 @@
   ];
 
   home.packages = with pkgs; [
-    ctags # needed for tagbar
+    universal-ctags # needed for tagbar
   ];
 
   programs.neovim = {
@@ -47,6 +47,12 @@
           */
           ''
             require("mini.ai").setup()
+          '';
+      }
+      {
+        plugin = vista-vim;
+        config = /* vim */ ''
+            nnoremap <c-y> :Vista<CR>
           '';
       }
     ];
