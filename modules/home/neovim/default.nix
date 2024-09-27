@@ -12,6 +12,10 @@
     ./treesitter.nix
   ];
 
+  home.packages = with pkgs; [
+    ctags # needed for tagbar
+  ];
+
   programs.neovim = {
     enable = true;
 
