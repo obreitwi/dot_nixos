@@ -12,6 +12,7 @@
     ./go.nix
     ./gui
     ./latex.nix
+    ./libreoffice.nix
     ./lsd.nix
     ./lsp.nix
     ./neovim

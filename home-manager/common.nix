@@ -20,6 +20,7 @@ in {
   };
 
   my.latex.enable = isDesktop;
+  my.libreoffice.enable = isDesktop;
   my.revcli.enable = isWork;
   my.revcli.sync-job = isWork;
   my.terraform.enable = isWork;
