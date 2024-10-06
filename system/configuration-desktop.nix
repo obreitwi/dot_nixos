@@ -107,6 +107,10 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  environment.systemPackages = with pkgs; [
+    usbutils
+  ];
+
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];
