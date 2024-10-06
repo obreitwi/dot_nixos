@@ -108,6 +108,7 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
   environment.systemPackages = with pkgs; [
+    poppler_utils
     usbutils
   ];
 
