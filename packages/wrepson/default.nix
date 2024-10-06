@@ -8,6 +8,7 @@ in
   writeShellApplication {
     name = "wrepson";
     runtimeInputs = with pkgs; [
+      avahi
       coreutils-full
       epsonscan2
       jq
