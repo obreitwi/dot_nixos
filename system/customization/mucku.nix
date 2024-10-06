@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   boot.loader.grub.device = "/dev/nvme0n1";
 
   services.openssh = {
@@ -13,4 +13,11 @@
   my.slock.patch = false;
 
   networking.firewall.enable = false;
+
+  hardware.sane.enable = true;
+
+  # Getting scanner to work
+  users.users.obreitwi.extraGroups = ["scanner" "lp"];
+  hardware.sane.extraBackends = [pkgs.utsushi];
+  services.udev.packages = [pkgs.utsushi];
 }
