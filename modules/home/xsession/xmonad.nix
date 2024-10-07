@@ -51,6 +51,7 @@ in {
 
     home.packages = [
       myplayerctl
+      pkgs.rofimoji
       pkgs.toggle-bluetooth-audio
       pkgs.trayer # xmonad
     ];
