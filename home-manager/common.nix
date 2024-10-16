@@ -3,7 +3,8 @@
   isDesktop = builtins.elem hostname ["mimir" "mucku"];
   isWork = builtins.elem hostname ["mimir"];
 in {
-  my.azure.enable = isWork;
+  # TODO: re-enable me once issues fixed
+  my.azure.enable = false && isWork;
 
   my.go.enable = isWork;
 
