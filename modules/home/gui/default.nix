@@ -34,6 +34,8 @@
       spotify
       udiskie
 
+      gpick # pick color values from screen
+
       # drag & drop from terminal
       blobdrop
       ripdrag
