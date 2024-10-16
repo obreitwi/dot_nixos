@@ -2,8 +2,8 @@
   description = "Full NixOS configuration (still in evaulation phase)";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable?shallow=1";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05?shallow=1";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -74,6 +74,7 @@
   };
 
   outputs = {
+    self,
     asfa,
     backlight,
     blobdrop,
@@ -210,6 +211,8 @@
       hostname = "mimir";
       username = "oliver.breitwieser";
     };
+
+    packages.${system}.hm-mimir = self.homeConfigurations."oliver.breitwieser@mimir";
 
     formatter.${system} = pkgs.alejandra;
   };
