@@ -218,11 +218,11 @@
     "dot-zsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1728896682,
-        "narHash": "sha256-LdXvgakkw8iazIYQA5DwtqefuKdgO54dJ6gH/MC5mCg=",
+        "lastModified": 1729281529,
+        "narHash": "sha256-IYw4qgIUKtymqsHxfmO0N1q9+3ST6k3naFSKSVlEWgQ=",
         "owner": "obreitwi",
         "repo": "dot_zsh",
-        "rev": "40f0cb8815aa54a4b69c799f33c6db35e4f53718",
+        "rev": "6fba196bd63c5ed2e8ec8a2a84a31bfac4d78059",
         "type": "github"
       },
       "original": {
@@ -629,6 +629,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-pinned": {
+      "locked": {
+        "lastModified": 1728538411,
+        "narHash": "sha256-f0SBJz1eZ2yOuKUr5CA9BHULGXVSn6miBuUWdTyhUhU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b69de56fac8c2b6f8fd27f2eca01dcda8e0a4221",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b69de56fac8c2b6f8fd27f2eca01dcda8e0a4221",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1729044727,
@@ -679,16 +695,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1728979988,
-        "narHash": "sha256-GBJRnbFLDg0y7ridWJHAP4Nn7oss50/VNgqoXaf/RVk=",
+        "lastModified": 1729070438,
+        "narHash": "sha256-KOTTUfPkugH52avUvXGxvWy8ibKKj4genodIYUED+Kc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7881fbfd2e3ed1dfa315fca889b2cfd94be39337",
+        "rev": "5785b6bb5eaae44e627d541023034e1601455827",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -806,6 +822,7 @@
         "neorg-task-sync": "neorg-task-sync",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-pinned": "nixpkgs-pinned",
         "nixpkgs-stable": "nixpkgs-stable",
         "pydemx": "pydemx",
         "revcli": "revcli"
