@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   myUtils,
@@ -51,7 +52,11 @@
       }
       {
         plugin = vista-vim;
-        config = /* vim */ ''
+        config =
+          /*
+          vim
+          */
+          ''
             nnoremap <c-y> :Vista<CR>
           '';
       }
@@ -64,7 +69,12 @@
       /*
       vim
       */
-      ''
+      (lib.strings.concatMapStrings (p:
+        if ((p.config or null) != null)
+        then p.config + "\n"
+        else "")
+      config.programs.neovim.plugins)
+      + ''
         set runtimepath^=~/.vim runtimepath+=~/.vim/after
         let &packpath = &runtimepath
         let g:nix_enabled = 1
