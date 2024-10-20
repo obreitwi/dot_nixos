@@ -131,11 +131,8 @@
     pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
     # specialArgs computs inputs for nixos/hm modules
-    specialArgs = {
-      hostname,
-      username,
-    }: {
-      inherit dot-desktop dot-vim dot-zsh hostname pkgs-stable username pkgs-pinned;
+    specialArgs = {hostname}: {
+      inherit dot-desktop dot-vim dot-zsh hostname pkgs-stable pkgs-pinned;
       myUtils = import ./utils/lib.nix;
     };
 
@@ -143,14 +140,24 @@
       type,
       hostname,
       username ? "obreitwi",
-    }:
+    }: let
+      hm-user = {username}: {...}: {
+        imports = [
+          ./modules/home
+          ./home-manager/common.nix
+          {my.username = username;}
+        ];
+
+        my.isNixOS = true;
+      };
+    in
       nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
         modules =
           [
             {
-              _module.args = specialArgs {inherit hostname username;}; # make sure that regular home-modules can access special args as well
+              _module.args = specialArgs {inherit hostname;}; # make sure that regular home-modules can access special args as well
               nixpkgs = {inherit overlays;};
               networking.hostName = hostname;
             }
@@ -168,17 +175,12 @@
               home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
               home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
 
-              home-manager.users.obreitwi = {...}: {
-                imports = [
-                  ./modules/home
-                  ./home-manager/common.nix
-                ];
+              home-manager.users.${username} = hm-user {inherit username;};
 
-                my.isNixOS = true;
-              };
+              home-manager.users.root = if (hostname == "gentian") then hm-user {username = "root";} else null;
 
               # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-              home-manager.extraSpecialArgs = specialArgs {inherit hostname username;};
+              home-manager.extraSpecialArgs = specialArgs {inherit hostname;};
             }
           ]
           ++ (nixpkgs.lib.optionals (type == "server") [mailserver.nixosModules.default]);
@@ -189,7 +191,7 @@
     }:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [{_module.args = specialArgs {inherit hostname username;};}] ++ hm-modules;
+        modules = [{_module.args = specialArgs {inherit hostname;};} {my.username = username;}] ++ hm-modules;
       };
 
     hm-modules = [

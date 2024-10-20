@@ -155,4 +155,8 @@ in {
     enablePop3 = true;
     enablePop3Ssl = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    rrsync
+  ];
 }
