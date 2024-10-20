@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  username,
   ...
 }: {
   imports = [
@@ -31,6 +30,10 @@
 
   options.my.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
 
+  options.my.username = lib.mkOption {
+    type = lib.types.str;
+  };
+
   config = {
     my.neovim.neorg = true;
 
@@ -38,8 +41,13 @@
     # # i3lock-fancy-rapid # not working in standalone
     # ];
 
-    home.username = username;
-    home.homeDirectory = "/home/${username}";
+    home.username = config.my.username;
+    home.homeDirectory =
+      {
+        root = "/root";
+      }
+      .${config.my.username}
+      or "/home/${config.my.username}";
 
     # The state version is required and should stay at the version you
     # originally installed.
@@ -48,7 +56,7 @@
     targets.genericLinux.enable = !config.my.isNixOS;
 
     home.sessionVariables = {
-      FLAKE = "/home/${username}/git/dot_nixos";
+      FLAKE = "/home/${config.my.username}/git/dot_nixos";
     };
 
     programs.broot.enable = true;

@@ -35,7 +35,7 @@ in {
   # Initial empty root password for easy login:
   # services.openssh.settings.PermitRootLogin = "prohibit-password";
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "no";
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
   services.openssh.settings.PasswordAuthentication = false;
 
   environment.systemPackages = with pkgs; [
