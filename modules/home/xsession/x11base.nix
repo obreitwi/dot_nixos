@@ -11,15 +11,12 @@
     name = "start-picom";
     runtimeInputs = [pkgs.picom pkgs.glxinfo];
     text = ''
-      # setup picom
-      if command -v picom &>/dev/null; then
-          picom_args=(-b)
-          # If we use nvidia as the main renderer -> compose with glx backend
-          if [[ "$(hostname)" == "mimir" ]] && [ "$(glxinfo | grep "OpenGL renderer")" = "OpenGL renderer string: NVIDIA RTX A1000 Laptop GPU/PCIe/SSE2" ]; then
-              picom_args+=(--backend glx --xrender-sync-fence)
-          fi
-          picom "''${picom_args[@]}"
+      picom_args=(-b --backend glx)
+      # If we use nvidia as the main renderer -> compose with glx backend and render fence
+      if [[ "$(hostname)" == "mimir" ]] && [ "$(glxinfo | grep "OpenGL renderer")" = "OpenGL renderer string: NVIDIA RTX A1000 Laptop GPU/PCIe/SSE2" ]; then
+          picom_args+=(--xrender-sync-fence)
       fi
+      picom "''${picom_args[@]}"
     '';
   };
 
