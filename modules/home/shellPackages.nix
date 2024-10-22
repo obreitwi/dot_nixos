@@ -77,6 +77,7 @@
     jq
     miller
     numbat # scientific calculator
+    pv # progress visualizer
     pandoc
     progress # show progress of coretuils program (via external inspection)
     pkgs-stable.silicon # make nice code screenshots
