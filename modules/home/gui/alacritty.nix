@@ -1,9 +1,9 @@
 {
-  lib,
   config,
-  pkgs,
-  dot-desktop,
   hostname,
+  inputs,
+  lib,
+  pkgs,
   ...
 }: let
   bindings =
