@@ -1,12 +1,11 @@
 {
   lib,
   config,
-  pkgs,
-  pkgs-input,
-  dot-desktop,
+  inputs,
   hostname,
   ...
 }: let
+  inherit (inputs) dot-desktop;
   xmonadrc = "x11/myxmonadrc";
 in {
   options = {

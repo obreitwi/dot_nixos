@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   # all language server packages/settings
   home.packages = with pkgs; [
     bash-language-server
@@ -12,4 +12,6 @@
     tailwindcss-language-server
     vscode-langservers-extracted
   ];
+
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }

@@ -1,9 +1,11 @@
 {
-  pkgs,
-  dot-zsh,
+  inputs,
   lib,
+  pkgs,
   ...
 }: let
+  inherit (inputs) dot-zsh;
+
   plugins = with pkgs; [
     zsh-autopair
     zsh-autosuggestions

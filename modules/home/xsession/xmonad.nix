@@ -3,9 +3,10 @@
   lib,
   config,
   pkgs,
-  dot-desktop,
+  inputs,
   ...
 }: let
+  inherit (inputs) dot-desktop;
   inherit (config.my.stalonetray) slot-size num-icons;
 
   trayWidth = slot-size * num-icons;

@@ -95,7 +95,7 @@
     pydemx,
     revcli,
     ...
-  }: let
+  } @ inputs: let
     system = "x86_64-linux";
     overlays = [
       neorg-overlay.overlays.default
@@ -132,7 +132,7 @@
 
     # specialArgs computs inputs for nixos/hm modules
     specialArgs = {hostname}: {
-      inherit dot-desktop dot-vim dot-zsh hostname pkgs-stable pkgs-pinned;
+      inherit inputs hostname pkgs-stable pkgs-pinned;
       myUtils = import ./utils/lib.nix;
     };
 
@@ -177,7 +177,10 @@
 
               home-manager.users.${username} = hm-user {inherit username;};
 
-              home-manager.users.root = if (hostname == "gentian") then hm-user {username = "root";} else null;
+              home-manager.users.root =
+                if (hostname == "gentian")
+                then hm-user {username = "root";}
+                else null;
 
               # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
               home-manager.extraSpecialArgs = specialArgs {inherit hostname;};
