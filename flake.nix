@@ -77,13 +77,9 @@
   };
 
   outputs = {
-    self,
     asfa,
     backlight,
     blobdrop,
-    dot-desktop,
-    dot-vim,
-    dot-zsh,
     home-manager,
     neorg-overlay,
     neorg-task-sync,
@@ -221,8 +217,6 @@
       hostname = "mimir";
       username = "oliver.breitwieser";
     };
-
-    packages.${system}.hm-mimir = self.homeConfigurations."oliver.breitwieser@mimir";
 
     formatter.${system} = pkgs.alejandra;
   };

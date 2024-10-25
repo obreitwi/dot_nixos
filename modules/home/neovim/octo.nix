@@ -4,7 +4,7 @@
   pkgs,
   myUtils,
   ...
-} @ args: let
+}: let
   plugin = pkgs.vimUtils.buildVimPlugin {
     name = "octo";
     src = pkgs.fetchFromGitHub {
@@ -39,7 +39,7 @@ in {
     };
   };
 
-  config = lib.mkIf args.config.my.neovim.octo {
+  config = lib.mkIf config.my.neovim.octo {
     programs.neovim = {
       plugins = [
         {inherit plugin config;}
