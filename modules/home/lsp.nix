@@ -5,7 +5,7 @@
     eslint
     gopls
     marksman
-    nil
+    # nil # currently not used
     nixd
     nodePackages_latest.typescript-language-server
     shellcheck
