@@ -54,6 +54,7 @@
           /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
       fi
     '';
+
   xsession-both =
     /*
     sh
@@ -81,8 +82,11 @@
       # set wallpaper
       feh --bg-fill "$HOME/wallpaper/current"
 
-      # should be started latest to ensure the wallpaper loads
-      start-picom
+      if command -v nixGL &>/dev/null; then
+        nixGL start-picom
+      else
+        start-picom
+      fi
     '';
 in {
   options.my.gui.x11base.enable = lib.mkOption {
