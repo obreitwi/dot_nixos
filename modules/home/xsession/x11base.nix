@@ -45,7 +45,7 @@
       fi
 
       if command -v unclutter &>/dev/null; then
-          killall unclutter
+          killall unclutter &>/dev/null
           unclutter &
       fi
 
@@ -65,22 +65,22 @@
       feh --bg-fill "$HOME/wallpaper/current"
 
       # increase repeat rate
-      xset rate 200 75
+      xset r rate 200 75
       # no beep
       xset b off
 
       # no black x as cursor in tray
       xsetroot -cursor_name left_ptr
       if [ -f ~/.Xdefaults ]; then
-      xrdb ~/.Xdefaults &
+        xrdb ~/.Xdefaults &
       fi
 
       if command -v iwgtk &>/dev/null; then
-      iwgtk -i &
+        iwgtk -i &
       fi
 
       if command -v udiskie &>/dev/null; then
-      udiskie --tray &
+        udiskie --tray &
       fi
     '';
 in {
