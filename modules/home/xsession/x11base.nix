@@ -59,11 +59,6 @@
     sh
     */
     ''
-      start-picom
-
-      # set wallpaper
-      feh --bg-fill "$HOME/wallpaper/current"
-
       # increase repeat rate
       xset r rate 200 75
       # no beep
@@ -82,6 +77,12 @@
       if command -v udiskie &>/dev/null; then
         udiskie --tray &
       fi
+
+      # set wallpaper
+      feh --bg-fill "$HOME/wallpaper/current"
+
+      # should be started latest to ensure the wallpaper loads
+      start-picom
     '';
 in {
   options.my.gui.x11base.enable = lib.mkOption {
