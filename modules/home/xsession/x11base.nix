@@ -61,7 +61,8 @@
     */
     ''
       # increase repeat rate
-      xset r rate 200 75
+      # args are <delay in ms after which to start repeating key> <repeat rate>
+      xset r rate 400 40
       # no beep
       xset b off
 
