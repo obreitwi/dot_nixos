@@ -5,9 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable?shallow=1";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05?shallow=1";
 
-    # currently pinned: azure-cli
-    nixpkgs-pinned.url = "github:NixOS/nixpkgs/b69de56fac8c2b6f8fd27f2eca01dcda8e0a4221?shallow=1";
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -87,7 +84,6 @@
     mailserver,
     nixpkgs,
     nixpkgs-stable,
-    nixpkgs-pinned,
     pydemx,
     revcli,
     ...
@@ -112,7 +108,6 @@
       inherit system overlays;
       config = {allowUnfree = true;};
     };
-    pkgs-pinned = import nixpkgs-pinned args-import-nixpkgs;
     pkgs-init = import nixpkgs args-import-nixpkgs;
     nixpkgs-patched =
       pkgs-init.applyPatches
@@ -128,7 +123,7 @@
 
     # specialArgs computs inputs for nixos/hm modules
     specialArgs = {hostname}: {
-      inherit inputs hostname pkgs-stable pkgs-pinned;
+      inherit inputs hostname pkgs-stable;
       myUtils = import ./utils/lib.nix;
     };
 
