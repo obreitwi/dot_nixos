@@ -52,6 +52,9 @@
     # pen-and-paper tools
     haskellPackages.dice
 
+    # encode qr codes
+    qrencode
+
     # videos
     mpv
     vlc
