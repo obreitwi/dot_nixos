@@ -4,6 +4,7 @@
     bash-language-server
     eslint
     gopls
+    lua-language-server
     marksman
     # nil # currently not used
     nixd
