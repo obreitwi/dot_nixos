@@ -14,7 +14,6 @@
   config = lib.mkIf config.my.neovim.neorg {
     programs.neovim = {
       plugins = with pkgs.vimPlugins; [
-        # neorg
         neorg
         neorg-telescope
       ];
