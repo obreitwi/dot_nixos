@@ -35,8 +35,6 @@
   };
 
   config = {
-    my.neovim.neorg = true;
-
     # home.packages = with pkgs; [
     # # i3lock-fancy-rapid # not working in standalone
     # ];

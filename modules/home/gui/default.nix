@@ -30,7 +30,7 @@
       bluetuith
       discord
       flameshot # take screenshots and edit them
-      neovide
+      # neovide # deactivated until build is fixed upstream
       spotify
       udiskie
 
