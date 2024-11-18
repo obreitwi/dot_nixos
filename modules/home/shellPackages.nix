@@ -7,7 +7,7 @@
     # nix helper
     nh
     nix-output-monitor
-    nixVersions.nix_2_22
+    nixVersions.nix_2_24
     nvd
 
     # base setup
