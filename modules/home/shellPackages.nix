@@ -65,6 +65,7 @@
     ast-grep
     bat
     btop
+    pkgs-stable.certbot-full
     cloc
     dua
     duf
