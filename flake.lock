@@ -478,11 +478,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731832479,
-        "narHash": "sha256-icDDuYwJ0avTMZTxe1qyU/Baht5JOqw4pb5mWpR+hT0=",
+        "lastModified": 1732025103,
+        "narHash": "sha256-qjEI64RKvDxRyEarY0jTzrZMa8ebezh2DEZmJJrpVdo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5056a1cf0ce7c2a08ab50713b6c4af77975f6111",
+        "rev": "a46e702093a5c46e192243edbd977d5749e7f294",
         "type": "github"
       },
       "original": {
@@ -543,16 +543,17 @@
         "norg-meta": "norg-meta"
       },
       "locked": {
-        "lastModified": 1731824540,
-        "narHash": "sha256-v97F5ziIi79RXEqdedkSuibkbz8RUzSTrJOEVXz8ADs=",
+        "lastModified": 1731841906,
+        "narHash": "sha256-rUtaN7ixulzMKCpoMkVpvc60pehHpi4JNWxeNSNNwYU=",
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "c79930afadbcb26378c0bdcedd62423628a77a3f",
+        "rev": "9557ac5d478e82974012e53044f1f856a69fee13",
         "type": "github"
       },
       "original": {
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
+        "rev": "9557ac5d478e82974012e53044f1f856a69fee13",
         "type": "github"
       }
     },
@@ -712,11 +713,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1731676054,
-        "narHash": "sha256-OZiZ3m8SCMfh3B6bfGC/Bm4x3qc1m2SVEAlkV6iY7Yg=",
+        "lastModified": 1732014248,
+        "narHash": "sha256-y/MEyuJ5oBWrWAic/14LaIr/u5E0wRVzyYsouYY3W6w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5e4fbfb6b3de1aa2872b76d49fafc942626e2add",
+        "rev": "23e89b7da85c3640bbc2173fe04f4bd114342367",
         "type": "github"
       },
       "original": {
@@ -812,11 +813,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731416514,
-        "narHash": "sha256-u6shteGXpvQXVO5+hzHdHnuwsOtCqBvYDSjsUaDZeZw=",
+        "lastModified": 1732022863,
+        "narHash": "sha256-o/F5q4N/IeUB7C+cU4zTeTZQNlF/9juNDDC44jAJDZw=",
         "ref": "refs/heads/main",
-        "rev": "e65b2efe18ab9c36166dd5e6f8580c51e06fde96",
-        "revCount": 474,
+        "rev": "4dfed644b02c36092766ad3750870eb34cc021c0",
+        "revCount": 476,
         "type": "git",
         "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
       },

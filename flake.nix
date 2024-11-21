@@ -15,7 +15,9 @@
     };
 
     neorg-overlay = {
-      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      # url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      # Use fix branch until merged https://github.com/nvim-neorg/nixpkgs-neorg-overlay/pull/11
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay/9557ac5d478e82974012e53044f1f856a69fee13";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -119,7 +121,7 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-            ./patches/nixpkgs/revert_pr_344849.patch
+            # ./patches/nixpkgs/revert_pr_344849.patch
         ];
       };
 
