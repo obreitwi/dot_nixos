@@ -17,7 +17,7 @@
     neorg-overlay = {
       # url = "github:nvim-neorg/nixpkgs-neorg-overlay";
       # Use fix branch until merged https://github.com/nvim-neorg/nixpkgs-neorg-overlay/pull/11
-      url = "github:nvim-neorg/nixpkgs-neorg-overlay/9557ac5d478e82974012e53044f1f856a69fee13";
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay?ref=pull/11/head";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
