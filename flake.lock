@@ -552,8 +552,8 @@
       },
       "original": {
         "owner": "nvim-neorg",
+        "ref": "pull/11/head",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "9557ac5d478e82974012e53044f1f856a69fee13",
         "type": "github"
       }
     },
