@@ -80,6 +80,7 @@
     jo
     jq
     miller
+    mtr
     numbat # scientific calculator
     pv # progress visualizer
     pandoc
