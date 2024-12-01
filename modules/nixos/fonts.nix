@@ -1,8 +1,10 @@
 {pkgs, ...}: {
   fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = ["DejaVuSansMono" "Iosevka" "IosevkaTerm" "Mononoki"];
-    })
+  # keep in sync with home manager fonts
+  fonts.packages = with pkgs.nerd-fonts; [
+    dejavu-sans-mono
+    iosevka
+    iosevka-term
+    mononoki
   ];
 }
