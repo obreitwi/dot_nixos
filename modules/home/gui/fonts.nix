@@ -10,10 +10,12 @@
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.fonts.enable) {
-    home.packages = [
-      (pkgs.nerdfonts.override {
-        fonts = ["DejaVuSansMono" "Iosevka" "IosevkaTerm" "Mononoki"];
-      })
+    # keep in sync with nixos fonts
+    home.packages = with pkgs.nerd-fonts; [
+      dejavu-sans-mono
+      iosevka
+      iosevka-term
+      mononoki
     ];
     fonts.fontconfig.enable = true;
   };
