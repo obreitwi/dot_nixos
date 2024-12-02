@@ -88,6 +88,17 @@
             }
           '';
       }
+      {
+        plugin = haskell-tools-nvim;
+        config =
+          myUtils.vimLua
+          /*
+          lua
+          */
+          ''
+            require('haskell-tools')
+          '';
+      }
     ];
 
     viAlias = true;
