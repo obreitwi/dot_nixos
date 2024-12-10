@@ -77,6 +77,7 @@
     gifski # create hihg-quality GIFs
     gum # for shell scripts
     htop-vim
+    hyperfine
     jo
     jq
     miller
