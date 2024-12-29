@@ -4,6 +4,7 @@
   inputs,
   lib,
   pkgs,
+  pkgs-stable,
   ...
 }: let
   inherit (inputs) dot-desktop;
@@ -131,7 +132,6 @@ in {
         glxinfo
         picom
         rofi
-        unclutter
         xclip
         xdg-utils
         xterm
@@ -141,6 +141,6 @@ in {
         # backup terminal if nixGL is out of date with GPU drivers
         st
       ]
-      ++ [ptpython];
+      ++ [ptpython pkgs-stable.unclutter]; # unclutter: build issue (probably gcc14)
   };
 }

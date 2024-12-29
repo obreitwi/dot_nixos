@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-stable,
   ...
 }: {
   options.my.neovim = {
@@ -13,7 +14,7 @@
 
   config = lib.mkIf config.my.neovim.neorg {
     programs.neovim = {
-      plugins = with pkgs.vimPlugins; [
+      plugins = with pkgs-stable.vimPlugins; [ # build issue with pathlib.nvim (probably gcc14)
         neorg
         neorg-telescope
       ];

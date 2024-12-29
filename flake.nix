@@ -121,7 +121,13 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-            # ./patches/nixpkgs/revert_pr_344849.patch
+          (
+            pkgs-init.fetchurl {
+              url = "https://github.com/NixOS/nixpkgs/pull/368738.diff";
+              hash = "sha256-6egX6IAQhiEVrUn1nkmMPGFMBpZmOWcDueBTGhMbfrk=";
+            }
+          )
+          # ./patches/nixpkgs/revert_pr_344849.patch
         ];
       };
 
