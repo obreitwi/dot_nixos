@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{pkgs, pkgs-stable, ...}: {
   imports = [../modules/nixos];
 
   # Set your time zone.
@@ -57,6 +57,7 @@
   };
 
   services.unclutter.enable = true;
+  services.unclutter.package = pkgs-stable.unclutter; # build issue (probably gcc14)
 
   services.openssh.enable = true;
 

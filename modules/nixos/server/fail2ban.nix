@@ -25,7 +25,7 @@
 
     services.fail2ban = {
       enable = config.my.server.fail2ban.enable;
-      package = pkgs-stable.fail2ban;
+      package = pkgs-stable.fail2ban; # upstream bug, should be fixed
       # Ban IP after 5 failures
       maxretry = 5;
       ignoreIP = [

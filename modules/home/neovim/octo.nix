@@ -34,7 +34,7 @@
 in {
   options.my.neovim = {
     octo = lib.mkOption {
-      default = true;
+      default = false; # build issue in vimplugin-pathlib.nvim-2.2.3-1.drv
       type = lib.types.bool;
     };
   };
