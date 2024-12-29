@@ -20,7 +20,7 @@
   loadSystemdEnv =
     pkgs.writeShellScript "load-systemd-env"
     ''
-      comm -13 <(env | sort) <(systemctl show-environment --user | sort) | grep -v '^\(NIX_PATH\|INFOPATH\|PATH\)=' | sed 's:^:export :g'
+      comm -13 <(env | sort) <(systemctl show-environment --user | sort) | grep -v '^\(NIX_PATH\|INFOPATH\|PATH\|LD_LIBRARY_PATH\)=' | sed 's:^:export :g'
     '';
 
   initPluginsFirst = ''
