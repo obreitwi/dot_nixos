@@ -157,6 +157,8 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    # should be enabled via home.packages.home-manager.enable, but is not.
+    home-manager
     rrsync
   ];
 }
