@@ -179,12 +179,17 @@
               home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
               home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
 
-              home-manager.users.${username} = hm-user {inherit username;};
-
-              home-manager.users.root =
-                if (hostname == "gentian")
-                then hm-user {username = "root";}
-                else null;
+              home-manager.users =
+                {
+                  ${username} = hm-user {inherit username;};
+                }
+                // (
+                  if (builtins.elem hostname ["gentian"])
+                  then {
+                    root = hm-user {username = "root";};
+                  }
+                  else {}
+                );
 
               # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
               home-manager.extraSpecialArgs = specialArgs {inherit hostname;};
