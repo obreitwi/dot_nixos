@@ -134,6 +134,7 @@ in {
         rofi
         xclip
         xdg-utils
+        xorg.xmodmap
         xterm
 
         startPicom
