@@ -1,4 +1,8 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   # all language server packages/settings
   home.packages = with pkgs; [
     bash-language-server

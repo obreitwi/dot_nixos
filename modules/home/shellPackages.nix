@@ -87,7 +87,7 @@
     pv # progress visualizer
     pandoc
     progress # show progress of coretuils program (via external inspection)
-    pkgs-stable.silicon # make nice code screenshots
+    silicon # make nice code screenshots
     spacer # spacer for command output
     speedtest-cli
     sttr # string conversions

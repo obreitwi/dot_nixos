@@ -13,14 +13,12 @@
           with p;
             nvim-treesitter.allGrammars
             ++ [
-              (
-                pkgs.tree-sitter.buildGrammar {
-                  language = "timesheet";
-                  version = dot-vim.rev;
-                  src = "${dot-vim}/utils/treesitter-timesheet";
-                  generate = true;
-                }
-              )
+              (pkgs.tree-sitter.buildGrammar {
+                language = "timesheet";
+                version = dot-vim.rev;
+                src = "${dot-vim}/utils/treesitter-timesheet";
+                generate = true;
+              })
             ]
             ++ lib.optionals (config.my.neovim.neorg) [
               tree-sitter-lua

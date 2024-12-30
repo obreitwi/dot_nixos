@@ -14,7 +14,8 @@
 
   config = lib.mkIf config.my.neovim.neorg {
     programs.neovim = {
-      plugins = with pkgs-stable.vimPlugins; [ # build issue with pathlib.nvim (probably gcc14)
+      plugins = with pkgs.vimPlugins; [
+        # build issue with pathlib.nvim (probably gcc14)
         neorg
         neorg-telescope
       ];
