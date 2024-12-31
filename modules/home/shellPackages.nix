@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   ...
 }: {
   home.packages = with pkgs; [
@@ -65,7 +64,7 @@
     ast-grep
     bat
     btop
-    pkgs-stable.certbot-full
+    pkgs.stable.certbot-full
     cloc
     dua
     duf

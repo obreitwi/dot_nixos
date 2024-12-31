@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-stable,
   ...
 }: {
   imports = [
@@ -35,7 +34,7 @@
       spotify
       udiskie
 
-      pkgs-stable.gpick # pick color values from screen (build issue, probably gcc14)
+      pkgs.stable.gpick # pick color values from screen (build issue, probably gcc14)
 
       # drag & drop from terminal
       blobdrop

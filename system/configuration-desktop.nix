@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
-  pkgs-stable,
   ...
 }: {
   imports = [../modules/nixos];
@@ -61,7 +60,7 @@
   };
 
   services.unclutter.enable = true;
-  services.unclutter.package = pkgs-stable.unclutter; # build issue (probably gcc14)
+  services.unclutter.package = pkgs.stable.unclutter; # build issue (probably gcc14)
 
   services.openssh.enable = true;
 

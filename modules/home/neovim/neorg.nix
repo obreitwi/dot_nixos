@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  pkgs-stable,
   ...
 }: {
   options.my.neovim = {
