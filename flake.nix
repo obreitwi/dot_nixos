@@ -101,6 +101,8 @@
       backlight.overlays.default
 
       (final: prev: {
+        stable = import nixpkgs-stable args-import-nixpkgs;
+
         asfa-dev = asfa.packages.${prev.system}.default;
         blobdrop = blobdrop.packages.${prev.system}.default;
         grpcrl = prev.callPackage (import ./packages/grpcrl) {};
@@ -133,11 +135,10 @@
       };
 
     pkgs = import nixpkgs-patched args-import-nixpkgs;
-    pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
     # specialArgs computs inputs for nixos/hm modules
     specialArgs = {hostname}: {
-      inherit inputs hostname pkgs-stable;
+      inherit inputs hostname;
       myUtils = import ./utils/lib.nix;
     };
 
