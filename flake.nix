@@ -27,10 +27,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    haumea = {
-      url = "github:nix-community/haumea";
-    };
-
     # server packages:
     mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
