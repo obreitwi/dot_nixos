@@ -17,7 +17,7 @@
 
     services.gpg-agent = {
       enable = true;
-      pinentryPackage = pkgs.pinentry-rofi;
+      pinentryPackage = pkgs.pinentry-qt;
 
       defaultCacheTtl = 86400;
       defaultCacheTtlSsh = 86400;

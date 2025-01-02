@@ -41,7 +41,7 @@ lib.mkIf (config.my.gui.enable) {
 
   # qt
   qt.enable = true;
-  qt.platformTheme.name = "gtk";
+  qt.platformTheme.name = "adwaita";
   qt.style.name = "adwaita-dark";
-  qt.style.package = pkgs.adwaita-qt;
+  # qt.style.package = pkgs.adwaita-qt;
 }
