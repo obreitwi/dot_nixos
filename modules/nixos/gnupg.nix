@@ -2,7 +2,7 @@
 {pkgs, ...}: {
   programs.gnupg.agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-rofi;
+    pinentryPackage = pkgs.pinentry-qt;
 
     enableSSHSupport = true;
     enableExtraSocket = true;
