@@ -29,7 +29,7 @@
       gotools
       iferr
       impl
-      motion
+      go-motion
       reftools
       revive
     ];
