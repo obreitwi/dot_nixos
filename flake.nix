@@ -208,6 +208,16 @@
       ./home-manager/non-nixos.nix
       nix-index-database.hmModules.nix-index
       {programs.nix-index-database.comma.enable = true;}
+      ({
+        lib,
+        config,
+        ...
+      }:
+        lib.mkIf (!config.my.isNixOS) {
+          nix.registry = {
+            nixpkgs.flake = nixpkgs;
+          };
+        })
     ];
   in {
     nixosConfigurations.gentian = nixOS {
