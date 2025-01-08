@@ -114,6 +114,7 @@
       config = {allowUnfree = true;};
     };
     pkgs-init = import nixpkgs args-import-nixpkgs;
+
     nixpkgs-patched =
       pkgs-init.applyPatches
       {
@@ -216,6 +217,7 @@
         lib.mkIf (!config.my.isNixOS) {
           nix.registry = {
             nixpkgs.flake = nixpkgs;
+            nixpkgs-stable.flake = nixpkgs-stable;
           };
         })
     ];
