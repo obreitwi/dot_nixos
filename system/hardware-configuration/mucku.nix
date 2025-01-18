@@ -49,7 +49,4 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # Prevent Fritz! WLAN stick from posing as CD-Rom first
-  hardware.usb-modeswitch.enable = true;
 }

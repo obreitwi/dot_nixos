@@ -80,6 +80,10 @@
         udiskie --tray &
       fi
 
+      if [ -f ~/.Xmodmap ]; then
+        xmodmap ~/.Xmodmap
+      fi
+
       # set wallpaper
       feh --bg-fill "$HOME/wallpaper/current"
 
