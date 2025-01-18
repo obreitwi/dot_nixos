@@ -20,4 +20,7 @@
   users.users.obreitwi.extraGroups = ["scanner" "lp"];
   hardware.sane.extraBackends = [pkgs.utsushi];
   services.udev.packages = [pkgs.utsushi];
+
+  # Prevent Fritz! WLAN stick from posing as CD-Rom first (causes stick to not work at all)
+  hardware.usb-modeswitch.enable = true;
 }
