@@ -33,7 +33,7 @@ lib.mkIf (config.my.gui.enable) {
   # gtk.iconTheme.name = "Adwaita";
 
   home.packages = with pkgs; [
-    gtk-engine-murrine # eliminate warnings
+    # gtk-engine-murrine # eliminate warnings
 
     # check settings
     lxappearance
