@@ -26,7 +26,7 @@ lib.mkIf (config.my.gui.enable) {
 
   # The following themes work from GTK2 till GTK4
   # gtk.theme.package = pkgs.vimix-gtk-themes.override {
-    # themeVariants = ["beryl" "doder"];
+  # themeVariants = ["beryl" "doder"];
   # };
   # gtk.theme.name = "vimix-dark-beryl";
   # gtk.iconTheme.package = pkgs.adwaita-icon-theme;

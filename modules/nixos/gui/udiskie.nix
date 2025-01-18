@@ -11,8 +11,7 @@ in {
       type = lib.types.bool;
     };
   };
-  config =
-    lib.mkIf (my.gui.enable && my.udiskie.enable) {
-      services.udisks2.enable = true;
-    };
+  config = lib.mkIf (my.gui.enable && my.udiskie.enable) {
+    services.udisks2.enable = true;
+  };
 }
