@@ -132,10 +132,11 @@
       };
 
     pkgs = import nixpkgs-patched args-import-nixpkgs;
+    pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
     # specialArgs computs inputs for nixos/hm modules
     specialArgs = {hostname}: {
-      inherit inputs hostname;
+      inherit inputs hostname pkgs-stable;
       myUtils = import ./utils/lib.nix;
     };
 
