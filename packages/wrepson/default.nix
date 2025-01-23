@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   writeShellApplication,
   ...
 }: let
@@ -10,7 +11,7 @@ in
     runtimeInputs = with pkgs; [
       avahi
       coreutils-full
-      epsonscan2
+      pkgs-stable.epsonscan2
       jq
       xdg-utils
       zsh
