@@ -40,6 +40,7 @@ in {
       extraAppsEnable = true;
 
       config.adminpassFile = "/var/lib/secrets/nextcloud_admin.pw";
+      config.dbtype = "sqlite";
       https = true;
       maxUploadSize = "10G";
     };
