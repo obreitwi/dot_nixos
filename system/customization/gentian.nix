@@ -72,11 +72,6 @@ in {
     };
   };
 
-  services.openssh = {
-    # openssh from unstable logs as sshd-session which causes fail2ban to not ban
-    package = pkgs.stable.openssh;
-  };
-
   # since nginx is the only consumer of acme certificates, simply add it to the acme group
   # nginx also needs to serve some paths from nextcloud directly
   users.users.nginx.extraGroups = ["acme" "nextcloud"];
