@@ -99,5 +99,4 @@ in {
     vimAlias = true;
   };
   programs.zsh.enable = true;
-  programs.command-not-found.enable = false;
 }

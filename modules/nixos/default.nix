@@ -5,11 +5,12 @@
     ./audio.nix
     ./firewall.nix
     ./fonts.nix
-    ./locate.nix
     # ./gnupg.nix
+    ./locate.nix
     ./monitoring.nix
     ./networking.nix
     ./nextcloud.nix
+    ./nix-index.nix
     ./packages.nix
     ./slock.nix
     ./tlp.nix

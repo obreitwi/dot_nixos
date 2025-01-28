@@ -170,7 +170,6 @@
             ./system/customization/${hostname}.nix
 
             nix-index-database.nixosModules.nix-index
-            {programs.nix-index-database.comma.enable = true;}
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -209,7 +208,6 @@
     hm-modules = [
       ./home-manager/non-nixos.nix
       nix-index-database.hmModules.nix-index
-      {programs.nix-index-database.comma.enable = true;}
       ({
         lib,
         config,
