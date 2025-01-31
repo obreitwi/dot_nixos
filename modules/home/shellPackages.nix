@@ -30,6 +30,8 @@
     ijq
     jq
 
+    moreutils
+
     # disabled since not in use right now
     # k9s
     # kubecolor
