@@ -13,6 +13,7 @@
       lua
       */
       ''
+
         require("neogit").setup()
         require("diffview").setup()
       '';
