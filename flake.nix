@@ -121,6 +121,12 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
+          (
+          pkgs-init.fetchurl {
+          url = "https://github.com/NixOS/nixpkgs/pull/380585.diff";
+          hash = "sha256-7QACT/WNikLBhVVaJY1eubB2ycFpC+eB19x2zz3IEP4=";
+          }
+          )
           # (
           # pkgs-init.fetchurl {
           # url = "https://github.com/NixOS/nixpkgs/pull/368738.diff";
