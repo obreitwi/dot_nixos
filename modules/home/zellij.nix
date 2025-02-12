@@ -7,7 +7,7 @@
   package = pkgs.zellij;
 in {
   programs.zellij = {
-    enable = true;
+    enable = false; # intereferes with zsh startup, investigate prior to enabling
     inherit package;
     settings = {
       theme = "gruvbox-dark";
