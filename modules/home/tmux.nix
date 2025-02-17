@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  tmuxPlugins = with pkgs.tmuxPlugins; [sensible yank gruvbox];
+  tmuxPlugins = with pkgs.tmuxPlugins; [sensible yank gruvbox extrakto];
 in {
   home.packages = with pkgs; [tmux] ++ tmuxPlugins;
 
