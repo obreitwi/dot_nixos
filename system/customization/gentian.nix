@@ -1,13 +1,23 @@
 {
   pkgs,
   myUtils,
+  lib,
   ...
 }: let
+  inherit (lib.strings) optionalString;
+
+  traceRequestsWithLua = false;
+
   nginxDefault = domain:
     {
-      extraConfig = ''
-        disable_symlinks off;
-      '';
+      extraConfig =
+        ''
+          disable_symlinks off;
+        ''
+        + optionalString traceRequestsWithLua ''
+          lua_need_request_body on;
+          log_by_lua_file ${logByLua};
+        '';
       root = "/opt/www/default";
 
       locations."/frozen_synapse" = {
@@ -17,6 +27,50 @@
       };
     }
     // myUtils.nginxACME domain;
+
+  logByLua = pkgs.writeTextFile {
+    name = "request_logger.lua";
+    text =
+      /*
+      lua
+      */
+      ''
+        ngx.log(ngx.ERR, "REQUEST capturing started")
+        json = require("json")
+
+        function getval(v, def)
+          if v == nil then
+            return def
+          end
+          return v
+        end
+
+        local data = {request={}, response={}}
+
+        local req = data["request"]
+        local resp = data["response"]
+        req["host"] = ngx.var.host
+        req["uri"] = ngx.var.uri
+        req["headers"] = ngx.req.get_headers()
+        req["time"] = ngx.req.start_time()
+        req["method"] = ngx.req.get_method()
+        req["get_args"] = ngx.req.get_uri_args()
+
+        -- requires "lua_need_request_body on;" but does not seem to work
+        -- req["post_args"] = ngx.req.get_post_args()
+        -- req["body"] = ngx.var.request_body
+
+        content_type = getval(ngx.var.CONTENT_TYPE, "")
+
+        resp["headers"] = ngx.resp.get_headers()
+        resp["status"] = ngx.status
+        resp["duration"] = ngx.var.upstream_response_time
+        resp["time"] = ngx.now()
+        resp["body"] = ngx.var.response_body
+
+        ngx.log(ngx.CRIT, json.encode(data));
+      '';
+  };
 in {
   imports = [
     ../../modules/nixos/server
@@ -105,6 +159,22 @@ in {
 
   services.nginx = {
     enable = true;
+
+    commonHttpConfig = let
+      resty = pkgs.lua51Packages.lua-resty-core;
+      lrucache = pkgs.lua51Packages.lua-resty-lrucache;
+      luaJson = pkgs.fetchFromGitHub {
+        owner = "rxi";
+        repo = "json.lua";
+        rev = "dbf4b2dd2eb7c23be2773c89eb059dadd6436f94";
+        hash = "sha256-BrM+r0VVdaeFgLfzmt1wkj0sC3dj9nNojkuZJK5f35s=";
+      };
+    in
+      optionalString traceRequestsWithLua ''
+        lua_package_path "${resty}/lib/lua/5.1/?.lua;${lrucache}/lib/lua/5.1/?.lua;${luaJson}/?.lua;;";
+      '';
+
+    additionalModules = lib.optionals traceRequestsWithLua [pkgs.nginxModules.lua];
 
     virtualHosts = {
       "zqnr.de" = nginxDefault "zqnr.de";
