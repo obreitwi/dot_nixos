@@ -1,8 +1,9 @@
 {
   imports = [
-    ./gruvbox.nix
-    ./lualine.nix
+    ./colorscheme.nix
     ./powersettings.nix
+    ./prefix_maps.nix
+    ./statusline.nix
     ./syntax.nix
     ./utils.nix
   ];
@@ -12,5 +13,11 @@
   opts = {
     number = true;
     relativenumber = true;
+
+  };
+
+  globals = {
+    mapleader = " ";
+    maplocalleader = ";";
   };
 }
