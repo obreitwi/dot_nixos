@@ -15,6 +15,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim/main";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        devshell.follows = "";
+        flake-compat.follows = "";
+        git-hooks.follows = "";
+        home-manager.follows = "";
+        nix-darwin.follows = "";
+        treefmt-nix.follows = "";
+      };
+    };
+
     neorg-overlay = {
       # url = "github:nvim-neorg/nixpkgs-neorg-overlay";
       # Use fix branch until merged https://github.com/nvim-neorg/nixpkgs-neorg-overlay/pull/11
@@ -81,6 +94,7 @@
     backlight,
     blobdrop,
     home-manager,
+    nixvim,
     neorg-overlay,
     neorg-task-sync,
     nix-index-database,
@@ -135,9 +149,23 @@
     pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
     # specialArgs computs inputs for nixos/hm modules
-    specialArgs = {hostname}: {
-      inherit inputs hostname pkgs-stable;
+    baseSpecialArgs = {
+      inherit inputs;
       myUtils = import ./utils/lib.nix;
+    };
+    specialArgs = {hostname}:
+      baseSpecialArgs
+      // {
+        inherit hostname pkgs-stable;
+      };
+
+    nixvimLib = nixvim.lib.${system};
+    nixvim' = nixvim.legacyPackages.${system};
+    nixvimModule = {
+      inherit pkgs; # or alternatively, set `system`
+      module = import ./modules/nixvim; # import the module directly
+      # You can use `extraSpecialArgs` to pass additional arguments to your module files
+      extraSpecialArgs = baseSpecialArgs;
     };
 
     nixOS = {
@@ -221,6 +249,11 @@
         })
     ];
   in {
+    checks = {
+      # NOTE: Does not work as of yet: error: 'nvim' is not a valid system type, at /nix/store/…-source/flake.nix:254:7
+      # nvim = nixvimLib.check.mkTestDerivationFromNixvimModule ({name = "test nvim config";} // nixvimModule);
+    };
+
     nixosConfigurations.gentian = nixOS {
       hostname = "gentian";
       type = "server";
@@ -238,6 +271,10 @@
     homeConfigurations."oliver.breitwieser@mimir" = hm {
       hostname = "mimir";
       username = "oliver.breitwieser";
+    };
+
+    packages.${system} = {
+      nvim = nixvim'.makeNixvimWithModule nixvimModule;
     };
 
     formatter.${system} = pkgs.alejandra;
