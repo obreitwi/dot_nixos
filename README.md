@@ -1,10 +1,13 @@
 <div align="center">
   
-# .nixos - a first attempt at managing systems using nix
+# .nixos - central configuration for all my machines 
 
 </div>
 
-Playing around to evaluate NixOS as daily driver, and home-manager to manage packages locally.
+Using `nixpkgs` in several ways:
+* As nixOS installation on desktops and my root.
+* Via home-manager on top of Ubuntu.
+* _(in progress)_ as standalone-`nixvim` configuration to be used everywhere else
 
 ### Install
 
