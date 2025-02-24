@@ -6,6 +6,8 @@
     ./statusline.nix
     ./syntax.nix
     ./utils.nix
+
+    ./plugins
   ];
 
   clipboard.providers.xclip.enable = true;
