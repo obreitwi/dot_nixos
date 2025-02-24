@@ -13,7 +13,5 @@
           end
         end
       end
-
-      ensureDirExists(os.getenv("HOME") .. "/tmp/test-folder-lua-config")
     '';
 }
