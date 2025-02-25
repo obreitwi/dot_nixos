@@ -28,7 +28,12 @@ in {
     ''
     + gitconfig;
 
-  home.packages = [pkgs.git];
+  home.packages = [
+    pkgs.bat
+    pkgs.delta
+    pkgs.difftastic
+    pkgs.git
+  ];
 
   # taken from https://github.com/nix-community/home-manager/issues/2765#issuecomment-1054129334
   systemd.user = {

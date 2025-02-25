@@ -68,7 +68,11 @@
 [init]
     defaultBranch = main
 [diff]
-     tool = difftastic
+    tool = difftastic
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [difftool]
      prompt = false
 [difftool "difftastic"]
@@ -76,5 +80,21 @@
 # Use a pager for large output, just like other git commands.
 [pager]
     difftool = true
+[log]
+    date = iso
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+[commit]
+    verbose = true
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[format]
+    pretty = fuller
 
 ; vim: ft=gitconfig
