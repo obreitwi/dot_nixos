@@ -60,6 +60,7 @@
     file-decoration-style = none
 [push]
     default = current
+    autoSetupRemote = true
 [merge]
     tool = diffconflicts
 [mergetool "diffconflicts"]
@@ -96,5 +97,9 @@
     sort = version:refname
 [format]
     pretty = fuller
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 
 ; vim: ft=gitconfig
