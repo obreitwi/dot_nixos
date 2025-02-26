@@ -19,12 +19,6 @@
       url = "github:nix-community/nixvim/main";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        devshell.follows = "";
-        flake-compat.follows = "";
-        git-hooks.follows = "";
-        home-manager.follows = "";
-        nix-darwin.follows = "";
-        treefmt-nix.follows = "";
       };
     };
 
@@ -151,11 +145,11 @@
     # specialArgs computs inputs for nixos/hm modules
     baseSpecialArgs = {
       inherit inputs;
-      myUtils = import ./utils/lib.nix;
     };
     specialArgs = {hostname}:
       baseSpecialArgs
       // {
+        myUtils = import ./utils/lib.nix;
         inherit hostname pkgs-stable;
       };
 
@@ -165,7 +159,7 @@
       inherit pkgs; # or alternatively, set `system`
       module = import ./modules/nixvim; # import the module directly
       # You can use `extraSpecialArgs` to pass additional arguments to your module files
-      extraSpecialArgs = baseSpecialArgs;
+      extraSpecialArgs = (baseSpecialArgs // import ./modules/nixvim/utils.nix);
     };
 
     nixOS = {
@@ -277,6 +271,7 @@
       nvim = nixvim'.makeNixvimWithModule nixvimModule;
     };
 
-    formatter.${system} = pkgs.alejandra;
+    # formatter.${system} = pkgs.alejandra;
+    formatter.${system} = pkgs.nixfmt-rfc-style;
   };
 }
