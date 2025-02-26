@@ -1,0 +1,3 @@
+{
+  plugins.lsp.inlayHints = true;
+}

@@ -2,17 +2,38 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.my.nixvim.neorg = lib.mkOption {
     default = true;
     type = lib.types.bool;
   };
 
   config = lib.mkIf config.my.nixvim.neorg {
+    userCommands = {
+      TS.command = ":!revcli progress timelog --show --file %";
+    };
+
+    extraConfigVim = # vim
+      ''
+        autocmd FileType norg nmap <silent> <localleader>y :call CopyTaskName()<CR>
+        autocmd FileType norg nmap <silent> <localleader>p :call PasteTaskName()<CR>
+        autocmd FileType norg nmap <silent> <localleader>r :call ReplaceTaskName()<CR>0
+        autocmd FileType norg nmap <silent> <localleader>s :call fzf#run(fzf#wrap({'source': 'revcli stories --list --title', 'sink': function("InsertAsNeorgLink"), 'options': '-d "	" --with-nth 1'}))<CR>
+        autocmd FileType norg nmap <silent> <localleader>t :call fzf#run(fzf#wrap({'source': 'revcli tasks --list --timesheet', 'sink': function("InsertTaskName"), 'options': '-d "	" --with-nth 1'}))<CR>
+        autocmd FileType norg nmap <silent> <localleader>T :call fzf#run(fzf#wrap({'source': 'revcli tasks --other --list --timesheet', 'sink': function("InsertTaskName"), 'options': '-d "	" --with-nth 1'}))<CR>
+
+        " technically not part of neorg but all revcli config is here
+        autocmd FileType gitcommit nmap <silent> <localleader>c :call fzf#run(fzf#wrap({'source': 'revcli stories --list --title', 'sink': function("InsertGitIDs"), 'options': '-d "	" --with-nth 1'}))<CR>
+
+        autocmd FileType norg nmap <silent> ]d :e =system(["neorg-existing-day", expand("%:t:r"), "+1"])<CR><CR>
+        autocmd FileType norg nmap <silent> [d :e =system(["neorg-existing-day", expand("%:t:r"), "-1"])<CR><CR>
+
+        autocmd FileType norg setlocal tabstop=2 | setlocal shiftwidth=2 | setlocal expandtab | setlocal fo=tqnj
+      '';
+
     extraConfigLuaPre =
-      /*
-      lua
-      */
+      # lua
       ''
         -- Copy the name of a task in personal time tracking
         function copyTaskName()
@@ -29,7 +50,7 @@
         end
 
         -- Replace the name of a task in personal time tracking
-        function eeplaceTaskName()
+        function replaceTaskName()
             local save_cursor = vim.fn.getcurpos()
             vim.cmd('normal! 0El"_D$p')
             vim.fn.setpos('.', save_cursor)
