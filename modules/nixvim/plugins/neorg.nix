@@ -10,6 +10,10 @@
   };
 
   config = lib.mkIf config.my.nixvim.neorg {
+    plugins.neorg.enable = true;
+    plugins.neorg.telescopeIntegration.enable = true;
+    plugins.telescope.enable = true;
+
     userCommands = {
       TS.command = ":!revcli progress timelog --show --file %";
     };

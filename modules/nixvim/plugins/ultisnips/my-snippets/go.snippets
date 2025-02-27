@@ -1,0 +1,47 @@
+snippet diff "Do a diff for a test"
+if diff := cmp.Diff(${1:tt.want.resp}, ${2:got}$3); diff != "" {
+	t.Errorf("${4:response} mismatch (-want, +got):\n%s", diff)
+}
+endsnippet
+
+snippet diffproto "Do a diff for a test (with proto)"
+if diff := cmp.Diff(${1:tt.want.resp}, ${2:got}, protocmp.Transform()$3); diff != "" {
+	t.Errorf("${4:response} mismatch (-want, +got):\n%s", diff)
+}
+endsnippet
+
+snippet differror "Do a diff for a test"
+if diff := cmp.Diff(${1:tt.want.err}, ${2:err}, cmpopts.EquateErrors()$3); diff != "" {
+	t.Errorf("${4:error} mismatch (-want, +got):\n%s", diff)
+}
+endsnippet
+
+snippet test "Scaffold test"
+func test$1(t *testing.T, db *dbClientInstance) {
+	type given struct{}
+	type args struct{}
+	type want struct{}
+
+	type testcase struct {
+		name  string
+		given given
+		args  args
+		want  want
+	}
+
+	for _, tt := range []testcase{} {
+		t.Run(tt.name, func(t *testing.T) {
+
+		})
+	}
+}
+endsnippet
+
+snippet testcasefunc "testcase function"
+func() testcase {
+	$2
+	return testcase {
+		name: "$1"
+	}
+}(),
+endsnippet

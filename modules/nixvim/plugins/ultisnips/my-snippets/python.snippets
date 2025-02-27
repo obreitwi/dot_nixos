@@ -1,0 +1,233 @@
+snippet pnp "Import numpy and pylab!" !b
+import numpy as np
+import pylab as p
+endsnippet
+
+
+snippet #! "Add shebang" !b
+#!/usr/bin/env python
+# encoding: utf-8
+endsnippet
+
+
+snippet mpl "Matplotlib import" !b
+import matplotlib as mpl
+mpl.use( "${0:Agg}" )
+endsnippet
+
+
+snippet fl "Add function launcher main" !b
+if __name__ == "__main__":
+    import sys
+    from inspect import isfunction, getargspec
+    local_globals = globals().keys()
+
+    def is_noarg_function(f):
+        "Test if f is valid function and has no arguments"
+        func = globals()[f]
+        if isfunction(func):
+            argspec = getargspec(func)
+            if len(argspec.args) == 0\
+                        and argspec.varargs is None\
+                        and argspec.keywords is None:
+                return True
+        return False
+
+    def show_functions():
+        functions.sort()
+        for f in functions:
+            print f
+    functions = [f for f in local_globals if is_noarg_function(f)]
+    if len(sys.argv) <= 1 or sys.argv[1] == "-h":
+        show_functions()
+    else:
+        for launch in sys.argv[1:]:
+            if launch in functions:
+                run = globals()[launch]
+                run()
+            else:
+                print launch, "not part of functions:"
+                show_functions()
+endsnippet
+
+
+snippet mpl3d "Matplotlib 3D prelude" !b
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+endsnippet
+
+
+snippet mls "Multi line string" !b
+"""
+${0}
+"""
+endsnippet
+
+snippet mll "*M*ulti *l*ine string on same *l*ine" !
+"""${0}"""
+endsnippet
+
+
+snippet docopt "Import and setup docopt" !b
+import sys
+from docopt import docopt
+
+__doc__ = \
+"""
+    Usage:
+        {prgm} ${0}
+        {prgm} -h | --help
+        {prgm} --version
+
+    Options:
+        -h --help: Show this help.
+        --version: Show version.
+""".format(prgm=sys.argv[0])
+
+__version__ = "0.0.1"
+
+if __name__ == '__main__':
+    args = docopt( __doc__, version=__version__)
+endsnippet
+
+
+snippet pudb "Set trace for debugging" !b
+from pudb import set_trace; set_trace()
+endsnippet
+
+
+snippet ipy "Start ipython shell" !b
+from IPython import embed as shell; shell()
+endsnippet
+
+
+snippet ptpy "Start embedded ptpython"
+from ptpython.repl import embed; embed(globals(), locals(), vi_mode=True)
+endsnippet
+
+
+snippet main "Main script part" !b
+if __name__ == "__main__":
+    $0
+endsnippet
+
+
+snippet sym "import symwaf2ic" !b
+try:
+    from waflib.extras import symwaf2ic
+    HAS_SYMWAF2IC = True
+except ImportError:
+    HAS_SYMWAF2IC = False
+
+if HAS_SYMWAF2IC:
+    os.environ['SYMAP2IC_PATH'] = symwaf2ic.get_toplevel_path()
+endsnippet
+
+
+snippet logfmtdef "Default logformatter" !
+logging.Formatter("%(asctime)s %(levelname)s: "
+    "%(message)s", datefmt="%y-%m-%d %H:%M:%S")
+endsnippet
+
+snippet logfmtver "Verbose logformatter" !
+logging.Formatter("%(asctime)s %(levelname)s "
+    "%(funcName)s (%(filename)s:%(lineno)d): %(message)s",
+    datefmt="%y-%m-%d %H:%M:%S")
+endsnippet
+
+snippet logsetup "Function to configure logging" !b
+def config_logging(name, level="debug"):
+    import logging
+
+    global log
+    log = logging.Logger(name)
+
+    level = getattr(logging, level.upper())
+
+    logHandler = logging.StreamHandler()
+    log.addHandler(logHandler)
+
+    if level <= logging.DEBUG:
+        logging.Formatter("%(asctime)s %(levelname)s "
+            "%(funcName)s (%(filename)s:%(lineno)d): %(message)s",
+            datefmt="%y-%m-%d %H:%M:%S")
+    else:
+        logFormatter = logging.Formatter("%(asctime)s %(levelname)s: "
+            "%(message)s", datefmt="%y-%m-%d %H:%M:%S")
+    logHandler.setFormatter(logFormatter)
+
+    log.setLevel(level)
+endsnippet
+
+snippet mklog "Setup basic logging" !b
+def make_log(name):
+    import logging
+    import os
+    log = logging.Logger(name)
+    if "DEBUG" in os.environ:
+        log_level = logging.DEBUG
+        log_formatter = logging.Formatter("%(asctime)s %(levelname)s: "
+            "%(message)s", datefmt="%y-%m-%d %H:%M:%S")
+    else:
+        log_level = logging.INFO
+        log_formatter = logging.Formatter("%(asctime)s %(levelname)s: "
+            "%(message)s", datefmt="%y-%m-%d %H:%M:%S")
+    log_handler = logging.StreamHandler()
+    log_handler.setFormatter(log_formatter)
+    log.addHandler(log_handler)
+    log.setLevel(log_level)
+    return log
+endsnippet
+
+snippet new "__new__ syntax" !b
+def __new__(cls, name, bases, dct):
+endsnippet
+
+snippet cyaml "Use c implmentation of yaml" !b
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
+endsnippet
+
+snippet ll "Loglevel" !b
+if log.getEffectiveLevel() <= logging.DEBUG:
+endsnippet
+
+snippet nn2d "Plotting function" !b
+def nn2d(xy, z, num_points=100, xscale="linear", yscale="linear"):
+    """
+        Interpolate xy.shape == (npoints, 2) datapoints to their nearest
+        neighbour.
+
+        xscale and yscale can be set to "log".
+
+        Returns X, Y, Z to be used in imshow (with correct dimensions).
+    """
+    from scipy import interpolate
+    interp = interpolate.NearestNDInterpolator(xy, z, rescale=True)
+
+    if xscale == "linear":
+        xnew = np.linspace(xy[:, 0].min(), xy[:, 0].max(), num_points)
+    elif xscale == "log":
+        xnew = np.exp(np.linspace(np.log(xy[:, 0].min()),
+                                  np.log(xy[:, 0].max()), num_points))
+    else:
+        raise ValueError("xscale should be linear or log.")
+    if yscale == "linear":
+        ynew = np.linspace(xy[:, 1].min(), xy[:, 1].max(), num_points)
+    elif yscale == "log":
+        ynew = np.exp(np.linspace(np.log(xy[:, 1].min()),
+                                  np.log(xy[:, 1].max()), num_points))
+    else:
+        raise ValueError("yscale should be linear or log.")
+
+    Xsmall, Ysmall = np.meshgrid(xnew[:-1], ynew[:-1])
+    Z = interp(np.stack([Xsmall.flatten(), Ysmall.flatten()], axis=-1)).reshape(Xsmall.shape)
+
+    X, Y = np.meshgrid(xnew, ynew)
+
+    return X, Y, Z
+endsnippet
+
+# vim: tabstop=4 shiftwidth=4 expandtab

@@ -1,0 +1,7 @@
+snippet sourcedir "Create variable containing the path of script directory"
+sourcedir="$(dirname "$(readlink -m "${BASH_SOURCE[0]}")")"
+endsnippet
+
+snippet safety "insert safety options"
+set -eu -o pipefail
+endsnippet

@@ -1,0 +1,25 @@
+snippet shell "description"
+{pkgs ? import <${1:nixpkgs> {}}:
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs; [zsh $2];
+  shellHook = "exec zsh";
+}
+endsnippet
+
+snippet module "Set up basic module"
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  options.my.${1}.enable = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
+  };
+
+  config = lib.mkIf (config.my.$1.enable ${2}) {
+    ${3}
+  };
+}
+endsnippet

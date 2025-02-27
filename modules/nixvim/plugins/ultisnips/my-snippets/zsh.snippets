@@ -1,0 +1,8 @@
+
+snippet cdp "Change to current directory"
+cd \${\${0:A}:h}
+endsnippet
+
+snippet sourcedir "Create variable containing the path of script directory"
+sourcedir="$(dirname "$(readlink -m "${(%):-%N}")")"
+endsnippet
