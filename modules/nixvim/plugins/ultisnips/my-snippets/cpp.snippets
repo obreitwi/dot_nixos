@@ -1,0 +1,141 @@
+
+snippet hdef "Header definition" !b
+#ifndef ${1:HEADER_H}
+#define $1
+
+#endif // $1
+endsnippet
+
+snippet wrap "Wrapper class for pure" !b
+struct ${1:Base}Wrap : $1, bp::wrapper<$1>
+{
+	void ${2:f}()
+	{
+		return this->get_override("$2")();
+	}
+};
+class_<$1Wrap, boost::noncopyable>("$1", bp::no_init)
+	.def("$2", bp::pure_virtual(&$1::$2))
+	;
+endsnippet
+
+snippet override "Define override" !b
+	${1:void} ${2:f}()
+	{
+		return this->get_override("${2}")();
+	}
+endsnippet
+
+
+snippet nc "Nice comment" !b
+/*
+ * ${1}
+ */
+endsnippet
+
+snippet dc "Doxygen comment" !b
+/**
+ * ${1}
+ */
+endsnippet
+
+
+snippet indef "Insert debug macro" !b
+#ifndef NDEBUG
+${1}
+#endif
+endsnippet
+
+
+snippet repval "Report value in debug form" !b
+#ifndef NDEBUG
+std::cout << "${1} -> " << $1 << std::endl;
+#endif
+endsnippet
+
+
+snippet msg "Add a quick debug message via stringstream"
+// if (false)
+{
+  std::stringstream msg;
+  msg << "${1:Your message be here!}"
+      << std::endl;
+  std::cerr << msg.str();
+}
+endsnippet
+
+
+snippet scis "Paste code with scissors"
+// vvv ------8<-----------${1}
+${2}
+// ^^^ ------8<-----------
+${3}
+endsnippet
+
+global !p
+def extract_types(text):
+	"""
+	Extract the names from typename specifies in templates (very crude!)
+	"""
+	# remove defaulted typenames
+	text = re.sub(r'(?:^|\btypename\b)\s*(?:\s*=.*?(,|$))?', r'', text).strip()
+	return re.sub(r'(?:^|\btypename|auto\b)\s*(\w+)(?:\s*=.*?(,|$))?', r'\1\2', text).strip()
+endglobal
+
+snippet ttf "Template type-based meta-function"
+template <typename${1: T}>
+struct ${2}
+{
+	using type = $0;
+};
+
+template <typename$1>
+using $2_t = typename $2<`!p snip.rv = extract_types(t[1])`>::type;
+endsnippet
+
+snippet tts "Template type-based meta-function specialization"
+template <typename${1: T}>
+struct ${2}
+{
+	using type = $0;
+};
+endsnippet
+
+snippet tvf "Template value-based meta-function"
+template <typename${1: T}>
+struct ${2}
+{
+	static constexpr ${3:bool} value = $0;
+};
+
+template <typename$1>
+inline constexpr $3 $2_v = $2<`!p snip.rv = extract_types(t[1])`>::value;
+endsnippet
+
+snippet tvs "Template value-based meta-function specialization"
+template <typename${1: T}>
+struct ${2}
+{
+	static constexptr value = $0;
+};
+endsnippet
+
+snippet tbf "Template bool-based meta-function"
+template <typename${1: T}, typename = void>
+struct ${2} : public std::${3:false}_type
+{};
+
+template <typename$1>
+struct $2<T, $0> : public std::${3:true}_type
+{};
+
+template <typename$1>
+inline constexpr bool $2_v = $2<`!p snip.rv = extract_types(t[1])`>::value;
+endsnippet
+
+snippet tbs "Template bool-based meta-function specialization"
+template <typename${1: T}, typename = void>
+struct ${2}<T, $0> : public std::${3:true}_type
+{};
+endsnippet
+

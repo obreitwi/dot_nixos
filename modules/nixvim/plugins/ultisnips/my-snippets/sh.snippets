@@ -1,0 +1,13 @@
+snippet safety "Make bash script more safe" b
+set -Eeuo pipefail
+shopt -s inherit_errexit
+endsnippet
+
+snippet extrasafety "Make bash script more safe (and verbose)" b
+set -Eeuxo pipefail
+shopt -s inherit_errexit
+endsnippet
+
+snippet sourcedir "Create variable containing the path of script directory"
+sourcedir="$(dirname "$(readlink -m "${BASH_SOURCE[0]}")")"
+endsnippet

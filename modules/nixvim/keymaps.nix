@@ -1,5 +1,10 @@
 { lib, ... }:
 {
+  globals = {
+    mapleader = " ";
+    maplocalleader = ";";
+  };
+
   keymaps =
     [
       {
@@ -98,6 +103,15 @@
         action = "<nop>";
       }
 
+      {
+        key = "<c-e><c-h>";
+        action = ":tabp<CR>";
+      }
+      {
+        key = "<c-e><c-l>";
+        action = ":tabn<CR>";
+      }
+
       # TODO: The following mapping deletes the whole buffer
       # -> figure out which text-object is called here, for now: disable
       {
@@ -120,6 +134,7 @@
         |> map (mode: {
           inherit key mode;
           action = "8" + (lib.toLower key);
+          options.remap = true;
         })
       )
     )

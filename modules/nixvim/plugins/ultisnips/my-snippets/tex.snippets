@@ -1,0 +1,184 @@
+extends tex
+
+snippet efg "Insert a figure."
+\begin{figure}[${1:htbp!}]
+	\centering%
+	${2}
+	\caption{${3}}%
+	\label{fig:${4}}%
+\end{figure}${5}
+endsnippet
+
+snippet efk "Insert a figure without caption or label"
+\begin{figure}[${1:htbp!}]
+	\centering
+	${2}
+\end{figure}${3}
+endsnippet
+
+snippet efs "Insert subfigure"
+\subfloat[${1}]{%
+	\includegraphics[width=${2}\linewidth]{${3}}}%${4}
+endsnippet
+
+snippet bf "Mathbf" !
+\mathbf{${1}}${2}
+endsnippet
+
+snippet eff "Insert graphics"
+\includegraphics[width=${1}\linewidth]{${2}}%${3}
+endsnippet
+
+snippet tv "Verbatim text"
+\verb${1:~}${2}$1${3}
+endsnippet
+
+snippet bcs "Insert columns element"
+\begin{columns}[totalwidth=${1}\textwidth]
+${2}
+\end{columns}${3}
+endsnippet
+
+snippet bcco "Insert a columns (old)"
+\column{${1}\textwidth}${2}
+endsnippet
+
+snippet bcc "Insert a column"
+\begin{column}{${1}\linewidth}
+  ${2}
+\end{column}
+endsnippet
+
+snippet cite "Insert high citation"
+$^\text{\cite{${1}}$
+endsnippet
+
+# snippet ite "Itemize environment" !b
+# \begin{itemize}
+# 	${1}
+# \end{itemize}
+# endsnippet
+# 
+# snippet it "\item"
+# \item
+# endsnippet
+
+snippet beg "Environment" !b
+\begin{${1}}${2}
+	${3}
+\end{$1}
+endsnippet
+
+snippet begg "Environment with parameter" !b
+\begin{${1}}{${2}}
+	${3}
+\end{$1}
+endsnippet
+
+snippet lrs "Symmetric \left \right for whatever" !b
+\left${1} ${2} \right$1
+endsnippet
+
+snippet lra "Asymmetric \left \right for whatever" !b
+\left${1} ${3} \right${2}
+endsnippet
+
+snippet vs "vspace" !b
+\vspace{${1}}
+endsnippet
+
+snippet hs "hspace" !b
+\hspace{${2}}
+endsnippet
+
+snippet bs "Boldsymbol" !
+\boldsymbol
+endsnippet
+
+snippet trim "Trim space" i!
+clip=true,trim=${1:l} ${2:b} ${3:r} ${4:t}
+endsnippet
+
+snippet vf "vfill" !b
+\vfill
+endsnippet
+
+snippet hf "hfill" !b
+\hfill
+endsnippet
+
+snippet mil "mintinline"
+\mintinline{${1:language}}|${2}|
+endsnippet
+
+snippet milc "mintinline with custom delimiter"
+\mintinline{${1:language}}${2}${3}$2
+endsnippet
+
+snippet acro "DeclareAcronym"
+\DeclareAcronym{$1}{
+  short=${2:$1},
+  long=${3}
+}
+endsnippet
+
+# Arrows arrows arrows
+snippet -> "rightarrow" w
+$\rightarrow$
+endsnippet
+
+snippet --> "long rightarrow" w
+$\longrightarrow$
+endsnippet
+
+snippet => "Rightarrow" w
+$\Rightarrow$
+endsnippet
+
+snippet ==> "long Rightarrow" w
+$\Longrightarrow$
+endsnippet
+
+snippet <- "leftarrow" w
+$\leftarrow$
+endsnippet
+
+snippet <-- "long leftarrow" w
+$\longleftarrow$
+endsnippet
+
+snippet <= "Leftarrow" w
+$\Leftarrow$
+endsnippet
+
+snippet <== "long Leftarrow" w
+$\Longleftarrow$
+endsnippet
+
+snippet <-> "left-right arrow" w
+$\leftrightarrow$
+endsnippet
+
+snippet <--> "long left-right arrow" w
+$\Longleftrightarrow$
+endsnippet
+
+snippet <==> "Left-Right arrow" w
+$\Leftrightarrow$
+endsnippet
+
+snippet <=> "long Left-Right arrow" w
+$\Longleftrightarrow$
+endsnippet
+
+snippet th "Add -th" i
+$^\text{${1:th}}$
+endsnippet
+
+snippet url "URL with current date" i
+\url{$1} (visited on `date --iso`)
+endsnippet
+
+snippet furl "Footnote URL with current date" i
+\footnote{\url{$1} (visited on `date --iso`)}
+endsnippet

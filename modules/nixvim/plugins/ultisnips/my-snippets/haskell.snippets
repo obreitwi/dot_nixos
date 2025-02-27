@@ -1,0 +1,16 @@
+snippet shelly "Setup shelly"
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ExtendedDefaultRules #-}
+{-# OPTIONS_GHC -fno-warn-type-defaults -O3 #-}
+import Shelly
+import qualified Data.Text as T
+default (T.Text)
+endsnippet
+
+snippet unpack "Unpack snippet"
+{-# UNPACK #-}
+endsnippet
+
+snippet pragma "Pragma snippet"
+{-# $1 #-}
+endsnippet

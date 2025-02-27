@@ -1,0 +1,59 @@
+
+global !p
+price_pos = 64
+
+def fmt_price(price):
+    return "{:.2f}".format(price)
+
+def make_line_price(line, price):
+    line = unicode(line)
+    seplen = price_pos - len(line)
+    line += u" " * seplen
+    line += u"\u20ac {:.2f}".format(price)
+    return line
+
+def insert_sep(line):
+    return " " * (price_pos - len(line))
+endglobal
+
+snippet eur "Description" b
+`!p snip.rv = "€ in python"`
+endsnippet
+
+snippet nt "New transaction" b
+${1:`date +%Y`}/${2:`date +%m`}/${3:`date +%d`} ${4:New transaction}
+endsnippet
+
+snippet "split_re ([\w:]+) ([\w:]+) ([\w:]+) (-?\d+.\d\d)" "Split transaction in two" r
+`!p
+price_total = float(match.groups()[3])
+
+price_first = -round(price_total / 2, 2)
+price_second = -price_total - price_first
+
+snip.rv = make_line_price(match.group(1), price_total)
+snip   += make_line_price(match.group(2), price_first)
+snip   += make_line_price(match.group(3), price_second)
+`
+endsnippet
+
+snippet pos "Position in Transaction" b
+$1`!p snip.rv = insert_sep(t[1])`€ ${2:0.00}
+endsnippet
+
+snippet "split (\d+.\d\d)" "Split cost to two accounts" r
+${1:Target}`!p
+price_total = float(match.group(1))
+
+price_first = -round(price_total / 2, 2)
+price_second = -price_total - price_first
+
+snip.rv = insert_sep(t[1]) + "€ " + fmt_price(price_total)
+`
+${2:Payee #1}`!p snip.rv=insert_sep(t[2])+ "€ " + fmt_price(price_first)`
+${3:Payee #2}`!p snip.rv=insert_sep(t[3])+ "€ " + fmt_price(price_second)`
+endsnippet
+
+
+# vim: tabstop=4 shiftwidth=4 expandtab
+
