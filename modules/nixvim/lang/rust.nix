@@ -1,0 +1,3 @@
+{
+  plugins.rustaceanvim.enable = true;
+}
