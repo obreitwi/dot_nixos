@@ -1,6 +1,7 @@
 {
   imports = [
     ./fugitive.nix
+    ./git.nix
     ./mini.nix
     ./mundo.nix
     ./neogit.nix
