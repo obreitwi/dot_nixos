@@ -5,6 +5,7 @@
     nix-output-monitor
     nixVersions.nix_2_24
     nvd
+    nurl
 
     # base setup
     bashInteractive
