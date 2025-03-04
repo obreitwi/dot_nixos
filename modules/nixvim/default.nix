@@ -1,6 +1,7 @@
 {
   imports = [
     ./colorscheme.nix
+    ./debug.nix
     ./directories.nix
     ./keymaps.nix
     ./lsp.nix
