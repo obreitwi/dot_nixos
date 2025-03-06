@@ -15,7 +15,7 @@
       extensins = {
         ast_grep = {
           command = [
-            "sg"
+            "${pkgs.ast-grep}/bin/ast-grep"
             "--json=stream"
           ]; # must have --json=stream
           grep_open_files = false; # search in opened files
