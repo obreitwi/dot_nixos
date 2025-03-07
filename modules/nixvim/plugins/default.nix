@@ -10,6 +10,7 @@
     ./neorg.nix
     ./nerdcommenter.nix
     ./oil.nix
+    ./peekaboo.nix
     ./silicon.nix
     ./tabular.nix
     ./telescope.nix
