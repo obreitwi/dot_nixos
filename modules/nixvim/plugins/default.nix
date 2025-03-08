@@ -14,6 +14,7 @@
     ./silicon.nix
     ./tabular.nix
     ./telescope.nix
+    ./treesitter
     ./tpope.nix
     ./ultisnips
     ./vista.nix
