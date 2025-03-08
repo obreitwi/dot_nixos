@@ -18,6 +18,14 @@
       TS.command = ":!revcli progress timelog --show --file %";
     };
 
+    autoCmd = [
+      {
+        event = "FileType";
+        pattern = "norg";
+        command = "setlocal nolist";
+      }
+    ];
+
     extraConfigVim = # vim
       ''
         autocmd FileType norg nmap <silent> <localleader>y :call CopyTaskName()<CR>

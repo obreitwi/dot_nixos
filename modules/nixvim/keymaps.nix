@@ -17,22 +17,27 @@
       {
         key = "<C-D><C-E>";
         action = ''<C-R>=strftime("%d.%m.%Y %H:%M:%S")<CR>'';
+        mode = "i";
       }
       {
         key = "<C-D><C-D>";
         action = ''<C-R> --obreitwi, <C-R>=strftime("%d-%m-%y %H:%M:%S")<CR>'';
+        mode = "i";
       }
       {
         key = "<C-D><C-F>";
         action = ''<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>'';
+        mode = "i";
       }
       {
         key = "<C-D><C-R>";
         action = ''<C-R>=strftime("%Y/%m/%d")<CR>'';
+        mode = "i";
       }
       {
         key = "<C-D><C-W>";
         action = ''C-R>=strftime("%Y-%m-%d")<CR>'';
+        mode = "i";
       }
 
       # searching
