@@ -2,8 +2,9 @@
   config,
   lib,
   ...
-}:
-{
+}: let
+  neorg-existing-day = ./neorg-existing-day;
+in {
   options.my.nixvim.neorg = lib.mkOption {
     default = true;
     type = lib.types.bool;
@@ -26,7 +27,8 @@
       }
     ];
 
-    extraConfigVim = # vim
+    extraConfigVim =
+      # vim
       ''
         autocmd FileType norg nmap <silent> <localleader>y :call CopyTaskName()<CR>
         autocmd FileType norg nmap <silent> <localleader>p :call PasteTaskName()<CR>
@@ -38,8 +40,8 @@
         " technically not part of neorg but all revcli config is here
         autocmd FileType gitcommit nmap <silent> <localleader>c :call fzf#run(fzf#wrap({'source': 'revcli stories --list --title', 'sink': function("InsertGitIDs"), 'options': '-d "	" --with-nth 1'}))<CR>
 
-        autocmd FileType norg nmap <silent> ]d :e =system(["neorg-existing-day", expand("%:t:r"), "+1"])<CR><CR>
-        autocmd FileType norg nmap <silent> [d :e =system(["neorg-existing-day", expand("%:t:r"), "-1"])<CR><CR>
+        autocmd FileType norg nmap <silent> ]d :e =system(["${neorg-existing-day}", expand("%:t:r"), "+1"])<CR><CR>
+        autocmd FileType norg nmap <silent> [d :e =system(["${neorg-existing-day}", expand("%:t:r"), "-1"])<CR><CR>
 
         autocmd FileType norg setlocal tabstop=2 | setlocal shiftwidth=2 | setlocal expandtab | setlocal fo=tqnj
       '';

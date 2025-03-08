@@ -130,18 +130,15 @@
         "K"
         "J"
       ]
-      |> builtins.concatMap (
-        key:
-        [
+      |> map (key: {
+        inherit key;
+        mode = [
           "n"
           "v"
-        ]
-        |> map (mode: {
-          inherit key mode;
-          action = "8" + (lib.toLower key);
-          options.remap = true;
-        })
-      )
+        ];
+        action = "8" + (lib.toLower key);
+        options.remap = true;
+      })
     )
     ++ (
       [

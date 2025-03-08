@@ -7,7 +7,7 @@
     ./mini.nix
     ./mundo.nix
     ./neogit.nix
-    ./neorg.nix
+    ./neorg
     ./nerdcommenter.nix
     ./oil.nix
     ./peekaboo.nix

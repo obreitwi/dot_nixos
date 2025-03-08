@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+shopt -s inherit_errexit
+
+basedate="$1"
+day_diff="$2"
+
+FOLDER="$HOME/wiki/neorg/journal"
+
+MAX_DAYS_SEARCH=7
+
+date_to_file() { # <current>
+    echo -n "$FOLDER/$(date --iso -d "${basedate} + $1 day").norg"
+}
+
+current=${day_diff}
+while true; do
+    potential_file=$(date_to_file "${current}")
+
+    if [ -f "${potential_file}" ]; then
+        echo -n "${potential_file}"
+        exit 0
+    elif (( current >= MAX_DAYS_SEARCH )); then
+        echo -n "$(date_to_file 1)"
+        exit 0
+    else
+        (( current += day_diff ))
+    fi
+done
