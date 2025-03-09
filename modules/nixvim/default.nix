@@ -1,6 +1,7 @@
 {
   imports = [
     ./colorscheme.nix
+    ./completion.nix
     ./debug.nix
     ./directories.nix
     ./keymaps.nix
@@ -14,6 +15,7 @@
 
     ./lang
     ./plugins
+    ./treesitter
   ];
 
   clipboard.providers.xclip.enable = true;
