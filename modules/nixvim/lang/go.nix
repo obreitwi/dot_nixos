@@ -30,4 +30,9 @@ in
     # We want a custom mapping for GoDoc
     go_doc_keywordprg_enabled = 0;
   };
+
+  plugsin.lsp.servers = {
+      golangci_lint_ls.enable = true;
+      gopls.enable = true;
+  };
 }

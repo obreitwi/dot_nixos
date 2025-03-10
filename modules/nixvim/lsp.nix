@@ -37,8 +37,6 @@
         enable = true;
         settings.format = true;
       };
-      golangci_lint_ls.enable = true;
-      gopls.enable = true;
       lua_ls.enable = true;
       marksman.enable = true;
       nixd = {
@@ -71,7 +69,6 @@
         settings.format = false;
       };
       tailwindcss.enable = false;
-      terraformls.enable = true;
     };
   };
 
