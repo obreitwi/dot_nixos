@@ -31,7 +31,7 @@ in
     go_doc_keywordprg_enabled = 0;
   };
 
-  plugsin.lsp.servers = {
+  plugins.lsp.servers = {
       golangci_lint_ls.enable = true;
       gopls.enable = true;
   };
