@@ -42,7 +42,8 @@
     shiftwidth = 4;
     shiftround = true;
 
-    completeopt = "menu,menuone,preview,noinsert,noselect";
+    # Set via completion.nix
+    # completeopt = "menu,menuone,preview,noinsert,noselect";
 
     wildmenu = true;
     wildmode = "list,full";

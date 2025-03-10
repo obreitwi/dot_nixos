@@ -71,6 +71,7 @@
         settings.format = false;
       };
       tailwindcss.enable = false;
+      terraformls.enable = true;
     };
   };
 
