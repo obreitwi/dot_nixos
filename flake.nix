@@ -155,11 +155,26 @@
 
     nixvimLib = nixvim.lib.${system};
     nixvim' = nixvim.legacyPackages.${system};
-    nixvimModule = {
+    nixvimModule = {pkgs}: {
       inherit pkgs; # or alternatively, set `system`
       module = import ./modules/nixvim; # import the module directly
       # You can use `extraSpecialArgs` to pass additional arguments to your module files
-      extraSpecialArgs = (baseSpecialArgs // import ./modules/nixvim/utils.nix);
+      extraSpecialArgs = baseSpecialArgs // import ./modules/nixvim/utils.nix;
+    };
+
+    hm-nixvim = {pkgs, ...}: {
+      home.packages = [
+        (pkgs.writeShellApplication
+          {
+            name = "nnvim";
+            runtimeInputs = [
+              (nixvim'.makeNixvimWithModule (nixvimModule {inherit pkgs;}))
+            ];
+            text = ''
+              exec nvim "$@"
+            '';
+          })
+      ];
     };
 
     nixOS = {
@@ -171,6 +186,7 @@
         imports = [
           ./modules/home
           ./home-manager/common.nix
+          hm-nixvim
           {my.username = username;}
         ];
 
@@ -230,6 +246,7 @@
     hm-modules = [
       ./home-manager/non-nixos.nix
       nix-index-database.hmModules.nix-index
+      hm-nixvim
       ({
         lib,
         config,
@@ -268,7 +285,7 @@
     };
 
     packages.${system} = {
-      nvim = nixvim'.makeNixvimWithModule nixvimModule;
+      nvim = nixvim'.makeNixvimWithModule (nixvimModule {inherit pkgs;});
     };
 
     # formatter.${system} = pkgs.alejandra;
