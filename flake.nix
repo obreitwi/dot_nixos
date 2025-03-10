@@ -153,22 +153,32 @@
         inherit hostname pkgs-stable;
       };
 
-    nixvimLib = nixvim.lib.${system};
+    # nixvimLib = nixvim.lib.${system};
     nixvim' = nixvim.legacyPackages.${system};
-    nixvimModule = {pkgs}: {
+    nixvimModule = {
+      pkgs,
+      specialArgs ? baseSpecialArgs,
+    }: {
       inherit pkgs; # or alternatively, set `system`
       module = import ./modules/nixvim; # import the module directly
       # You can use `extraSpecialArgs` to pass additional arguments to your module files
-      extraSpecialArgs = baseSpecialArgs // import ./modules/nixvim/utils.nix;
+      extraSpecialArgs = specialArgs // import ./modules/nixvim/utils.nix;
     };
 
-    hm-nixvim = {pkgs, ...}: {
+    hm-nixvim = {
+      pkgs,
+      hostname,
+      ...
+    }: {
       home.packages = [
         (pkgs.writeShellApplication
           {
             name = "nnvim";
             runtimeInputs = [
-              (nixvim'.makeNixvimWithModule (nixvimModule {inherit pkgs;}))
+              (nixvim'.makeNixvimWithModule (nixvimModule {
+                inherit pkgs;
+                specialArgs = specialArgs {inherit hostname;};
+              }))
             ];
             text = ''
               exec nvim "$@"

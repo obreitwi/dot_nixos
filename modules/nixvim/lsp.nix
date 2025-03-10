@@ -63,7 +63,6 @@
       pylsp = {
         settings.plugins.black.enable = true;
       };
-      texlab.enable = false;
       ts_ls = {
         enable = true;
         settings.format = false;

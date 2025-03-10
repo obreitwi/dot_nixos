@@ -1,5 +1,7 @@
 {
   imports = [
+    ./host-specific.nix
+
     ./colorscheme.nix
     # ./completion.nix
     ./debug.nix
