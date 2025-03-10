@@ -4,6 +4,7 @@
     ./fugitive.nix
     ./fzf.nix
     ./git.nix
+    ./hop.nix
     ./mini.nix
     ./mundo.nix
     ./neogit.nix
