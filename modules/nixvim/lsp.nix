@@ -17,67 +17,15 @@
         "[d" = "goto_prev";
       };
 
-      extra = [
-        {
-          key = "[coc]k";
-          mode = "n";
-          action = "vim.lsp.buf.hover";
-        }
-        {
-          key = "[coc]i";
-          mode = "n";
-          action = "vim.lsp.buf.implementation";
-        }
-        {
-          key = "<c-k>";
-          mode = [
-            "n"
-            "i"
-          ];
-          action = "vim.lsp.buf.signature_help";
-        }
-        # -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-        # -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-        # -- vim.keymap.set('n', '<space>wl', function()
-        # --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        # -- end, opts)
-        # -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        {
-          key = "[coc]n";
-          mode = "n";
-          action = "vim.lsp.buf.rename";
-        }
-        {
-          key = "[coc]a";
-          mode = [
-            "n"
-            "v"
-          ];
-          action = "vim.lsp.buf.code_action";
-        }
-        {
-          key = "<leader>cf";
-          mode = ["n"];
-          action = "vim.lsp.buf.format({ async = true })";
-        }
-        # -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        # vim.keymap.set('n', '<leader>cf', function()
-        # local find_lsp = function(name)
-        # return table.getn(
-        #. vim.lsp.get_active_clients({
-        # bufnr = vim.fn.bufnr(),
-        # name = name,
-        # })
-        # ) > 0
-        # end
-        # local found_eslint = find_lsp('eslint')
-
-        # if found_eslint then
-        # vim.cmd('EslintFixAll')
-        # else
-        # vim.lsp.buf.format { async = true }
-        # end
-      ];
+      lspBuf = {
+        "[coc]k" = "hover";
+        "[coc]i" = "implementation";
+        # "[coc]t" = "type_definition"; # handled by telescope
+        "<c-k>" = "signature_help";
+        "[coc]n" = "rename";
+        "[coc]a" = "code_action";
+        "<leader>cf" = "format";
+      };
     };
 
     servers = {
