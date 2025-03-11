@@ -1,13 +1,19 @@
-{pkgs, ...}: 
-let 
-  mySnippets = ./my-snippets;
-in
-{
+{pkgs, ...}: let
+  mySnippets = ./my;
+in {
   extraPlugins = [
     pkgs.vimPlugins.ultisnips
     pkgs.vimPlugins.vim-snippets
   ];
 
+  plugins.cmp.settings.sources = [
+    {
+      name = "ultisnips";
+    }
+  ];
+  extraConfigLua = ''
+    vim.opt.runtimepath:append("${mySnippets}")
+  '';
   extraConfigVim =
     /*
     vim
