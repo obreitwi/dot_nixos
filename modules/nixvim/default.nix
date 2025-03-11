@@ -3,7 +3,7 @@
     ./host-specific.nix
 
     ./colorscheme.nix
-    # ./completion.nix
+    ./completion.nix
     ./debug.nix
     ./directories.nix
     ./keymaps.nix
