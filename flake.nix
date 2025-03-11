@@ -162,7 +162,7 @@
       inherit pkgs; # or alternatively, set `system`
       module = import ./modules/nixvim; # import the module directly
       # You can use `extraSpecialArgs` to pass additional arguments to your module files
-      extraSpecialArgs = specialArgs // import ./modules/nixvim/utils.nix;
+      extraSpecialArgs = {hostname = null;} // specialArgs // import ./modules/nixvim/utils.nix;
     };
 
     hm-nixvim = {
@@ -295,7 +295,9 @@
     };
 
     packages.${system} = {
-      nvim = nixvim'.makeNixvimWithModule (nixvimModule {inherit pkgs;});
+      nvim = nixvim'.makeNixvimWithModule (nixvimModule {
+        inherit pkgs;
+      });
     };
 
     # formatter.${system} = pkgs.alejandra;
