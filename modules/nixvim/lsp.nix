@@ -28,6 +28,15 @@
       };
     };
 
+    onAttach =
+      /*
+      lua
+      */
+      ''
+        local bufopts = { noremap = true, silent = true, buffer = bufnr }
+        vim.keymap.set("n", "[coc]E", vim.diagnostic.open_float, bufopts)
+      '';
+
     servers = {
       ast_grep.enable = true;
       bashls.enable = true;
@@ -70,6 +79,8 @@
       tailwindcss.enable = false;
     };
   };
+  plugins.lsp-format.enable = true;
+  plugins.lsp-signature.enable = true;
 
   extraConfigVim =
     # vim
