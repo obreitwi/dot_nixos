@@ -28,7 +28,7 @@
           owner = "rhysd";
           repo = "vim-grammarous";
           rev = "db46357465ce587d5325e816235b5e92415f8c05";
-          sha256 = "sha256-8kCWoXMAvzUuexxmgX4vADsJrBEwmLtl4QTjNgcujwQ=";
+          sha256 = "014g5q3kdqq4w5jvp61h26n0jfq05xz82rhwgcp3bgq0ffhrch7j";
         };
       })
     ];

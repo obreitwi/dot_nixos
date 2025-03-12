@@ -167,7 +167,7 @@ in {
         owner = "rxi";
         repo = "json.lua";
         rev = "dbf4b2dd2eb7c23be2773c89eb059dadd6436f94";
-        sha256 = "sha256-BrM+r0VVdaeFgLfzmt1wkj0sC3dj9nNojkuZJK5f35s=";
+        sha256 = "16yzbyp296abirl77xk3fw5jqgcjf3frmwxph22sfxam8npkxcq6";
       };
     in
       optionalString traceRequestsWithLua ''
