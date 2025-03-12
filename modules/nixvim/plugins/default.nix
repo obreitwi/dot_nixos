@@ -16,6 +16,7 @@
     ./tabular.nix
     ./telescope.nix
     ./tpope.nix
+    ./update-nix-fetchgit.nix
     ./ultisnips
     ./vista.nix
   ];
