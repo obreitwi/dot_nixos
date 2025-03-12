@@ -69,6 +69,8 @@
 
     laststatus = 3;
     showmode = false;
+
+    signcolumn = "yes"; # always show sign-column
   };
 
   extraConfigVim = ''
