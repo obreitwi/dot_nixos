@@ -11,7 +11,7 @@
       owner = "pwntester";
       repo = "octo.nvim";
       rev = "22f34582a4eb1fb221eafd0daa9eb1b2bacfb813";
-      hash = "sha256-QDeJMPBXTexTowQ0MW99Il97GHOCvGXlP2yXM1ZCqv8=";
+      sha256 = "sha256-QDeJMPBXTexTowQ0MW99Il97GHOCvGXlP2yXM1ZCqv8=";
     };
   };
   config =
