@@ -34,7 +34,7 @@
         owner = "bbjornstad";
         repo = "pretty-fold.nvim";
         rev = "1eb18f228972e86b7b8f5ef33ca8091e53fb1e49";
-        sha256 = "sha256-0cHPm+JPGoYsjJEg3eIWv2Td1S+LQYBRbp71XPQsWMg=";
+        sha256 = "1j2q5ks5rxcydr8q0hcb5zaxsr5z2vids84iihn8c6jgwadwzhfi";
       };
     }))
     nvim-autopairs

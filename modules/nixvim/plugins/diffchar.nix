@@ -5,7 +5,7 @@
       owner = "rickhowe";
       repo = "diffchar.vim";
       rev = "ccf4c238a71d834ad1e21834f08be274bc0f05a3";
-      sha256 = "sha256-LEA7xf6He8STefFZYI6f7feoiL06KuRk6bGVXPO3QrE=";
+      sha256 = "1ca2nzrmr5dix5jf8aispn4aixzdky760ngig69w8yw7zv2knh1c";
     };
   };
 in {

@@ -5,7 +5,7 @@
       owner = "whiteinge";
       repo = "diffconflicts";
       rev = "4972d1401e008c5e9afeb703eddd1b2c2a1d1199";
-      sha256 = "sha256-JrJOm7dxTO7s8AKIlxFzYFOpoK7vCSgQwKpV3XnKDIM=";
+      sha256 = "10qcr9wxsmdaq082h2ggmshajlv0fc8rg202y3nfwk3inydlxci6";
     };
   };
   gv = pkgs.vimUtils.buildVimPlugin {
@@ -14,7 +14,7 @@
       owner = "junegunn";
       repo = "gv.vim";
       rev = "b6bb6664e2c95aa584059f195eb3a9f3cb133994";
-      sha256 = "sha256-Tb2IQR/l7TvokgpMWZBumyHULOvXQ2aGTL4P8fIEmRs=";
+      sha256 = "06wr0krg23xy9j36chypxcnd88cvds85jk0ajbl3pvg53x0qigad";
     };
   };
 
@@ -24,7 +24,7 @@
       owner = "obreitwi";
       repo = "vim-gh-line";
       rev = "c59fabeba7ec22f41e5225a309517412fa914b40";
-      sha256 = "sha256-m+N6RkTfyn99HZGMhK8Q3T09VsWjqC6MbFvBXn+9akI=";
+      sha256 = "0hkapmzmxhavdj62xa53qmb3sgfx22pq934i3mypzjnz8i37mqwv";
     };
   };
 in {
