@@ -42,8 +42,7 @@
     shiftwidth = 4;
     shiftround = true;
 
-    # Set via completion.nix
-    # completeopt = "menu,menuone,preview,noinsert,noselect";
+    completeopt = "menu,menuone,preview,noinsert,noselect";
 
     wildmenu = true;
     wildmode = "list,full";
@@ -68,7 +67,12 @@
 
     listchars = "tab:▸·,extends:⇉,precedes:⇇,nbsp:·,eol:↵,trail:␣";
 
-    laststatus=3;
+    laststatus = 3;
     showmode = false;
   };
+
+  extraConfigVim = ''
+    " don't give |ins-completion-menu| messages.
+    set shortmess+=c
+  '';
 }
