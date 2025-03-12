@@ -5,7 +5,7 @@
       owner = "AckslD";
       repo = "messages.nvim";
       rev = "24dbb56829d1ed2d8d878e9f5547478441838567";
-      hash = "sha256-oA80XTtBX1GIcl0IESoIHkFLuEiXYgEyGfqAjtstlIQ=";
+      sha256 = "sha256-oA80XTtBX1GIcl0IESoIHkFLuEiXYgEyGfqAjtstlIQ=";
     };
   };
 in {
