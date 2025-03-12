@@ -1,20 +1,24 @@
-{ pkgs, lib, ... }:
-let
-in
 {
+  pkgs,
+  lib,
+  ...
+}: let
+in {
   plugins = {
     nvim-autopairs.enable = true;
     rainbow-delimiters.enable = true;
     treesitter = {
       enable = true;
-      grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [
-        (pkgs.tree-sitter.buildGrammar {
-          language = "timesheet";
-          version = "dev";
-          src = ./grammars/timesheet;
-          generate = true;
-        })
-      ];
+      grammarPackages =
+        pkgs.vimPlugins.nvim-treesitter.allGrammars
+        ++ [
+          (pkgs.tree-sitter.buildGrammar {
+            language = "timesheet";
+            version = "dev";
+            src = ./grammars/timesheet;
+            generate = true;
+          })
+        ];
       settings = {
         highlight.enable = true;
         indent.enable = true;
@@ -23,7 +27,8 @@ in
       folding = true;
 
       luaConfig = {
-        content = # lua
+        content =
+          # lua
           ''
             require'nvim-treesitter.configs'.setup {
               playground = { enable = true, },
@@ -72,7 +77,8 @@ in
         setJumps = true; # whether to set jumps in the jumplist
         gotoNextStart = {
           "]m" = "@function.outer";
-          "]]" = # lua
+          "]]" =
+            # lua
             ''{ query = "@class.outer", desc = "Next class start" }'';
           #
           # You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
@@ -81,14 +87,16 @@ in
           #
           # You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
           # Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
-          "]s" = # lua
+          "]s" =
+            # lua
             ''
               {
                           query = "@local.scope";
                           query_group = "locals";
                           desc = "Next scope";
                         }'';
-          "]z" = # lua
+          "]z" =
+            # lua
             ''
               {
                           query = "@fold",
@@ -140,24 +148,25 @@ in
 
   opts.conceallevel = 2;
 
-  extraFiles =
-    let
-      queriesDir = ./queries;
-      queriesPrefix = toString queriesDir;
-    in
-    lib.filesystem.listFilesRecursive queriesPrefix
-    |> map (
-      file:
-      let
-        relative = lib.strings.removePrefix queriesPrefix file;
-      in
-      {
-        name = "tsquery-${relative}";
-        value = {
-          target = "queries/${relative}";
-          source = queriesDir + relative;
-        };
-      }
-    )
-    |> builtins.listToAttrs;
+  extraFiles = let
+    queriesDir = ./queries;
+    queriesPrefix = toString queriesDir;
+  in
+    lib.pipe
+    (lib.filesystem.listFilesRecursive queriesPrefix)
+    [
+      (map
+        (
+          file: let
+            relative = lib.strings.removePrefix queriesPrefix file;
+          in {
+            name = "tsquery-${relative}";
+            value = {
+              target = "queries/${relative}";
+              source = queriesDir + relative;
+            };
+          }
+        ))
+      builtins.listToAttrs
+    ];
 }
