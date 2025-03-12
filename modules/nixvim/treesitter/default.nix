@@ -33,6 +33,7 @@ in
                 lint_events = {"BufWrite", "CursorHold"},
               },
             }
+            require'pretty-fold'.setup {}
           '';
       };
     };
