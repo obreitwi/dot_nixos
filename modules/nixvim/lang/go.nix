@@ -1,9 +1,29 @@
-{ utils, ... }:
-let
-  inherit (utils) autoCmdFT;
-in
 {
+  pkgs,
+  lib,
+  utils,
+  ...
+}: let
+  inherit (utils) autoCmdFT;
+
+  vim-go = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-go";
+    src = pkgs.fetchFromGitHub {
+      owner = "fatih";
+      repo = "vim-go";
+      rev = "1d641b739624199ab9ab745d220f36fe7b655d65";
+      sha256 = "02qfql3c6njqkq7pbzrqknca638f3fczkx651v3wwl94339ln6ky";
+    };
+  };
+in {
   autoCmd =
+    map (
+      command:
+        autoCmdFT {
+          lang = "go";
+          inherit command;
+        }
+    )
     [
       "setlocal spelloptions+=noplainbuffer"
       "nmap <buffer> <silent> <leader>K <Plug>(go-doc)"
@@ -12,14 +32,7 @@ in
       "nmap <buffer> <silent> [coc]m <Plug>(go-metalinter)"
       "nmap <buffer> <silent> [coc]f :GoFillStruct<CR>"
       "nmap <buffer> <silent> [coc]t <Plug>(go-test)"
-    ]
-    |> map (
-      command:
-      autoCmdFT {
-        lang = "go";
-        inherit command;
-      }
-    );
+    ];
 
   globals = {
     go_code_completion_enabled = 0;
@@ -31,8 +44,10 @@ in
     go_doc_keywordprg_enabled = 0;
   };
 
+  extraPlugins = [vim-go];
+
   plugins.lsp.servers = {
-      golangci_lint_ls.enable = true;
-      gopls.enable = true;
+    golangci_lint_ls.enable = true;
+    gopls.enable = true;
   };
 }
