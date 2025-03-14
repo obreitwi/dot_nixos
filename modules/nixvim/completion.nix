@@ -39,9 +39,7 @@
           }
         ];
         snippet.expand =
-          /*
-          lua
-          */
+          # lua
           ''function(args) vim.fn["UltiSnips#Anon"](args.body) end'';
 
         window = {

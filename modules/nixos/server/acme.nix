@@ -13,11 +13,9 @@
   config = {
     security.acme = {
       acceptTerms = true;
-      defaults =
-        lib.mkIf config.my.server.acme.staging
-        {
-          server = "https://acme-staging-v02.api.letsencrypt.org/directory";
-        };
+      defaults = lib.mkIf config.my.server.acme.staging {
+        server = "https://acme-staging-v02.api.letsencrypt.org/directory";
+      };
     };
   };
 }

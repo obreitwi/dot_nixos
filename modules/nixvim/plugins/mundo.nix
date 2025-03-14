@@ -3,9 +3,7 @@
     pkgs.vimPlugins.vim-mundo
   ];
   extraConfigVim =
-    /*
-    vim
-    */
+    # vim
     ''
       map <leader>mt :MundoToggle<CR>
       let g:mundo_inline_undo=1

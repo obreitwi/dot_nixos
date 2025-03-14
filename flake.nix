@@ -119,25 +119,23 @@
 
     args-import-nixpkgs = {
       inherit system overlays;
-      config = {allowUnfree = true;};
+      config = {
+        allowUnfree = true;
+      };
     };
     pkgs-init = import nixpkgs args-import-nixpkgs;
 
-    nixpkgs-patched =
-      pkgs-init.applyPatches
-      {
-        name = "nixpkgs-patched-${nixpkgs.shortRev}";
-        src = nixpkgs;
-        patches = [
-          # (
-          # pkgs-init.fetchurl {
-          # url = "https://github.com/NixOS/nixpkgs/pull/368738.diff";
-          # hash = "sha256-6egX6IAQhiEVrUn1nkmMPGFMBpZmOWcDueBTGhMbfrk=";
-          # }
-          # )
-          # ./patches/nixpkgs/revert_pr_344849.patch
-        ];
-      };
+    nixpkgs-patched = pkgs-init.applyPatches {
+      name = "nixpkgs-patched-${nixpkgs.shortRev}";
+      src = nixpkgs;
+      patches = [
+        (pkgs-init.fetchurl {
+          url = "https://github.com/NixOS/nixpkgs/pull/389674.diff";
+          hash = "sha256-F6THEVdLQ9NBE+KMDElc5jWgvso5IkOrYaYDgxEViZU=";
+        })
+        # ./patches/nixpkgs/revert_pr_344849.patch
+      ];
+    };
 
     pkgs = import nixpkgs-patched args-import-nixpkgs;
     pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
@@ -171,19 +169,18 @@
       ...
     }: {
       home.packages = [
-        (pkgs.writeShellApplication
-          {
-            name = "nnvim";
-            runtimeInputs = [
-              (nixvim'.makeNixvimWithModule (nixvimModule {
-                inherit pkgs;
-                specialArgs = specialArgs {inherit hostname;};
-              }))
-            ];
-            text = ''
-              exec nvim "$@"
-            '';
-          })
+        (pkgs.writeShellApplication {
+          name = "nnvim";
+          runtimeInputs = [
+            (nixvim'.makeNixvimWithModule (nixvimModule {
+              inherit pkgs;
+              specialArgs = specialArgs {inherit hostname;};
+            }))
+          ];
+          text = ''
+            exec nvim "$@"
+          '';
+        })
       ];
     };
 
@@ -250,24 +247,31 @@
     }:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [{_module.args = specialArgs {inherit hostname;};} {my.username = username;}] ++ hm-modules;
+        modules =
+          [
+            {_module.args = specialArgs {inherit hostname;};}
+            {my.username = username;}
+          ]
+          ++ hm-modules;
       };
 
     hm-modules = [
       ./home-manager/non-nixos.nix
       nix-index-database.hmModules.nix-index
       hm-nixvim
-      ({
-        lib,
-        config,
-        ...
-      }:
-        lib.mkIf (!config.my.isNixOS) {
-          nix.registry = {
-            nixpkgs.flake = nixpkgs;
-            nixpkgs-stable.flake = nixpkgs-stable;
-          };
-        })
+      (
+        {
+          lib,
+          config,
+          ...
+        }:
+          lib.mkIf (!config.my.isNixOS) {
+            nix.registry = {
+              nixpkgs.flake = nixpkgs;
+              nixpkgs-stable.flake = nixpkgs-stable;
+            };
+          }
+      )
     ];
   in {
     checks = {
@@ -300,7 +304,7 @@
       });
     };
 
-    # formatter.${system} = pkgs.alejandra;
-    formatter.${system} = pkgs.nixfmt-rfc-style;
+    formatter.${system} = pkgs.alejandra;
+    #formatter.${system} = pkgs.nixfmt-rfc-style;
   };
 }

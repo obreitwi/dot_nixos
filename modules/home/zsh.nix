@@ -17,11 +17,9 @@
     zsh-vi-mode
   ];
 
-  loadSystemdEnv =
-    pkgs.writeShellScript "load-systemd-env"
-    ''
-      comm -13 <(env | sort) <(systemctl show-environment --user | sort) | grep -v '^\(NIX_PATH\|INFOPATH\|PATH\|LD_LIBRARY_PATH\)=' | sed 's:^:export :g'
-    '';
+  loadSystemdEnv = pkgs.writeShellScript "load-systemd-env" ''
+    comm -13 <(env | sort) <(systemctl show-environment --user | sort) | grep -v '^\(NIX_PATH\|INFOPATH\|PATH\|LD_LIBRARY_PATH\)=' | sed 's:^:export :g'
+  '';
 
   initPluginsFirst = ''
     source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -29,9 +27,7 @@
 
   initPlugins = with pkgs;
     writeText "zsh-init-plugins.sh"
-    /*
-    sh
-    */
+    # sh
     ''
       source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
@@ -91,9 +87,7 @@
     '';
 
   initCarapace =
-    /*
-    sh
-    */
+    # sh
     ''
       source <(carapace az zsh)
     '';
@@ -110,9 +104,7 @@ in {
     };
 
     initExtraFirst =
-      /*
-      sh
-      */
+      # sh
       ''
         if [ -n "''${ZSH_ENABLE_PROFILING:-}" ]; then
           zmodload zsh/zprof
@@ -120,9 +112,7 @@ in {
       ''
       + initPluginsFirst
       +
-      /*
-      sh
-      */
+      # sh
       ''
         ZSH_VIA_NIX=1
 
@@ -137,9 +127,7 @@ in {
 
     initExtra =
       lib.mkAfter
-      /*
-      sh
-      */
+      # sh
       ''
         source ${initPlugins}
         source ${dot-zsh}/widgets

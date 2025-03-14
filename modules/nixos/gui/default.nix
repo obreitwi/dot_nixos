@@ -1,3 +1,6 @@
 {...}: {
-  imports = [./udiskie.nix ./packages.nix];
+  imports = [
+    ./udiskie.nix
+    ./packages.nix
+  ];
 }

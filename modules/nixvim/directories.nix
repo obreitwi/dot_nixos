@@ -1,8 +1,6 @@
 {
   extraConfigLuaPre =
-    /*
-    lua
-    */
+    # lua
     ''
       function ensureDirExists(dir)
         if (vim.fn.isdirectory(dir) == 0) then
@@ -18,9 +16,15 @@
       ensureDirExists( os.getenv("HOME") .. '/.vimbackup/undo' )
     '';
   opts = {
-    directory.__raw = /* lua */ ''vim.fn.expand("$HOME/.vimbackup//")'';
-    backupdir.__raw = /* lua */ ''vim.fn.expand("$HOME/.vimbackup/writebackup//")'';
-    undodir.__raw = /* lua */ ''vim.fn.expand("$HOME/.vimbackup/undo//")'';
+    directory.__raw =
+      # lua
+      ''vim.fn.expand("$HOME/.vimbackup//")'';
+    backupdir.__raw =
+      # lua
+      ''vim.fn.expand("$HOME/.vimbackup/writebackup//")'';
+    undodir.__raw =
+      # lua
+      ''vim.fn.expand("$HOME/.vimbackup/undo//")'';
     backup = true;
     undofile = true;
   };

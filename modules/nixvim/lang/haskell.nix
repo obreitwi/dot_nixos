@@ -4,9 +4,7 @@
   ];
 
   extraConfigLua =
-    /*
-    lua
-    */
+    # lua
     ''
       require('haskell-tools')
     '';

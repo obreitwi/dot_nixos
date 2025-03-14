@@ -7,9 +7,7 @@
   ...
 }: let
   bindings =
-    /*
-    toml
-    */
+    # toml
     ''
       [[keyboard.bindings]]
       # action = "SpawnNewInstance"
@@ -39,9 +37,7 @@
     '';
 
   colors =
-    /*
-    toml
-    */
+    # toml
     ''
       [colors.bright]
       black = "0x808080"
@@ -74,9 +70,7 @@
 
   font_host = {
     default =
-      /*
-      toml
-      */
+      # toml
       ''
         [font]
         size = 10
@@ -106,9 +100,7 @@
   font = font_host.${hostname} or font_host.default;
 
   hints =
-    /*
-    toml
-    */
+    # toml
     ''
       [[hints.enabled]]
       command = "xdg-open"
@@ -138,9 +130,7 @@
     '';
 
   window =
-    /*
-    toml
-    */
+    # toml
     ''
       [window]
       opacity = 0.75
@@ -154,7 +144,15 @@ in {
     inherit (config.my) gui;
   in
     lib.mkIf (gui.enable && gui.alacritty.enable) {
-      home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (lib.strings.intersperse "\n" [bindings colors font hints window]);
+      home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (
+        lib.strings.intersperse "\n" [
+          bindings
+          colors
+          font
+          hints
+          window
+        ]
+      );
 
       programs.alacritty = {
         enable = true;

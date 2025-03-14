@@ -32,12 +32,22 @@ in {
           variant = "altgr-intl";
           model = "pc105";
           options = lib.strings.concatStrings (
-            lib.strings.intersperse " " ["compose:menu" "compose:prsc" "lv3:ralt_switch" "eurosign:e" "nbsp:level3n"]
+            lib.strings.intersperse " " [
+              "compose:menu"
+              "compose:prsc"
+              "lv3:ralt_switch"
+              "eurosign:e"
+              "nbsp:level3n"
+            ]
             ++ (lib.optionals (hostname != "nimir") ["caps:escape"])
           );
         };
 
-        desktopManager = {gnome = {enable = false;};};
+        desktopManager = {
+          gnome = {
+            enable = false;
+          };
+        };
 
         displayManager = {
           gdm.enable = false;
@@ -68,10 +78,14 @@ in {
         enable = true;
 
         # disabling mouse acceleration
-        mouse = {accelProfile = "flat";};
+        mouse = {
+          accelProfile = "flat";
+        };
 
         # disabling touchpad acceleration
-        touchpad = {accelProfile = "flat";};
+        touchpad = {
+          accelProfile = "flat";
+        };
       };
     };
 

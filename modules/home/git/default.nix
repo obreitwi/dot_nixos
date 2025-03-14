@@ -6,9 +6,7 @@
   gitconfig = builtins.readFile ./gitconfig;
   gitconfig_private =
     pkgs.writeText "gitconfig_private"
-    /*
-    gitconfig
-    */
+    # gitconfig
     ''
       [user]
       email = oliver@breitwieser.eu
@@ -17,9 +15,7 @@
     '';
 in {
   home.file.".gitconfig".text =
-    /*
-    gitconfig
-    */
+    # gitconfig
     ''
       [includeIf "gitdir:~/git/"]
         path = ${gitconfig_private}

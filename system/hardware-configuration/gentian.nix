@@ -10,7 +10,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["ahci" "sd_mod"];
+  boot.initrd.availableKernelModules = [
+    "ahci"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];

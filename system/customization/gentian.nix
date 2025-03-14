@@ -31,9 +31,7 @@
   logByLua = pkgs.writeTextFile {
     name = "request_logger.lua";
     text =
-      /*
-      lua
-      */
+      # lua
       ''
         ngx.log(ngx.ERR, "REQUEST capturing started")
         json = require("json")
@@ -79,7 +77,10 @@ in {
   boot.loader.grub = {
     enable = true;
     efiSupport = false;
-    devices = ["/dev/sda" "/dev/sdb"];
+    devices = [
+      "/dev/sda"
+      "/dev/sdb"
+    ];
   };
   networking.interfaces."enp0s31f6".ipv4.addresses = [
     {
@@ -128,18 +129,26 @@ in {
 
   # since nginx is the only consumer of acme certificates, simply add it to the acme group
   # nginx also needs to serve some paths from nextcloud directly
-  users.users.nginx.extraGroups = ["acme" "nextcloud"];
+  users.users.nginx.extraGroups = [
+    "acme"
+    "nextcloud"
+  ];
 
   users.users.vkarasen = {
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.bash;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXgwQ23wvtnp8gkh6OUSP1I7SEfBMR4QYePWHhyl6eD default"
     ];
   };
 
-  security.acme.certs = builtins.listToAttrs (map (domain: {
+  security.acme.certs = builtins.listToAttrs (
+    map
+    (domain: {
       name = domain;
       value = {
         domain = "*.${domain}";
@@ -151,11 +160,13 @@ in {
 
         postRun = "systemctl restart nginx postfix dovecot2";
       };
-    }) [
+    })
+    [
       "zqnr.de"
       "initialcommit.org"
       "breitwieser.eu"
-    ]);
+    ]
+  );
 
   services.nginx = {
     enable = true;
@@ -191,14 +202,17 @@ in {
           '';
         }
         // myUtils.nginxACME "breitwieser.eu";
-      "breitwieser.eu" =
-        nginxDefault "breitwieser.eu";
+      "breitwieser.eu" = nginxDefault "breitwieser.eu";
       "www.breitwieser.eu" = nginxDefault "breitwieser.eu";
     };
   };
 
   mailserver = let
-    domains = ["breitwieser.eu" "initialcommit.org" "zqnr.de"];
+    domains = [
+      "breitwieser.eu"
+      "initialcommit.org"
+      "zqnr.de"
+    ];
     mailDomain = "breitwieser.eu";
     acme = myUtils.nginxACME mailDomain;
   in {

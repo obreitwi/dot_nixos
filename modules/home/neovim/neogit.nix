@@ -9,9 +9,7 @@
       diffview-nvim # optional
     ];
     extraLuaConfig =
-      /*
-      lua
-      */
+      # lua
       ''
 
         require("neogit").setup()

@@ -152,21 +152,18 @@ in {
     queriesDir = ./queries;
     queriesPrefix = toString queriesDir;
   in
-    lib.pipe
-    (lib.filesystem.listFilesRecursive queriesPrefix)
-    [
-      (map
-        (
-          file: let
-            relative = lib.strings.removePrefix queriesPrefix file;
-          in {
-            name = "tsquery-${relative}";
-            value = {
-              target = "queries/${relative}";
-              source = queriesDir + relative;
-            };
-          }
-        ))
+    lib.pipe (lib.filesystem.listFilesRecursive queriesPrefix) [
+      (map (
+        file: let
+          relative = lib.strings.removePrefix queriesPrefix file;
+        in {
+          name = "tsquery-${relative}";
+          value = {
+            target = "queries/${relative}";
+            source = queriesDir + relative;
+          };
+        }
+      ))
       builtins.listToAttrs
     ];
 }

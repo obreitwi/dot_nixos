@@ -1,6 +1,9 @@
 # common configurations in home manager for both nixos and standalone
 {hostname, ...}: let
-  isDesktop = builtins.elem hostname ["mimir" "mucku"];
+  isDesktop = builtins.elem hostname [
+    "mimir"
+    "mucku"
+  ];
   isWork = builtins.elem hostname ["mimir"];
 in {
   my.azure.enable = isWork;
@@ -14,7 +17,10 @@ in {
     nextcloud.enable = builtins.elem hostname ["mucku"];
     redshift.enable = isDesktop;
     slock.enable = false;
-    x11base.enable = builtins.elem hostname ["mimir" "mucku"];
+    x11base.enable = builtins.elem hostname [
+      "mimir"
+      "mucku"
+    ];
     xmobar.enable = isDesktop;
     xmonad.enable = isDesktop;
   };
