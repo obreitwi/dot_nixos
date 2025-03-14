@@ -16,9 +16,7 @@
   };
   config =
     myUtils.vimLua
-    /*
-    lua
-    */
+    # lua
     ''
       require("octo").setup({
         default_merge_method = "squash",

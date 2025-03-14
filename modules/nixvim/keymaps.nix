@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   globals = {
     mapleader = " ";
     maplocalleader = ";";
@@ -126,11 +125,7 @@
       }
     ]
     ++ (
-      [
-        "K"
-        "J"
-      ]
-      |> map (key: {
+      map (key: {
         inherit key;
         mode = [
           "n"
@@ -139,9 +134,25 @@
         action = "8" + (lib.toLower key);
         options.remap = true;
       })
+      [
+        "K"
+        "J"
+      ]
     )
     ++ (
-      [
+      (builtins.concatMap (
+        {
+          key,
+          action,
+        }: (map (mode: {
+            inherit key action mode;
+          })
+          [
+            "n"
+            "i"
+            "x"
+          ])
+      )) [
         {
           key = "<c-q>";
           action = "<c-u>zz";
@@ -155,19 +166,5 @@
           action = "<c-d>zz";
         }
       ]
-      |> (builtins.concatMap (
-        {
-          key,
-          action,
-        }:
-        [
-          "n"
-          "i"
-          "x"
-        ]
-        |> (map (mode: {
-          inherit key action mode;
-        }))
-      ))
     );
 }

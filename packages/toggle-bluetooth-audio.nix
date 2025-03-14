@@ -5,7 +5,10 @@
 }:
 writeShellApplication {
   name = "toggle-bluetooth-audio";
-  runtimeInputs = with pkgs; [jq pulseaudio];
+  runtimeInputs = with pkgs; [
+    jq
+    pulseaudio
+  ];
   text = ''
     json=$(pactl --format=json list cards | jq -c '.[] | select(.name | startswith("bluez_card")) | {name, active_profile}')
     card=$(jq -r '.name' <<<"$json")

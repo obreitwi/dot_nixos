@@ -11,7 +11,10 @@
   # TODO sync with autorand
   startPicom = pkgs.writeShellApplication {
     name = "start-picom";
-    runtimeInputs = [pkgs.picom pkgs.glxinfo];
+    runtimeInputs = [
+      pkgs.picom
+      pkgs.glxinfo
+    ];
     text = ''
       picom_args=(-b --backend glx)
       # If we use nvidia as the main renderer -> compose with glx backend and render fence
@@ -24,7 +27,11 @@
 
   # ptpython shell for small calculations that does not leak its whole environment
   ptpython = let
-    wrapped = pkgs.python3.withPackages (ps: [ps.numpy ps.scipy pkgs.python3Packages.ptpython]);
+    wrapped = pkgs.python3.withPackages (ps: [
+      ps.numpy
+      ps.scipy
+      pkgs.python3Packages.ptpython
+    ]);
   in
     pkgs.writeShellApplication {
       name = "ptpython";
@@ -35,9 +42,7 @@
     };
 
   xsession-non-nixOS =
-    /*
-    sh
-    */
+    # sh
     ''
       # lock screen
       if command -v xss-lock &>/dev/null; then
@@ -56,9 +61,7 @@
     '';
 
   xsession-both =
-    /*
-    sh
-    */
+    # sh
     ''
       # increase repeat rate
       # args are <delay in ms after which to start repeating key> <repeat rate>
@@ -110,10 +113,9 @@ in {
       windowManager = lib.mkIf (!config.my.isNixOS) {
         command = lib.mkForce "nixGL xmonad";
       };
-      initExtra =
-        lib.strings.concatLines
-        ((lib.optionals (!config.my.isNixOS) [xsession-non-nixOS])
-          ++ [xsession-both]);
+      initExtra = lib.strings.concatLines (
+        (lib.optionals (!config.my.isNixOS) [xsession-non-nixOS]) ++ [xsession-both]
+      );
     };
 
     # TODO sync with nixOS config
@@ -122,7 +124,13 @@ in {
       variant = "altgr-intl";
       model = "pc105";
       options =
-        ["compose:menu" "compose:prsc" "lv3:ralt_switch" "eurosign:e" "nbsp:level3n"]
+        [
+          "compose:menu"
+          "compose:prsc"
+          "lv3:ralt_switch"
+          "eurosign:e"
+          "nbsp:level3n"
+        ]
         ++ (lib.optionals (hostname != "nimir") ["caps:escape"]);
     };
 
@@ -145,6 +153,9 @@ in {
         # backup terminal if nixGL is out of date with GPU drivers
         st
       ]
-      ++ [ptpython pkgs.stable.unclutter]; # unclutter: build issue (probably gcc14)
+      ++ [
+        ptpython
+        pkgs.stable.unclutter
+      ]; # unclutter: build issue (probably gcc14)
   };
 }

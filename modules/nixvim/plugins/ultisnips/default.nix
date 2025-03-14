@@ -15,9 +15,7 @@ in {
     vim.opt.runtimepath:append("${mySnippets}")
   '';
   extraConfigVim =
-    /*
-    vim
-    */
+    # vim
     ''
       let g:UltiSnipsExpandTrigger="<c-j>"
       let g:UltiSnipsJumpForwardTrigger="<c-l>"

@@ -27,13 +27,15 @@ in {
     systemd.user.services.revcli-sync-backlog = {
       Unit = unit;
       Service = {
-        ExecStart = "${pkgs.writeShellApplication {
-          name = "revcli-sync-backlog";
-          runtimeInputs = deps;
-          text = ''
-            revcli backlog sync
-          '';
-        }}/bin/revcli-sync-backlog";
+        ExecStart = "${
+          pkgs.writeShellApplication {
+            name = "revcli-sync-backlog";
+            runtimeInputs = deps;
+            text = ''
+              revcli backlog sync
+            '';
+          }
+        }/bin/revcli-sync-backlog";
       };
     };
 

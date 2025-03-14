@@ -3,9 +3,7 @@
   programs.neovim = {
     extraConfig =
       lib.mkBefore
-      /*
-      vim
-      */
+      # vim
       ''
         let mapleader=" "
         let maplocalleader=";"

@@ -6,7 +6,11 @@
 }: let
   rofi-autorandr = pkgs.writeShellApplication {
     name = "rofi-autorandr";
-    runtimeInputs = [pkgs.autorandr pkgs.gawk pkgs.rofi];
+    runtimeInputs = [
+      pkgs.autorandr
+      pkgs.gawk
+      pkgs.rofi
+    ];
     text = ''
       layout=$(autorandr | rofi -dmenu -p "Layout" -sort | awk '{ print $1}')
 
@@ -34,9 +38,7 @@ in {
     home.file."${config.xdg.configHome}/autorandr/preswitch" = {
       executable = true;
       text =
-        /*
-        bash
-        */
+        # bash
         ''
           #!/usr/bin/env bash
 
@@ -47,9 +49,7 @@ in {
     home.file."${config.xdg.configHome}/autorandr/postswitch" = {
       executable = true;
       text =
-        /*
-        bash
-        */
+        # bash
         ''
           #!/usr/bin/env bash
 

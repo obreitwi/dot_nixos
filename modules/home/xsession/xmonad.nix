@@ -13,7 +13,10 @@
 
   myplayerctl = pkgs.writeShellApplication {
     name = "myplayerctl";
-    runtimeInputs = with pkgs; [gnugrep playerctl];
+    runtimeInputs = with pkgs; [
+      gnugrep
+      playerctl
+    ];
     text = builtins.readFile "${dot-desktop}/scripts/myplayerctl";
   };
 in {

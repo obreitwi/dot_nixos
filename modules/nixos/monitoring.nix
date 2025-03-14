@@ -1,3 +1,6 @@
 {pkgs, ...}: {
-  environment.systemPackages = [pkgs.htop-vim pkgs.smartmontools];
+  environment.systemPackages = [
+    pkgs.htop-vim
+    pkgs.smartmontools
+  ];
 }

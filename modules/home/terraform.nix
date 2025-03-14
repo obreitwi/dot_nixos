@@ -19,9 +19,7 @@
     programs.neovim = {
       extraConfig =
         lib.mkAfter
-        /*
-        vim
-        */
+        # vim
         ''
           lua <<EOF
             require'lspconfig'.terraformls.setup{}

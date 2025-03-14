@@ -57,14 +57,21 @@ in {
     obreitwi = {
       isNormalUser = true;
       description = "Oliver Breitwieser";
-      extraGroups = ["networkmanager" "wheel"];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
       shell = pkgs.zsh;
     };
   };
 
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = ["nix-command" "flakes" "pipe-operators"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
 
     max-jobs = "auto";
     cores = 0;

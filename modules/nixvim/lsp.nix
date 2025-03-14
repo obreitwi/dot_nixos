@@ -29,9 +29,7 @@
     };
 
     onAttach =
-      /*
-      lua
-      */
+      # lua
       ''
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "[coc]E", vim.diagnostic.open_float, bufopts)

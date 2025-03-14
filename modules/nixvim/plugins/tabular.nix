@@ -4,9 +4,7 @@
   ];
 
   extraConfigVim =
-    /*
-    vim
-    */
+    # vim
     ''
       map <Leader>tb :Tabularize/
       map <Leader>tt :Tabularize<CR>
@@ -16,9 +14,7 @@
   extraFiles.tabular = {
     target = "after/plugin/tabular-maps.vim";
     text =
-      /*
-      vim
-      */
+      # vim
       ''
         if !exists(':Tabularize')
           finish " Tabular.vim wasn't loaded

@@ -2,9 +2,7 @@
   plugins.fugitive.enable = true;
 
   extraConfigVim =
-    /*
-    vim
-    */
+    # vim
     ''
       " Clean git objects when buffer is left
       autocmd BufReadPost fugitive://* set bufhidden=delete

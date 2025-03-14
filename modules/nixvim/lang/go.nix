@@ -17,7 +17,8 @@
   };
 in {
   autoCmd =
-    map (
+    map
+    (
       command:
         autoCmdFT {
           lang = "go";

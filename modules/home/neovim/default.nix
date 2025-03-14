@@ -25,9 +25,7 @@
         plugin = oil-nvim;
         config =
           myUtils.vimLua
-          /*
-          lua
-          */
+          # lua
           ''
             require"oil".setup{}
             vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
@@ -43,9 +41,7 @@
         plugin = mini-nvim;
         config =
           myUtils.vimLua
-          /*
-          lua
-          */
+          # lua
           ''
             require("mini.ai").setup()
           '';
@@ -53,9 +49,7 @@
       {
         plugin = vista-vim;
         config =
-          /*
-          vim
-          */
+          # vim
           ''
             nnoremap <c-y> :Vista<CR>
           '';
@@ -64,9 +58,7 @@
         plugin = rustaceanvim;
         config =
           myUtils.vimLua
-          /*
-          lua
-          */
+          # lua
           ''
             vim.g.rustaceanvim = {
               -- Plugin configuration
@@ -92,9 +84,7 @@
         plugin = haskell-tools-nvim;
         config =
           myUtils.vimLua
-          /*
-          lua
-          */
+          # lua
           ''
             require('haskell-tools')
           '';
@@ -105,14 +95,14 @@
     vimAlias = true;
 
     extraConfig =
-      /*
-      vim
-      */
-      (lib.strings.concatMapStrings (p:
-        if ((p.config or null) != null)
-        then p.config + "\n"
-        else "")
-      config.programs.neovim.plugins)
+      # vim
+      (lib.strings.concatMapStrings (
+          p:
+            if ((p.config or null) != null)
+            then p.config + "\n"
+            else ""
+        )
+        config.programs.neovim.plugins)
       + ''
         set runtimepath^=~/.vim runtimepath+=~/.vim/after
         let &packpath = &runtimepath
