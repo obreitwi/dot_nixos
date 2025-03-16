@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-stable-pre.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -64,7 +63,7 @@
     neorg-task-sync = {
       url = "github:obreitwi/neorg-task-sync?submodules=1";
       # TODO: Pending fix in neorg-task-sync dependencies
-      inputs.nixpkgs.follows = "nixpkgs-stable-pre";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pydemx = {
       url = "github:obreitwi/pydemx";
