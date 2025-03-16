@@ -13,7 +13,7 @@ in {
   my.gui = {
     enable = isDesktop;
 
-    keepass.enable = builtins.elem hostname ["mucku"];
+    keepass.enable = builtins.elem hostname ["mucku" "gentian"];
     nextcloud.enable = builtins.elem hostname ["mucku"];
     redshift.enable = isDesktop;
     slock.enable = false;

@@ -146,6 +146,10 @@ in {
     ];
   };
 
+  users.users.obreitwi = {
+    extraGroups = ["nextcloud"]; # access files without local webdav mount
+  };
+
   security.acme.certs = builtins.listToAttrs (
     map
     (domain: {
