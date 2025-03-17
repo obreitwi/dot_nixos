@@ -2,6 +2,6 @@
   plugins.mini = {
     enable = true;
     modules.ai = {};
-    modules.splitjoin = {};
+    # modules.splitjoin = {}; # disabled for splitjoin
   };
 }
