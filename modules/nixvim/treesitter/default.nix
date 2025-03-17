@@ -128,7 +128,17 @@ in {
       };
     };
     treesj.enable = true;
+    treesj.settings = {
+      max_join_length = 360;
+      use_default_keymaps = false;
+    };
   };
+  extraConfigVim = ''
+    " treesj mappings
+    nnoremap <leader>sj :TSJJoin<CR>
+    nnoremap <leader>ss :TSJSplit<CR>
+    nnoremap <leader>st :TSJToggle<CR>
+  '';
 
   extraPlugins = with pkgs.vimPlugins; [
     playground
