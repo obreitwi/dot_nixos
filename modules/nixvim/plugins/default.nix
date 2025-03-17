@@ -1,5 +1,6 @@
 {
   imports = [
+    ./argumentative.nix
     ./diffchar.nix
     ./fugitive.nix
     ./fzf.nix
