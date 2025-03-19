@@ -2,6 +2,7 @@
   imports = [
     ./argumentative.nix
     ./diffchar.nix
+    ./exchange.nix
     ./fugitive.nix
     ./fzf.nix
     ./git.nix
