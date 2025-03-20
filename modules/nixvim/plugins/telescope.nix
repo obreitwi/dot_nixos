@@ -66,7 +66,7 @@
       nmap <silent> [coc]r   :lua require'telescope.builtin'.lsp_references{}<CR>
       nmap <silent> [coc]ci  :lua require'telescope.builtin'.lsp_incoming_calls{}<CR>
       nmap <silent> [coc]co  :lua require'telescope.builtin'.lsp_outgoing_calls{}<CR>
-      nmap <silent> [coc]S   :lua require'telescope.builtin'.lsp_dynamic_workspace_symbols{}<CR>
-      nmap <silent> [coc]s   :lua require'telescope.builtin'.lsp_document_symbols{}<CR>
+      nmap <silent> [coc]S   :lua require'telescope.builtin'.lsp_dynamic_workspace_symbols{fname_width=40, symbol_width=80}<CR>
+      nmap <silent> [coc]s   :lua require'telescope.builtin'.lsp_document_symbols{fname_width=40, symbol_width=80}<CR>
     '';
 }
