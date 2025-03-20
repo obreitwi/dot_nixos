@@ -66,6 +66,7 @@
         };
       };
       nushell.enable = false;
+      protols.enable = true;
       pyright.enable = true;
       pylsp = {
         settings.plugins.black.enable = true;
