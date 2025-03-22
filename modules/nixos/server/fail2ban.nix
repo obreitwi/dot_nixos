@@ -53,12 +53,16 @@
           enabled = true;
           filter = "nginx-url-probe";
           action = "%(action_)s[blocktype=DROP]";
+          backend = "systemd"; # Do not forget to specify this if your jail uses a log file
+          journalmatch = "_SYSTEMD_UNIT=nginx.service";
           findtime = 600;
         };
         nginx-botsearch.settings = {
           enabled = true;
           filter = "nginx-botsearch";
           action = "%(action_)s[blocktype=DROP]";
+          backend = "systemd"; # Do not forget to specify this if your jail uses a log file
+          journalmatch = "_SYSTEMD_UNIT=nginx.service";
           findtime = 600;
         };
         php-url-fopen.settings = {
