@@ -1,0 +1,58 @@
+commit e9a6dd7d2a1f56a05feb4eee3e60b7cfb6e9ce42
+Author:     Oliver Breitwieser <oliver@breitwieser.eu>
+AuthorDate: 2025-03-26 23:06:48 +0100
+Commit:     Oliver Breitwieser <oliver@breitwieser.eu>
+CommitDate: 2025-03-26 23:06:48 +0100
+
+    Revert "golangci-lint-langserver: 0.0.9 -> 0.0.10"
+    
+    This reverts commit 97cf39c20fc8d46c713e737cdae0a16fecb53aed.
+
+diff --git a/pkgs/by-name/go/golangci-lint-langserver/package.nix b/pkgs/by-name/go/golangci-lint-langserver/package.nix
+index 6e9c47172656..515ed00b4eec 100644
+--- a/pkgs/by-name/go/golangci-lint-langserver/package.nix
++++ b/pkgs/by-name/go/golangci-lint-langserver/package.nix
+@@ -1,36 +1,29 @@
+ {
+   lib,
+   buildGoModule,
+-  golangci-lint,
+-  writableTmpDirAsHomeHook,
+   fetchFromGitHub,
+ }:
+ 
+ buildGoModule rec {
+   pname = "golangci-lint-langserver";
+-  version = "0.0.10";
++  version = "0.0.9";
+ 
+   src = fetchFromGitHub {
+     owner = "nametake";
+     repo = "golangci-lint-langserver";
+-    tag = "v${version}";
+-    hash = "sha256-wNofr/s8K+vbvNZWrQ97g2V0fNAS2P/Zf7tsOmly+gc=";
++    rev = "v${version}";
++    sha256 = "sha256-jNRDqg2a5dXo7QI4CBRw0MLwhfpdGuhygpMoSKNcgC0=";
+   };
+ 
+-  vendorHash = "sha256-SsGw26y/ZIBFp9dBk55ebQgJiLWOFRNe21h6huYE84I=";
++  vendorHash = "sha256-tAcl6P+cgqFX1eMYdS8vnfdNyb+1QNWwWdJsQU6Fpgg=";
+ 
+   subPackages = [ "." ];
+ 
+-  nativeCheckInputs = [
+-    golangci-lint
+-    writableTmpDirAsHomeHook
+-  ];
+-
+-  meta = {
++  meta = with lib; {
+     description = "Language server for golangci-lint";
+     homepage = "https://github.com/nametake/golangci-lint-langserver";
+-    license = lib.licenses.mit;
+-    maintainers = with lib.maintainers; [ kirillrdy ];
++    license = licenses.mit;
++    maintainers = with maintainers; [ kirillrdy ];
+     mainProgram = "golangci-lint-langserver";
+   };
+ }
