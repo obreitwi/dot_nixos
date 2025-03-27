@@ -18,7 +18,7 @@
   ];
 
   programs.neovim = {
-    enable = false;
+    enable = true;
 
     plugins = with pkgs.vimPlugins; [
       {
