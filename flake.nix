@@ -62,8 +62,6 @@
     };
     neorg-task-sync = {
       url = "github:obreitwi/neorg-task-sync?submodules=1";
-      # TODO: Pending fix in neorg-task-sync dependencies
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     pydemx = {
       url = "github:obreitwi/pydemx";
