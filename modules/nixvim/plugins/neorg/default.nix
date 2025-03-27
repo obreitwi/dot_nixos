@@ -44,7 +44,9 @@ in {
               template_name = "${template-journal}";
             };
           };
-          "core.integrations.telescope" = {};
+          "core.integrations.telescope" = {
+            __empty = null;
+          };
           "core.esupports.indent" = {
             config = {
               modifiers = {
@@ -73,6 +75,45 @@ in {
     extraConfigVim =
       # vim
       ''
+        " Copy the name of a task in personal time tracking
+        function! CopyTaskName()
+            let l:save_cursor = getcurpos()
+            normal! 0Ely''$
+            call setpos('.', l:save_cursor)
+        endfunction
+
+        " Paste the name of a task in personal time tracking
+        function! PasteTaskName()
+            let l:save_cursor = getcurpos()
+            normal! 0''$p
+            call setpos('.', l:save_cursor)
+        endfunction
+
+        " Replace the name of a task in personal time tracking
+        function! ReplaceTaskName()
+            let l:save_cursor = getcurpos()
+            normal! 0El"_D''$pJ
+            call setpos('.', l:save_cursor)
+            normal! zO
+        endfunction
+
+        function InsertTaskName(name)
+            call append(line('.'), a:name)
+            normal! J
+            normal! :s/\t/ /g<CR>
+            normal! :s/\s\+/ /g<CR>
+        endfunction
+
+        function InsertAsNeorgLink(input)
+            let l:split=split(a:input, '	')
+            let l:title=l:split[0]
+            let l:title=substitute(l:title, "\{", "\\\\{", "g")
+            let l:title=substitute(l:title, "\}", "\\\\}", "g")
+            let l:url=l:split[1]
+            call append(line('.'), printf('{%s}[%s]', l:url, l:title))
+            normal! J
+        endfunction
+
         autocmd FileType norg nmap <silent> <localleader>y :call CopyTaskName()<CR>
         autocmd FileType norg nmap <silent> <localleader>p :call PasteTaskName()<CR>
         autocmd FileType norg nmap <silent> <localleader>r :call ReplaceTaskName()<CR>0
@@ -89,58 +130,6 @@ in {
         autocmd FileType gitcommit nmap <silent> <localleader>c :call fzf#run(fzf#wrap({'source': 'revcli stories --list --title', 'sink': function("InsertGitIDs"), 'options': '-d "	" --with-nth 1'}))<CR>
 
         autocmd FileType norg setlocal tabstop=2 | setlocal shiftwidth=2 | setlocal expandtab | setlocal fo=tqnj
-      '';
-
-    extraConfigLuaPre =
-      # lua
-      ''
-        -- Copy the name of a task in personal time tracking
-        function copyTaskName()
-            local save_cursor = vim.fn.getcurpos()
-            vim.cmd("normal! 0Ely$")
-            vim.fn.setpos('.', save_cursor)
-        end
-
-        -- Paste the name of a task in personal time tracking
-        function pasteTaskName()
-            local save_cursor = vim.fn.getcurpos()
-            vim.cmd("normal! 0$p")
-            vim.fn.setpos('.', save_cursor)
-        end
-
-        -- Replace the name of a task in personal time tracking
-        function replaceTaskName()
-            local save_cursor = vim.fn.getcurpos()
-            vim.cmd('normal! 0El"_D$p')
-            vim.fn.setpos('.', save_cursor)
-            vim.cmd("normal! zO")
-        end
-
-        function insertTaskName(name)
-            vim.fn.append(vim.fn.line('.'), name)
-            vim.cmd('normal! J')
-            vim.cmd('normal! :s/\t/ /g<CR>')
-            vim.cmd('normal! :s/\s\+/ /g<CR>')
-        end
-
-        function insertAsNeorgLink(input)
-            local split = vim.fn.split(input, '	')
-            local title = split[1]
-            title = vim.fn.substitute(title, "\{", "\\\\{", "g")
-            title = vim.fn.substitute(title, "\}", "\\\\}", "g")
-            local url = split[2]
-            vim.fn.append(vim.fn.line('.'), vim.fn.printf('{%s}[%s]', url, title))
-            vim.cmd("normal! J")
-        end
-
-        function insertTaskDetails(title_details)
-            local split = vim.fn.split(title_details, '	')
-            local title = split[1]
-            local details = split[2]
-            vim.fn.append(line('.'), title .. ' #STORY ' .. details)
-            vim.cmd("normal! J")
-            vim.cmd("normal! zO")
-        end
       '';
 
     extraConfigLua = ''
