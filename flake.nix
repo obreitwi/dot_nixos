@@ -169,7 +169,7 @@
     }: {
       home.packages = [
         (pkgs.writeShellApplication {
-          name = "nnvim";
+          name = "nvim";
           runtimeInputs = [
             (nixvim'.makeNixvimWithModule (nixvimModule {
               inherit pkgs;
