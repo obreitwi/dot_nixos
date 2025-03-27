@@ -31,6 +31,7 @@
     ijq
     jq
 
+    dateutils
     moreutils
 
     # disabled since not in use right now
