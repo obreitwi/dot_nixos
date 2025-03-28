@@ -84,18 +84,21 @@
     asfa,
     backlight,
     blobdrop,
+    dot-desktop,
+    dot-vim,
+    dot-zsh,
     home-manager,
-    nixvim,
+    mailserver,
     neorg-overlay,
     neorg-task-sync,
     nix-index-database,
-    mailserver,
     nixpkgs,
     nixpkgs-stable,
+    nixvim,
     pydemx,
     revcli,
     ...
-  } @ inputs: let
+  }: let
     system = "x86_64-linux";
     overlays = [
       neorg-overlay.overlays.default
@@ -139,7 +142,8 @@
 
     # specialArgs computs inputs for nixos/hm modules
     baseSpecialArgs = {
-      inherit inputs;
+      nixpkgs = nixpkgs-patched;
+      inherit dot-desktop dot-vim dot-zsh home-manager;
     };
     specialArgs = {hostname}:
       baseSpecialArgs

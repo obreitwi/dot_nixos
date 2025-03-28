@@ -1,13 +1,11 @@
 {
   config,
   hostname,
-  inputs,
+  dot-desktop,
   lib,
   pkgs,
   ...
 }: let
-  inherit (inputs) dot-desktop;
-
   # TODO sync with autorand
   startPicom = pkgs.writeShellApplication {
     name = "start-picom";

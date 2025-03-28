@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./atuin.nix
     ./azure.nix
     ./disable-news.nix
     ./git
