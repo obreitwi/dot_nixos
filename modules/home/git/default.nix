@@ -25,7 +25,6 @@ in {
     + gitconfig;
 
   home.packages = [
-    pkgs.bat
     pkgs.delta
     pkgs.difftastic
     pkgs.git

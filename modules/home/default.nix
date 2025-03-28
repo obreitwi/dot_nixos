@@ -6,6 +6,7 @@
   imports = [
     ./atuin.nix
     ./azure.nix
+    ./bat.nix
     ./disable-news.nix
     ./git
     ./gnupg.nix
