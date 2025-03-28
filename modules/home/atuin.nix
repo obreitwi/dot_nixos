@@ -18,12 +18,13 @@
         daemon.enable = true;
 
         flags = [
-          "--disable-up-arrow"
+          #"--disable-up-arrow"
         ];
 
         settings = {
           auto_sync = false;
           dialect = "uk";
+          filter_mode_shell_up_key_binding = "session";
           keymap_mode = "vim-insert";
           update_check = false;
         };
