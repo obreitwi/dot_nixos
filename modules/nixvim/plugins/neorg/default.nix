@@ -4,7 +4,6 @@
   ...
 }: let
   neorg-existing-day = ./neorg-existing-day;
-  template-journal = ./neorg-template-journal.norg;
 in {
   options.my.nixvim.neorg = lib.mkOption {
     default = true;
@@ -41,7 +40,7 @@ in {
               journal_folder = "journal";
               strategy = "flat";
               workspace = "work";
-              template_name = "${template-journal}";
+              template_name = "template.norg";
             };
           };
           "core.integrations.telescope" = {
