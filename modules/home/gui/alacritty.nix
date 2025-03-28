@@ -35,12 +35,13 @@
       mods = "Alt|Shift"
     '';
 
-  colors =
+  colors_custom =
     # toml
     ''
       [colors.bright]
       black = "0x808080"
-      blue = "0x0066ff"
+      #blue = "0x0066ff"
+      blue = "0x3385ff"
       cyan = "0x00ffff"
       green = "0x33ff00"
       magenta = "0xcc00ff"
@@ -54,7 +55,8 @@
 
       [colors.normal]
       black = "0x000000"
-      blue = "0x0066ff"
+      #blue = "0x0066ff"
+      blue = "0x3385ff"
       cyan = "0x00ffff"
       green = "0x33ff00"
       magenta = "0xcc00ff"
@@ -65,6 +67,40 @@
       [colors.primary]
       background = "0x000000"
       foreground = "0xffffff"
+    '';
+
+  colors_gruvbox_dark =
+    # toml
+    ''
+      # Colors (Gruvbox dark)
+      # Default colors
+      [colors.primary]
+      # hard contrast background = = '#1d2021'
+      background = '#282828'
+      # soft contrast background = = '#32302f'
+      foreground = '#ebdbb2'
+
+      # Normal colors
+      [colors.normal]
+      black   = '#282828'
+      red     = '#cc241d'
+      green   = '#98971a'
+      yellow  = '#d79921'
+      blue    = '#458588'
+      magenta = '#b16286'
+      cyan    = '#689d6a'
+      white   = '#a89984'
+
+      # Bright colors
+      [colors.bright]
+      black   = '#928374'
+      red     = '#fb4934'
+      green   = '#b8bb26'
+      yellow  = '#fabd2f'
+      blue    = '#83a598'
+      magenta = '#d3869b'
+      cyan    = '#8ec07c'
+      white   = '#ebdbb2'
     '';
 
   font_host = {
@@ -146,7 +182,7 @@ in {
       home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (
         lib.strings.intersperse "\n" [
           bindings
-          colors
+          colors_custom
           font
           hints
           window

@@ -38,8 +38,8 @@
         */
         ''
           zvm_after_init_commands+=(
-            'bindkey -M viins "^R" atuin-search-viins'
             'bindkey -M vicmd "^R" atuin-search-vicmd'
+            'bindkey -M viins "^R" atuin-search-viins'
           )
         '';
     };
