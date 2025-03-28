@@ -1,11 +1,10 @@
 {
   config,
-  inputs,
+  dot-vim,
   lib,
   pkgs,
   ...
 }: let
-  inherit (inputs) dot-vim;
   treesitter-plugins = with pkgs.vimPlugins; [
     (nvim-treesitter.withPlugins (
       p:

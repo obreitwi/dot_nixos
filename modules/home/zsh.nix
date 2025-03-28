@@ -1,22 +1,10 @@
 {
-  inputs,
+  config,
+  dot-zsh,
   lib,
   pkgs,
   ...
 }: let
-  inherit (inputs) dot-zsh;
-
-  plugins = with pkgs; [
-    zsh-autopair
-    zsh-autosuggestions
-    zsh-forgit
-    zsh-fzf-tab
-    zsh-history-substring-search
-    zsh-nix-shell
-    zsh-powerlevel10k
-    zsh-vi-mode
-  ];
-
   loadSystemdEnv = pkgs.writeShellScript "load-systemd-env" ''
     comm -13 <(env | sort) <(systemctl show-environment --user | sort) | grep -v '^\(NIX_PATH\|INFOPATH\|PATH\|LD_LIBRARY_PATH\)=' | sed 's:^:export :g'
   '';
@@ -29,7 +17,8 @@
     writeText "zsh-init-plugins.sh"
     # sh
     ''
-      source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+       source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+       zvm_after_init_commands+=( 'command -v fzf-share >/dev/null && source "$(fzf-share)/completion.zsh" && source "$(fzf-share)/key-bindings.zsh"' )
 
       # list of completers to use (does not work correctly)
       # TODO: figure out how to complete on redirect
@@ -82,8 +71,6 @@
       # bindings for history-substring search
       bindkey -M vicmd 'k' history-substring-search-up
       bindkey -M vicmd 'j' history-substring-search-down
-
-      source ${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
     '';
 
   initCarapace =
@@ -92,7 +79,7 @@
       source <(carapace az zsh)
     '';
 in {
-  home.packages = plugins ++ [pkgs.carapace];
+  home.packages = [pkgs.carapace];
 
   programs.zsh = {
     enable = true;
@@ -103,38 +90,56 @@ in {
       ignoreAllDups = true;
     };
 
-    initExtraFirst =
-      # sh
-      ''
-        if [ -n "''${ZSH_ENABLE_PROFILING:-}" ]; then
-          zmodload zsh/zprof
-        fi
-      ''
-      + initPluginsFirst
-      +
-      # sh
-      ''
-        ZSH_VIA_NIX=1
+    initContent = lib.mkMerge [
+      (
+        lib.mkBefore (
+          /*
+          zsh
+          */
+          ''
+            if [ -n "''${ZSH_ENABLE_PROFILING:-}" ]; then
+            zmodload zsh/zprof
+            fi
+          ''
+          + initPluginsFirst
+          +
+          # sh
+          ''
+            ZSH_VIA_NIX=1
 
-        if command -v load-systemd-env &>/dev/null; then
-          source <(load-systemd-env)
-        fi
+            if command -v load-systemd-env &>/dev/null; then
+            source <(load-systemd-env)
+            fi
 
-        unset ZSH_CFG_ROOT
-        source ${dot-zsh}/zshrc
-      ''
-      + initCarapace;
+            unset ZSH_CFG_ROOT
+            source ${dot-zsh}/zshrc
+          ''
+          + initCarapace
+        )
+      )
+      (
+        lib.mkOrder 900
+        # sh
+        ''
+          source ${initPlugins}
+          source ${dot-zsh}/widgets
+        ''
+      )
+      (
+        lib.mkOrder 2000 # should be highest order
+        
+        /*
+        zsh
+        */
+        ''
+          source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
-    initExtra =
-      lib.mkAfter
-      # sh
-      ''
-        source ${initPlugins}
-        source ${dot-zsh}/widgets
-        if [ -n "''${ZSH_ENABLE_PROFILING:-}" ]; then
-          zprof
-        fi
-      '';
+          if [ -n "''${ZSH_ENABLE_PROFILING:-}" ]; then
+            zprof
+          fi
+        ''
+      )
+    ];
 
     profileExtra = ''
       source <(${loadSystemdEnv})

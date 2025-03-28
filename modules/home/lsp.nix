@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  nixpkgs,
   ...
 }: {
   # all language server packages/settings
@@ -18,5 +18,5 @@
     vscode-langservers-extracted
   ];
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.nixPath = ["nixpkgs=${nixpkgs}"];
 }
