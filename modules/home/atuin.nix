@@ -25,7 +25,7 @@
           auto_sync = false;
           dialect = "uk";
           filter_mode_shell_up_key_binding = "session";
-          keymap_mode = "vim-insert";
+          keymap_mode = "auto";
           update_check = false;
           workspaces = true;
         };
@@ -38,9 +38,8 @@
         */
         ''
           zvm_after_init_commands+=(
-            'bindkey -M vicmd "^F" _atuin_search_widget'
-            'bindkey -M viins "^F" _atuin_search_widget'
             'bindkey -M viins "^R" atuin-search-viins'
+            'bindkey -M vicmd "^R" atuin-search-vicmd'
           )
         '';
     };

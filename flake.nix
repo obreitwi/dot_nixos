@@ -129,11 +129,11 @@
       name = "nixpkgs-patched-${nixpkgs.shortRev}";
       src = nixpkgs;
       patches = [
-        #(pkgs-init.fetchurl {
-        #url = "https://github.com/NixOS/nixpkgs/pull/389674.diff";
-        #hash = "sha256-F6THEVdLQ9NBE+KMDElc5jWgvso5IkOrYaYDgxEViZU=";
-        #})
-        ./patches/nixpkgs/revert_pr_391647.patch
+        (pkgs-init.fetchurl {
+          url = "https://github.com/NixOS/nixpkgs/pull/393626.diff";
+          hash = "sha256-iTaFSDBFS0fma0BkuA4R8QGmwyhOUjTYS2YF+QpMMLU=";
+        })
+        #./patches/nixpkgs/revert_pr_391647.patch
       ];
     };
 
