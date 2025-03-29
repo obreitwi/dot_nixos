@@ -11,6 +11,7 @@ lib.mkIf config.my.gui.enable {
     feh # image viewer
     firefox
     picom
+    st
     rofi
     rofimoji
     trayer

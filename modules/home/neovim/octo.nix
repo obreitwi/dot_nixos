@@ -10,8 +10,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "pwntester";
       repo = "octo.nvim";
-      rev = "5dd22c9497d1bd2c6982e6c0afc829f8ad21eee0";
-      sha256 = "1ciwl2pxlswf99yz1dcvx39pxf1l0acfxqn9ir1qcar123c99b5j";
+      rev = "97660ea338c3c94e9e367258a322afc1e154cbbd";
+      sha256 = "1lhsb52y2skqzvw1l05c27pryqfdkggl6nj0924731r2hlcj8v83";
     };
   };
   config =
