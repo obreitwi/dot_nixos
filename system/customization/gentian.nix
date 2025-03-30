@@ -175,6 +175,8 @@ in {
   services.nginx = {
     enable = true;
 
+    additionalModules = [pkgs.nginxModules.subsFilter] ++ (lib.optionals traceRequestsWithLua [pkgs.nginxModules.lua]);
+
     commonHttpConfig = let
       resty = pkgs.lua51Packages.lua-resty-core;
       lrucache = pkgs.lua51Packages.lua-resty-lrucache;
@@ -189,12 +191,37 @@ in {
         lua_package_path "${resty}/lib/lua/5.1/?.lua;${lrucache}/lib/lua/5.1/?.lua;${luaJson}/?.lua;;";
       '';
 
-    additionalModules = lib.optionals traceRequestsWithLua [pkgs.nginxModules.lua];
-
     virtualHosts = {
       "zqnr.de" = nginxDefault "zqnr.de";
       "www.zqnr.de" = nginxDefault "zqnr.de";
       "gentian.zqnr.de" = nginxDefault "zqnr.de";
+      "grocy.zqnr.de" = lib.mkMerge [
+        (myUtils.nginxACME "zqnr.de")
+        {
+          locations."/" = {
+            # sets host to $host, but we want $proxy_host -> disable
+            # proxyPass = "https://grocy.nas.zqnr.de";
+            extraConfig = ''
+              proxy_pass https://grocy.nas.zqnr.de;
+
+              proxy_set_header Host grocy.nas.zqnr.de;
+              proxy_redirect default;
+
+              proxy_ssl_server_name on;
+              proxy_ssl_session_reuse on;
+
+              proxy_pass_header Authorization;
+
+              proxy_headers_hash_bucket_size 128;
+
+              # prevent compression to allow rewriting
+              proxy_set_header Accept-Encoding "";
+
+              subs_filter https://grocy.nas.zqnr.de/ https://grocy.zqnr.de/;
+            '';
+          };
+        }
+      ];
 
       "initialcommit.org" = nginxDefault "initialcommit.org";
       "www.initialcommit.org" = nginxDefault "initialcommit.org";
