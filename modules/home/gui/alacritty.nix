@@ -35,7 +35,7 @@
       mods = "Alt|Shift"
     '';
 
-  colors_custom =
+  colors.custom =
     # toml
     ''
       [colors.bright]
@@ -69,7 +69,7 @@
       foreground = "0xffffff"
     '';
 
-  colors_gruvbox_dark =
+  colors.gruvbox_dark =
     # toml
     ''
       # Colors (Gruvbox dark)
@@ -101,6 +101,69 @@
       magenta = '#d3869b'
       cyan    = '#8ec07c'
       white   = '#ebdbb2'
+    '';
+
+  colors.gruvbox_material =
+    # toml
+    ''
+      # Colors (Gruvbox Material Dark Medium)
+      [colors.primary]
+      #background = '0x282828'
+      background = "0x000000"
+      foreground = '0xdfbf8e'
+
+      [colors.normal]
+      black   = '0x665c54'
+      red     = '0xea6962'
+      green   = '0xa9b665'
+      yellow  = '0xe78a4e'
+      blue    = '0x7daea3'
+      magenta = '0xd3869b'
+      cyan    = '0x89b482'
+      white   = '0xdfbf8e'
+
+      [colors.bright]
+      black   = '0x928374'
+      red     = '0xea6962'
+      green   = '0xa9b665'
+      yellow  = '0xe3a84e'
+      blue    = '0x7daea3'
+      magenta = '0xd3869b'
+      cyan    = '0x89b482'
+      white   = '0xdfbf8e'
+    '';
+
+  colors.xterm =
+    # toml
+    ''
+      # XTerm's default colors
+
+      # Default colors
+      [colors.primary]
+      background = '#000000'
+      foreground = '#ffffff'
+
+      # Normal colors
+      [colors.normal]
+      black   = '#000000'
+      red     = '#cd0000'
+      green   = '#00cd00'
+      yellow  = '#cdcd00'
+      blue    = '#0000ee'
+      magenta = '#cd00cd'
+      cyan    = '#00cdcd'
+      white   = '#e5e5e5'
+
+      # Bright colors
+      [colors.bright]
+      black   = '#7f7f7f'
+      red     = '#ff0000'
+      green   = '#00ff00'
+      yellow  = '#ffff00'
+      blue    = '#5c5cff'
+      magenta = '#ff00ff'
+      cyan    = '#00ffff'
+      white   = '#ffffff'
     '';
 
   font_host = {
@@ -182,7 +245,7 @@ in {
       home.file."${config.xdg.configHome}/alacritty/alacritty.toml".text = lib.strings.concatStrings (
         lib.strings.intersperse "\n" [
           bindings
-          colors_custom
+          colors.custom
           font
           hints
           window
