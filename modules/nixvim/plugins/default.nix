@@ -7,6 +7,7 @@
     ./fzf.nix
     ./git.nix
     ./hop.nix
+    ./linediff.nix
     ./mini.nix
     ./mundo.nix
     ./neogit.nix

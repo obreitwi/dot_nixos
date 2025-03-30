@@ -4,8 +4,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "junegunn";
       repo = "fzf";
-      rev = "ba6d1b8772ce5e75ff999dcca21c0fadb689d7bf";
-      sha256 = "0wrbqzp5vcy5szjnkhz5h22g8gj58pnzyyfradqg4z5kfafzq9q3";
+      rev = "e15cba0c8c7c9dd3388d260cf5b5de7fc044dfbc";
+      sha256 = "029jby37wjawz9qpl4wm7vqbqsrksl3d1za3qj68cgpwdcfxz8d6";
     };
   };
   fzf_vim = pkgs.vimUtils.buildVimPlugin {
