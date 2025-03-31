@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   linediff = pkgs.vimUtils.buildVimPlugin {
-    name = "gv";
+    name = "linediff";
     src = pkgs.fetchFromGitHub {
       owner = "AndrewRadev";
       repo = "linediff.vim";
