@@ -60,6 +60,9 @@
     vlc
     yt-dlp
 
+    # fzf based systemctl tui
+    sysz
+
     # tools
     archivemount # mount archives as loopback
     ast-grep
