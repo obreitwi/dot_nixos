@@ -66,6 +66,7 @@
         };
       };
       nushell.enable = false;
+      postgres_lsp.enable = true;
       protols.enable = true;
       pyright.enable = true;
       pylsp = {
