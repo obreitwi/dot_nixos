@@ -237,6 +237,26 @@ in {
       "www.breitwieser.eu" = nginxDefault "breitwieser.eu";
     };
   };
+  # restart nginx every morning at 6:00 to update reverse proxy
+  systemd.timers."restart-nginx" = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "06:05";
+      Persistent = true;
+      Unit = "restart-nginx.service";
+    };
+  };
+
+  systemd.services."restart-nginx" = {
+    script = ''
+      set -eu
+      ${pkgs.systemd}/bin/systemctl restart nginx.service
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
 
   mailserver = let
     domains = [
