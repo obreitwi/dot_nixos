@@ -80,7 +80,7 @@
     };
   };
   plugins.lsp-format.enable = true;
-  plugins.lsp-signature.enable = true;
+  plugins.lsp-signature.enable = false; # too many error in typesript
 
   extraConfigVim =
     # vim
