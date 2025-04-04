@@ -38,7 +38,11 @@
     servers = {
       ast_grep.enable = true;
       bashls.enable = true;
-      cssls.enable = true;
+      cssls = {
+        enable = false;
+        settings.scss.validate = false;
+        onAttach.function = "client.server_capabilities.documentFormattingProvider = false";
+      };
       dartls.enable = false;
       eslint = {
         enable = true;
@@ -71,6 +75,12 @@
       pyright.enable = true;
       pylsp = {
         settings.plugins.black.enable = true;
+      };
+      stylelint_lsp = {
+        enable = true;
+        settings = {
+          autoFixOnFormat = true;
+        };
       };
       ts_ls = {
         enable = true;
