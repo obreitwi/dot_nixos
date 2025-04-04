@@ -18,9 +18,10 @@
     ./silicon.nix
     ./tabular.nix
     ./telescope.nix
+    ./textojb-word-column.nix
     ./tpope.nix
-    ./update-nix-fetchgit.nix
     ./ultisnips
+    ./update-nix-fetchgit.nix
     ./vista.nix
   ];
 }
