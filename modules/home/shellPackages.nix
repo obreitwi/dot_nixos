@@ -3,7 +3,7 @@
     # nix helper
     nh
     nix-output-monitor
-    nixVersions.nix_2_26
+    nixVersions.nix_2_28
     nvd
     nurl
 
