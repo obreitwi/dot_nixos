@@ -35,7 +35,7 @@
     ''
       vim.keymap.set("n", "<leader>lf", ":Telescope file_browser<CR>", {silent = true})
       vim.keymap.set("n", "<leader>lr", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { silent = true})
-      vim.keymap.set("n", "[unite]s", ":Telescope file_browser path=~/tmp/scratchpad select_buffer=true<CR>", { silent = true})
+      vim.keymap.set("n", "[unite]s", ":Telescope file_browser path=~/doc/scratchpad select_buffer=true<CR>", { silent = true})
     '';
 
   extraConfigVim =
