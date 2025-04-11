@@ -18,7 +18,7 @@
     ./silicon.nix
     ./tabular.nix
     ./telescope.nix
-    ./textojb-word-column.nix
+    ./textobj.nix
     ./tpope.nix
     ./ultisnips
     ./update-nix-fetchgit.nix
