@@ -61,7 +61,8 @@
     yt-dlp
 
     # fzf based systemctl tui
-    sysz
+    isd # trying out against sysz
+    sysz # trying out against isd
 
     # tools
     archivemount # mount archives as loopback
