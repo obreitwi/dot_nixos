@@ -21,6 +21,19 @@
           lang.__raw = "nil"; # string value, specify language for ast-grep `nil` for default
         };
       };
+
+      pickers = {
+        buffers = {
+          mappings = {
+            n = {
+              "dd".__raw = "require('telescope.actions').delete_buffer";
+              "<c-h>".__raw = "function(bn) require('telescope.actions').extensions.file_browser.actions.toggle_hidden(bn) end";
+            };
+          };
+        };
+      };
+      # defaults = { path_display = { "smart" } },
+      defaults = {path_display = ["truncate"];};
     };
 
     enabledExtensions = ["ast_grep"];
