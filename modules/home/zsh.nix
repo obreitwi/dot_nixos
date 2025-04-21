@@ -1,5 +1,4 @@
 {
-  config,
   dot-zsh,
   lib,
   pkgs,
@@ -56,12 +55,12 @@
       # resolve issue with carapace
       zstyle ':fzf-tab:*' query-string prefix first
 
-      source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh
+      source "${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh"
       autopair-init
 
-      source ${zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
+      source "${zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh"
 
-      source ${zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      source "${zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
       source "${zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh"
       FORGIT_FZF_DEFAULT_OPTS="--preview-window 'down:75%'"
@@ -88,6 +87,7 @@ in {
       save = 1000000000;
       size = 1000000000;
       ignoreAllDups = true;
+      share = false; # handled in dot-zsh via INC_APPEND_HISTORY
     };
 
     initContent = lib.mkMerge [
