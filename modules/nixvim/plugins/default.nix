@@ -1,6 +1,7 @@
 {
   imports = [
     ./argumentative.nix
+    ./dadbod.nix
     ./diffchar.nix
     ./exchange.nix
     ./fugitive.nix
