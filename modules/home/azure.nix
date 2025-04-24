@@ -20,7 +20,7 @@ in {
   config = lib.mkIf config.my.azure.enable {
     home.packages = [azure-cli];
 
-    programs.zsh.initExtraFirst = ''
+    programs.zsh.initContent = lib.mkBefore ''
       fpath+=(${azure-cli}/share/zsh/site-functions)
     '';
   };
