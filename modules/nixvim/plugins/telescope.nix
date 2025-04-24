@@ -7,6 +7,24 @@
         settings.hijack_netrw = false;
       };
       fzf-native.enable = true;
+      live-grep-args = {
+        enable = true;
+        settings = {
+          mappings = {
+            i = {
+              "<C-i>" = {
+                __raw = "require'telescope-live-grep-args.actions'.quote_prompt({ postfix = \" --iglob \" })";
+              };
+              "<C-k>" = {
+                __raw = "require'telescope-live-grep-args.actions'.quote_prompt()";
+              };
+              "<C-space>" = {
+                __raw = "require'telescope.actions'.to_fuzzy_refine";
+              };
+            };
+          };
+        };
+      };
       undo.enable = true;
     };
 
@@ -67,7 +85,8 @@
       nmap <silent> [unite]M :lua require'telescope.builtin'.keymaps{}<CR>
       vmap <silent> [unite]r :lua require'telescope.builtin'.grep_string{initial_mode='select'}<CR>
       nmap <silent> [unite]r :lua require'telescope.builtin'.grep_string{}<CR>
-      nmap <silent> [unite]g :lua require'telescope.builtin'.live_grep{}<CR>
+      " nmap <silent> [unite]g :lua require'telescope.builtin'.live_grep{}<CR>
+      nmap <silent> [unite]g :lua require'telescope'.extensions.live_grep_args.live_grep_args()<CR>
       nmap <silent> [unite]G :lua require'telescope.builtin'.live_grep{cwd = require'telescope.utils'.buffer_dir()}<CR>
       nmap <silent> [unite]h :lua require'telescope.builtin'.help_tags{}<CR>
       nmap <silent> [unite]a :Telescope ast_grep<CR>
