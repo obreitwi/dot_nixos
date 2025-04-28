@@ -3,10 +3,10 @@
     name = "peekaboo";
     src = pkgs.fetchFromGitHub {
       # fixes resize bug
-      owner = "Gee19";
+      owner = "gibfahn";
       repo = "vim-peekaboo";
-      rev = "287ea250d66b6640595650c3e0ba9371ad81141c";
-      sha256 = "1irx7k42fws9maq74r5y0jka7brix0ar0ixa965i07manb741n6m";
+      rev = "3490bc6d2848606e59983ad9582883d4706a386f"; # branch no_winrestcmd
+      sha256 = "sha256-qZMVX00korDLnbSTr+S0JgEpsk32J2IvKSALWQgb+0Y=";
     };
   };
 in {
