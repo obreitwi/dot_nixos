@@ -4,8 +4,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "junegunn";
       repo = "fzf";
-      rev = "93cb3758b5f08a6dbf30c6e3d2e1de9b0be52a63";
-      sha256 = "0bsn3pqw0bg6qsr42x31w6ras44vxhshzcg8sk4hvclqcwdxb9rw";
+      rev = "9c1a47acf7453f9dad5905b7f23ad06e5195d51f";
+      sha256 = "0xx946sgcbhfbq1zv2pk6d9qs5mxqqw0pgp6igv0fzib281w7x9a";
     };
   };
   fzf_vim = pkgs.vimUtils.buildVimPlugin {
@@ -13,8 +13,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "junegunn";
       repo = "fzf.vim";
-      rev = "1fff637559f29d5edbdb05e03327954a8cd9e406";
-      sha256 = "13xh17bqnb1k32jm53x9kqc8x6njwcdha9xbwn2zhm0s8dgqikzx";
+      rev = "3cb44a8ba588e1ada409af495bdc6a4d2d37d5da";
+      sha256 = "0v1svsw4wj4i2rayvksdpz8q65yvkdq9igpa64qq7xyd07jh6g8n";
     };
   };
 in {
