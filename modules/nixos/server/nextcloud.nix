@@ -25,19 +25,19 @@ in {
   config = lib.mkIf nextcloud.enable {
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud29;
+      package = pkgs.nextcloud30;
       inherit (nextcloud) hostName;
 
       # Instead of using pkgs.nextcloud28Packages.apps,
       # we'll reference the package version specified above
       extraApps = {
-        keeweb = pkgs.fetchNextcloudApp {
-          sha256 = "sha256-+G9N67SluucmsYRJ3P8KosBqQn9D7xnA/0m8ZUvHO0c=";
-          url = "https://github.com/jhass/nextcloud-keeweb/releases/download/v0.6.20/keeweb-0.6.20.tar.gz";
-          license = "agpl3Plus";
-        };
+        #keeweb = pkgs.fetchNextcloudApp {
+        #sha256 = "sha256-+G9N67SluucmsYRJ3P8KosBqQn9D7xnA/0m8ZUvHO0c=";
+        #url = "https://github.com/jhass/nextcloud-keeweb/releases/download/v0.6.20/keeweb-0.6.20.tar.gz";
+        #license = "agpl3Plus";
+        #};
       };
-      extraAppsEnable = true;
+      extraAppsEnable = false;
 
       config.adminpassFile = "/var/lib/secrets/nextcloud_admin.pw";
       config.dbtype = "sqlite";
