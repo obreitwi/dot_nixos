@@ -39,6 +39,11 @@ in {
 
   globals.gh_open_command = "fn() { echo -n \"$@\" | xclip -selection copy; }; fn ";
 
+  extraConfigVim = ''
+    " fold diffs by default for better overviews
+    autocmd FileType git set foldmethod=syntax
+  '';
+
   # " Clean git objects when buffer is left
   # autocmd vimrc BufReadPost fugitive://* set bufhidden=delete
   keymaps = [
