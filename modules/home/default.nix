@@ -56,7 +56,7 @@
     targets.genericLinux.enable = !config.my.isNixOS;
 
     home.sessionVariables = {
-      FLAKE = "/home/${config.my.username}/git/dot_nixos";
+      NH_FLAKE = "/home/${config.my.username}/git/dot_nixos";
     };
 
     programs.broot.enable = true;
