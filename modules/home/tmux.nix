@@ -5,10 +5,11 @@
   ...
 }: let
   tmuxPlugins = with pkgs.tmuxPlugins; [
+    extrakto
+    fingers
+    gruvbox
     sensible
     yank
-    gruvbox
-    extrakto
   ];
 in {
   home.packages = with pkgs; [tmux] ++ tmuxPlugins;
