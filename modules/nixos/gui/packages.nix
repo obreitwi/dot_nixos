@@ -9,7 +9,6 @@ lib.mkIf config.my.gui.enable {
     alacritty
     autorandr
     feh # image viewer
-    firefox
     picom
     st
     rofi

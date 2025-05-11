@@ -10,8 +10,6 @@
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.firefox.enable) {
-    home.packages = [
-      pkgs.firefox
-    ];
+    programs.firefox.enable = true;
   };
 }
