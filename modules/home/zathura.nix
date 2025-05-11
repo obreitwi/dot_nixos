@@ -14,12 +14,16 @@
       enable = true;
 
       extraConfig = ''
-        set adjust-open "best-fit"
-        set vertical-center true
         set sandbox none
         set synctex true
-        set synctex-editor-command "nvr --remote-silent +\%{line}|foldo\! \%{input}"
       '';
+
+      options = {
+        adjust-open = "best-fit";
+        database = "sqlite";
+        synctex-editor-command = "nvr --remote-silent +\%{line}|foldo\! \%{input}";
+        vertical-center = true;
+      };
 
       mappings = {
         D = "set \"first-page-column 1:1\"";
