@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ../../modules/nixos/hardware/nvidia.nix
+  ];
+
   boot.loader.grub.device = "/dev/nvme0n1";
 
   services.openssh = {
