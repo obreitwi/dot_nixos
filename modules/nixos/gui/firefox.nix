@@ -9,6 +9,6 @@
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.firefox.enable) {
-    programs.firefox.enable = !config.my.isNixOS;
+    programs.firefox.enable = true;
   };
 }
