@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}:
+{config, ...}:
 {
   hardware.graphics.enable = true;
 
@@ -13,6 +13,6 @@
 
     open = true; # recommended for newer cards
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 }
