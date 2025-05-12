@@ -96,214 +96,229 @@
     revcli,
     ...
   }: let
-    system = "x86_64-linux";
-    overlays = [
-      neorg-overlay.overlays.default
-      backlight.overlays.default
+    linux = "x86_64-linux";
+    darwin = "aarch64-darwin";
 
-      (final: prev: {
-        stable = import nixpkgs-stable args-import-nixpkgs;
+    perSystem = system: let
+      overlays = [
+        neorg-overlay.overlays.default
+        backlight.overlays.default
 
-        asfa-dev = asfa.packages.${prev.system}.default;
-        blobdrop = blobdrop.packages.${prev.system}.default;
-        grpcrl = prev.callPackage (import ./packages/grpcrl) {};
-        neorg-task-sync = neorg-task-sync.packages.${prev.system}.default;
-        pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
-        revcli = revcli.packages.${prev.system}.default;
-        toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
-      })
-    ];
+        (final: prev: {
+          stable = import nixpkgs-stable args-import-nixpkgs;
 
-    args-import-nixpkgs = {
-      inherit system overlays;
-      config = {
-        allowUnfree = true;
-      };
-    };
-    pkgs-init = import nixpkgs args-import-nixpkgs;
-
-    nixpkgs-patched = nixpkgs;
-    #nixpkgs-patched = pkgs-init.applyPatches {
-    #name = "nixpkgs-patched-${nixpkgs.shortRev}";
-    #src = nixpkgs;
-    #patches = [
-    ##(pkgs-init.fetchurl {
-    ##url = "https://github.com/NixOS/nixpkgs/pull/393626.diff";
-    ##hash = "sha256-iTaFSDBFS0fma0BkuA4R8QGmwyhOUjTYS2YF+QpMMLU=";
-    ##})
-    ##./patches/nixpkgs/revert_pr_391647.patch
-    #];
-    #};
-
-    pkgs = import nixpkgs-patched args-import-nixpkgs;
-    pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
-
-    # specialArgs computs inputs for nixos/hm modules
-    baseSpecialArgs = {
-      nixpkgs = nixpkgs-patched;
-      inherit dot-desktop dot-vim dot-zsh home-manager;
-    };
-    specialArgs = {hostname}:
-      baseSpecialArgs
-      // {
-        myUtils = import ./utils/lib.nix;
-        inherit hostname pkgs-stable;
-      };
-
-    # nixvimLib = nixvim.lib.${system};
-    nixvim' = nixvim.legacyPackages.${system};
-    nixvimModule = {
-      pkgs,
-      specialArgs ? baseSpecialArgs,
-    }: {
-      inherit pkgs; # or alternatively, set `system`
-      module = import ./modules/nixvim; # import the module directly
-      # You can use `extraSpecialArgs` to pass additional arguments to your module files
-      extraSpecialArgs = {hostname = null;} // specialArgs // import ./modules/nixvim/utils.nix;
-    };
-
-    hm-nixvim = {
-      pkgs,
-      hostname,
-      ...
-    }: {
-      home.packages = [
-        (pkgs.writeShellApplication {
-          name = "nvim";
-          runtimeInputs = [
-            (nixvim'.makeNixvimWithModule (nixvimModule {
-              inherit pkgs;
-              specialArgs = specialArgs {inherit hostname;};
-            }))
-          ];
-          text = ''
-            exec nvim "$@"
-          '';
+          asfa-dev = asfa.packages.${prev.system}.default;
+          blobdrop = blobdrop.packages.${prev.system}.default;
+          grpcrl = prev.callPackage (import ./packages/grpcrl) {};
+          neorg-task-sync = neorg-task-sync.packages.${prev.system}.default;
+          pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
+          revcli = revcli.packages.${prev.system}.default;
+          toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
         })
       ];
-    };
 
-    nixOS = {
-      type,
-      hostname,
-      username ? "obreitwi",
-    }: let
-      hm-user = {username}: {...}: {
-        imports = [
-          ./modules/home
-          ./home-manager/common.nix
-          hm-nixvim
-          {my.username = username;}
+      args-import-nixpkgs = {
+        inherit system overlays;
+        config = {
+          allowUnfree = true;
+        };
+      };
+      pkgs-init = import nixpkgs args-import-nixpkgs;
+
+      nixpkgs-patched = nixpkgs;
+      #nixpkgs-patched = pkgs-init.applyPatches {
+      #name = "nixpkgs-patched-${nixpkgs.shortRev}";
+      #src = nixpkgs;
+      #patches = [
+      ##(pkgs-init.fetchurl {
+      ##url = "https://github.com/NixOS/nixpkgs/pull/393626.diff";
+      ##hash = "sha256-iTaFSDBFS0fma0BkuA4R8QGmwyhOUjTYS2YF+QpMMLU=";
+      ##})
+      ##./patches/nixpkgs/revert_pr_391647.patch
+      #];
+      #};
+
+      pkgs = import nixpkgs-patched args-import-nixpkgs;
+      pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
+
+      # specialArgs computs inputs for nixos/hm modules
+      baseSpecialArgs = {
+        nixpkgs = nixpkgs-patched;
+        inherit dot-desktop dot-vim dot-zsh home-manager;
+      };
+      specialArgs = {hostname}:
+        baseSpecialArgs
+        // {
+          myUtils = import ./utils/lib.nix;
+          inherit hostname pkgs-stable;
+        };
+
+      # nixvimLib = nixvim.lib.${system};
+      nixvim' = nixvim.legacyPackages.${system};
+      nixvimModule = {
+        pkgs,
+        specialArgs ? baseSpecialArgs,
+      }: {
+        inherit pkgs; # or alternatively, set `system`
+        module = import ./modules/nixvim; # import the module directly
+        # You can use `extraSpecialArgs` to pass additional arguments to your module files
+        extraSpecialArgs = {hostname = null;} // specialArgs // import ./modules/nixvim/utils.nix;
+      };
+
+      hm-nixvim = {
+        pkgs,
+        hostname,
+        ...
+      }: {
+        home.packages = [
+          (pkgs.writeShellApplication {
+            name = "nvim";
+            runtimeInputs = [
+              (nixvim'.makeNixvimWithModule (nixvimModule {
+                inherit pkgs;
+                specialArgs = specialArgs {inherit hostname;};
+              }))
+            ];
+            text = ''
+              exec nvim "$@"
+            '';
+          })
         ];
-
-        my.isNixOS = true;
       };
-    in
-      nixpkgs.lib.nixosSystem {
-        inherit pkgs;
 
-        modules =
-          [
-            {
-              _module.args = specialArgs {inherit hostname;}; # make sure that regular home-modules can access special args as well
-              nixpkgs = {inherit overlays;};
-              networking.hostName = hostname;
-            }
-            ./system/configuration-${type}.nix
-            ./system/hardware-configuration/${hostname}.nix
-            ./system/customization/${hostname}.nix
-
-            nix-index-database.nixosModules.nix-index
-
-            # make home-manager as a module of nixos
-            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
-              home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
-
-              home-manager.users =
-                {
-                  ${username} = hm-user {inherit username;};
-                }
-                // (
-                  if (builtins.elem hostname ["gentian"])
-                  then {
-                    root = hm-user {username = "root";};
-                  }
-                  else {}
-                );
-
-              # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-              home-manager.extraSpecialArgs = specialArgs {inherit hostname;};
-            }
-          ]
-          ++ (nixpkgs.lib.optionals (type == "server") [mailserver.nixosModules.default]);
-      };
-    hm = {
-      hostname,
-      username,
-    }:
-      home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules =
-          [
-            {_module.args = specialArgs {inherit hostname;};}
+      nixOS = {
+        type,
+        hostname,
+        username ? "obreitwi",
+      }: let
+        hm-user = {username}: {...}: {
+          imports = [
+            ./modules/home
+            ./home-manager/common.nix
+            hm-nixvim
             {my.username = username;}
-          ]
-          ++ hm-modules;
-      };
+          ];
 
-    hm-modules = [
-      ./home-manager/non-nixos.nix
-      nix-index-database.hmModules.nix-index
-      hm-nixvim
-      (
-        {
-          lib,
-          config,
-          ...
-        }:
-          lib.mkIf (!config.my.isNixOS) {
-            nix.registry = {
-              nixpkgs.flake = nixpkgs;
-              nixpkgs-stable.flake = nixpkgs-stable;
-            };
-          }
-      )
-    ];
+          my.isNixOS = true;
+        };
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit pkgs;
+
+          modules =
+            [
+              {
+                _module.args = specialArgs {inherit hostname;}; # make sure that regular home-modules can access special args as well
+                nixpkgs = {inherit overlays;};
+                networking.hostName = hostname;
+              }
+              ./system/configuration-${type}.nix
+              ./system/hardware-configuration/${hostname}.nix
+              ./system/customization/${hostname}.nix
+
+              nix-index-database.nixosModules.nix-index
+
+              # make home-manager as a module of nixos
+              # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+                home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+
+                home-manager.users =
+                  {
+                    ${username} = hm-user {inherit username;};
+                  }
+                  // (
+                    if (builtins.elem hostname ["gentian"])
+                    then {
+                      root = hm-user {username = "root";};
+                    }
+                    else {}
+                  );
+
+                # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+                home-manager.extraSpecialArgs = specialArgs {inherit hostname;};
+              }
+            ]
+            ++ (nixpkgs.lib.optionals (type == "server") [mailserver.nixosModules.default]);
+        };
+      hm = {
+        hostname,
+        username,
+      }:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules =
+            [
+              {_module.args = specialArgs {inherit hostname;};}
+              {my.username = username;}
+            ]
+            ++ hm-modules;
+        };
+
+      hm-modules = [
+        ./home-manager/non-nixos.nix
+        nix-index-database.hmModules.nix-index
+        hm-nixvim
+        (
+          {
+            lib,
+            config,
+            ...
+          }:
+            lib.mkIf (!config.my.isNixOS) {
+              nix.registry = {
+                nixpkgs.flake = nixpkgs;
+                nixpkgs-stable.flake = nixpkgs-stable;
+              };
+            }
+        )
+      ];
+    in {
+      inherit
+        hm
+        hm-modules
+        hm-nixvim
+        nixOS
+        nixvim'
+        nixvimModule
+        pkgs
+        ;
+    };
   in {
     checks = {
       # NOTE: Does not work as of yet: error: 'nvim' is not a valid system type, at /nix/store/…-source/flake.nix:254:7
       # nvim = nixvimLib.check.mkTestDerivationFromNixvimModule ({name = "test nvim config";} // nixvimModule);
     };
 
-    nixosConfigurations.gentian = nixOS {
+    nixosConfigurations.gentian = (perSystem linux).nixOS {
       hostname = "gentian";
       type = "server";
     };
 
-    nixosConfigurations.mucku = nixOS {
+    nixosConfigurations.mucku = (perSystem linux).nixOS {
       hostname = "mucku";
       type = "desktop";
     };
-    nixosConfigurations.nimir = nixOS {
+    nixosConfigurations.nimir = (perSystem linux).nixOS {
       hostname = "nimir";
       type = "desktop";
     };
 
-    homeConfigurations."oliver.breitwieser@mimir" = hm {
+    homeConfigurations."oliver.breitwieser@mimir" = (perSystem linux).hm {
       hostname = "mimir";
       username = "oliver.breitwieser";
     };
 
-    packages.${system} = {
-      nvim = nixvim'.makeNixvimWithModule (nixvimModule {
-        inherit pkgs;
+    packages.${linux} = {
+      nvim = (perSystem linux).nixvim'.makeNixvimWithModule ((perSystem linux).nixvimModule {
+        pkgs = (perSystem linux).pkgs;
       });
     };
 
-    formatter.${system} = pkgs.alejandra;
+    formatter.${linux} = (perSystem linux).pkgs.alejandra;
+    formatter.${darwin} = (perSystem linux).pkgs.alejandra;
     #formatter.${system} = pkgs.nixfmt-rfc-style;
   };
 }
