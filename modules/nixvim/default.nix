@@ -1,13 +1,12 @@
 {
   imports = [
-    ./host-specific.nix
-
     ./colorscheme.nix
     ./completion.nix
     ./debug.nix
     ./directories.nix
     ./keymaps.nix
     ./lsp.nix
+    ./lsp-servers.nix
     ./opts.nix
     ./powersettings.nix
     ./prefix_maps.nix

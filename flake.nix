@@ -5,6 +5,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
+    # not needed right now (no sudo)
+    #nix-darwin = {
+    #url = "github.com:LnL7/nix-darwin";
+    #inputs.nixpkgs.follows = "nixpkgs";
+    #};
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -158,14 +164,14 @@
       nixvimModule = {
         pkgs,
         specialArgs ? baseSpecialArgs,
+        module ? (import ./system/nixvim),
       }: {
-        inherit pkgs; # or alternatively, set `system`
-        module = import ./modules/nixvim; # import the module directly
+        inherit pkgs module; # or alternatively, set `system`
         # You can use `extraSpecialArgs` to pass additional arguments to your module files
-        extraSpecialArgs = {hostname = null;} // specialArgs // import ./modules/nixvim/utils.nix;
+        extraSpecialArgs = {hostname = null;} // specialArgs // (import ./modules/nixvim/utils.nix);
       };
 
-      hm-nixvim = {
+      hm-nixvim = {module ? (import ./modules/nixvim)}: {
         pkgs,
         hostname,
         ...
@@ -175,7 +181,7 @@
             name = "nvim";
             runtimeInputs = [
               (nixvim'.makeNixvimWithModule (nixvimModule {
-                inherit pkgs;
+                inherit pkgs module;
                 specialArgs = specialArgs {inherit hostname;};
               }))
             ];
@@ -194,8 +200,8 @@
         hm-user = {username}: {...}: {
           imports = [
             ./modules/home
-            ./home-manager/common.nix
-            hm-nixvim
+            ./system/home-manager/common.nix
+            (hm-nixvim {})
             {my.username = username;}
           ];
 
@@ -212,9 +218,9 @@
                 nixpkgs = {inherit overlays;};
                 networking.hostName = hostname;
               }
-              ./system/configuration-${type}.nix
-              ./system/hardware-configuration/${hostname}.nix
-              ./system/customization/${hostname}.nix
+              ./system/nixos/configuration-${type}.nix
+              ./system/nixos/hardware-configuration/${hostname}.nix
+              ./system/nixos/customization/${hostname}.nix
 
               nix-index-database.nixosModules.nix-index
 
@@ -243,9 +249,12 @@
             ]
             ++ (nixpkgs.lib.optionals (type == "server") [mailserver.nixosModules.default]);
         };
+
       hm = {
         hostname,
         username,
+        modules ? [],
+        hm-module-nixvim ? null,
       }:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -253,14 +262,14 @@
             [
               {_module.args = specialArgs {inherit hostname;};}
               {my.username = username;}
+              (hm-nixvim {})
             ]
-            ++ hm-modules;
+            ++ modules ++ hm-modules-default;
         };
 
-      hm-modules = [
-        ./home-manager/non-nixos.nix
+      hm-modules-default = [
+        ./system/home-manager/non-nixos.nix
         nix-index-database.hmModules.nix-index
-        hm-nixvim
         (
           {
             lib,
@@ -278,13 +287,15 @@
     in {
       inherit
         hm
-        hm-modules
-        hm-nixvim
         nixOS
         nixvim'
         nixvimModule
         pkgs
         ;
+
+      nvim = nixvim'.makeNixvimWithModule (nixvimModule {
+        inherit pkgs;
+      });
     };
   in {
     checks = {
@@ -306,15 +317,29 @@
       type = "desktop";
     };
 
+    homeConfigurations."oliver.breitwieser@al-mac-150769" = (perSystem darwin).hm {
+      hostname = "al-mac-150769";
+      username = "oliver.breitwieser";
+      modules = [
+        ./systems/nixos/customization/restricted-mac.nix
+      ];
+      hm-module-nixvim = import ./module/nixvim/custom/restricted-mac.nix;
+    };
+
     homeConfigurations."oliver.breitwieser@mimir" = (perSystem linux).hm {
       hostname = "mimir";
       username = "oliver.breitwieser";
+      modules = [
+        ./modules/home # default config for everything
+        ./modules/home/xsession # xsession for xmonad setup
+      ];
     };
 
+    packages.${darwin} = {
+      inherit (perSystem darwin) nvim;
+    };
     packages.${linux} = {
-      nvim = (perSystem linux).nixvim'.makeNixvimWithModule ((perSystem linux).nixvimModule {
-        pkgs = (perSystem linux).pkgs;
-      });
+      inherit (perSystem linux) nvim;
     };
 
     formatter.${linux} = (perSystem linux).pkgs.alejandra;

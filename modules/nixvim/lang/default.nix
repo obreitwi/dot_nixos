@@ -1,4 +1,8 @@
 {
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./cpp.nix
     ./go.nix
@@ -9,4 +13,9 @@
     ./toml.nix
     ./vimwiki.nix
   ];
+
+  options.my.nixvim.lang.all = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
+  };
 }

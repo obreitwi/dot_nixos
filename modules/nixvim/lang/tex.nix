@@ -4,14 +4,12 @@
   pkgs,
   ...
 }: {
-  options = {
-    my.nixvim.tex.enable = lib.mkOption {
-      default = true;
-      type = lib.types.bool;
-    };
+  options.my.nixvim.lang.tex.disable = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.nixvim.tex.enable {
+  config = lib.mkIf (config.my.nixvim.lang.all && !config.my.nixvim.lang.tex.disable) {
     plugins.cmp.settings.sources = [{name = "texlab";}];
     plugins.lsp.servers.texlab.enable = true;
 

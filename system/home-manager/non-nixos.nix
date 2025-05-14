@@ -1,9 +1,9 @@
 # home manager config only used on desktops not running nixOS
 {...}: {
   imports = [
-    ../modules/home
-    ../modules/home/xsession
     ./common.nix
+    ../../modules/home
+    ../../modules/home/xsession
   ];
 
   my.isNixOS = false;
