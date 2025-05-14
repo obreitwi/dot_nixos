@@ -21,7 +21,8 @@
     ./neovim
     ./readline.nix
     ./revcli.nix
-    ./shellPackages.nix
+    ./packages-core.nix
+    ./packages-extended.nix
     ./terraform.nix
     ./tmux.nix
     ./work.nix

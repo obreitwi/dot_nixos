@@ -141,10 +141,17 @@ in {
       )
     ];
 
-    profileExtra = ''
-      source <(${loadSystemdEnv})
-      source ${dot-zsh}/zprofile
-    '';
+    profileExtra =
+      (
+        if pkgs.stdenv.system == "x86_64-linux"
+        then ''
+          source <(${loadSystemdEnv})
+        ''
+        else ""
+      )
+      + ''
+        source ${dot-zsh}/zprofile
+      '';
 
     syntaxHighlighting.enable = true;
 
