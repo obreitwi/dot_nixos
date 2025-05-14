@@ -9,7 +9,7 @@
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.gui.enable {
+  config = lib.mkIf (config.my.gui.enable && config.my.gui.nixGL.enable) {
     home.packages = with pkgs; [
       nixgl.auto
     ];

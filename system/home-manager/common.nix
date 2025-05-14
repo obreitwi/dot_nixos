@@ -6,6 +6,15 @@
   ];
   isWork = builtins.elem hostname ["mimir"];
 in {
+  imports = [
+    ../../modules/home
+  ];
+
+  programs.home-manager.enable = true;
+  programs.nix-index-database.comma.enable = true;
+  programs.nix-index.enable = true;
+  programs.nix-index.enableZshIntegration = false;
+
   my.azure.enable = isWork;
 
   my.go.enable = isWork;

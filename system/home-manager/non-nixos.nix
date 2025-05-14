@@ -2,8 +2,6 @@
 {...}: {
   imports = [
     ./common.nix
-    ../../modules/home
-    ../../modules/home/xsession
   ];
 
   my.isNixOS = false;
