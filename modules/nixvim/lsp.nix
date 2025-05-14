@@ -1,4 +1,8 @@
 {
+  config,
+  lib,
+  ...
+}: {
   plugins.lsp = {
     enable = true;
 

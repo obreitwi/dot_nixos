@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   nvim-silicon = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-silicon";
     src = pkgs.fetchFromGitHub {
@@ -9,7 +14,14 @@
     };
   };
 in {
-  extraPlugins = [
-    nvim-silicon
-  ];
+  options.my.nixvim.silicon.enable = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
+  };
+
+  config = lib.mkIf config.my.nixvim.silicon.enable {
+    extraPlugins = [
+      nvim-silicon
+    ];
+  };
 }

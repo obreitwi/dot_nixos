@@ -5,12 +5,12 @@
 }: let
   neorg-existing-day = ./neorg-existing-day;
 in {
-  options.my.nixvim.neorg = lib.mkOption {
+  options.my.nixvim.neorg.enable = lib.mkOption {
     default = true;
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.nixvim.neorg {
+  config = lib.mkIf config.my.nixvim.neorg.enable {
     plugins.neorg = {
       enable = true;
       settings = {
