@@ -27,7 +27,7 @@
         tailwindcss-language-server
         vscode-langservers-extracted
       ];
-    };
 
-  nix.nixPath = ["nixpkgs=${nixpkgs}"];
+      nix.nixPath = ["nixpkgs=${nixpkgs}"];
+    };
 }

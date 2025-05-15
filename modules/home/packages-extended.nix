@@ -4,7 +4,9 @@
   pkgs,
   ...
 }: {
-  options.my.packages.extended = {
+  options.my.packages.extended = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
   };
 
   config = lib.mkIf config.my.packages.extended {
