@@ -14,20 +14,21 @@
         type = lib.types.str;
       };
       adminPubkey = lib.mkOption {
-        default = config.my.server.adminPubkey;
+        default = null;
         type = lib.types.str;
       };
     };
   };
 
   config = let
-    inherit (config.my.server) gitolite;
+    inherit (config.my) server;
+    inherit (server) gitolite;
   in
     lib.mkIf gitolite.enable {
       services.gitolite = {
         enable = true;
 
-        inherit (gitolite) adminPubkey;
+        adminPubkey = gitolite.adminPubkey or server.adminPubkey;
 
         user = "git";
 
