@@ -17,6 +17,7 @@
     ./redshift.nix
     ./slock.nix
     ./theming.nix
+    ./zathura.nix
   ];
 
   options.my.gui.enable = lib.mkOption {
