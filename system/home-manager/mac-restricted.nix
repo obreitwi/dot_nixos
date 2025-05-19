@@ -9,7 +9,7 @@
     isMacOS = true;
     gui.enable = false;
 
-    atuin.enable = false;
+    atuin.enable = true;
 
     gnupg.enable = false;
     go.enable = false;
