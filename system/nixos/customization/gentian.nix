@@ -71,7 +71,7 @@
   };
 in {
   imports = [
-    ../../modules/nixos/server
+    ../../../modules/nixos/server
   ];
 
   boot.loader.grub = {
