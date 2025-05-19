@@ -8,7 +8,7 @@
     isNixOS = false;
     gui.enable = false;
 
-    autin.enable = false;
+    atuin.enable = false;
 
     gnupg.enable = false;
     go.enable = false;
