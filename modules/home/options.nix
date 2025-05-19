@@ -4,6 +4,7 @@
   ...
 }: {
   options.my.isNixOS = lib.mkEnableOption "Whether or not we run on nixOS";
+  options.my.isMacOS = lib.mkEnableOption "Whether or not we run on Mac";
 
   options.my.username = lib.mkOption {
     type = lib.types.str;
@@ -28,7 +29,7 @@
     # originally installed.
     home.stateVersion = "23.11";
 
-    targets.genericLinux.enable = !config.my.isNixOS;
+    targets.genericLinux.enable = !config.my.isNixOS && !config.my.isMacOS;
 
     home.sessionVariables = {
       NH_FLAKE = "/home/${config.my.username}/git/dot_nixos";
