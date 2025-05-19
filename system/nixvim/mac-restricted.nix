@@ -8,8 +8,9 @@
   my.nixvim = {
     lang = {
       all = false;
+      java = true;
     };
 
-    lsp.all = false;
+    lsp.common = false;
   };
 }

@@ -4,13 +4,13 @@
   ...
 }: {
   options.my.nixvim.lsp = {
-    all = lib.mkOption {
+    common = lib.mkOption {
       default = true;
       type = lib.types.bool;
     };
   };
 
-  config = lib.mkIf config.my.nixvim.lsp.all {
+  config = lib.mkIf config.my.nixvim.lsp.common {
     plugins.lsp = {
       servers = {
         ast_grep.enable = true;
