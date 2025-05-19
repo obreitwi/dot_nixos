@@ -8,7 +8,7 @@
     type = lib.types.bool;
   };
 
-  config = lib.mkIf (config.my.nixvim.lang.all or config.my.nixvim.lang.java) {
+  config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.java) {
     plugins.lsp.servers = {
       jdtls.enable = true;
       kotlin_language_server.enable = true;

@@ -11,7 +11,7 @@ in {
     type = lib.types.bool;
   };
 
-  config = lib.mkIf (config.my.nixvim.lang.all or config.my.nixvim.lang.vimwiki) {
+  config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.vimwiki) {
     autoCmd = [
       (autoCmdFT {
         lang = "vimwiki";

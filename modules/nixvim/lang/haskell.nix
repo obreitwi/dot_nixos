@@ -9,7 +9,7 @@
     type = lib.types.bool;
   };
 
-  config = lib.mkIf (config.my.nixvim.lang.all or config.my.nixvim.lang.haskell) {
+  config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.haskell) {
     extraPlugins = [
       pkgs.vimPlugins.haskell-tools-nvim
     ];
