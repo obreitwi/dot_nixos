@@ -6,6 +6,7 @@
 
   my = {
     isNixOS = false;
+    isMacOS = true;
     gui.enable = false;
 
     atuin.enable = false;
