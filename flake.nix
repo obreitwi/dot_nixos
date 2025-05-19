@@ -321,9 +321,9 @@
       hostname = "al-mac-150769";
       username = "oliver.breitwieser";
       modules = [
-        ./systems/nixos/customization/restricted-mac.nix
+        ./system/home-manager/mac-restricted.nix
       ];
-      hm-module-nixvim = import ./module/nixvim/custom/restricted-mac.nix;
+      hm-module-nixvim = import ./system/nixvim/mac-restricted.nix;
     };
 
     homeConfigurations."oliver.breitwieser@mimir" = (perSystem linux).hm {
