@@ -17,13 +17,11 @@
 
     home.username = config.my.username;
     home.homeDirectory =
-      {
-        root = "/root";
-      }
-      .${
-        config.my.username
-      }
-      or "/home/${config.my.username}";
+      if config.my.username == "root"
+      then "/root"
+      else if config.my.isMacOS
+      then "/Users/${config.my.username}"
+      else "/home/${config.my.username}";
 
     # The state version is required and should stay at the version you
     # originally installed.
@@ -32,7 +30,7 @@
     targets.genericLinux.enable = !config.my.isNixOS && !config.my.isMacOS;
 
     home.sessionVariables = {
-      NH_FLAKE = "/home/${config.my.username}/git/dot_nixos";
+      NH_FLAKE = "${config.home.homeDirectory}/git/dot_nixos";
     };
 
     programs.broot.enable = true;
