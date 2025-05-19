@@ -7,7 +7,9 @@
   my = {
     isNixOS = false;
     isMacOS = true;
+
     gui.enable = false;
+    gui.fonts.enable = true;
 
     atuin.enable = true;
 
