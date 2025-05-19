@@ -1,12 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./cpp.nix
     ./go.nix
     ./haskell.nix
+    ./java.nix
     ./rust.nix
     ./terraform.nix
     ./tex.nix
