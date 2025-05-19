@@ -5,11 +5,11 @@
   ...
 }: {
   options.my.gui.fonts.enable = lib.mkOption {
-    default = true;
+    default = config.my.gui.enable;
     type = lib.types.bool;
   };
 
-  config = lib.mkIf (config.my.gui.enable && config.my.gui.fonts.enable) {
+  config = lib.mkIf config.my.gui.fonts.enable {
     # keep in sync with nixos fonts
     home.packages = with pkgs.nerd-fonts; [
       dejavu-sans-mono

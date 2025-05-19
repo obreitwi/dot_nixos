@@ -39,6 +39,7 @@ in {
   my.revcli.enable = isWork;
   my.revcli.sync-job = isWork;
   my.terraform.enable = isWork;
+  my.wrepson.enable = isDesktop;
 
   my.work.enable = isWork;
 }
