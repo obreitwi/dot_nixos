@@ -1,3 +1,5 @@
+[include]
+    path = ~/.config/gitconfig.local
 [includeIf "gitdir:~/projects/work/"]
     path = ~/doc-fdc/scripts/gitconfig-fdc
 [alias]
