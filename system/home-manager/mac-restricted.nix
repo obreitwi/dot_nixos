@@ -1,5 +1,5 @@
 # home manager config only used on desktops not running nixOS
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./common.nix
   ];
@@ -20,4 +20,9 @@
 
     packages.extended = false;
   };
+
+  # packages explicitly needed on mac to operate
+  home.packages = [
+    pkgs.gh
+  ];
 }
