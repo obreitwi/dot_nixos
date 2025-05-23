@@ -8,6 +8,7 @@
     ./terraform.nix
     ./tex.nix
     ./toml.nix
+    ./typst.nix
     ./vimwiki.nix
   ];
 
