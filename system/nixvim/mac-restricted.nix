@@ -9,6 +9,7 @@
     lang = {
       all = false;
       java = true;
+      typst = true;
     };
 
     lsp.common = false;

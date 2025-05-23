@@ -24,5 +24,9 @@
   # packages explicitly needed on mac to operate
   home.packages = [
     pkgs.gh
+
+    pkgs.jdk
+    pkgs.typst
+    pkgs.typstyle
   ];
 }
