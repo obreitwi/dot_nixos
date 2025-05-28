@@ -33,5 +33,6 @@
     pkgs.k9s
     pkgs.kubecolor
     pkgs.kubectl
+    pkgs.kubelogin
   ];
 }
