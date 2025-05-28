@@ -39,6 +39,7 @@
     pkgs.typstyle
 
     # kubernetes tooling
+    pkgs.kubectl
     pkgs.kubelogin
   ];
 }
