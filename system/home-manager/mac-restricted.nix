@@ -22,13 +22,13 @@
   };
 
   programs = {
-    kubecolor= {
+    kubecolor = {
       enable = true;
       enableAlias = true;
       enableZshIntegration = true;
     };
     k9s.enable = true;
-  }
+  };
 
   # packages explicitly needed on mac to operate
   home.packages = [
