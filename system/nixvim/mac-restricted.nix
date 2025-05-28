@@ -13,5 +13,7 @@
     };
 
     lsp.common = false;
+
+    neorg.enable = true;
   };
 }
