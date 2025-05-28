@@ -10,7 +10,12 @@
 
   config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.typst) {
     plugins.lsp.servers = {
-      tinymist.enable = true;
+      tinymist = {
+        enable = true;
+        settings = {
+          formatterMode = "typstyle";
+        };
+      };
     };
 
     plugins.typst-vim.enable = true;
