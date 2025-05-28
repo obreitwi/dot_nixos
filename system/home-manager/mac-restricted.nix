@@ -28,5 +28,10 @@
     pkgs.jdk
     pkgs.typst
     pkgs.typstyle
+
+    # kubernetes tooling
+    pkgs.k9s
+    pkgs.kubecolor
+    pkgs.kubectl
   ];
 }
