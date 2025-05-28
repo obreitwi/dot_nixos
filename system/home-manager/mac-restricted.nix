@@ -21,6 +21,15 @@
     packages.extended = false;
   };
 
+  programs = {
+    kubecolor= {
+      enable = true;
+      enableAlias = true;
+      enableZshIntegration = true;
+    };
+    k9s.enable = true;
+  }
+
   # packages explicitly needed on mac to operate
   home.packages = [
     pkgs.gh
@@ -30,9 +39,6 @@
     pkgs.typstyle
 
     # kubernetes tooling
-    pkgs.k9s
-    pkgs.kubecolor
-    pkgs.kubectl
     pkgs.kubelogin
   ];
 }
