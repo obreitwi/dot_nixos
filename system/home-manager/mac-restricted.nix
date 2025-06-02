@@ -41,5 +41,8 @@
     # kubernetes tooling
     pkgs.kubectl
     pkgs.kubelogin
+
+    # build docker
+    pkgs.colima
   ];
 }
