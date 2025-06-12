@@ -43,7 +43,8 @@
     ''
       function! GenerateProtoRestart()
         exec '!generate-proto'
-        LspRestart
+        LspRestart golangci_lint_ls
+        LspRestart gopls
       endfunction
       nmap <leader>pr :call GenerateProtoRestart()<CR>
     '';
