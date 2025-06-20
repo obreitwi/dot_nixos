@@ -131,18 +131,18 @@
       };
       pkgs-init = import nixpkgs args-import-nixpkgs;
 
-      #nixpkgs-patched = nixpkgs;
-      nixpkgs-patched = pkgs-init.applyPatches {
-        name = "nixpkgs-patched-${nixpkgs.shortRev}";
-        src = nixpkgs;
-        patches = [
-          (pkgs-init.fetchurl {
-            url = "https://github.com/NixOS/nixpkgs/pull/417503.diff";
-            hash = "sha256-k6aVqA0BKdotgNPSFIEkDnYPg+NqO0+KHjjddaF+XwA=";
-          })
-          #./patches/nixpkgs/revert_pr_391647.patch
-        ];
-      };
+      nixpkgs-patched = nixpkgs;
+      #nixpkgs-patched = pkgs-init.applyPatches {
+      #name = "nixpkgs-patched-${nixpkgs.shortRev}";
+      #src = nixpkgs;
+      #patches = [
+      ##(pkgs-init.fetchurl {
+      ##url = "https://github.com/NixOS/nixpkgs/pull/417503.diff";
+      ##hash = "sha256-k6aVqA0BKdotgNPSFIEkDnYPg+NqO0+KHjjddaF+XwA=";
+      ##})
+      ##./patches/nixpkgs/revert_pr_391647.patch
+      #];
+      #};
 
       pkgs = import nixpkgs-patched args-import-nixpkgs;
       pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
