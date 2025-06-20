@@ -5,7 +5,7 @@
   ...
 }: let
   apl-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "messages.nvim";
+    name = "apl.nvim";
     src = pkgs.fetchFromGitHub {
       owner = "salkin-mada";
       repo = "apl.nvim";
