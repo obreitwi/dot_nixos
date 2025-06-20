@@ -4,8 +4,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "rickhowe";
       repo = "diffchar.vim";
-      rev = "ccf4c238a71d834ad1e21834f08be274bc0f05a3";
-      sha256 = "1ca2nzrmr5dix5jf8aispn4aixzdky760ngig69w8yw7zv2knh1c";
+      rev = "044bab9f01c0edb8633c2c60fe0dfee07b28963b";
+      sha256 = "1vm9nj7zbyl9bv3nq8gag4ch3krlas7kjs6f2khq7dm04qyawlxw";
     };
   };
 in {

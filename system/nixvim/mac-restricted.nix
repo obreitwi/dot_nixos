@@ -1,8 +1,8 @@
-{
+{lib, ...}: {
   imports = [
     ./common.nix
 
-    ../../modules/nixvim/
+    ../../modules/nixvim
   ];
 
   my.nixvim = {
@@ -16,6 +16,6 @@
 
     lsp.common = false;
 
-    neorg.enable = true;
+    neorg.enable = lib.mkForce true;
   };
 }
