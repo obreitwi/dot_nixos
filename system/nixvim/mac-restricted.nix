@@ -8,6 +8,8 @@
   my.nixvim = {
     lang = {
       all = false;
+
+      apl = true;
       java = true;
       typst = true;
     };

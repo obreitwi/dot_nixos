@@ -1,5 +1,6 @@
 {lib, ...}: {
   imports = [
+    ./apl.nix
     ./cpp.nix
     ./go.nix
     ./haskell.nix
