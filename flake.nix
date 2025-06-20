@@ -171,17 +171,23 @@
         extraSpecialArgs = {hostname = null;} // specialArgs // (import ./modules/nixvim/utils.nix);
       };
 
-      hm-nixvim = {module ? (import ./modules/nixvim)}: {
+      hm-nixvim = {module ? null}: {
         pkgs,
         hostname,
         ...
-      }: {
+      }: let
+        module' =
+          if module == null
+          then (import ./modules/nixvim)
+          else module;
+      in {
         home.packages = [
           (pkgs.writeShellApplication {
             name = "nvim";
             runtimeInputs = [
               (nixvim'.makeNixvimWithModule (nixvimModule {
-                inherit pkgs module;
+                inherit pkgs;
+                module = module';
                 specialArgs = specialArgs {inherit hostname;};
               }))
             ];
@@ -262,7 +268,7 @@
             [
               {_module.args = specialArgs {inherit hostname;};}
               {my.username = username;}
-              (hm-nixvim {})
+              (hm-nixvim {module = hm-module-nixvim;})
             ]
             ++ modules ++ hm-modules-default;
         };

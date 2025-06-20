@@ -7,10 +7,10 @@
   apl-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "apl.nvim";
     src = pkgs.fetchFromGitHub {
-      owner = "salkin-mada";
+      owner = "obreitwi";
       repo = "apl.nvim";
-      rev = "7d033f0b5b1fb1a5474e5ebed69d0afe9b4a935b";
-      hash = "sha256-uF4Ao9/oT/Hr79Lepkxv6IZG2wfqCZFsgKzXPk0mt7Q=";
+      rev = "495cb672a4db2bc219a33f6e3d7beb7e46011516";
+      hash = "sha256-Z1RY9TuBC0FrTKjOPimrhJHVDiln6rECZ1uaoQqj/UQ=";
     };
   };
 in {
@@ -19,7 +19,7 @@ in {
     type = lib.types.bool;
   };
 
-  config = lib.mkIf (config.my.nixvim.lang.apl) {
+  config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.apl) {
     extraPlugins = [apl-nvim];
   };
 }

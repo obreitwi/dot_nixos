@@ -12,8 +12,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "fatih";
       repo = "vim-go";
-      rev = "59e208d5212b86c8afd69d8590f181594f859ddb";
-      sha256 = "09n71iy4wfqvrdfzvvc4za0alc5fsbds7xd4ln6zip17z89hkym7";
+      rev = "787342da47bc5fe6fa88e9d65842c6a0a6304700";
+      sha256 = "0r0f7kfp47lna4xc5jsk159080qac2j6shs7pymrdlaxfn0gyn0d";
     };
   };
 in {
