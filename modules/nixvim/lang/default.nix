@@ -1,10 +1,13 @@
 {lib, ...}: {
   imports = [
     ./apl.nix
+    ./css.nix
     ./cpp.nix
+    ./dart.nix
     ./go.nix
     ./haskell.nix
     ./java.nix
+    ./python.nix
     ./rust.nix
     ./terraform.nix
     ./tex.nix
