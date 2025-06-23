@@ -12,4 +12,6 @@
       command = "setlocal spelllang=<args>";
     };
   };
+
+  impureRtp = true; # needed to retrieve spelllang
 }
