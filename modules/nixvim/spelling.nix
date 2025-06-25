@@ -39,6 +39,11 @@ in {
       command = "setlocal spelllang=<args>";
     };
   };
+  plugins.lsp = {
+    servers = {
+      harper_ls.enable = true;
+    };
+  };
 
   #impureRtp = true; # needed to retrieve spelllang (does not seem to help)
 }

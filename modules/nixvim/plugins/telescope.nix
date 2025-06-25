@@ -79,7 +79,7 @@
       nmap <silent> [unite]f :lua require'telescope.builtin'.find_files{}<CR>
       nmap <silent> [unite]c :lua require'telescope.builtin'.commands{}<CR>
       nmap <silent> [unite]R :lua require'telescope.builtin'.registers{}<CR>
-      nmap <silent> [unite]u<leader> :lua require'telescope.builtin'.resume{}<CR>
+      nmap <silent> [unite]<leader> :lua require'telescope.builtin'.resume{}<CR>
       nmap <silent> [unite]l :lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
       nmap <silent> [unite]m :lua require'telescope.builtin'.oldfiles{}<CR>
       nmap <silent> [unite]M :lua require'telescope.builtin'.keymaps{}<CR>
