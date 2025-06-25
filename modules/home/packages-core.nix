@@ -18,6 +18,8 @@
     ripgrep
     ugrep
 
+    inotify-tools
+
     # json handling
     jq
     ijq

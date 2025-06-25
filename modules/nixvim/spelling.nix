@@ -41,9 +41,7 @@ in {
   };
   plugins.lsp = {
     servers = {
-      harper_ls.enable = true;
+      harper_ls.enable = false; # not as useful as thought
     };
   };
-
-  #impureRtp = true; # needed to retrieve spelllang (does not seem to help)
 }
