@@ -29,6 +29,7 @@
 
     neorg-overlay = {
       url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
@@ -65,6 +66,7 @@
     };
     neorg-task-sync = {
       url = "github:obreitwi/neorg-task-sync?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pydemx = {
       url = "github:obreitwi/pydemx";
