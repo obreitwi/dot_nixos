@@ -1,36 +1,44 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # nix helper
-    nh
-    nix-output-monitor
-    nixVersions.nix_2_28
-    nvd
-    nurl
+{
+  pkgs,
+  config,
+  ...
+}: {
+  home.packages =
+    [
+      # nix helper
+      pkgs.nh
+      pkgs.nix-output-monitor
+      pkgs.nixVersions.nix_2_28
+      pkgs.nvd
+      pkgs.nurl
 
-    # base setup
-    bashInteractive
-    coreutils-full
-    curl
-    delta
-    gawk
-    gnused
-    killall
-    ripgrep
-    ugrep
+      # base setup
+      pkgs.bashInteractive
+      pkgs.coreutils-full
+      pkgs.curl
+      pkgs.delta
+      pkgs.gawk
+      pkgs.gnused
+      pkgs.killall
+      pkgs.ripgrep
+      pkgs.ugrep
 
-    inotify-tools
+      # json handling
+      pkgs.jq
+      pkgs.ijq
+      pkgs.jo
 
-    # json handling
-    jq
-    ijq
-    jo
+      # nicer shell scripts
+      pkgs.gum
 
-    # nicer shell scripts
-    gum
-
-    dua
-    entr
-    viddy
-    zoxide
-  ];
+      pkgs.dua
+      pkgs.entr
+      pkgs.viddy
+      pkgs.zoxide
+    ]
+    ++ (
+      if (!config.my.isMacOS)
+      then [pkgs.inotify-tools]
+      else []
+    );
 }
