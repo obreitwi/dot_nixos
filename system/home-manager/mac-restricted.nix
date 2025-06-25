@@ -34,6 +34,8 @@
   home.packages = [
     pkgs.gh
 
+    pkgs.flameshot
+
     pkgs.jdk
     pkgs.typst
     pkgs.typstyle
