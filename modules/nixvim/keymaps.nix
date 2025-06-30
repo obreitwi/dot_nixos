@@ -20,7 +20,7 @@
       }
       {
         key = "<C-D><C-D>";
-        action = ''<C-R> --obreitwi, <C-R>=strftime("%d-%m-%y %H:%M:%S")<CR>'';
+        action = ''<C-R> --obreitwi, <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>'';
         mode = "i";
       }
       {
