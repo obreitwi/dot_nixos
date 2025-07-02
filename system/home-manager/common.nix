@@ -33,8 +33,8 @@ in {
     xmonad.enable = isDesktop;
   };
 
-  my.latex.enable = isDesktop;
-  my.libreoffice.enable = isDesktop;
+  my.latex.enable = builtins.elem hostname ["mucku"];
+  my.libreoffice.enable = builtins.elem hostname ["mucku"];
   my.revcli.enable = isWork;
   my.revcli.sync-job = isWork;
   my.terraform.enable = isWork;

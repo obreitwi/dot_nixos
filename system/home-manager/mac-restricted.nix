@@ -44,6 +44,11 @@
     pkgs.kubectl
     pkgs.kubelogin
 
+    # tiling window manager
+    pkgs.aerospace
+
+    #pkgs.inkscape # does not work (missing icons)
+
     # build docker
     pkgs.colima
   ];
