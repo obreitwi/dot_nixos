@@ -71,6 +71,8 @@
     showmode = false;
 
     signcolumn = "yes"; # always show sign-column
+
+    exrc = true; # NOTE: still need to add files via :trust
   };
 
   extraConfigVim = ''
