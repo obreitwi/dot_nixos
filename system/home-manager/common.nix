@@ -18,6 +18,8 @@ in {
 
   my.go.enable = isWork;
 
+  my.gnupg.enable = isDesktop;
+
   my.gui = {
     enable = isDesktop;
 
