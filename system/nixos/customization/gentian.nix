@@ -269,7 +269,7 @@ in {
   in {
     enable = true;
 
-    stateVersion = 1;
+    stateVersion = 3;
 
     fqdn = "mail.${mailDomain}";
     inherit domains;
