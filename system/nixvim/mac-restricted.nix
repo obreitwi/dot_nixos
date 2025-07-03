@@ -5,6 +5,8 @@
     ../../modules/nixvim
   ];
 
+  my.isMacOS = true;
+
   my.nixvim = {
     lang = {
       all = false;

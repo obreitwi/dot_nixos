@@ -1,4 +1,8 @@
 {
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./colorscheme.nix
     ./completion.nix
@@ -20,5 +24,9 @@
     ./treesitter
   ];
 
-  clipboard.providers.xclip.enable = true;
+  options.my.isMacOS = lib.mkEnableOption "Whether or not we run on Mac";
+
+  config = {
+    clipboard.providers.xclip.enable = !config.my.isMacOS;
+  };
 }

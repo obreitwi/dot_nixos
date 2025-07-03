@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   diffconflicts = pkgs.vimUtils.buildVimPlugin {
     name = "diffconflicts";
     src = pkgs.fetchFromGitHub {
@@ -37,7 +41,10 @@ in {
   plugins.gitgutter.enable = true;
   plugins.fugitive.enable = true;
 
-  globals.gh_open_command = "fn() { echo -n \"$@\" | xclip -selection copy; }; fn ";
+  globals.gh_open_command =
+    if config.my.isMacOS
+    then "fn() { echo -n \"$@\" | pbcopy }; fn "
+    else "fn() { echo -n \"$@\" | xclip -selection copy; }; fn ";
 
   extraConfigVim = ''
     " fold diffs by default for better overviews
