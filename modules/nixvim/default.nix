@@ -5,6 +5,7 @@
     ./debug.nix
     ./directories.nix
     ./keymaps.nix
+    ./local.nix
     ./lsp.nix
     ./lsp-servers.nix
     ./opts.nix
