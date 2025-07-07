@@ -36,16 +36,15 @@
 
     pkgs.flameshot
 
+    # tech-stack
     pkgs.jdk
     pkgs.typst
     pkgs.typstyle
+    pkgs.yarn
 
     # kubernetes tooling
     pkgs.kubectl
     pkgs.kubelogin
-
-    # tiling window manager
-    pkgs.aerospace
 
     #pkgs.inkscape # does not work (missing icons)
 
