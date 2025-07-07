@@ -14,6 +14,7 @@
     ./libreoffice.nix
     ./lsd.nix
     ./lsp.nix
+    ./mac
     ./neovim
     ./readline.nix
     ./revcli.nix
