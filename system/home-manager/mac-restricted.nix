@@ -50,5 +50,7 @@
 
     # build docker
     pkgs.colima
+    pkgs.docker
+    pkgs.docker-compose
   ];
 }
