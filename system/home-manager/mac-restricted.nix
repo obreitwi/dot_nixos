@@ -48,6 +48,8 @@
 
     #pkgs.inkscape # does not work (missing icons)
 
+    pkgs.corkscrew
+
     # build docker
     pkgs.colima
     pkgs.docker
