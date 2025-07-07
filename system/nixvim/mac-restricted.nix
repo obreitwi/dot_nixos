@@ -13,6 +13,8 @@
 
       apl = true;
       java = true;
+      postgres = true;
+      typescript = true;
       typst = true;
     };
 

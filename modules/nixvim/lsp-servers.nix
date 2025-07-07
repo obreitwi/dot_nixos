@@ -13,8 +13,6 @@
   config = lib.mkIf config.my.nixvim.lsp.common {
     plugins.lsp = {
       servers = {
-        ast_grep.enable = true;
-        bashls.enable = true;
         eslint = {
           enable = true;
           settings.format = true;
@@ -41,12 +39,7 @@
           };
         };
         nushell.enable = false;
-        postgres_lsp.enable = true;
         protols.enable = true;
-        ts_ls = {
-          enable = true;
-          settings.format = false;
-        };
       };
     };
   };
