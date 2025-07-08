@@ -17,6 +17,13 @@
       launchd.enable = true;
 
       userSettings = {
+        # attempt to prevent the creation of a tenth workspace
+        after-startup-command = [
+          "workspace B"
+          "move-workspace-to-monitor --wrap-around next"
+          "workspace 1"
+        ];
+
         mode.main.binding = {
           # All possible keys:
           # - Letters.        a, b, c, ..., z
