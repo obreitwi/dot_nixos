@@ -91,7 +91,7 @@
           alt-r = "workspace R";
           alt-s = "workspace S";
           alt-t = "workspace T";
-          alt-u = "workspace U";
+          #alt-u = "workspace U";  # conflicts with creating umlauts
           alt-v = "workspace V";
           alt-w = "workspace W";
           alt-x = "workspace X";
@@ -124,7 +124,7 @@
           alt-shift-r = "move-node-to-workspace R";
           alt-shift-s = "move-node-to-workspace S";
           alt-shift-t = "move-node-to-workspace T";
-          alt-shift-u = "move-node-to-workspace U";
+          #alt-shift-u = "move-node-to-workspace U"; # conflicts with creating umlauts
           alt-shift-v = "move-node-to-workspace V";
           alt-shift-w = "move-node-to-workspace W";
           alt-shift-x = "move-node-to-workspace X";
