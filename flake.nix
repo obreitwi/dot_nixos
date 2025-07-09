@@ -122,6 +122,24 @@
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
           revcli = revcli.packages.${prev.system}.default;
           toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
+
+          # use latest bat for typst language definitions
+          bat = prev.bat.overrideAttrs (finalAttrs: prevAttrs: let
+            src = prev.fetchFromGitHub {
+              owner = "sharkdp";
+              repo = "bat";
+              rev = "c18f5e054ead3011ce517decef43fd0ba278a8ef";
+              hash = "sha256-MBTQN7TfgmPX0+oyZ6GhsxjO8A/w+y2Wi08qy7gDguw=";
+            };
+          in
+            prevAttrs
+            // {
+              inherit src;
+              cargoDeps = final.rustPlatform.fetchCargoVendor {
+                inherit src;
+                hash = "sha256-NWDs9Kc1RW0vHIzfERXJQrMKZSrrylwX2VsSPIfs50s=";
+              };
+            });
         })
       ];
 
@@ -135,15 +153,15 @@
 
       nixpkgs-patched = nixpkgs;
       #nixpkgs-patched = pkgs-init.applyPatches {
-        #name = "nixpkgs-patched-${nixpkgs.shortRev}";
-        #src = nixpkgs;
-        #patches = [
-          ##(pkgs-init.fetchurl {
-            ##url = "https://github.com/NixOS/nixpkgs/pull/420937.diff";
-            ##hash = "sha256-PG0rLptUB+MkWdflrnz6sCE9btSrnrNbaJTD7JlYCHU=";
-          ##})
-          ##./patches/nixpkgs/revert_pr_391647.patch
-        #];
+      #name = "nixpkgs-patched-${nixpkgs.shortRev}";
+      #src = nixpkgs;
+      #patches = [
+      ##(pkgs-init.fetchurl {
+      ##url = "https://github.com/NixOS/nixpkgs/pull/420937.diff";
+      ##hash = "sha256-PG0rLptUB+MkWdflrnz6sCE9btSrnrNbaJTD7JlYCHU=";
+      ##})
+      ##./patches/nixpkgs/revert_pr_391647.patch
+      #];
       #};
 
       pkgs = import nixpkgs-patched args-import-nixpkgs;
