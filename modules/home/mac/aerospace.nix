@@ -24,6 +24,10 @@
           "workspace 1"
         ];
 
+        key-mapping.key-notation-to-key-code = {
+          topleft = "§";
+        };
+
         mode.main.binding = {
           # All possible keys:
           # - Letters.        a, b, c, ..., z
@@ -61,6 +65,8 @@
           alt-j = "focus down";
           alt-k = "focus up";
           alt-l = "focus right";
+
+          alt-topleft = "focus-monitor --wrap-around next";
 
           # See: https://nikitabobko.github.io/AeroSpace/commands#move
           alt-shift-h = "move left";
