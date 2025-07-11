@@ -63,6 +63,7 @@
           alt-l = "focus right";
 
           alt-backtick = "focus-monitor --wrap-around next";
+          alt-sectionSign = "focus-monitor --wrap-around prev";
 
           # See: https://nikitabobko.github.io/AeroSpace/commands#move
           alt-shift-h = "move left";
