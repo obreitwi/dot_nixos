@@ -36,11 +36,15 @@
 
     pkgs.flameshot
 
-    # tech-stack
-    pkgs.jdk
-    pkgs.typst
-    pkgs.typstyle
-    pkgs.yarn
+    # tech-stack (supplied via shell.ni)
+    # backend
+    #pkgs.jdk
+    #pkgs.typst
+    #pkgs.typstyle
+
+    # frontend
+    #pkgs.yarn
+    #pkgs.nodejs_20
 
     # kubernetes tooling
     pkgs.kubectl
