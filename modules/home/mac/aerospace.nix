@@ -87,7 +87,7 @@
           alt-9 = "workspace 9";
           alt-a = "workspace A"; # In your config, you can drop workspace bindings that you don"t need
           alt-b = "workspace B";
-          alt-c = "workspace C";
+          #alt-c = "workspace C"; # conflicts with alt-c fzf cd-dir
           alt-d = "workspace D";
           alt-e = "workspace E";
           alt-f = "workspace F";
@@ -120,7 +120,7 @@
           alt-shift-9 = "move-node-to-workspace 9";
           alt-shift-a = "move-node-to-workspace A";
           alt-shift-b = "move-node-to-workspace B";
-          alt-shift-c = "move-node-to-workspace C";
+          #alt-shift-c = "move-node-to-workspace C"; # conflicts with alt-c fzf cd-dir
           alt-shift-d = "move-node-to-workspace D";
           alt-shift-e = "move-node-to-workspace E";
           alt-shift-f = "move-node-to-workspace F";
