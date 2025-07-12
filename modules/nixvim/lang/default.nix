@@ -8,6 +8,7 @@
     ./haskell.nix
     ./java.nix
     ./postgres.nix
+    ./nix.nix
     ./python.nix
     ./rust.nix
     ./terraform.nix
