@@ -12,7 +12,8 @@ Using `nixpkgs` in several ways:
 ### Install
 
 #### NixOS
-_(to be written)_
+* Install NixOS via install medium.
+* Activate flake. 
 
 #### Non-NixOS
 * Install nix
