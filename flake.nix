@@ -135,15 +135,19 @@
 
       #nixpkgs-patched = nixpkgs;
       nixpkgs-patched = pkgs-init.applyPatches {
-      name = "nixpkgs-patched-${nixpkgs.shortRev}";
-      src = nixpkgs;
-      patches = [
-      (pkgs-init.fetchurl {
-      url = "https://github.com/NixOS/nixpkgs/commit/9b504cfe4b7951b231feb2224dc7ab6766f20316.patch";
-      hash = "sha256-Zox40ivrhOFf9sV1Motvbvof+uK9oSJ8mbg3Gw00GbA";
-      })
-      #./patches/nixpkgs/revert_pr_391647.patch
-      ];
+        name = "nixpkgs-patched-${nixpkgs.shortRev}";
+        src = nixpkgs;
+        patches = [
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425707.diff";
+            hash = "sha256-sh9QWfRh0Jd61Cf+/vXyFmpg6S3ouHWD1vYHId6Fggo=";
+          })
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425543.diff";
+            hash = "sha256-WA//g6iawjL5N2XURwZd+pz1knJaKhygQmveAPF13sw=";
+          })
+          #./patches/nixpkgs/revert_pr_391647.patch
+        ];
       };
 
       pkgs = import nixpkgs-patched args-import-nixpkgs;
@@ -277,7 +281,7 @@
 
       hm-modules-default = [
         ./system/home-manager/non-nixos.nix
-        nix-index-database.hmModules.nix-index
+        nix-index-database.homeModules.nix-index
         (
           {
             lib,
