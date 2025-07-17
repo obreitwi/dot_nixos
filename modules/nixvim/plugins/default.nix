@@ -2,7 +2,7 @@
   imports = [
     ./argumentative.nix
     ./dadbod.nix
-    ./diffchar.nix
+    #./diffchar.nix # disabled because of conflicting hotkeys (let's see if it's used since it does not seem to support inline diffopt)
     ./exchange.nix
     ./fugitive.nix
     ./fzf.nix
