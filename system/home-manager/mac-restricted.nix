@@ -36,6 +36,8 @@
 
     pkgs.flameshot
 
+    pkgs.duf
+
     # tech-stack (supplied via shell.ni)
     # backend
     #pkgs.jdk
