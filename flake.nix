@@ -142,10 +142,10 @@
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425707.diff";
             hash = "sha256-sh9QWfRh0Jd61Cf+/vXyFmpg6S3ouHWD1vYHId6Fggo=";
           })
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425543.diff";
-            hash = "sha256-WA//g6iawjL5N2XURwZd+pz1knJaKhygQmveAPF13sw=";
-          })
+          #(pkgs-init.fetchurl {
+            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425543.diff";
+            #hash = "sha256-WA//g6iawjL5N2XURwZd+pz1knJaKhygQmveAPF13sw=";
+          #})
           #./patches/nixpkgs/revert_pr_391647.patch
         ];
       };
