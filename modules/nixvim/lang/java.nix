@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: {
@@ -15,5 +16,11 @@
     };
 
     plugins.jdtls.enable = true;
+
+    extraConfigLua = ''
+      require("lspconfig")["kotlin_lsp"].setup({
+        cmd = { "${pkgs.kotlin-lsp}/bin/kotlin-lsp", "--stdio"}
+      })
+    '';
   };
 }
