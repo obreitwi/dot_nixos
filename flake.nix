@@ -189,20 +189,16 @@
           then (import ./modules/nixvim)
           else module;
       in {
-        home.packages = [
-          (pkgs.writeShellApplication {
-            name = "nvim";
-            runtimeInputs = [
-              (nixvim'.makeNixvimWithModule (nixvimModule {
-                inherit pkgs;
-                module = module';
-                specialArgs = specialArgs {inherit hostname;};
-              }))
-            ];
-            text = ''
-              exec nvim "$@"
-            '';
-          })
+        home.packages = let
+          nvim =
+            nixvim'.makeNixvimWithModule
+            (nixvimModule {
+              inherit pkgs;
+              module = module';
+              specialArgs = specialArgs {inherit hostname;};
+            });
+        in [
+          nvim
         ];
       };
 
