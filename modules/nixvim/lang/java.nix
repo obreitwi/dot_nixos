@@ -17,10 +17,16 @@
 
     plugins.jdtls.enable = true;
 
-    extraConfigLua = ''
-      require("lspconfig")["kotlin_lsp"].setup({
-        cmd = { "${pkgs.kotlin-lsp}/bin/kotlin-lsp", "--stdio"}
-      })
-    '';
+    extraConfigLua =
+      /*
+      lua
+      */
+      ''
+        vim.lsp.config('kotlin_lsp', {
+          cmd = { "${pkgs.kotlin-lsp}/bin/kotlin-lsp", "--stdio"}
+        })
+        -- temporarily enable kotlin_lsp until nixvim used native api/has support for kotlin_lsp
+        vim.lsp.enable('kotlin_lsp')
+      '';
   };
 }

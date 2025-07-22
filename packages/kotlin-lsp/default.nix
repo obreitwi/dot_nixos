@@ -22,8 +22,8 @@ in
       mkdir -p $out/lib
       mkdir -p $out/bin
       cp -r lib/* $out/lib
-      cp kotlin-lsp.sh $out/bin/kotlin-lsp
-      chmod +x $out/bin/kotlin-lsp
+      cp kotlin-lsp.sh $out/kotlin-lsp
+      chmod +x $out/kotlin-lsp
     '';
 
     nativeBuildInputs = [
@@ -34,11 +34,12 @@ in
     ];
 
     postFixup = ''
-      wrapProgram "$out/bin/kotlin-lsp" --set JAVA_HOME ${openjdk} --prefix PATH : ${
+      wrapProgram "$out/kotlin-lsp" --set JAVA_HOME ${openjdk} --prefix PATH : ${
         lib.strings.makeBinPath [
           openjdk
         ]
       }
+      ln -s $out/kotlin-lsp $out/bin
     '';
 
     meta = {
