@@ -10,6 +10,11 @@
   };
 
   config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.java) {
+    lsp.servers = {
+      jdtls.enable = true;
+      kotlin_language_server.enable = true;
+    };
+
     plugins.lsp.servers = {
       jdtls.enable = true;
       kotlin_language_server.enable = true;

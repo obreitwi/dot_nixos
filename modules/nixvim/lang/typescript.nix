@@ -36,6 +36,8 @@
     })
 
     (lib.mkIf ((config.my.nixvim.lang.all || config.my.nixvim.lang.angular.enable) && !config.my.nixvim.lang.angular.disable) {
+      lsp.servers.angularls.enable = true;
+
       plugins.lsp.servers = {
         angularls = {
           enable = true;
