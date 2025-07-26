@@ -18,6 +18,9 @@ in {
     console.useXkbConfig = true;
     # Configure keymap in X11
     services = {
+      displayManager.gdm.enable = false;
+      desktopManager.gnome.enable = false;
+
       xserver = {
         enable = true;
         exportConfiguration = true;
@@ -42,15 +45,7 @@ in {
           );
         };
 
-        desktopManager = {
-          gnome = {
-            enable = false;
-          };
-        };
-
         displayManager = {
-          gdm.enable = false;
-
           lightdm.enable = true;
 
           session = [
