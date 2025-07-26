@@ -21,6 +21,7 @@ lib.mkIf (config.my.gui.enable) {
   gtk.theme.name = "adw-gtk3-dark";
   gtk.iconTheme.package = pkgs.adwaita-icon-theme;
   gtk.iconTheme.name = "Adwaita";
+  gtk.gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
   # gtk.iconTheme.package = pkgs.gruvbox-dark-gtk;
   # gtk.iconTheme.name = "GruvboxDark";
 
