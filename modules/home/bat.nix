@@ -1,9 +1,21 @@
 {
+  lib,
+  config,
+  ...
+}: {
   programs.bat = {
     enable = true;
-    config = {
-      theme = "gruvbox-dark";
-      pager = "less -RF";
-    };
+    config = lib.mkMerge [
+      {
+        pager = "less -RF";
+      }
+
+      (
+        lib.mkIf (!config.my.gui.stylix.enable)
+        {
+          theme = "gruvbox-dark";
+        }
+      )
+    ];
   };
 }

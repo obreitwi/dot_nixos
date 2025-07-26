@@ -18,10 +18,17 @@
     services.dunst = {
       enable = true;
       settings = {
-        global = {
-          monitor = 0;
-          font = "Envy Code R 8";
-        };
+        global = lib.mkMerge [
+          {
+            monitor = 0;
+          }
+          (
+            lib.mkIf (!config.my.gui.stylix.enable)
+            {
+              font = "Envy Code R 8";
+            }
+          )
+        ];
       };
     };
   };

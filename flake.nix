@@ -5,18 +5,17 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
-    # not needed right now (no sudo)
-    #nix-darwin = {
-    #url = "github.com:LnL7/nix-darwin";
-    #inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
       # to avoid problems caused by different versions of nixpkgs.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -102,6 +101,7 @@
     nixvim,
     pydemx,
     revcli,
+    stylix,
     ...
   }: let
     linux = "x86_64-linux";
@@ -223,6 +223,7 @@
 
           modules =
             [
+              stylix.nixosModules.stylix
               {
                 _module.args = specialArgs {inherit hostname;}; # make sure that regular home-modules can access special args as well
                 nixpkgs = {inherit overlays;};
@@ -270,6 +271,7 @@
           inherit pkgs;
           modules =
             [
+              stylix.homeModules.stylix
               {_module.args = specialArgs {inherit hostname;};}
               {my.username = username;}
               (hm-nixvim {module = hm-module-nixvim;})
