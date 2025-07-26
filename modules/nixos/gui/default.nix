@@ -1,7 +1,8 @@
 {...}: {
   imports = [
     ./firefox.nix
-    ./udiskie.nix
     ./packages.nix
+    ./theming.nix
+    ./udiskie.nix
   ];
 }
