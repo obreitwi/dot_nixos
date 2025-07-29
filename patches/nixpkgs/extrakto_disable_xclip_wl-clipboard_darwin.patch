@@ -1,0 +1,26 @@
+diff --git i/pkgs/misc/tmux-plugins/default.nix w/pkgs/misc/tmux-plugins/default.nix
+index a4f168fe9430..35de0db3cfdd 100644
+--- i/pkgs/misc/tmux-plugins/default.nix
++++ w/pkgs/misc/tmux-plugins/default.nix
+@@ -274,12 +274,15 @@ in
+ 
+        wrapProgram $target/scripts/open.sh \
+          --prefix PATH : ${
+-           with pkgs;
+-           lib.makeBinPath [
+-             fzf
+-             xclip
+-             wl-clipboard
+-           ]
++           lib.makeBinPath (
++             [
++               pkgs.fzf
++             ]
++             ++ lib.optionals (stdenv.hostPlatform.isLinux) [
++               pkgs.xclip
++               pkgs.wl-clipboard
++             ]
++           )
+          }
+     '';
+     meta = {
