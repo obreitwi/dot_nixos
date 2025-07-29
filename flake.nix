@@ -148,7 +148,8 @@
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425543.diff";
           #hash = "sha256-WA//g6iawjL5N2XURwZd+pz1knJaKhygQmveAPF13sw=";
           #})
-          #./patches/nixpkgs/revert_pr_391647.patch
+          ./patches/nixpkgs/flameshot_disable_kguiaddons_darwin.patch
+          ./patches/nixpkgs/extrakto_disable_xclip_wl-clipboard_darwin.patch
         ];
       };
 

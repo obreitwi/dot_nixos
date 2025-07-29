@@ -1,0 +1,15 @@
+diff --git i/pkgs/by-name/fl/flameshot/package.nix w/pkgs/by-name/fl/flameshot/package.nix
+index c7de7abbbec7..ce88aaea51ba 100644
+--- i/pkgs/by-name/fl/flameshot/package.nix
++++ w/pkgs/by-name/fl/flameshot/package.nix
+@@ -64,7 +64,9 @@ stdenv.mkDerivation {
+ 
+   buildInputs = [
+     libsForQt5.qtbase
+-    libsForQt5.kguiaddons
++  ]
++  ++ lib.optionals stdenv.hostPlatform.isLinux [
++      libsForQt5.kguiaddons
+   ];
+ 
+   postPatch = lib.optionalString stdenv.hostPlatform.isDarwin ''
