@@ -140,13 +140,9 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425707.diff";
-            hash = "sha256-sh9QWfRh0Jd61Cf+/vXyFmpg6S3ouHWD1vYHId6Fggo=";
-          })
           #(pkgs-init.fetchurl {
-          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425543.diff";
-          #hash = "sha256-WA//g6iawjL5N2XURwZd+pz1knJaKhygQmveAPF13sw=";
+            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425707.diff";
+            #hash = "sha256-sh9QWfRh0Jd61Cf+/vXyFmpg6S3ouHWD1vYHId6Fggo=";
           #})
           ./patches/nixpkgs/flameshot_disable_kguiaddons_darwin.patch
           ./patches/nixpkgs/extrakto_disable_xclip_wl-clipboard_darwin.patch
