@@ -1,5 +1,9 @@
 # common configurations in home manager for both nixos and standalone
-{hostname, ...}: let
+{
+  hostname,
+  pkgs,
+  ...
+}: let
   isDesktop = builtins.elem hostname [
     "mimir"
     "mucku"
@@ -9,6 +13,8 @@ in {
   imports = [
     ../../modules/home
   ];
+
+  my.isMacOS = pkgs.stdenv.isDarwin;
 
   programs.home-manager.enable = true;
   programs.nix-index.enable = true;
