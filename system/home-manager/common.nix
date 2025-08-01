@@ -14,7 +14,7 @@ in {
     ../../modules/home
   ];
 
-  my.isMacOS = pkgs.stdenv.isDarwin;
+  my.isMacOS = pkgs.stdenv.hostPlatform.isDarwin;
 
   programs.home-manager.enable = true;
   programs.nix-index.enable = true;
