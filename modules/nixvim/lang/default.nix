@@ -7,8 +7,9 @@
     ./go.nix
     ./haskell.nix
     ./java.nix
-    ./postgres.nix
+    ./kotlin.nix
     ./nix.nix
+    ./postgres.nix
     ./python.nix
     ./rust.nix
     ./terraform.nix
