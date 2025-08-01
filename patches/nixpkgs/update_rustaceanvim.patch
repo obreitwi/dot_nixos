@@ -1,0 +1,25 @@
+diff --git i/pkgs/development/lua-modules/generated-packages.nix w/pkgs/development/lua-modules/generated-packages.nix
+index cb951c7f0867..edbc3506f9f8 100644
+--- i/pkgs/development/lua-modules/generated-packages.nix
++++ w/pkgs/development/lua-modules/generated-packages.nix
+@@ -4655,15 +4655,15 @@ final: prev: {
+     }:
+     buildLuarocksPackage {
+       pname = "rustaceanvim";
+-      version = "6.5.1-1";
++      version = "6.6.0-1";
+       knownRockspec =
+         (fetchurl {
+-          url = "mirror://luarocks/rustaceanvim-6.5.1-1.rockspec";
+-          sha256 = "0rgj1k67aclpvxf7s5izlb2gki473kkkwws2rql6rz999gdcrny3";
++          url = "mirror://luarocks/rustaceanvim-6.6.0-1.rockspec";
++          sha256 = "sha256-VnsMj5KeA2wAaXXME0yF+e1XVApOX0b4KA861xo/1Qo=";
+         }).outPath;
+       src = fetchzip {
+-        url = "https://github.com/mrcjkb/rustaceanvim/archive/v6.5.1.zip";
+-        sha256 = "1q3p71jsc4ka4jp43pigcgknzpz2cgvcpvjczghz4xf5zcizfkgc";
++        url = "https://github.com/mrcjkb/rustaceanvim/archive/v6.6.0.zip";
++        sha256 = "sha256-4a3B/WFUU8jfey1+Cva5w9GasLdbg8zIPsr7IGjbvQA=";
+       };
+ 
+       disabled = luaOlder "5.1";

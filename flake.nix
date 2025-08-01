@@ -141,11 +141,15 @@
         src = nixpkgs;
         patches = [
           #(pkgs-init.fetchurl {
-            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425707.diff";
-            #hash = "sha256-sh9QWfRh0Jd61Cf+/vXyFmpg6S3ouHWD1vYHId6Fggo=";
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/425707.diff";
+          #hash = "sha256-sh9QWfRh0Jd61Cf+/vXyFmpg6S3ouHWD1vYHId6Fggo=";
           #})
           ./patches/nixpkgs/flameshot_disable_kguiaddons_darwin.patch
           ./patches/nixpkgs/extrakto_disable_xclip_wl-clipboard_darwin.patch
+
+          # fix neotest test flakiness
+          ./patches/nixpkgs/fix_neotest.patch
+          ./patches/nixpkgs/update_rustaceanvim.patch
         ];
       };
 
