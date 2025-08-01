@@ -12,7 +12,7 @@
       all = false;
 
       apl = true;
-      java = true;
+      kotlin = true;
       nix = true;
       postgres = true;
       typescript = true;
