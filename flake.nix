@@ -149,6 +149,8 @@
 
           # fix neotest test flakiness
           ./patches/nixpkgs/fix_neotest.patch
+
+          # upstream fix: https://github.com/nvim-neotest/neotest/pull/529
           ./patches/nixpkgs/update_rustaceanvim.patch
         ];
       };
