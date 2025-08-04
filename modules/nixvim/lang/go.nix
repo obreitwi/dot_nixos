@@ -5,7 +5,7 @@
   utils,
   ...
 }: let
-  inherit (utils) autoCmdFT;
+  inherit (utils) autoCmdsFT;
 
   vim-go = pkgs.vimUtils.buildVimPlugin {
     name = "vim-go";
@@ -24,14 +24,9 @@ in {
 
   config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.go) {
     autoCmd =
-      map
-      (
-        command:
-          autoCmdFT {
-            lang = "go";
-            inherit command;
-          }
-      )
+      autoCmdsFT {
+        lang = "go";
+      }
       [
         "setlocal spelloptions+=noplainbuffer"
         "nmap <buffer> <silent> <leader>K <Plug>(go-doc)"
