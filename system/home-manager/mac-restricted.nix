@@ -56,6 +56,9 @@
 
     pkgs.corkscrew
 
+    # dev tooling
+    pkgs.mergiraf
+
     # build docker
     pkgs.colima
     pkgs.docker
