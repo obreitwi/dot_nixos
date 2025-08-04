@@ -2,8 +2,11 @@
   lib,
   pkgs,
   config,
+  utils,
   ...
-}: {
+}: let
+  inherit (utils) autoCmdsFT;
+in {
   options.my.nixvim.lang.kotlin = lib.mkOption {
     default = false;
     type = lib.types.bool;
@@ -15,8 +18,14 @@
     };
 
     plugins.lsp.servers = {
-      kotlin_language_server.enable = true;
+      kotlin_language_server = {
+        enable = true;
+      };
     };
+
+    autoCmd = autoCmdsFT {lang = "kotlin";} [
+      "nmap <buffer> <leader>cff :!gradle detekt --auto-correct<CR>"
+    ];
 
     extraConfigLua =
       /*
@@ -26,7 +35,7 @@
         vim.lsp.config('kotlin_lsp', {
         cmd = { "${pkgs.kotlin-lsp}/bin/kotlin-lsp", "--stdio"}
         })
-        -- temporarily enable kotlin_lsp until nixvim used native api/has support for kotlin_lsp
+        -- temporarily enable kotlin_lsp until nixvim has support for kotlin_lsp out of the box
         -- vim.lsp.enable('kotlin_lsp')
       '';
   };
