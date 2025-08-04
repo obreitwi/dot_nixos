@@ -17,6 +17,14 @@ in {
       kotlin_language_server.enable = true;
     };
 
+    plugins.lsp-format = {
+      settings = {
+        typescript = {
+          exclude = ["kotlin_language_server"];
+        };
+      };
+    };
+
     plugins.lsp.servers = {
       kotlin_language_server = {
         enable = true;
