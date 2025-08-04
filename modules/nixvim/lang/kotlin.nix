@@ -19,7 +19,7 @@ in {
 
     plugins.lsp-format = {
       settings = {
-        typescript = {
+        kotlin = {
           exclude = ["kotlin_language_server"];
         };
       };
