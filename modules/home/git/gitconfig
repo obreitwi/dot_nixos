@@ -67,6 +67,7 @@
     tool = diffconflicts
 [mergetool "diffconflicts"]
     cmd = nvim -c DiffConflictsWithHistory "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    conflictstyle = diff3
     trustExitCode = true
 [init]
     defaultBranch = main
