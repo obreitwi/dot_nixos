@@ -25,4 +25,6 @@
 
     neorg.enable = lib.mkForce true;
   };
+
+  plugins.lsp.bashls.enable = true;
 }
