@@ -13,6 +13,7 @@
   config = lib.mkIf config.my.nixvim.lsp.common {
     plugins.lsp = {
       servers = {
+        bashls.enable = true;
         lua_ls.enable = true;
         marksman.enable = true;
         nushell.enable = false;
