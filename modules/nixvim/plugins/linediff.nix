@@ -15,12 +15,12 @@ in {
 
   keymaps = [
     {
-      mode = "n";
+      mode = ["n" "v"];
       key = "<leader>ldd";
       action = "<CMD>Linediff<CR>";
     }
     {
-      mode = "n";
+      mode = ["n" "v"];
       key = "<leader>ldr";
       action = "<CMD>LinediffReset<CR>";
     }
