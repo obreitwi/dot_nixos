@@ -51,6 +51,7 @@
     # kubernetes tooling
     pkgs.kubectl
     pkgs.kubelogin
+    pkgs.yq
 
     #pkgs.inkscape # does not work (missing icons)
 
