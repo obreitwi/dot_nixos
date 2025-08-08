@@ -148,10 +148,10 @@
           #./patches/nixpkgs/extrakto_disable_xclip_wl-clipboard_darwin.patch
 
           # fix neotest test flakiness
+          # upstream fix: https://github.com/nvim-neotest/neotest/pull/529
           ./patches/nixpkgs/fix_neotest.patch
 
-          # upstream fix: https://github.com/nvim-neotest/neotest/pull/529
-          ./patches/nixpkgs/update_rustaceanvim.patch
+          #./patches/nixpkgs/update_rustaceanvim.patch
         ];
       };
 
