@@ -53,6 +53,9 @@
     pkgs.kubelogin
     pkgs.yq
 
+    # database
+    pkgs.postgresql
+
     #pkgs.inkscape # does not work (missing icons)
 
     pkgs.corkscrew
