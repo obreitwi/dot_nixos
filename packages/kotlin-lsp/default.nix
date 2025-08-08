@@ -5,14 +5,14 @@
   openjdk,
   makeWrapper,
 }: let
-  version = "0.252.17811";
+  version = "0.253.10629";
 in
   stdenv.mkDerivation {
     pname = "kotlin-lsp";
     inherit version;
     src = fetchzip {
       url = "https://download-cdn.jetbrains.com/kotlin-lsp/${version}/kotlin-${version}.zip";
-      hash = "sha256-yplwz3SQzUIYaOoqkvPEy8nQ5p3U/e1O49WNxaE7p9Y=";
+      hash = "sha256-LCLGo3Q8/4TYI7z50UdXAbtPNgzFYtmUY/kzo2JCln0=";
       stripRoot = false;
     };
 
@@ -20,8 +20,10 @@ in
 
     installPhase = ''
       mkdir -p $out/lib
+      mkdir -p $out/native
       mkdir -p $out/bin
       cp -r lib/* $out/lib
+      cp -r native/* $out/native
       cp kotlin-lsp.sh $out/kotlin-lsp
       chmod +x $out/kotlin-lsp
     '';
