@@ -28,6 +28,7 @@ in {
 
   my.gui = {
     enable = isDesktop;
+    stylix.enable = isDesktop;
 
     keepass.enable = builtins.elem hostname ["mucku" "gentian"];
     nextcloud.enable = builtins.elem hostname ["mucku"];
