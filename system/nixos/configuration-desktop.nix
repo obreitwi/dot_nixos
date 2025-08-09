@@ -4,6 +4,8 @@
 {pkgs, ...}: {
   imports = [../../modules/nixos];
 
+  my.gui.stylix.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
