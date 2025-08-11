@@ -18,26 +18,17 @@ new file mode 100644
 index 000000000000..210176fe2d30
 --- /dev/null
 +++ i/pkgs/development/lua-modules/neotest.patch
-@@ -0,0 +1,22 @@
-+diff --git i/tests/unit/client/strategies/integrated_spec.lua w/tests/unit/client/strategies/integrated_spec.lua
-+index 196c2e7..42a3df7 100644
-+--- i/tests/unit/client/strategies/integrated_spec.lua
-++++ w/tests/unit/client/strategies/integrated_spec.lua
-+@@ -34,7 +34,7 @@ describe("integrated strategy", function()
-+ 
-+   a.it("stops the job", function()
-+     local process = strategy({
-+-      command = { "bash", "-c", "sleep 1" },
-++      command = { "bash", "-c", "sleep 10" },
-+       strategy = {
-+         height = 10,
-+         width = 10,
+@@ -0,0 +1,13 @@
++diff --git c/tests/unit/client/strategies/integrated_spec.lua i/tests/unit/client/strategies/integrated_spec.lua
++index 196c2e7..e47d4d3 100644
++--- c/tests/unit/client/strategies/integrated_spec.lua
+++++ i/tests/unit/client/strategies/integrated_spec.lua
 +@@ -47,7 +47,7 @@ describe("integrated strategy", function()
 + 
 +   a.it("streams output", function()
 +     local process = strategy({
 +-      command = { "bash", "-c", "printf hello; sleep 0; printf world" },
-++      command = { "bash", "-c", "printf hello; sleep 0.1; printf world" },
+++      command = { "bash", "-c", "printf hello; sleep 0.1; printf world; sleep 10" },
 +       strategy = {
 +         height = 10,
 +         width = 10,
