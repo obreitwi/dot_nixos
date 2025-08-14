@@ -678,11 +678,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755107032,
-        "narHash": "sha256-ckb/RX9rJ/FslBA3K4hYAXgVW/7JdQ50Z+28XZT96zg=",
+        "lastModified": 1755121891,
+        "narHash": "sha256-UtYkukiGnPRJ5rpd4W/wFVrLMh8fqtNkqHTPgHEtrqU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4b6dd06c6a92308c06da5e0e55f2c505237725c9",
+        "rev": "279ca5addcdcfa31ac852b3ecb39fc372684f426",
         "type": "github"
       },
       "original": {
@@ -772,11 +772,11 @@
         "norg-meta": "norg-meta"
       },
       "locked": {
-        "lastModified": 1755116441,
-        "narHash": "sha256-jITFyLj3e1uHyJs/aTbJyHT8sW9UL6pH101veWwkKTA=",
+        "lastModified": 1755123512,
+        "narHash": "sha256-HNM25AqdGYQT/JLvcogoeCdUB2bUlSxvK6kv+qAGbko=",
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "819e55d88a591fcdad512899466d712e924972cc",
+        "rev": "ac594f60e97d1c90271075e1d9d35b258085414f",
         "type": "github"
       },
       "original": {
@@ -1099,11 +1099,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754430432,
-        "narHash": "sha256-B39PiEGqyeSn5b6eyDIk/4j5b8lIlzik1eVfMTnp6Qo=",
+        "lastModified": 1755192551,
+        "narHash": "sha256-7GnVXngSrTLbzjGcztJsuw8ECjD0AGVffZxEACdgwjE=",
         "ref": "refs/heads/main",
-        "rev": "1decd24613c320524653e56a0f06d69694c15052",
-        "revCount": 519,
+        "rev": "8a69154a2622de105364c6da0cd575a64ca9a2c6",
+        "revCount": 520,
         "type": "git",
         "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
       },
