@@ -21,6 +21,7 @@
         global = lib.mkMerge [
           {
             monitor = 0;
+            history = "meta+tab";
           }
           (
             lib.mkIf (!config.my.gui.stylix.enable)

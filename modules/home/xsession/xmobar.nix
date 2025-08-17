@@ -120,10 +120,11 @@ in {
               , Run NamedXPropertyLog "_XMONAD_LOG" "MyPropertyLog"
               , Run Com "date" ["+%d.%m.%y %H:%M:%S"] "mydate" 10
               , Run Swap ["-t", "<usedratio>%"] 10
+              , Run Com "bash" ["-c", "dunstctl count | grep History | awk '$2 > 0 { print \"󰨄 \" $2 }'"] "notification" 50
               ]
               , sepChar = "%"
               , alignSep = "}{"
-              , template = "}%MyPropertyLog%{ %multicpu%${info_ct}   %memory% %swap%   %dynnetwork%${info_wl}  ${info_bat}  <fc=#FFFFCC>%mydate%</fc>"
+              , template = "}%MyPropertyLog%{ %multicpu%${info_ct}   %memory% %swap%   %dynnetwork%${info_wl}  ${info_bat}  <fc=#FFFFCC>%mydate%</fc>  <fc=#FF0000>%notification%</fc>"
             }
         '';
     };
