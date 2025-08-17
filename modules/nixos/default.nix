@@ -12,6 +12,7 @@
     ./nextcloud.nix
     ./nix-index.nix
     ./packages.nix
+    ./secureboot.nix
     ./slock.nix
     ./tlp.nix
     ./xserver.nix

@@ -13,6 +13,8 @@
       PasswordAuthentication = false;
     };
   };
+  my.secureboot.enable = true;
+
   my.slock.enable = false;
   my.slock.patch = false;
 
