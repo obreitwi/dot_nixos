@@ -36,6 +36,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # desktop inputs
+    lanzaboote = {
+      # support secure boot enabled (needed by programs running on dual booted windows)
+      url = "github:nix-community/lanzaboote/v0.4.2";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # server packages:
     mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
@@ -92,6 +100,7 @@
     dot-vim,
     dot-zsh,
     home-manager,
+    lanzaboote,
     mailserver,
     neorg-overlay,
     neorg-task-sync,
@@ -235,6 +244,8 @@
               ./system/nixos/configuration-${type}.nix
               ./system/nixos/hardware-configuration/${hostname}.nix
               ./system/nixos/customization/${hostname}.nix
+
+              lanzaboote.nixosModules.lanzaboote
 
               nix-index-database.nixosModules.nix-index
 
