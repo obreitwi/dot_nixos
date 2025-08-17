@@ -30,4 +30,12 @@
 
   # Prevent Fritz! WLAN stick from posing as CD-Rom first (causes stick to not work at all)
   hardware.usb-modeswitch.enable = true;
+
+  # Enable hardware acceleration
+  hardware.graphics = {
+    enable = true;
+
+    # also install32bit drivers
+    #enable32Bit = true;
+  };
 }

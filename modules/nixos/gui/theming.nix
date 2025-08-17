@@ -24,6 +24,11 @@
         stylix = {
           enable = config.my.gui.stylix.enable;
           base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
+          polarity = "dark";
+
+          targets = {
+            gnome.enable = true; # even if not installed
+          };
         };
       })
     ]

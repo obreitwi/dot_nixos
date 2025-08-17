@@ -12,9 +12,8 @@
     lib.mkIf (config.my.gui.enable)
     (lib.mkMerge [
       {
-          gtk.enable = true;
+        gtk.enable = true;
       }
-
 
       (lib.mkIf (!config.my.gui.stylix.enable)
         {
@@ -66,8 +65,11 @@
             enable = config.my.gui.stylix.enable;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
 
+            polarity = "dark";
+
             targets = {
               alacritty.enable = false;
+              gnome.enable = true; # even if not installed
             };
           };
         }
