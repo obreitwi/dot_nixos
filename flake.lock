@@ -262,11 +262,11 @@
     "dot-desktop": {
       "flake": false,
       "locked": {
-        "lastModified": 1755465971,
-        "narHash": "sha256-hut8KjIZItsHYpoMQFIEYPeRdUDntbu7DeDFFjlIwaI=",
+        "lastModified": 1755507233,
+        "narHash": "sha256-oukzzvSKW94mWO9akMSQ8cAAQX8Eqvkh7fs6gip4UzM=",
         "owner": "obreitwi",
         "repo": "dotfiles_desktop",
-        "rev": "a24c391ba1d6df361a9a4a6e7412858b0f41795b",
+        "rev": "e15a9fb5a71f5a1cd4b1947ab920757a927c1894",
         "type": "github"
       },
       "original": {
