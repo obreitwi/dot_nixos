@@ -120,7 +120,7 @@ in {
               , Run NamedXPropertyLog "_XMONAD_LOG" "MyPropertyLog"
               , Run Com "date" ["+%d.%m.%y %H:%M:%S"] "mydate" 10
               , Run Swap ["-t", "<usedratio>%"] 10
-              , Run Com "bash" ["-c", "dunstctl count | grep History | awk '$2 > 0 { print \"󰨄 \" $2 }'"] "notification" 50
+              , Run Com "bash" ["-c", "dunstctl count | grep History | awk '$2 > 0 { print \"󰨄 \" $2 }'"] "notification" 10
               ]
               , sepChar = "%"
               , alignSep = "}{"
