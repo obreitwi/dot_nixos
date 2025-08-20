@@ -153,7 +153,7 @@
             #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/433196.diff";
             #hash = "sha256-euh+P7h3vwKThyHbfpylY2U3AkmebSuUgp+Chrq4GWY=";
           #})
-          ./patches/nixpkgs/flameshot_disable_kguiaddons_darwin.patch
+          #./patches/nixpkgs/flameshot_disable_kguiaddons_darwin.patch
           #./patches/nixpkgs/extrakto_disable_xclip_wl-clipboard_darwin.patch
 
           # fix neotest test flakiness
