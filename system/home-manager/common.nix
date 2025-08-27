@@ -20,7 +20,7 @@ in {
   programs.nix-index.enable = true;
   programs.nix-index.enableZshIntegration = false;
 
-  my.azure.enable = isWork;
+  my.azure.enable = isWork && false; # currently not needed (& broken)
 
   my.go.enable = isWork;
 
