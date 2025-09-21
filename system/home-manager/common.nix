@@ -2,6 +2,7 @@
 {
   hostname,
   pkgs,
+  lib,
   ...
 }: let
   isDesktop = builtins.elem hostname [
@@ -28,7 +29,7 @@ in {
 
   my.gui = {
     enable = isDesktop;
-    stylix.enable = isDesktop;
+    stylix.enable = lib.mkDefault isDesktop;
 
     keepass.enable = builtins.elem hostname ["mucku" "gentian"];
     nextcloud.enable = builtins.elem hostname ["mucku"];
