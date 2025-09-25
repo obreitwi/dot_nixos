@@ -67,5 +67,8 @@
     pkgs.colima
     pkgs.docker
     pkgs.docker-compose
+
+    pkgs.gnupg
+    pkgs.p7zip
   ];
 }
