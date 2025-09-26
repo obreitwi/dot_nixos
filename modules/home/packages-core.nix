@@ -8,7 +8,7 @@
       # nix helper
       pkgs.nh
       pkgs.nix-output-monitor
-      pkgs.nixVersions.nix_2_28
+      pkgs.nixVersions.nix_2_31
       pkgs.nvd
       pkgs.nurl
 
