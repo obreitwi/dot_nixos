@@ -22,7 +22,7 @@
         # vim
         ''
           lua <<EOF
-            require'lspconfig'.terraformls.setup{}
+            vim.lsp.config.enable('terraformls')
           EOF
           autocmd BufWritePre *.tfvars lua vim.lsp.buf.format()
           autocmd BufWritePre *.tf lua vim.lsp.buf.format()
