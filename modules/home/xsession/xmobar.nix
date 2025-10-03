@@ -9,6 +9,7 @@
   num_cpus = {
     nimir = 4;
     mimir = 12;
+    minir = 16;
     mucku = 16;
   };
 
@@ -51,10 +52,12 @@
       ''
         , Run Battery ["-t", "AC <acstatus>, <left>% / <timeleft>", "-H", "80", "-L", "20", "-l", "#FFB6B0", "-h", "#CEFFAC", "-n", "#FFFFCC"] 600
       '';
+    minir = battery.mimir;
   };
 
   wireless_name = {
     mimir = "wlan0";
+    minir = "wlp194s0";
     mucku = "wlp12s0f3u1";
   };
   wirename = wireless_name.${hostname} or "";

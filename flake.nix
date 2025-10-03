@@ -361,6 +361,15 @@
       ];
     };
 
+    homeConfigurations."oliver.breitwieser@minir" = (perSystem linux).hm {
+      hostname = "minir";
+      username = "oliver.breitwieser";
+      modules = [
+        ./modules/home # default config for everything
+        ./modules/home/xsession # xsession for xmonad setup
+      ];
+    };
+
     packages.${darwin} = {
       inherit (perSystem darwin) nvim;
     };
