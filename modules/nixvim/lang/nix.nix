@@ -26,7 +26,7 @@
                 expr = ''(builtins.getFlake "$NH_FLAKE").nixosConfigurations.gentian.options'';
               };
               home_manager = {
-                expr = ''(builtins.getFlake "$NH_FLAKE").homeConfigurations."oliver.breitwieser@mimir".options'';
+                expr = ''(builtins.getFlake "$NH_FLAKE").homeConfigurations."oliver.breitwieser@minir".options'';
               };
             };
           };

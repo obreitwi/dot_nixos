@@ -7,9 +7,10 @@
 }: let
   isDesktop = builtins.elem hostname [
     "mimir"
+    "minir"
     "mucku"
   ];
-  isWork = builtins.elem hostname ["mimir"];
+  isWork = builtins.elem hostname ["mimir" "minir"];
 in {
   imports = [
     ../../modules/home
@@ -37,6 +38,7 @@ in {
     slock.enable = false;
     x11base.enable = builtins.elem hostname [
       "mimir"
+      "minir"
       "mucku"
     ];
     xmobar.enable = isDesktop;

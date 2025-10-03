@@ -4,7 +4,7 @@
   hostname,
   ...
 }: {
-  services.tlp = lib.mkIf (hostname == "mimir") {
+  services.tlp = lib.mkIf (hostname == "mimir" || hostname == "minir") {
     enable = true;
     settings = {
       CPU_MIN_PERF_ON_AC = 0;
