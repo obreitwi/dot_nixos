@@ -57,7 +57,7 @@
 
   wireless_name = {
     mimir = "wlan0";
-    minir = "wlp194s0";
+    minir = "wlan0";
     mucku = "wlp12s0f3u1";
   };
   wirename = wireless_name.${hostname} or "";
