@@ -14,10 +14,17 @@
       pkgs.glxinfo
     ];
     text = ''
-      picom_args=(-b --backend glx)
+      picom_args=(-b)
+
+      if lsmod | grep -q '^amdgpu'; then
+        picom_args=(--backend xrender)
+      else
+        picom_args=(--backend glx)
+      fi
+
       # If we use nvidia as the main renderer -> compose with glx backend and render fence
       if [[ "$(hostname)" == "mimir" ]] && [ "$(glxinfo | grep "OpenGL renderer")" = "OpenGL renderer string: NVIDIA RTX A1000 Laptop GPU/PCIe/SSE2" ]; then
-          picom_args+=(--xrender-sync-fence)
+        picom_args+=(--xrender-sync-fence)
       fi
       picom "''${picom_args[@]}"
     '';
