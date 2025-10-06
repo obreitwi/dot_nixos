@@ -17,9 +17,9 @@
       picom_args=(-b)
 
       if lsmod | grep -q '^amdgpu'; then
-        picom_args=(--backend xrender)
+        picom_args+=(--backend xrender)
       else
-        picom_args=(--backend glx)
+        picom_args+=(--backend glx)
       fi
 
       # If we use nvidia as the main renderer -> compose with glx backend and render fence
