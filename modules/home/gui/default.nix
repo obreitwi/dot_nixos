@@ -7,6 +7,7 @@
   imports = [
     ./alacritty.nix
     ./autorandr.nix
+    ./chrome.nix
     ./dunst.nix
     ./firefox.nix
     ./fonts.nix
