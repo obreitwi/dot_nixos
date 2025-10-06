@@ -14,7 +14,7 @@ in {
 
   config = lib.mkIf (config.my.nixvim.lang.all || config.my.nixvim.lang.kotlin) {
     lsp.servers = {
-      kotlin_language_server.enable = true;
+      kotlin_language_server.enable = false;
     };
 
     plugins.lsp-format = {
@@ -27,7 +27,7 @@ in {
 
     plugins.lsp.servers = {
       kotlin_language_server = {
-        enable = true;
+        enable = false;
       };
     };
 
@@ -44,7 +44,7 @@ in {
         cmd = { "${pkgs.kotlin-lsp}/bin/kotlin-lsp", "--stdio"}
         })
         -- temporarily enable kotlin_lsp until nixvim has support for kotlin_lsp out of the box
-        -- vim.lsp.enable('kotlin_lsp')
+        vim.lsp.enable('kotlin_lsp')
       '';
   };
 }
