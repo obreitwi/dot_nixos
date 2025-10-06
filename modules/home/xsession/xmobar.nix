@@ -33,16 +33,23 @@
   pad = padding.${hostname} or padding.default;
 
   temp_sensors = {
+    default =
+      # haskell
+      ''
+        , Run CoreTemp [ "-t", "<core0>C", "-L", "40", "-H", "60", "--normal", "#CEFFAC", "--high", "#FFB6B0", "-w", "2", "-c", "${pad}" ] 10
+      '';
+
     mucku =
       # haskell
       ''
         , Run Com "bash" [ "-c", "sensors -u k10temp-pci-00c3 | awk '/temp1_input:/ { printf(\"%.0f°C\", $2) }'"] "temp_cpu" 10
         , Run Com "bash" [ "-c", "sensors -u amdgpu-pci-0a00 | awk '/temp1_input:/ { printf(\"%.0f°C\", $2) }'"] "temp_gpu" 10
       '';
-    default =
+    minir =
       # haskell
       ''
-        , Run CoreTemp [ "-t", "<core0>C", "-L", "40", "-H", "60", "--normal", "#CEFFAC", "--high", "#FFB6B0", "-w", "2", "-c", "${pad}" ] 10
+        , Run Com "bash" [ "-c", "sensors -u k10temp-pci-00c3 | awk '/temp1_input:/ { printf(\"%.0f°C\", $2) }'"] "temp_cpu" 10
+        , Run Com "bash" [ "-c", "sensors -u amdgpu-pci-c400 | awk '/temp1_input:/ { printf(\"%.0f°C\", $2) }'"] "temp_gpu" 10
       '';
   };
 
@@ -77,8 +84,11 @@
       '';
 
   info_coretemp = {
+    amd_gpu = " %temp_cpu% %temp_gpu%";
+    mucku = info_coretemp.amd_gpu;
+    minir = info_coretemp.amd_gpu;
+
     default = " %coretemp%";
-    mucku = " %temp_cpu% %temp_gpu%";
   };
 
   info_ct = info_coretemp.${hostname} or info_coretemp.default;
