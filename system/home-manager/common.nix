@@ -22,6 +22,8 @@ in {
   programs.nix-index.enable = true;
   programs.nix-index.enableZshIntegration = false;
 
+  my.chrome.utils = isWork;
+
   my.azure.enable = isWork && false; # currently not needed (& broken)
 
   my.go.enable = isWork;
