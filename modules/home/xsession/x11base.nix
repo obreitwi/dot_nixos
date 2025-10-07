@@ -16,7 +16,7 @@
     text = ''
       picom_args=(-b)
 
-      if lsmod | grep -q '^amdgpu'; then
+      if lsmod | grep 'amdgpu' &>/dev/null; then
         picom_args+=(--backend xrender)
       else
         picom_args+=(--backend glx)
