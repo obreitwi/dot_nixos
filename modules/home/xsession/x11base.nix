@@ -17,7 +17,7 @@
       picom_args=(-b)
 
       if lsmod | grep 'amdgpu' &>/dev/null; then
-        picom_args+=(--backend xrender)
+        picom_args+=(--backend xrender --vsync)
       else
         picom_args+=(--backend glx)
       fi
