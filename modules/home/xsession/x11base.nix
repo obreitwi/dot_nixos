@@ -96,7 +96,7 @@
       feh --bg-fill "$HOME/wallpaper/current"
 
       if command -v nixGL &>/dev/null; then
-        nixGL start-picom
+        nixGL fastcompmgr -o .1 -cC &
       else
         start-picom
       fi
@@ -153,6 +153,7 @@ in {
         xorg.xmodmap
         xterm
 
+        fastcompmgr
         startPicom
 
         # backup terminal if nixGL is out of date with GPU drivers
