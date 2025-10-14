@@ -11,6 +11,7 @@
     ./dunst.nix
     ./firefox.nix
     ./fonts.nix
+    ./hyprland.nix
     ./iwd.nix
     ./keynav.nix
     ./keepass.nix

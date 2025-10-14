@@ -5,6 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
+    nixGL = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
@@ -105,6 +110,7 @@
     neorg-overlay,
     neorg-task-sync,
     nix-index-database,
+    nixGL,
     nixpkgs,
     nixpkgs-stable,
     nixvim,
@@ -167,10 +173,10 @@
       pkgs = import nixpkgs-patched args-import-nixpkgs;
       pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
-      # specialArgs computs inputs for nixos/hm modules
+      # specialArgs computes inputs for nixos/hm modules
       baseSpecialArgs = {
         nixpkgs = nixpkgs-patched;
-        inherit dot-desktop dot-vim dot-zsh home-manager;
+        inherit dot-desktop dot-vim dot-zsh home-manager nixGL;
       };
       specialArgs = {hostname}:
         baseSpecialArgs
