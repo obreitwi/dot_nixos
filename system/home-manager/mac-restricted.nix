@@ -1,5 +1,9 @@
 # home manager config only used on desktops not running nixOS
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   imports = [
     ./common.nix
   ];
@@ -50,7 +54,7 @@
 
     # kubernetes tooling
     pkgs.kubectl
-    pkgs.kubelogin
+    pkgs-stable.kubelogin # latest version fails to build
     pkgs.yq
 
     # database
