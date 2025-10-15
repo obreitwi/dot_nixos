@@ -45,6 +45,22 @@
           follow_mouse = 2; # focus follows on click
         };
 
+        # TODO hypridle
+        # TODO hyprsunset
+
+        input = {
+          kb_model = "pc105";
+          kb_layout = "us";
+          kb_variant = "altgr-intl";
+          kb_options = [
+            "compose:menu"
+            "compose:prsc"
+            "lv3:ralt_switch"
+            "eurosign:e"
+            "nbsp:level3n"
+            "caps:escape"
+          ];
+        };
         exec-once = [
           "waybar"
           "iwgtk -i"
