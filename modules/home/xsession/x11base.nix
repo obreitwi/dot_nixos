@@ -96,7 +96,8 @@
       feh --bg-fill "$HOME/wallpaper/current"
 
       if command -v nixGL &>/dev/null; then
-        nixGL fastcompmgr -o .1 -cC &
+        #nixGL fastcompmgr -o .1 -cC &
+        nixGL start-picom
       else
         start-picom
       fi
