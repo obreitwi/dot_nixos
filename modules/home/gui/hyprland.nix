@@ -32,7 +32,8 @@
         debug.disable_logs = true; # TODO: Disable once done.
 
         bind = [
-          "Super Shift, Enter, exec, alacritty"
+          "Super Shift, Return, exec, alacritty"
+          "Super, M, exec, rofi -show run -sort"
 
           "Super Shift, F4, exit"
         ];
