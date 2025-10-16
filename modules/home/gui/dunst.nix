@@ -36,7 +36,7 @@
               enable_recursive_icon_lookup = true;
               icon_theme = "Papirus-Dark, Adwaita";
               max_icon_size = 64;
-              transparency = 20;
+              transparency = 10;
             }
           )
         ];
