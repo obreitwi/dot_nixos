@@ -1,6 +1,8 @@
 {lib, ...}: let
   inherit (lib.nixvim) emptyTable;
 in {
+  colorscheme = "gruvbox";
+
   colorschemes.gruvbox = {
     enable = true;
     settings = {
@@ -28,4 +30,6 @@ in {
       transparent_mode = false;
     };
   };
+
+  colorschemes.github-theme.enable = true;
 }
