@@ -1,0 +1,88 @@
+// Generated via Gemini (2025-10-16)
+{
+    // Configuration for a single Waybar instance
+    "layer": "top", // Display Waybar at the top layer
+    "position": "top", // Position the bar at the top of the screen
+    "spacing": 5, // Spacing between modules (pixels)
+    "height": 30, // Waybar height
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    // Left block: Workspaces and window title
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+
+    // Center block: Clock
+    "modules-center": [
+        "clock"
+    ],
+
+    // Right block: System status (battery, network, volume, power button)
+    "modules-right": [
+        "battery",
+        "network",
+        "pulseaudio",
+        "tray"
+    ],
+
+    // Module-specific configurations
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "•",
+            "active": "󰮯", // Active workspace icon (Gruvbox-friendly font required, e.g., Nerd Font)
+            "persistent": "󰂚"
+        },
+        // Sort workspaces by ID numerically
+        "sort-by": "id"
+    },
+
+    "hyprland/window": {
+        "max-length": 50,
+        "tooltip": true
+    },
+
+    "clock": {
+        // Full-width, center-aligned format (e.g., "Thu Oct 16 17:50")
+        "format": " {:%a %b %d}  |   {:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{:I:%M %p}</small></tt>"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰢋 {capacity}%",
+        "format-plugged": "󰢟 {capacity}%",
+        "format-alt": "{time} {icon}",
+        // Icons based on capacity thresholds
+        "format-icons": ["󰂎", "󰁽", "󰁿", "󰁾", "󰂀", "󰂁", "󰂂", "󰂃", "󰂄", "󰂅", "󰂇"],
+        // Gruvbox-specific colors for status
+        "states": {
+            "good": 90,
+            "warning": 30, // Orange
+            "critical": 15 // Red
+        }
+    },
+
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
+        "format-disconnected": "󰤮 Disconnected"
+    },
+
+    "pulseaudio": {
+        "format": "󰕾 {volume}%",
+        "format-muted": "󰖁 Muted",
+        "scroll-step": 5,
+        "on-click": "pavucontrol" // Launch volume mixer on click
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    }
+}

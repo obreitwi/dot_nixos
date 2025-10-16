@@ -1,0 +1,121 @@
+/* Gruvbox Dark Hard Palette */
+@define-color bg #1d2021; /* Main Background */
+@define-color fg #ebdbb2; /* Foreground Text */
+@define-color gray #a89984; /* Separators/Borders */
+@define-color red #cc241d; /* Critical/Error */
+@define-color green #98971a; /* Charging/Success */
+@define-color yellow #d79921; /* Active/Highlight */
+@define-color blue #458588; /* Info/Secondary Highlight */
+@define-color orange #d65d0e; /* Warning */
+
+/* -------------------------------------------------------------------------- */
+/* General Waybar Styling */
+/* -------------------------------------------------------------------------- */
+
+* {
+    /* Define font consistent with Gruvbox terminal aesthetic (e.g., Nerd Font) */
+    /*font-family: "JetBrainsMono Nerd Font", monospace;*/
+    font-family: "IosevkaTerm NF", monospace;
+    font-size: 13px;
+    font-weight: bold;
+    color: @fg;
+}
+
+#waybar {
+    background-color: @bg;
+    /* Subtle 1px border at the bottom */
+    border-bottom: 1px solid @gray;
+    transition: none; /* Disable transitions for snappier performance */
+}
+
+/* -------------------------------------------------------------------------- */
+/* Module Base Styling */
+/* -------------------------------------------------------------------------- */
+
+/* Common padding for all modules for a clean look */
+#battery, #clock, #network, #pulseaudio, #tray, #hyprland-window {
+    padding: 0 10px;
+    margin: 0;
+    /* Use a slightly lighter gray for the background of individual modules */
+    background-color: transparent;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Specific Module Styling */
+/* -------------------------------------------------------------------------- */
+
+/* Clock Module */
+#clock {
+    color: @blue; /* Use blue for the time/date for a distinct look */
+}
+
+/* Workspaces Module */
+#workspaces {
+    background-color: @bg;
+    padding-right: 5px; /* Adjust padding next to the window title */
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: @gray; /* Inactive workspace text/icon color */
+    background-color: @bg;
+    border: none;
+    min-width: 0; /* Allow icons to size naturally */
+    transition: none;
+}
+
+/* Focused (Active) Workspace */
+#workspaces button.active {
+    color: @yellow; /* Gruvbox yellow for active workspace */
+    /* Add a small underline for emphasis */
+    border-bottom: 2px solid @yellow;
+}
+
+/* Workspace on a Different Screen */
+#workspaces button.persistent {
+    color: @purple; /* Gruvbox purple for persistent workspaces */
+}
+
+/* Workspace Hover */
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    color: @fg; /* Brighter color on hover */
+    background: transparent;
+    border-bottom: 2px solid @fg;
+}
+
+/* Window Title Module */
+#hyprland-window {
+    color: @fg;
+    font-style: italic;
+}
+
+/* Network Module */
+#network.disconnected {
+    color: @red; /* Gruvbox red for disconnected state */
+}
+
+/* Battery Module */
+#battery.charging {
+    color: @green; /* Gruvbox green for charging */
+    background-color: transparent;
+}
+
+/* Battery Critical/Warning States */
+#battery.warning {
+    color: @orange; /* Gruvbox orange for low battery */
+}
+
+#battery.critical {
+    color: @red; /* Gruvbox red for critical battery */
+}
+
+/* Tray Module */
+#tray {
+    padding: 0 5px;
+}
+
+#tray > .icon {
+    margin: 0 5px;
+}

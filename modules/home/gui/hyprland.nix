@@ -147,6 +147,101 @@
 
     programs.waybar = {
       enable = true;
+      style = ../../../config-files/waybar/style.css;
+      settings = {
+        # ~/.config/nixpkgs/waybar.nix (Example file structure)
+        # This snippet is designed to be used within Home Manager's waybar.settings option
+
+        # Top-level Waybar settings
+        layer = "top";
+        position = "top";
+        spacing = 5;
+        height = 30;
+        "margin-top" = 0;
+        "margin-bottom" = 0;
+        "margin-left" = 0;
+        "margin-right" = 0;
+
+        # Module layout
+        "modules-left" = [
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
+        "modules-center" = [
+          "clock"
+        ];
+        "modules-right" = [
+          "battery"
+          "network"
+          "pulseaudio"
+          "tray"
+        ];
+
+        # Module-specific configurations
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          "format-icons" = {
+            default = "•";
+            active = "󰮯";
+            persistent = "󰂚";
+          };
+          "sort-by" = "id";
+        };
+
+        "hyprland/window" = {
+          "max-length" = 50;
+          tooltip = true;
+        };
+
+        clock = {
+          format = " {:%a %b %d}  |   {:%H:%M}";
+          "tooltip-format" = "<big>{:%Y %B}</big>\\n<tt><small>{:I:%M %p}</small></tt>";
+          # Note: '\\n' is used for a newline in Nix strings that will be interpreted as '\n' in the final JSON.
+        };
+
+        battery = {
+          format = "{icon} {capacity}%";
+          "format-charging" = "󰢋 {capacity}%";
+          "format-plugged" = "󰢟 {capacity}%";
+          "format-alt" = "{time} {icon}";
+          "format-icons" = [
+            "󰂎"
+            "󰁽"
+            "󰁿"
+            "󰁾"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰂃"
+            "󰂄"
+            "󰂅"
+            "󰂇"
+          ];
+          states = {
+            good = 90;
+            warning = 30;
+            critical = 15;
+          };
+        };
+
+        network = {
+          "format-wifi" = " {essid}";
+          "format-ethernet" = "󰈀 {ipaddr}/{cidr}";
+          "format-disconnected" = "󰤮 Disconnected";
+        };
+
+        pulseaudio = {
+          format = "󰕾 {volume}%";
+          "format-muted" = "󰖁 Muted";
+          "scroll-step" = 5;
+          "on-click" = "pavucontrol";
+        };
+
+        tray = {
+          "icon-size" = 18;
+          spacing = 10;
+        };
+      };
     };
 
     #home.pointerCursor.hyprcursor.enable = true;
