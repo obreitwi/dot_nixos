@@ -25,9 +25,11 @@
           enable = true;
           base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
           polarity = "dark";
+          autoEnable = true;
 
           targets = {
             gnome.enable = true; # even if not installed
+            dunst.enable = false;
           };
         };
       }
