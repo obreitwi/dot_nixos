@@ -177,16 +177,18 @@
     home.file."${config.xdg.configHome}/waybar/config" = {
       source = ../../../config-files/waybar/config.jsonc;
     };
-    home.file."${config.xdg.configHome}/waybar/uptime.sh" = {
+    home.file."${config.xdg.configHome}/waybar/scripts/uptime.sh" = {
+      executable = true;
       text =
         /*
         bash
         */
         ''
           #!/bin/bash
-          UPTIME_PRETTY=$(uptime -p)
 
-          UPTIME_FORMATTED=$(echo "$UPTIME_PRETTY"| sed 's/^up //;s/,*$//;s/minute/m/; s/hour/h/; s/day/d/; s/s//g')
+          #UPTIME_FORMATTED=$(awk '$1 / 3600 / 24 > 0 { printf("%dd ", ($1/(3600 * 24))) } { printf("%dh", (($1 % (3600*24)) / 3600))}' </proc/uptime)
+          #UPTIME_FORMATTED=$(echo "$UPTIME_PRETTY"| sed 's/^up //;s/,*$//;s/minute/m/; s/hour/h/; s/day/d/; s/s//g')
+          UPTIME_FORMATTED=$(uptime | sed -e 's/:[0-9]\{2\}\s.*$//')
 
           echo " $UPTIME_FORMATTED"
         '';

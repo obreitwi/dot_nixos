@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "margin-bottom": -10,
+  "margin": -5,
   "spacing" : 0,
   "modules-left": [
   "hyprland/workspaces",
@@ -53,7 +53,7 @@
   },
 
   "clock": {
-    "timezone": "Asia/Kolkata",
+    "timezone": "Europe/Berlin",
     "tooltip": false,
     "format": "{:%H:%M:%S  -  %A, %d}",
     "interval": 1
@@ -65,7 +65,7 @@
     "format-disconnected": "󰤠 ",
     "interval": 5,
     "tooltip-format": "{essid} ({signalStrength}%)",
-    "on-click": "nm-connection-editor"
+    "on-click": "iwgtk"
 
  },
 
@@ -73,7 +73,7 @@
     "interval": 1,
     "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
     "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "on-click": "ghostty -e htop"
+    "on-click": "alacritty -e btop"
   },
 
   "memory": {
@@ -86,7 +86,7 @@
     "format": "{}",
     "format-icon": [""], 
     "tooltip": false,
-    "interval": 1600,
+    "interval": 60,
     "exec": "$HOME/.config/waybar/scripts/uptime.sh"
   },
   
