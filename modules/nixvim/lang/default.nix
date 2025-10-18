@@ -6,6 +6,7 @@
     ./dart.nix
     ./go.nix
     ./haskell.nix
+    ./hyprland.nix
     ./java.nix
     ./kotlin.nix
     ./nix.nix
