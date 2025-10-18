@@ -13,6 +13,12 @@
       exec Hyprland
     '';
   };
+  notification-count = pkgs.writeShellApplication {
+    name = "notification-count";
+    text = ''
+      dunstctl count | grep History | awk '$2 > 0 { print "󰨄 " $2 }'
+    '';
+  };
 in {
   options.my.gui.hyprland.enable = lib.mkOption {
     default = false;
@@ -27,6 +33,9 @@ in {
 
     services.hyprpolkitagent.enable = true;
 
+    services.flameshot.enable = true;
+    services.flameshot.settings.General.useGrimAdapter = true;
+
     wayland.windowManager.hyprland = {
       enable = true;
       package =
@@ -37,7 +46,7 @@ in {
       xwayland.enable = true;
 
       settings = {
-        debug.disable_logs = false; # TODO: Disable once done.
+        debug.disable_logs = true;
 
         binds = {
           allow_workspace_cycles = true;
@@ -115,6 +124,12 @@ in {
           "Super, D, movecurrentworkspacetomonitor, r"
 
           "Super Alt, L, exec, hyprlock"
+
+          "Super Ctrl, P, exec, flameshot gui"
+
+          "Super Ctrl, SPACE, exec, dunstctl history-pop"
+          "Super, B, exec, dunstctl close-all"
+          "Super Shift, B, exec, dunstctl history-clear"
         ];
 
         workspace = [
@@ -143,9 +158,6 @@ in {
           #preserve_split = true;
         };
 
-        # TODO: hyprlock
-        # TODO hypridle
-
         input = {
           kb_model = "pc105";
           kb_layout = "us";
@@ -161,9 +173,9 @@ in {
         };
         exec-once = [
           "waybar"
-          "iwgtk -i"
+          #"iwgtk -i"
 
-          "blueman-applet"
+          #"blueman-applet"
           "gnome-keyring-daemon --start --components=secrets"
         ];
       };
@@ -301,6 +313,7 @@ in {
       pkgs.wlprop
 
       start-Hyprland
+      notification-count
     ];
   };
 }

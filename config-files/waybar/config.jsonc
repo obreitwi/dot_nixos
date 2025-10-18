@@ -1,7 +1,10 @@
 {
   "layer": "top",
   "position": "top",
-  "margin": -5,
+  "margin-left": -5,
+  "margin-right": -5,
+  "margin-top": -2,
+  "margin-bottom": -3,
   "spacing" : 0,
   "modules-left": [
     "hyprland/workspaces",
@@ -17,6 +20,7 @@
   ],
 
   "modules-right": [
+    "custom/notifications",
     "tray",
     //"custom/pomodoro",
     "bluetooth",
@@ -101,6 +105,13 @@
     "tooltip": false,
     "interval": 60,
     "exec": "$HOME/.config/waybar/scripts/uptime.sh"
+  },
+
+  "custom/notifications": {
+    "format": "{}",
+    "tooltip": false,
+    "interval": 1,
+    "exec": "$HOME/.nix-profile/bin/notification-count"
   },
 
   "backlight": {
