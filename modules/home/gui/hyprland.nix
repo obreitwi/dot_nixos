@@ -103,8 +103,8 @@ in {
           "Shift Super, 9, movetoworkspace, 9"
           "Shift Super, 0, movetoworkspace, 10"
 
-          "Shift Super Ctrl, H, movetoworkspace, e-1" # Go to workspace on the left
-          "Shift Super Ctrl, L, movetoworkspace, e+1" # Go to workspace on the right
+          "Shift Super Ctrl, H, movetoworkspace, r-1" # Go to workspace on the left
+          "Shift Super Ctrl, L, movetoworkspace, r+1" # Go to workspace on the right
 
           # Navigate between workspaces with modifier + Alt + arrow keys
           "Super Ctrl, H, workspace, e-1" # Go to workspace on the left
@@ -113,6 +113,8 @@ in {
           # Move between monitors
           "Super, S, movecurrentworkspacetomonitor, l"
           "Super, D, movecurrentworkspacetomonitor, r"
+
+          "Super Alt, L, exec, hyprlock"
         ];
 
         general = {
@@ -138,7 +140,6 @@ in {
 
         # TODO: hyprlock
         # TODO hypridle
-        # TODO hyprsunset
 
         input = {
           kb_model = "pc105";
@@ -208,6 +209,79 @@ in {
       enable = true;
       style = ../../../config-files/waybar/style.css;
       # settings.mainBar = { /* set in config file */ };
+    };
+
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          ignore_dbus_inhibit = false;
+          lock_cmd = "hyprlock";
+        };
+
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "hyprlock";
+          }
+          {
+            timeout = 600;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
+
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+          hide_cursor = true;
+          ignore_empty_input = true;
+        };
+
+        animations = {
+          enabled = true;
+          fade_in = {
+            duration = 300;
+            bezier = "easeOutQuint";
+          };
+          fade_out = {
+            duration = 300;
+            bezier = "easeOutQuint";
+          };
+        };
+
+        background = [
+          {
+            path = "screenshot";
+            blur_passes = 3;
+            blur_size = 8;
+          }
+        ];
+
+        auth = {
+          "fingerprint:enabled" = true;
+        };
+
+        input-field = [
+          {
+            size = "150, 40";
+            position = "0, -380";
+            monitor = "";
+            dots_center = true;
+            fade_on_empty = false;
+            font_color = "rgb(202, 211, 245)";
+            inner_color = "rgb(91, 96, 120)";
+            outer_color = "rgb(24, 25, 38)";
+            outline_thickness = 5;
+            placeholder_text = "<span foreground=\"##cad3f5\">Password...</span>";
+            shadow_passes = 2;
+          }
+        ];
+      };
     };
 
     services.hyprsunset.enable = true;
