@@ -117,6 +117,11 @@ in {
           "Super Alt, L, exec, hyprlock"
         ];
 
+        workspace = [
+          "w[t1], border:false" # don't draw borders if there is only one window
+          "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
+        ];
+
         general = {
           gaps_in = 2;
           gaps_out = 2;
