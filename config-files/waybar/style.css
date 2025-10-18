@@ -1,6 +1,6 @@
 /* --- Global Styles --- */
 * {
-  font-family: 'SF Pro Text', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif;
+  font-family: 'Iosevka NF', 'SF Pro Text', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif;
   font-size: 13px;
   min-height: 0;
   padding-right: 0px;
@@ -19,6 +19,9 @@
 /* --- Left Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
 #workspaces,
 #custom-uptime,
+#memory,
+#temperature,
+#tray,
 #cpu {
   background-color: #1a1b26;
   padding: 0.3rem 0.7rem;
@@ -29,6 +32,11 @@
   border: none;
   /* Transition for background-color and color only */
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#tray {
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 #workspaces {
@@ -43,14 +51,20 @@
 
 /* Simple Hover effects for individual left modules - BRIGHTER COLOR */
 #custom-uptime:hover,
-#cpu:hover {
+#cpu:hover,
+#temperature:hover,
+#tray:hover,
+#memory:hover {
   background-color: rgb(41, 42, 53); /* Brighter highlight */
 }
 
 #workspaces button {
   color: #babbf1;
   border-radius: 5px; /* Workspaces buttons are always rounded */
-  padding: 0.3rem 0.6rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.6rem;
+  padding-right: 0.9rem;
   background: transparent;
   transition: all 0.2s ease-in-out;
   border: none;

@@ -5,7 +5,15 @@
   lib,
   nixGL,
   ...
-}: {
+}: let
+  start-Hyprland = pkgs.writeShellApplication {
+    name = "start-Hyprland";
+    text = ''
+      unset LD_LIBRARY_PATH
+      exec Hyprland
+    '';
+  };
+in {
   options.my.gui.hyprland.enable = lib.mkOption {
     default = false;
     type = lib.types.bool;
@@ -29,7 +37,7 @@
       xwayland.enable = true;
 
       settings = {
-        debug.disable_logs = false; # TODO: Enable once done.
+        debug.disable_logs = false; # TODO: Disable once done.
 
         binds = {
           allow_workspace_cycles = true;
@@ -38,6 +46,7 @@
 
         bindm = [
           "Super, mouse:272, movewindow" # Super + LMB: Move a window by dragging more than 10px.
+          "Super, mouse:273, resizewindow" # Super + RMB: Move a window by dragging more than 10px.
         ];
         bindc = [
           "Super, mouse:272, togglefloating" # Super + LMB: Floats a window by clicking
@@ -111,6 +120,7 @@
           gaps_out = 2;
           border_size = 1;
           layout = "dwindle";
+          resize_on_border = true;
         };
 
         monitor = ", preferred, auto, 1";
@@ -188,7 +198,8 @@
 
           #UPTIME_FORMATTED=$(awk '$1 / 3600 / 24 > 0 { printf("%dd ", ($1/(3600 * 24))) } { printf("%dh", (($1 % (3600*24)) / 3600))}' </proc/uptime)
           #UPTIME_FORMATTED=$(echo "$UPTIME_PRETTY"| sed 's/^up //;s/,*$//;s/minute/m/; s/hour/h/; s/day/d/; s/s//g')
-          UPTIME_FORMATTED=$(uptime | sed -e 's/:[0-9]\{2\}\s.*$//')
+          #UPTIME_FORMATTED=$(uptime | awk '{ print $3 }' | tr -d ',' | sed -e 's/:[0-9]\{2\}\s.*$//')
+          UPTIME_FORMATTED=$(uptime | awk '{ print $3 }' | tr -d ',')
 
           echo " $UPTIME_FORMATTED"
         '';
@@ -196,100 +207,7 @@
     programs.waybar = {
       enable = true;
       style = ../../../config-files/waybar/style.css;
-      #settings.mainBar = {
-      ## ~/.config/nixpkgs/waybar.nix (Example file structure)
-      ## This snippet is designed to be used within Home Manager's waybar.settings option
-
-      ## Top-level Waybar settings
-      #layer = "top";
-      #position = "top";
-      #spacing = 5;
-      #height = 30;
-      #"margin-top" = 0;
-      #"margin-bottom" = 0;
-      #"margin-left" = 0;
-      #"margin-right" = 0;
-
-      ## Module layout
-      #"modules-left" = [
-      #"hyprland/workspaces"
-      #"hyprland/window"
-      #];
-      #"modules-center" = [
-      #"clock"
-      #];
-      #"modules-right" = [
-      #"battery"
-      #"network"
-      #"pulseaudio"
-      #"tray"
-      #];
-
-      ## Module-specific configurations
-      #"hyprland/workspaces" = {
-      #format = "{icon}";
-      #"format-icons" = {
-      #default = "•";
-      #active = "󰮯";
-      #persistent = "󰂚";
-      #};
-      ##"sort-by" = "id";
-      #};
-
-      #"hyprland/window" = {
-      #"max-length" = 50;
-      #tooltip = true;
-      #};
-
-      #clock = {
-      #format = " {:%a %b %d}  |   {:%H:%M}";
-      #"tooltip-format" = "<big>{:%Y %B}</big>\\n<tt><small>{:I:%M %p}</small></tt>";
-      ## Note: '\\n' is used for a newline in Nix strings that will be interpreted as '\n' in the final JSON.
-      #};
-
-      #battery = {
-      #format = "{icon} {capacity}%";
-      #"format-charging" = "󰢋 {capacity}%";
-      #"format-plugged" = "󰢟 {capacity}%";
-      #"format-alt" = "{time} {icon}";
-      #"format-icons" = [
-      #"󰂎"
-      #"󰁽"
-      #"󰁿"
-      #"󰁾"
-      #"󰂀"
-      #"󰂁"
-      #"󰂂"
-      #"󰂃"
-      #"󰂄"
-      #"󰂅"
-      #"󰂇"
-      #];
-      #states = {
-      #good = 90;
-      #warning = 30;
-      #critical = 15;
-      #};
-      #};
-
-      #network = {
-      #"format-wifi" = " {essid}";
-      #"format-ethernet" = "󰈀 {ipaddr}/{cidr}";
-      #"format-disconnected" = "󰤮 Disconnected";
-      #};
-
-      #pulseaudio = {
-      #format = "󰕾 {volume}%";
-      #"format-muted" = "󰖁 Muted";
-      #"scroll-step" = 5;
-      #"on-click" = "pavucontrol";
-      #};
-
-      #tray = {
-      #"icon-size" = 18;
-      #spacing = 10;
-      #};
-      #};
+      # settings.mainBar = { /* set in config file */ };
     };
 
     services.hyprsunset.enable = true;
@@ -302,6 +220,8 @@
       pkgs.wev
       pkgs.wl-clipboard
       pkgs.wlprop
+
+      start-Hyprland
     ];
   };
 }

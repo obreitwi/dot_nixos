@@ -13,10 +13,11 @@
     ./fonts.nix
     ./hyprland.nix
     ./iwd.nix
-    ./keynav.nix
     ./keepass.nix
+    ./keynav.nix
     ./nextcloud.nix
     ./redshift.nix
+    ./rofi.nix
     ./slock.nix
     ./theming.nix
     ./zathura.nix
