@@ -29,11 +29,20 @@
   };
 
   config = lib.mkIf config.my.gui.enable {
+    services.flameshot = {
+      enable = true;
+      settings = {
+        General = {
+          disabledTrayIcon = true;
+          showStartupLaunchMessage = false;
+        };
+      };
+    };
+
     home.packages = with pkgs; [
       backlight
       bluetuith
       discord
-      flameshot # take screenshots and edit them
       # neovide # deactivated until build is fixed upstream
       spotify
       udiskie
