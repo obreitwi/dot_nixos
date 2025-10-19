@@ -19,6 +19,14 @@
       dunstctl count | grep History | awk '$2 > 0 { print "󰨄 " $2 }'
     '';
   };
+
+  scratchpad-journal = pkgs.writeShellApplication {
+    name = "scratchpad-journal";
+    text = ''
+      cd ~/wiki/neorg
+      exec alacritty -e nvim '+Neorg journal today'
+    '';
+  };
 in {
   options.my.gui.hyprland.enable = lib.mkOption {
     default = false;
@@ -46,7 +54,7 @@ in {
       xwayland.enable = true;
 
       settings = {
-        debug.disable_logs = true;
+        debug.disable_logs = false;
 
         binds = {
           allow_workspace_cycles = true;
@@ -132,11 +140,28 @@ in {
           "Super Ctrl, SPACE, exec, dunstctl history-pop"
           "Super, B, exec, dunstctl close-all"
           "Super Shift, B, exec, dunstctl history-clear"
+
+          "Super, c, togglespecialworkspace, audio"
+          "Super, slash, togglespecialworkspace, journal"
+          "Super, apostrophe, togglespecialworkspace, terminal"
+          "Super Shift, T, togglespecialworkspace, ptpython"
         ];
 
         workspace = [
-          "w[t1], border:false" # don't draw borders if there is only one window
+          #"w[t1], border:false" # don't draw borders if there is only one window
           "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
+          "special:journal, on-created-empty:scratchpad-journal"
+          "special:ptpython, on-created-empty:alacritty -e ptpython"
+          "special:terminal, on-created-empty:alacritty"
+          "special:audio, on-created-empty:pavucontrol"
+        ];
+
+        windowrule = [
+          # handle scratchpads
+          "float, onworkspace:s[true]"
+          #"maximize, move 50% 25%, size 50% 50%, onworkspace:s[true]"
+          "move 44% 15%, onworkspace:s[true]"
+          "size 55% 70%, onworkspace:s[true]"
         ];
 
         source = [
@@ -159,6 +184,9 @@ in {
 
         decoration = {
           rounding = 5;
+          blur = {
+            special = false;
+          };
         };
 
         #follow_mouse = 2; # focus follows on click
@@ -333,6 +361,8 @@ in {
       start-Hyprland
       notification-count
       pkgs.hyprdynamicmonitors
+
+      scratchpad-journal
     ];
   };
 }
