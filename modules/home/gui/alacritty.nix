@@ -15,6 +15,11 @@
       mods = "Control|Shift"
 
       [[keyboard.bindings]]
+      action = "Copy"
+      key = "K"
+      mods = "Control|Super"
+
+      [[keyboard.bindings]]
       action = "Paste"
       key = "L"
       mods = "Alt"

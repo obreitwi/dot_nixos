@@ -24,6 +24,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprdynamicmonitors = {
+      url = "github:fiffeek/hyprdynamicmonitors";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim/main";
       inputs = {
@@ -105,6 +110,7 @@
     dot-vim,
     dot-zsh,
     home-manager,
+    hyprdynamicmonitors,
     lanzaboote,
     mailserver,
     neorg-overlay,
@@ -139,6 +145,8 @@
           toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
 
           kotlin-lsp = prev.callPackage (import ./packages/kotlin-lsp) {};
+
+          hyprdynamicmonitors = hyprdynamicmonitors.packages.${system}.default;
         })
       ];
 
@@ -291,6 +299,7 @@
           inherit pkgs;
           modules =
             [
+              hyprdynamicmonitors.homeManagerModules.default
               stylix.homeModules.stylix
               {_module.args = specialArgs {inherit hostname;};}
               {my.username = username;}

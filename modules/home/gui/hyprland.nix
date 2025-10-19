@@ -123,6 +123,8 @@ in {
           "Super, S, movecurrentworkspacetomonitor, l"
           "Super, D, movecurrentworkspacetomonitor, r"
 
+          "Super, A, workspace, previous"
+
           "Super Alt, L, exec, hyprlock"
 
           "Super Ctrl, P, exec, flameshot gui"
@@ -135,6 +137,10 @@ in {
         workspace = [
           "w[t1], border:false" # don't draw borders if there is only one window
           "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
+        ];
+
+        source = [
+          "~/.config/hypr/monitors.conf"
         ];
 
         general = {
@@ -183,6 +189,7 @@ in {
 
           #"blueman-applet"
           "gnome-keyring-daemon --start --components=secrets"
+          "hyprdynamicmonitors run"
         ];
       };
 
@@ -190,6 +197,11 @@ in {
         enable = true;
         variables = ["--all"];
       };
+    };
+
+    home.hyprdynamicmonitors = {
+      enable = true;
+      installExamples = false;
     };
 
     services.hyprpaper = {
@@ -320,6 +332,7 @@ in {
 
       start-Hyprland
       notification-count
+      pkgs.hyprdynamicmonitors
     ];
   };
 }
