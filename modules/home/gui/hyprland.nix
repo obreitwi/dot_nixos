@@ -145,6 +145,10 @@ in {
           resize_on_border = true;
         };
 
+        misc = {
+          disable_hyprland_logo = true;
+        };
+
         monitor = ", preferred, auto, 1";
 
         decoration = {
@@ -170,6 +174,8 @@ in {
             "nbsp:level3n"
             "caps:escape"
           ];
+
+          follow_mouse = 2;
         };
         exec-once = [
           "waybar"
