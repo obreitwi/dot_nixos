@@ -111,7 +111,8 @@
     "format": "{}",
     "tooltip": false,
     "interval": 1,
-    "exec": "$HOME/.nix-profile/bin/notification-count"
+    "exec": "$HOME/.nix-profile/bin/notification-count",
+    "on-click": "dunstctl history-pop"
   },
 
   "backlight": {

@@ -58,6 +58,7 @@ in {
 
         binds = {
           allow_workspace_cycles = true;
+          movefocus_cycles_fullscreen = true;
           drag_threshold = 10; # Fire a drag event only after dragging for more than 10px
         };
 
@@ -126,6 +127,12 @@ in {
           # Navigate between workspaces with modifier + Alt + arrow keys
           "Super Ctrl, H, workspace, e-1" # Go to workspace on the left
           "Super Ctrl, L, workspace, e+1" # Go to workspace on the right
+
+          # monitors
+          "Super, Q, focusmonitor, 0"
+          "Super, W, focusmonitor, 1"
+          "Super Shift, Q, movecurrentworkspacetomonitor, 0"
+          "Super Shift, W, movecurrentworkspacetomonitor, 1"
 
           # Move between monitors
           "Super, S, movecurrentworkspacetomonitor, l"
