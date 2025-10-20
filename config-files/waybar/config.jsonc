@@ -78,11 +78,13 @@
   },
 
   "network": {
-    "format-wifi": "󰤢",
-    "format-ethernet": "󰈀 ",
+    "format-wifi": "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=}",
+    "format-ethernet": "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=} ",
     "format-disconnected": "󰤠 ",
-    "interval": 5,
-    "tooltip-format": "{essid} ({signalStrength}%)",
+    "interval": 1,
+    "min-length": 16,
+    "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+    "tooltip-format": "{essid}@{ipaddr} ({signalStrength}%)",
     "on-click": "iwgtk"
   },
 
