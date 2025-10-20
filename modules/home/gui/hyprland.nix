@@ -64,7 +64,7 @@
 
       jump_target=$( \
         ( echo "''${default_targets}"; echo "''${custom_targets}" ) \
-          | sort | uniq \
+          | sort -n | uniq \
           | rofi -dmenu -match-only -display-columns 2 -display-column-separator "\t" -p "Workspace" \
           | awk -F "\t" '{ print $1 }'
       )
