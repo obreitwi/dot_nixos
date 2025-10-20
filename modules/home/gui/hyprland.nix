@@ -176,15 +176,18 @@ in {
 
           "Super, semicolon, exec, workspace-action workspace"
           "Super Shift, semicolon, exec, workspace-action movetoworkspacesilent"
-
           "Super Shift, m, exec, workspace-rename"
+
+          "Super Shift, n, togglegroup"
+          "Super, N, changegroupactive"
+          "Super, X, layoutmsg, togglesplit"
 
           "Shift Super Ctrl, H, movetoworkspacesilent, r-1" # Go to workspace on the left
           "Shift Super Ctrl, L, movetoworkspacesilent, r+1" # Go to workspace on the right
 
           # Navigate between workspaces with modifier + Alt + arrow keys
-          "Super Ctrl, H, workspace, r-1" # Go to workspace on the left
-          "Super Ctrl, L, workspace, r+1" # Go to workspace on the right
+          "Super Ctrl, H, workspace, e-1" # Go to workspace on the left
+          "Super Ctrl, L, workspace, e+1" # Go to workspace on the right
 
           # monitors
           "Super, W, focusmonitor, 0"
@@ -274,7 +277,7 @@ in {
 
         dwindle = {
           pseudotile = true;
-          #preserve_split = true;
+          preserve_split = true;
         };
 
         input = {

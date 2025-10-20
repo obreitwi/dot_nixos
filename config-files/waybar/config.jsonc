@@ -9,11 +9,11 @@
   "modules-left": [
     "hyprland/workspaces",
     "custom/uptime",
+    "hyprland/window"
   ],
 
   "modules-center": [
     "clock",
-    "hyprland/window"
   ],
 
   "modules-right": [
@@ -85,7 +85,7 @@
     "interval": 1,
     "min-length": 16,
     "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
-    "tooltip-format": "{essid}@{ipaddr} ({signalStrength}%)",
+    "tooltip-format": "{essid} @ {ipaddr} ({signalStrength}%)",
     "on-click": "iwgtk"
   },
 
