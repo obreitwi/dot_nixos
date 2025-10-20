@@ -13,6 +13,27 @@
       exec Hyprland
     '';
   };
+
+  chrome-wrapper = pkgs.writeShellApplication {
+    name = "google-chrome";
+    text =
+      /*
+      bash
+      */
+      ''
+        if [[ "''${XDG_BACKEND:-}" == wayland ]] && [ -f /usr/bin/google-chrome-stable ]; then
+          unset __EGL_VENDOR_LIBRARY_FILENAMES
+          unset LD_LIBRARY_PATH
+          unset GBM_BACKENDS_PATH
+
+          # Alternatively: unset all egl related env variables and have chrome discover system libraries by default
+          #mapfile -t vars_to_unset < <(env | grep -i mesa | cut -d= -f1)
+          #unset "''${vars_to_unset[@]}"
+        fi
+        /usr/bin/google-chrome-stable "$@"
+      '';
+  };
+
   notification-count = pkgs.writeShellApplication {
     name = "notification-count";
     text = ''
@@ -84,7 +105,7 @@ in {
           "Super Shift, P, fullscreen, 0"
 
           "Super, Q, layoutmsg, movetoroot"
-          "Super, Q, layoutmsg, movetoroot active unstable"
+          "Super Shift, Q, layoutmsg, movetoroot active unstable"
 
           # Move focus with modifier + arrow keys
           "Super, H, movefocus, l"
@@ -129,10 +150,10 @@ in {
           "Super Ctrl, L, workspace, e+1" # Go to workspace on the right
 
           # monitors
-          "Super, Q, focusmonitor, 0"
-          "Super, W, focusmonitor, 1"
-          "Super Shift, Q, movecurrentworkspacetomonitor, 0"
-          "Super Shift, W, movecurrentworkspacetomonitor, 1"
+          "Super, W, focusmonitor, 0"
+          "Super, E, focusmonitor, 1"
+          "Super Shift, W, movecurrentworkspacetomonitor, 0"
+          "Super Shift, E, movecurrentworkspacetomonitor, 1"
 
           # Move between monitors
           "Super, S, movecurrentworkspacetomonitor, l"
@@ -152,6 +173,8 @@ in {
           "Super, slash, togglespecialworkspace, journal"
           "Super, apostrophe, togglespecialworkspace, terminal"
           "Super Shift, T, togglespecialworkspace, ptpython"
+
+          "Super, F9, exec, toggle-bluetooth-audio"
         ];
 
         workspace = [
@@ -364,6 +387,10 @@ in {
       pkgs.wev
       pkgs.wl-clipboard
       pkgs.wlprop
+
+      chrome-wrapper
+
+      pkgs.toggle-bluetooth-audio
 
       start-Hyprland
       notification-count

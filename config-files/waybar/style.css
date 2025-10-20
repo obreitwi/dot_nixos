@@ -47,12 +47,6 @@
   margin-right: 5px; /* Spacing after the workspaces module */
 }
 
-#window {
-  padding: 2px;
-  margin-left: 5px; /* Margin from the far left edge */
-  margin-right: 7px; /* Spacing after the workspaces module */
-}
-
 #custom-uptime {
   margin-right: 5px; /* Spacing after the uptime module */
 }
@@ -95,7 +89,7 @@
 #window {
   background-color: #1a1b26;
   padding: 0.3rem 0.7rem;
-  margin: 5px 0px;
+  margin: 5px 3px;
   border-radius: 6px; /* This module is always rounded */
   box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
   min-width: 0;
