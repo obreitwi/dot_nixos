@@ -48,6 +48,38 @@
       exec alacritty -e nvim '+Neorg journal today'
     '';
   };
+
+  workspace-action = pkgs.writeShellApplication {
+    name = "workspace-action";
+    text = ''
+      action="''$1"
+      shift 1
+
+      default_targets=$( \
+        grep -o 'workspace=[0-9]\+,defaultName:[^"]\+' ~/.config/hypr/hyprland.conf \
+          | sed -e 's/defaultName://' -e 's/workspace=//' \
+          | tr ',' "\t" \
+      )
+      custom_targets=$(hyprctl workspaces -j | jq -r '.[] | select(.name | startswith("special:") | not) | [.id, .name] | @tsv')
+
+      jump_target=$( \
+        ( echo "''${default_targets}"; echo "''${custom_targets}" ) \
+          | sort | uniq \
+          | rofi -dmenu -match-only -display-columns 2 -display-column-separator "\t" -p "Workspace" \
+          | awk -F "\t" '{ print $1 }'
+      )
+      hyprctl dispatch "''${action}" "''${jump_target}"
+    '';
+  };
+
+  workspace-rename = pkgs.writeShellApplication {
+    name = "workspace-rename";
+    text = ''
+      active_workspace=$(hyprctl activeworkspace -j)
+      name=$(jq -r .name <<< "''${active_workspace}" | rofi -dmenu -p "New name")
+      hyprctl dispatch renameworkspace "$(jq -r .id <<<"''${active_workspace}")" "''${name}"
+    '';
+  };
 in {
   options.my.gui.hyprland.enable = lib.mkOption {
     default = false;
@@ -131,23 +163,28 @@ in {
           "Super, 9, workspace, 9"
           "Super, 0, workspace, 10"
 
-          "Shift Super, 1, movetoworkspace, 1"
-          "Shift Super, 2, movetoworkspace, 2"
-          "Shift Super, 3, movetoworkspace, 3"
-          "Shift Super, 4, movetoworkspace, 4"
-          "Shift Super, 5, movetoworkspace, 5"
-          "Shift Super, 6, movetoworkspace, 6"
-          "Shift Super, 7, movetoworkspace, 7"
-          "Shift Super, 8, movetoworkspace, 8"
-          "Shift Super, 9, movetoworkspace, 9"
-          "Shift Super, 0, movetoworkspace, 10"
+          "Shift Super, 1, movetoworkspacesilent, 1"
+          "Shift Super, 2, movetoworkspacesilent, 2"
+          "Shift Super, 3, movetoworkspacesilent, 3"
+          "Shift Super, 4, movetoworkspacesilent, 4"
+          "Shift Super, 5, movetoworkspacesilent, 5"
+          "Shift Super, 6, movetoworkspacesilent, 6"
+          "Shift Super, 7, movetoworkspacesilent, 7"
+          "Shift Super, 8, movetoworkspacesilent, 8"
+          "Shift Super, 9, movetoworkspacesilent, 9"
+          "Shift Super, 0, movetoworkspacesilent, 10"
 
-          "Shift Super Ctrl, H, movetoworkspace, r-1" # Go to workspace on the left
-          "Shift Super Ctrl, L, movetoworkspace, r+1" # Go to workspace on the right
+          "Super, semicolon, exec, workspace-action workspace"
+          "Super Shift, semicolon, exec, workspace-action movetoworkspacesilent"
+
+          "Super Shift, m, exec, workspace-rename"
+
+          "Shift Super Ctrl, H, movetoworkspacesilent, r-1" # Go to workspace on the left
+          "Shift Super Ctrl, L, movetoworkspacesilent, r+1" # Go to workspace on the right
 
           # Navigate between workspaces with modifier + Alt + arrow keys
-          "Super Ctrl, H, workspace, e-1" # Go to workspace on the left
-          "Super Ctrl, L, workspace, e+1" # Go to workspace on the right
+          "Super Ctrl, H, workspace, r-1" # Go to workspace on the left
+          "Super Ctrl, L, workspace, r+1" # Go to workspace on the right
 
           # monitors
           "Super, W, focusmonitor, 0"
@@ -173,17 +210,31 @@ in {
           "Super, slash, togglespecialworkspace, journal"
           "Super, apostrophe, togglespecialworkspace, terminal"
           "Super Shift, T, togglespecialworkspace, ptpython"
+          "Super Control, T, togglespecialworkspace, bluetooth"
 
           "Super, F9, exec, toggle-bluetooth-audio"
+
+          "Super, z, workspace, media"
         ];
 
         workspace = [
+          "2,defaultName:code"
+          "3,defaultName:debug"
+          "4,defaultName:fdc"
+          "5,defaultName:gchat"
+          "6,defaultName:private"
+          "7,defaultName:web"
+          "8,defaultName:meetings"
+          "9,defaultName:nix"
+          "10,defaultName:media"
+
           #"w[t1], border:false" # don't draw borders if there is only one window
           "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
+          "special:audio, on-created-empty:pavucontrol"
+          "special:bluetooth, on-created-empty:alacritty -e bluetuith"
           "special:journal, on-created-empty:scratchpad-journal"
           "special:ptpython, on-created-empty:alacritty -e ptpython"
           "special:terminal, on-created-empty:alacritty"
-          "special:audio, on-created-empty:pavucontrol"
         ];
 
         windowrule = [
@@ -397,6 +448,8 @@ in {
       pkgs.hyprdynamicmonitors
 
       scratchpad-journal
+      workspace-action
+      workspace-rename
     ];
   };
 }

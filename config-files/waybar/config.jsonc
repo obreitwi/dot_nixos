@@ -9,9 +9,6 @@
   "modules-left": [
     "hyprland/workspaces",
     "custom/uptime",
-    "cpu",
-    "memory",
-    "temperature"
   ],
 
   "modules-center": [
@@ -23,6 +20,9 @@
     "custom/notifications",
     "tray",
     //"custom/pomodoro",
+    "cpu",
+    "memory",
+    "temperature",
     "bluetooth",
     "network",
     "pulseaudio", 
@@ -31,7 +31,8 @@
   ],
 
   "hyprland/workspaces": {
-    "format": "{name} {icon}",
+    //"format": "{id}:{name} {icon}",
+    "format": "{id}:{name}",
     "format-icons": {
       "active": "",
       "default": ""
