@@ -27,6 +27,15 @@
     '';
   };
 
+  waybar-uptime = pkgs.writeShellApplication {
+    name = "waybar-uptime";
+    text = ''
+      UPTIME_FORMATTED=$(uptime | awk '{ print $3 }' | tr -d ',')
+
+      echo " $UPTIME_FORMATTED"
+    '';
+  };
+
   chrome-wrapper = pkgs.writeShellApplication {
     name = "google-chrome";
     text =
@@ -359,30 +368,186 @@ in {
       };
     };
 
-    home.file."${config.xdg.configHome}/waybar/config" = {
-      source = ../../../config-files/waybar/config.jsonc;
-    };
-    home.file."${config.xdg.configHome}/waybar/scripts/uptime.sh" = {
-      executable = true;
-      text =
-        /*
-        bash
-        */
-        ''
-          #!/bin/bash
-
-          #UPTIME_FORMATTED=$(awk '$1 / 3600 / 24 > 0 { printf("%dd ", ($1/(3600 * 24))) } { printf("%dh", (($1 % (3600*24)) / 3600))}' </proc/uptime)
-          #UPTIME_FORMATTED=$(echo "$UPTIME_PRETTY"| sed 's/^up //;s/,*$//;s/minute/m/; s/hour/h/; s/day/d/; s/s//g')
-          #UPTIME_FORMATTED=$(uptime | awk '{ print $3 }' | tr -d ',' | sed -e 's/:[0-9]\{2\}\s.*$//')
-          UPTIME_FORMATTED=$(uptime | awk '{ print $3 }' | tr -d ',')
-
-          echo " $UPTIME_FORMATTED"
-        '';
-    };
     programs.waybar = {
       enable = true;
       style = ../../../config-files/waybar/style.css;
-      # settings.mainBar = { /* set in config file */ };
+      settings.mainBar = {
+        "layer" = "top";
+        "position" = "top";
+        "margin-left" = -5;
+        "margin-right" = -5;
+        "margin-top" = -2;
+        "margin-bottom" = -3;
+        "spacing" = 0;
+        "modules-left" = [
+          "hyprland/workspaces"
+          "custom/uptime"
+          "hyprland/window"
+        ];
+
+        "modules-center" = [
+          "clock"
+        ];
+
+        "modules-right" = [
+          "custom/notifications"
+          "tray"
+          # "custom/pomodoro"
+          "cpu"
+          "memory"
+          "temperature"
+          "bluetooth"
+          "network"
+          "pulseaudio"
+          "backlight"
+          "battery"
+        ];
+
+        "hyprland/workspaces" = {
+          # "format"= "{id}:{name} {icon}";
+          "format" = "{id}:{name}";
+          "format-icons" = {
+            "active" = "";
+            "default" = "";
+          };
+        };
+
+        "hyprland/window" = {
+          "on-click" = "toggle-minimize";
+        };
+
+        "bluetooth" = {
+          "format" = "󰂲";
+          "format-on" = "{icon}";
+          "format-off" = "{icon}";
+          "format-connected" = "{icon}";
+          "format-icons" = {
+            "on" = "󰂯";
+            "off" = "󰂲";
+            "connected" = "󰂱";
+          };
+          "on-click" = "alacritty -e bluetuith";
+          "tooltip-format-connected" = "{device_enumerate}";
+        };
+
+        "custom/music" = {
+          "format" = "  {}";
+          "escape" = true;
+          "interval" = 5;
+          "tooltip" = false;
+          "exec" = "playerctl metadata --format='{{ artist }} - {{ title }}'";
+          "on-click" = "playerctl play-pause";
+          "max-length" = 50;
+        };
+
+        "clock" = {
+          "timezone" = "Europe/Berlin";
+          "tooltip" = false;
+          "format" = "{:%H:%M:%S  -  %A, %Y-%m-%d}";
+          "interval" = 1;
+        };
+
+        "temperature" = {
+          # "thermal-zone"= 2;
+          #   "hwmon-path"= ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"];
+          #   "critical-threshold"= 80;
+          #   "format-critical"= "{temperatureC}°C ";
+          "format" = "{temperatureC}°C ";
+        };
+
+        "network" = {
+          "format-wifi" = "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=}";
+          "format-ethernet" = "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=} ";
+          "format-disconnected" = "󰤠 ";
+          "interval" = 1;
+          "min-length" = 16;
+          "format-icons" = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          "tooltip-format" = "{essid} @ {ipaddr} ({signalStrength}%)";
+          "on-click" = "iwgtk";
+        };
+
+        "cpu" = {
+          "interval" = 1;
+          "format" = "  {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15} {usage:>2}%";
+          "format-icons" = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+          "on-click" = "alacritty -e btop";
+        };
+
+        "memory" = {
+          "interval" = 30;
+          "format" = "  {used:0.1f}G/{total:0.1f}G";
+          "tooltip-format" = "Memory";
+        };
+
+        "custom/uptime" = {
+          "format" = "{}";
+          "format-icon" = [""];
+          "tooltip" = false;
+          "interval" = 60;
+          "exec" = "${waybar-uptime}/bin/waybar-uptime";
+        };
+
+        "custom/notifications" = {
+          "format" = "{}";
+          "tooltip" = false;
+          "interval" = 1;
+          "exec" = "${notification-count}/bin/notification-count";
+          "on-click" = "dunstctl history-pop";
+          "on-click-right" = "dunstctl history-clear";
+        };
+
+        "backlight" = {
+          "format" = "{icon}  {percent}%";
+          "format-icons" = ["" "󰃜" "󰃛" "󰃞" "󰃝" "󰃟" "󰃠"];
+          "tooltip" = false;
+        };
+
+        "pulseaudio" = {
+          "format" = "{icon}  {volume}%";
+          "format-muted" = "";
+          "format-icons" = {
+            "default" = ["" "" " "];
+          };
+          "on-click" = "pavucontrol";
+          "on-click-right" = "toggle-bluetooth-audio";
+        };
+
+        "tray" = {
+          "spacing" = 10;
+          "icon-size" = 18;
+        };
+
+        "battery" = {
+          "interval" = 2;
+          "states" = {
+            # "good"= 95;
+            "warning" = 30;
+            "critical" = 15;
+          };
+          "format" = "{icon}  {capacity}%";
+          "format-full" = "{icon}  {capacity}%";
+          "format-charging" = " {capacity}%";
+          "format-plugged" = " {capacity}%";
+          "format-alt" = "{icon} {time}";
+          # "format-good"= ""; # An empty format will hide the module
+          # "format-full"= "";
+          "format-icons" = ["" "" "" "" ""];
+        };
+
+        "custom/lock" = {
+          "tooltip" = false;
+          "on-click" = "sh -c '(sleep 0s; hyprlock)' & disown";
+          "format" = "";
+        };
+
+        "custom/pomodoro" = {
+          "format" = "{}";
+          "return-type" = "json";
+          "exec" = "waybar-module-pomodoro --no-work-icons";
+          "on-click" = "waybar-module-pomodoro toggle";
+          "on-click-right" = "waybar-module-pomodoro reset";
+        };
+      };
     };
 
     services.hypridle = {
@@ -475,13 +640,12 @@ in {
       pkgs.toggle-bluetooth-audio
 
       start-Hyprland
-      notification-count
       pkgs.hyprdynamicmonitors
 
       scratchpad-journal
+      toggle-minimize
       workspace-action
       workspace-rename
-      toggle-minimize
     ];
   };
 }
