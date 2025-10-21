@@ -328,6 +328,7 @@ in {
         exec-once = [
           "waybar"
           #"iwgtk -i"
+          "sunsetr"
 
           #"blueman-applet"
           "gnome-keyring-daemon --start --components=secrets"
@@ -617,7 +618,7 @@ in {
       };
     };
 
-    services.hyprsunset.enable = true;
+    services.hyprsunset.enable = false; # has no automatic transitions -> use sunsetr instead
 
     #home.pointerCursor.hyprcursor.enable = true;
 
@@ -628,6 +629,8 @@ in {
       pkgs.wl-clipboard
       pkgs.wlprop
       pkgs.jq
+
+      pkgs.sunsetr # has automatic location
 
       chrome-wrapper
 
