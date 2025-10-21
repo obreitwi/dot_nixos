@@ -74,5 +74,7 @@
 
     pkgs.gnupg
     pkgs.p7zip
+
+    pkgs.ptpython
   ];
 }

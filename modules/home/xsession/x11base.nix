@@ -30,22 +30,6 @@
     '';
   };
 
-  # ptpython shell for small calculations that does not leak its whole environment
-  ptpython = let
-    wrapped = pkgs.python3.withPackages (ps: [
-      ps.numpy
-      ps.scipy
-      pkgs.python3Packages.ptpython
-    ]);
-  in
-    pkgs.writeShellApplication {
-      name = "ptpython";
-      runtimeInputs = [wrapped];
-      text = ''
-        ${wrapped}/bin/ptpython "$@"
-      '';
-    };
-
   xsession-non-nixOS =
     # sh
     ''
@@ -161,7 +145,7 @@ in {
         st
       ]
       ++ [
-        ptpython
+        pkgs.ptpython
         pkgs.stable.unclutter
       ]; # unclutter: build issue (probably gcc14)
   };

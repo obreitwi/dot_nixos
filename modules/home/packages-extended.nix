@@ -16,6 +16,8 @@
         asfa
         pydemx
 
+        ptpython # calculator replacement
+
         # dev
         # diffoscope # build error
         grpcurl
