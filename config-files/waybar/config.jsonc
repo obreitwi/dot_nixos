@@ -131,7 +131,8 @@
     "format-icons": {
       "default": ["", "", " "]
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
+    "on-click-right": "toggle-bluetooth-audio"
   },
 
   "tray": {
