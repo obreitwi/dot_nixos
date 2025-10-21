@@ -297,6 +297,7 @@ in {
           kb_options = [
             "compose:menu"
             "compose:prsc"
+            "compose:rctrl "
             "lv3:ralt_switch"
             "eurosign:e"
             "nbsp:level3n"
