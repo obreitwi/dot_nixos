@@ -214,10 +214,12 @@ in {
           "Super, apostrophe, togglespecialworkspace, terminal"
           "Super Shift, T, togglespecialworkspace, ptpython"
           "Super Control, T, togglespecialworkspace, bluetooth"
+          "Super Control, V, togglespecialworkspace, 1pw"
 
           "Super, F9, exec, toggle-bluetooth-audio"
 
-          "Super, z, workspace, media"
+          "Super, z, workspace, 10"
+          "Super Shift, z, workspace, 8"
         ];
 
         workspace = [
@@ -230,9 +232,11 @@ in {
           "8,defaultName:meetings"
           "9,defaultName:nix"
           "10,defaultName:media"
+          "11,defaultName:recruiting"
 
           #"w[t1], border:false" # don't draw borders if there is only one window
           "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
+          "special:1pw, on-created-empty:1password"
           "special:audio, on-created-empty:pavucontrol"
           "special:bluetooth, on-created-empty:alacritty -e bluetuith"
           "special:journal, on-created-empty:scratchpad-journal"
