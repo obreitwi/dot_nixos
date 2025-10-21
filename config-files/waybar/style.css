@@ -33,6 +33,12 @@
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+window#waybar.empty #window {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
 #tray {
   margin-right: 5px;
   margin-left: 5px;
@@ -243,12 +249,12 @@
 tooltip {
   background-color: #1a1b26;
   color: #dddddd;
-  padding: 5px 12px;
+  padding: 5px 5px;
   margin: 5px 0px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 
