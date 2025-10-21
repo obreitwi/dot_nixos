@@ -22,15 +22,15 @@
       */
       ''
         if [[ "''${XDG_BACKEND:-}" == wayland ]] && [ -f /usr/bin/google-chrome-stable ]; then
-          unset __EGL_VENDOR_LIBRARY_FILENAMES
-          unset LD_LIBRARY_PATH
-          unset GBM_BACKENDS_PATH
+          #unset __EGL_VENDOR_LIBRARY_FILENAMES
+          #unset LD_LIBRARY_PATH
+          #unset GBM_BACKENDS_PATH
 
           # Alternatively: unset all egl related env variables and have chrome discover system libraries by default
-          #mapfile -t vars_to_unset < <(env | grep -i mesa | cut -d= -f1)
-          #unset "''${vars_to_unset[@]}"
+          mapfile -t vars_to_unset < <(env | grep -i mesa | cut -d= -f1)
+          unset "''${vars_to_unset[@]}"
         fi
-        /usr/bin/google-chrome-stable "$@"
+        /usr/bin/google-chrome-stable --disable-features=WaylandWpColorManagerV1 "$@"
       '';
   };
 
@@ -136,8 +136,8 @@ in {
           "Super, P, fullscreen, 1"
           "Super Shift, P, fullscreen, 0"
 
-          "Super, Q, layoutmsg, movetoroot"
-          "Super Shift, Q, layoutmsg, movetoroot active unstable"
+          "Super, E, layoutmsg, movetoroot"
+          "Super Shift, E, layoutmsg, movetoroot active unstable"
 
           # Move focus with modifier + arrow keys
           "Super, H, movefocus, l"
@@ -190,14 +190,15 @@ in {
           "Super Ctrl, L, workspace, e+1" # Go to workspace on the right
 
           # monitors
-          "Super, W, focusmonitor, 0"
-          "Super, E, focusmonitor, 1"
-          "Super Shift, W, movecurrentworkspacetomonitor, 0"
-          "Super Shift, E, movecurrentworkspacetomonitor, 1"
+          "Super, E, focusmonitor, 0"
+          "Super, R, focusmonitor, 1"
+          "Super Shift, E, movecurrentworkspacetomonitor, 0"
+          "Super Shift, R, movecurrentworkspacetomonitor, 1"
 
           # Move between monitors
-          "Super, S, movecurrentworkspacetomonitor, l"
-          "Super, D, movecurrentworkspacetomonitor, r"
+          "Super, S, swapactiveworkspaces, 0 1"
+          #"Super, S, movecurrentworkspacetomonitor, l"
+          #"Super, D, movecurrentworkspacetomonitor, r"
 
           "Super, A, workspace, previous"
 
@@ -211,6 +212,9 @@ in {
 
           "Super, c, togglespecialworkspace, audio"
           "Super, slash, togglespecialworkspace, journal"
+          "Super Ctrl, slash, setfloating"
+          "Super Ctrl, slash, moveactive, exact 44% 15%"
+          "Super Ctrl, slash, resizeactive, exact 55% 70%"
           "Super, apostrophe, togglespecialworkspace, terminal"
           "Super Shift, T, togglespecialworkspace, ptpython"
           "Super Control, T, togglespecialworkspace, bluetooth"
@@ -220,6 +224,8 @@ in {
 
           "Super, z, workspace, 10"
           "Super Shift, z, workspace, 8"
+
+          "Super Ctrl, i, exec, rofimoji -a copy"
         ];
 
         workspace = [
