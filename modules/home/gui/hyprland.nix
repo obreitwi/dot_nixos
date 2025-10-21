@@ -136,8 +136,8 @@ in {
           "Super, P, fullscreen, 1"
           "Super Shift, P, fullscreen, 0"
 
-          "Super, E, layoutmsg, movetoroot"
-          "Super Shift, E, layoutmsg, movetoroot active unstable"
+          "Super, W, layoutmsg, movetoroot"
+          "Super Shift, W, layoutmsg, movetoroot active unstable"
 
           # Move focus with modifier + arrow keys
           "Super, H, movefocus, l"
@@ -180,7 +180,7 @@ in {
 
           "Super Shift, n, togglegroup"
           "Super, N, changegroupactive"
-          "Super, X, layoutmsg, togglesplit"
+          "Super, T, layoutmsg, togglesplit"
 
           "Shift Super Ctrl, H, movetoworkspacesilent, r-1" # Go to workspace on the left
           "Shift Super Ctrl, L, movetoworkspacesilent, r+1" # Go to workspace on the right
