@@ -158,8 +158,8 @@ in {
           "Super Shift, W, layoutmsg, movetoroot active unstable"
 
           # Move focus with modifier + arrow keys
-          "Super, H, movefocus, l"
-          "Super, L, movefocus, r"
+          "Super, H, exec, hyprnavi l"
+          "Super, L, exec, hyprnavi r"
           "Super, K, movefocus, u"
           "Super, J, movefocus, d"
 
@@ -200,12 +200,8 @@ in {
           "Super, N, changegroupactive"
           "Super, T, layoutmsg, togglesplit"
 
-          "Shift Super Ctrl, H, movetoworkspacesilent, r-1" # Go to workspace on the left
-          "Shift Super Ctrl, L, movetoworkspacesilent, r+1" # Go to workspace on the right
-
-          # Navigate between workspaces with modifier + Alt + arrow keys
-          "Super Ctrl, H, workspace, e-1" # Go to workspace on the left
-          "Super Ctrl, L, workspace, e+1" # Go to workspace on the right
+          "Super Ctrl, H, movetoworkspacesilent, r-1" # Go to workspace on the left
+          "Super Ctrl, L, movetoworkspacesilent, r+1" # Go to workspace on the right
 
           # monitors
           "Super, E, focusmonitor, 0"
@@ -638,6 +634,7 @@ in {
 
       start-Hyprland
       pkgs.hyprdynamicmonitors
+      pkgs.hyprnavi
 
       scratchpad-journal
       toggle-minimize
