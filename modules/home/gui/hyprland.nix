@@ -14,6 +14,19 @@
     '';
   };
 
+  toggle-minimize = pkgs.writeShellApplication {
+    name = "toggle-minimize";
+    text = ''
+      if hyprctl activewindow -j | jq --exit-status '.workspace.name | match("special:minimized")' &>/dev/null; then
+        # current window is minimized
+        hyprctl dispatch movetoworkspace "$(hyprctl activeworkspace -j | jq -r .id)"
+      else
+        # current window is NOT minimized
+        hyprctl dispatch movetoworkspacesilent special:minimized
+      fi
+    '';
+  };
+
   chrome-wrapper = pkgs.writeShellApplication {
     name = "google-chrome";
     text =
@@ -219,6 +232,8 @@ in {
           "Super Shift, T, togglespecialworkspace, ptpython"
           "Super Control, T, togglespecialworkspace, bluetooth"
           "Super Control, V, togglespecialworkspace, 1pw"
+          "Super Shift, D, togglespecialworkspace, minimized"
+          "Super, D, exec, toggle-minimize"
 
           "Super, F9, exec, toggle-bluetooth-audio"
 
@@ -242,21 +257,22 @@ in {
 
           #"w[t1], border:false" # don't draw borders if there is only one window
           "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
-          "special:1pw, on-created-empty:1password"
-          "special:audio, on-created-empty:pavucontrol"
-          "special:bluetooth, on-created-empty:alacritty -e bluetuith"
-          "special:journal, on-created-empty:scratchpad-journal"
-          "special:ptpython, on-created-empty:alacritty -e ptpython"
-          "special:terminal, on-created-empty:alacritty"
+          "special:1pw,        on-created-empty:[float; move 44% 15%; size 55% 70%] 1password"
+          "special:audio,      on-created-empty:[float; move 44% 15%; size 55% 70%] pavucontrol"
+          "special:bluetooth,  on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e bluetuith"
+          "special:journal,    on-created-empty:[float; move 44% 15%; size 55% 70%] scratchpad-journal"
+          "special:ptpython,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e ptpython"
+          "special:terminal,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty"
+          "special:minimized,  pass"
         ];
 
-        windowrule = [
-          # handle scratchpads
-          "float, onworkspace:s[true]"
-          #"maximize, move 50% 25%, size 50% 50%, onworkspace:s[true]"
-          "move 44% 15%, onworkspace:s[true]"
-          "size 55% 70%, onworkspace:s[true]"
-        ];
+        #windowrule = [
+        ## handle scratchpads
+        #"float, onworkspace:s[true]"
+        ##"maximize, move 50% 25%, size 50% 50%, onworkspace:s[true]"
+        #"move 44% 15%, onworkspace:s[true]"
+        #"size 55% 70%, onworkspace:s[true]"
+        #];
 
         source = [
           "~/.config/hypr/monitors.conf"
@@ -452,6 +468,7 @@ in {
       pkgs.wev
       pkgs.wl-clipboard
       pkgs.wlprop
+      pkgs.jq
 
       chrome-wrapper
 
@@ -464,6 +481,7 @@ in {
       scratchpad-journal
       workspace-action
       workspace-rename
+      toggle-minimize
     ];
   };
 }
