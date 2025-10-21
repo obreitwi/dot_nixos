@@ -39,6 +39,10 @@
     }
   },
 
+  "hyprland/window": {
+    "on-click": "toggle-minimize"
+  },
+
   "bluetooth": {
     "format": "󰂲",
     "format-on": "{icon}",
