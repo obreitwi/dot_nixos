@@ -17,7 +17,7 @@
   toggle-minimize = pkgs.writeShellApplication {
     name = "toggle-minimize";
     text = ''
-      if hyprctl activewindow -j | jq --exit-status '.workspace.name | match("special:minimized")' &>/dev/null; then
+      if hyprctl activewindow -j | jq --exit-status '.workspace.name | match("special:minimized")' >/dev/null; then
         # current window is minimized
         hyprctl dispatch movetoworkspace "$(hyprctl activeworkspace -j | jq -r .id)"
       else
@@ -38,22 +38,18 @@
 
   chrome-wrapper = pkgs.writeShellApplication {
     name = "google-chrome";
-    text =
-      /*
-      bash
-      */
-      ''
-        if [[ "''${XDG_BACKEND:-}" == wayland ]] && [ -f /usr/bin/google-chrome-stable ]; then
-          #unset __EGL_VENDOR_LIBRARY_FILENAMES
-          #unset LD_LIBRARY_PATH
-          #unset GBM_BACKENDS_PATH
+    text = ''
+      if [[ "''${XDG_BACKEND:-}" == wayland ]] && [ -f /usr/bin/google-chrome-stable ]; then
+        #unset __EGL_VENDOR_LIBRARY_FILENAMES
+        #unset LD_LIBRARY_PATH
+        #unset GBM_BACKENDS_PATH
 
-          # Alternatively: unset all egl related env variables and have chrome discover system libraries by default
-          mapfile -t vars_to_unset < <(env | grep -i mesa | cut -d= -f1)
-          unset "''${vars_to_unset[@]}"
-        fi
-        /usr/bin/google-chrome-stable --disable-features=WaylandWpColorManagerV1 "$@"
-      '';
+        # Alternatively: unset all egl related env variables and have chrome discover system libraries by default
+        mapfile -t vars_to_unset < <(env | grep -i mesa | cut -d= -f1)
+        unset "''${vars_to_unset[@]}"
+      fi
+      /usr/bin/google-chrome-stable --disable-features=WaylandWpColorManagerV1 "$@"
+    '';
   };
 
   notification-count = pkgs.writeShellApplication {
@@ -219,8 +215,6 @@ in {
 
           # Move between monitors
           "Super, S, swapactiveworkspaces, 0 1"
-          #"Super, S, movecurrentworkspacetomonitor, l"
-          #"Super, D, movecurrentworkspacetomonitor, r"
 
           "Super, A, workspace, previous"
 
