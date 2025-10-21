@@ -143,6 +143,7 @@
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
           revcli = revcli.packages.${prev.system}.default;
           toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
+          ptpython = prev.callPackage (import ./packages/ptpython.nix) {};
 
           kotlin-lsp = prev.callPackage (import ./packages/kotlin-lsp) {};
 
