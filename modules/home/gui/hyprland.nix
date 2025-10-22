@@ -1,4 +1,3 @@
-# NOTE: Still very much work-in-progress!
 {
   config,
   pkgs,
@@ -608,7 +607,23 @@ in {
 
     services.hyprsunset.enable = false; # has no automatic transitions -> use sunsetr instead
 
-    #home.pointerCursor.hyprcursor.enable = true;
+    home.file."${config.xdg.configHome}/systemd/user.conf" = {
+      text = ''
+        [Manager]
+        ManagerEnvironment="XDG_DATA_DIRS=/usr/local/share:/usr/share:${config.xdg.stateHome}/nix/profile/share:${config.home.homeDirectory}/.nix-profile/share:/nix/var/nix/profiles/default/share"
+      '';
+    };
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-gtk config.wayland.windowManager.hyprland.finalPortalPackage];
+      config = {
+        hyprland = {
+          default = ["hyprland" "gtk"];
+          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+        };
+      };
+    };
 
     home.packages = [
       pkgs.blueman
