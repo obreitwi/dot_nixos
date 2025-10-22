@@ -200,8 +200,8 @@ in {
           "Super, N, changegroupactive"
           "Super, T, layoutmsg, togglesplit"
 
-          "Super Ctrl, H, movetoworkspacesilent, r-1" # Go to workspace on the left
-          "Super Ctrl, L, movetoworkspacesilent, r+1" # Go to workspace on the right
+          "Super Alt, H, movetoworkspacesilent, r-1" # Go to workspace on the left
+          "Super Alt, L, movetoworkspacesilent, r+1" # Go to workspace on the right
 
           # monitors
           "Super, E, focusmonitor, 0"
@@ -214,7 +214,7 @@ in {
 
           "Super, A, workspace, previous"
 
-          "Super Alt, L, exec, hyprlock"
+          "Super Ctrl, L, exec, hyprlock"
 
           "Super Ctrl, P, exec, flameshot gui"
 
@@ -264,14 +264,6 @@ in {
           "special:terminal,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty"
           "special:minimized,  pass"
         ];
-
-        #windowrule = [
-        ## handle scratchpads
-        #"float, onworkspace:s[true]"
-        ##"maximize, move 50% 25%, size 50% 50%, onworkspace:s[true]"
-        #"move 44% 15%, onworkspace:s[true]"
-        #"size 55% 70%, onworkspace:s[true]"
-        #];
 
         source = [
           "~/.config/hypr/monitors.conf"
@@ -625,6 +617,7 @@ in {
       pkgs.wl-clipboard
       pkgs.wlprop
       pkgs.jq
+      pkgs.hyprshot
 
       pkgs.sunsetr # has automatic location
 
