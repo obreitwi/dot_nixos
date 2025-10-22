@@ -7,7 +7,7 @@
 Using `nixpkgs` in several ways:
 * As nixOS installation on desktops and my root.
 * Via home-manager on top of Ubuntu.
-* _(in progress)_ as standalone-`nixvim` configuration to be used everywhere else
+* as standalone-`nixvim` configuration to be used everywhere else
 
 ### Install
 
