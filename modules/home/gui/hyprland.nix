@@ -483,6 +483,8 @@ in {
           format = "{icon}  {percent}%";
           format-icons = ["" "󰃜" "󰃛" "󰃞" "󰃝" "󰃟" "󰃠"];
           tooltip = false;
+          "on-click" = "sbacklight +25%";
+          "on-click-right" = "sbacklight -25%";
         };
 
         pulseaudio = {
