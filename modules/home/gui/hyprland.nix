@@ -113,6 +113,7 @@ in {
 
     services.flameshot.enable = true;
     services.flameshot.settings.General.useGrimAdapter = true;
+    services.flameshot.settings.General.disabledGrimWarning = true;
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -354,24 +355,24 @@ in {
       enable = true;
       style = ../../../config-files/waybar/style.css;
       settings.mainBar = {
-        "layer" = "top";
-        "position" = "top";
-        "margin-left" = -5;
-        "margin-right" = -5;
-        "margin-top" = -2;
-        "margin-bottom" = -3;
-        "spacing" = 0;
-        "modules-left" = [
+        layer = "top";
+        position = "top";
+        margin-left = -5;
+        margin-right = -5;
+        margin-top = -2;
+        margin-bottom = -3;
+        spacing = 0;
+        modules-left = [
           "hyprland/workspaces"
           "custom/uptime"
           "hyprland/window"
         ];
 
-        "modules-center" = [
+        modules-center = [
           "clock"
         ];
 
-        "modules-right" = [
+        modules-right = [
           "custom/notifications"
           "tray"
           # "custom/pomodoro"
@@ -398,7 +399,7 @@ in {
           "on-click" = "toggle-minimize";
         };
 
-        "bluetooth" = {
+        bluetooth = {
           "format" = "󰂲";
           "format-on" = "{icon}";
           "format-off" = "{icon}";
@@ -422,112 +423,112 @@ in {
           "max-length" = 50;
         };
 
-        "clock" = {
-          "timezone" = "Europe/Berlin";
-          "tooltip" = false;
-          "format" = "{:%H:%M:%S  -  %A, %Y-%m-%d}";
-          "interval" = 1;
+        clock = {
+          timezone = "Europe/Berlin";
+          tooltip = false;
+          format = "{:%H:%M:%S  -  %A, %Y-%m-%d}";
+          interval = 1;
         };
 
-        "temperature" = {
+        temperature = {
           # "thermal-zone"= 2;
           #   "hwmon-path"= ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"];
           #   "critical-threshold"= 80;
           #   "format-critical"= "{temperatureC}°C ";
-          "format" = "{temperatureC}°C ";
+          format = "{temperatureC}°C ";
         };
 
         "network" = {
-          "format-wifi" = "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=}";
-          "format-ethernet" = "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=} ";
-          "format-disconnected" = "󰤠 ";
-          "interval" = 1;
-          "min-length" = 16;
-          "format-icons" = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
-          "tooltip-format" = "{essid} @ {ipaddr} ({signalStrength}%)";
-          "on-click" = "iwgtk";
+          format-wifi = "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=}";
+          format-ethernet = "{icon}  {bandwidthDownBytes:=}  {bandwidthUpBytes:=} ";
+          format-disconnected = "󰤠 ";
+          interval = 1;
+          min-length = 16;
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          tooltip-format = "{essid} @ {ipaddr} ({signalStrength}%)";
+          on-click = "iwgtk";
         };
 
-        "cpu" = {
-          "interval" = 1;
-          "format" = "  {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15} {usage:>2}%";
-          "format-icons" = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
-          "on-click" = "alacritty -e btop";
+        cpu = {
+          interval = 1;
+          format = "  {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15} {usage:>2}%";
+          format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+          on-click = "alacritty -e btop";
         };
 
-        "memory" = {
-          "interval" = 30;
-          "format" = "  {used:0.1f}G/{total:0.1f}G";
-          "tooltip-format" = "Memory";
+        memory = {
+          interval = 30;
+          format = "  {used:0.1f}G/{total:0.1f}G";
+          tooltip-format = "Memory";
         };
 
         "custom/uptime" = {
-          "format" = "{}";
-          "format-icon" = [""];
-          "tooltip" = false;
-          "interval" = 60;
-          "exec" = "${waybar-uptime}/bin/waybar-uptime";
+          format = "{}";
+          format-icon = [""];
+          tooltip = false;
+          interval = 60;
+          exec = "${waybar-uptime}/bin/waybar-uptime";
         };
 
         "custom/notifications" = {
-          "format" = "{}";
-          "tooltip" = false;
-          "interval" = 1;
-          "exec" = "${notification-count}/bin/notification-count";
-          "on-click" = "dunstctl history-pop";
-          "on-click-right" = "dunstctl history-clear";
+          format = "{}";
+          tooltip = false;
+          interval = 1;
+          exec = "${notification-count}/bin/notification-count";
+          on-click = "dunstctl history-pop";
+          on-click-right = "dunstctl history-clear";
         };
 
-        "backlight" = {
-          "format" = "{icon}  {percent}%";
-          "format-icons" = ["" "󰃜" "󰃛" "󰃞" "󰃝" "󰃟" "󰃠"];
-          "tooltip" = false;
+        backlight = {
+          format = "{icon}  {percent}%";
+          format-icons = ["" "󰃜" "󰃛" "󰃞" "󰃝" "󰃟" "󰃠"];
+          tooltip = false;
         };
 
-        "pulseaudio" = {
-          "format" = "{icon}  {volume}%";
-          "format-muted" = "";
-          "format-icons" = {
-            "default" = ["" "" " "];
+        pulseaudio = {
+          format = "{icon}  {volume}%";
+          format-muted = "";
+          format-icons = {
+            default = ["" "" " "];
           };
-          "on-click" = "pavucontrol";
-          "on-click-right" = "toggle-bluetooth-audio";
+          on-click = "pavucontrol";
+          on-click-right = "toggle-bluetooth-audio";
         };
 
-        "tray" = {
-          "spacing" = 10;
-          "icon-size" = 18;
+        tray = {
+          spacing = 10;
+          icon-size = 18;
         };
 
-        "battery" = {
-          "interval" = 2;
-          "states" = {
+        battery = {
+          interval = 2;
+          states = {
             # "good"= 95;
-            "warning" = 30;
-            "critical" = 15;
+            warning = 30;
+            critical = 15;
           };
-          "format" = "{icon}  {capacity}%";
-          "format-full" = "{icon}  {capacity}%";
-          "format-charging" = " {capacity}%";
-          "format-plugged" = " {capacity}%";
-          "format-alt" = "{icon} {time}";
+          format = "{icon}  {capacity}%";
+          format-full = "{icon}  {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
+          format-alt = "{icon} {time}";
           # "format-good"= ""; # An empty format will hide the module
           # "format-full"= "";
-          "format-icons" = ["" "" "" "" ""];
+          format-icons = ["" "" "" "" ""];
         };
 
         "custom/lock" = {
-          "tooltip" = false;
-          "on-click" = "sh -c '(sleep 0s; hyprlock)' & disown";
-          "format" = "";
+          tooltip = false;
+          on-click = "sh -c '(sleep 0s; hyprlock)' & disown";
+          format = "";
         };
 
         "custom/pomodoro" = {
-          "format" = "{}";
-          "return-type" = "json";
-          "exec" = "waybar-module-pomodoro --no-work-icons";
-          "on-click" = "waybar-module-pomodoro toggle";
-          "on-click-right" = "waybar-module-pomodoro reset";
+          format = "{}";
+          return-type = "json";
+          exec = "waybar-module-pomodoro --no-work-icons";
+          on-click = "waybar-module-pomodoro toggle";
+          on-click-right = "waybar-module-pomodoro reset";
         };
       };
     };
