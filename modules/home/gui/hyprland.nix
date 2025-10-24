@@ -240,6 +240,9 @@ in {
           "Super Shift, z, workspace, 8"
 
           "Super Ctrl, i, exec, rofimoji -a copy"
+
+          ", XF86MonBrightnessUp, exec, sbacklight +5%"
+          ", XF86MonBrightnessDown, exec, sbacklight -5%"
         ];
 
         workspace = [
