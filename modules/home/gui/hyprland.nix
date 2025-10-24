@@ -253,6 +253,8 @@ in {
           "9,defaultName:nix"
           "10,defaultName:media"
           "11,defaultName:recruiting"
+          "12,defaultName:rust"
+          "13,defaultName:root"
 
           #"w[t1], border:false" # don't draw borders if there is only one window
           "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
