@@ -789,11 +789,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761235135,
-        "narHash": "sha256-cux9xeceLIER1lBxUa1gMafkz7gg5ntcUmJBynWdBWI=",
+        "lastModified": 1761468550,
+        "narHash": "sha256-nY4vyN1QdHhC5Gj3545fI2Y7FSr/gs8ID4gPmF8HPww=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0adf9ba3f567da2d53af581a857aacf671aaa547",
+        "rev": "1830716059bfee7cbcfbfcc38d7be98e482a5762",
         "type": "github"
       },
       "original": {
@@ -811,11 +811,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761231452,
-        "narHash": "sha256-5T7MLyHh+4Qmqdm86IRtxps9YCrKGKWyZIT2qK5KWLw=",
+        "lastModified": 1761487848,
+        "narHash": "sha256-GZF3MYbFv5mWA2HSmEfuYqbeNsIG/6ejUIr05g/xtC0=",
         "owner": "fiffeek",
         "repo": "hyprdynamicmonitors",
-        "rev": "ef9691e8cb738eb12f7820eeb5debab8976645b3",
+        "rev": "356ae7d41daee73a019a59af10da2218eb289943",
         "type": "github"
       },
       "original": {
@@ -930,11 +930,11 @@
         "norg-meta": "norg-meta"
       },
       "locked": {
-        "lastModified": 1761028045,
-        "narHash": "sha256-Sw670APKxEv+psem2F2hZZfBLOEB9GOqaVetlBVta2s=",
+        "lastModified": 1761395576,
+        "narHash": "sha256-oWIYmcvzqgBfZgv0uc+cn2zeRb9dvGLjPAuQP+JofA4=",
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "a4de2f08c180be6410f246ded7fe38a71c9911e3",
+        "rev": "69a00578ddd099481bdc4866daf0cbdbc711ed5e",
         "type": "github"
       },
       "original": {
@@ -990,11 +990,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760846226,
-        "narHash": "sha256-xmU8kAsRprJiTGBTaGrwmjBP3AMA9ltlrxHKFuy5JWc=",
+        "lastModified": 1761451000,
+        "narHash": "sha256-qBJL6xEIjqYq9zOcG2vf2nPTeVBppNJzvO0LuQWMwMo=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "5024e1901239a76b7bf94a4cd27f3507e639d49e",
+        "rev": "ed6b293161b378a7368cda38659eb8d3d9a0dac4",
         "type": "github"
       },
       "original": {
@@ -1074,11 +1074,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1761016216,
-        "narHash": "sha256-G/iC4t/9j/52i/nm+0/4ybBmAF4hzR8CNHC75qEhjHo=",
+        "lastModified": 1761173472,
+        "narHash": "sha256-m9W0dYXflzeGgKNravKJvTMR4Qqa2MVD11AwlGMufeE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "481cf557888e05d3128a76f14c76397b7d7cc869",
+        "rev": "c8aa8cc00a5cb57fada0851a038d35c08a36a2bb",
         "type": "github"
       },
       "original": {
@@ -1122,11 +1122,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1761114652,
-        "narHash": "sha256-f/QCJM/YhrV/lavyCVz8iU3rlZun6d+dAiC3H+CDle4=",
+        "lastModified": 1761373498,
+        "narHash": "sha256-Q/uhWNvd7V7k1H1ZPMy/vkx3F8C13ZcdrKjO7Jv7v0c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "01f116e4df6a15f4ccdffb1bcd41096869fb385c",
+        "rev": "6a08e6bb4e46ff7fcbb53d409b253f6bad8a28ce",
         "type": "github"
       },
       "original": {
@@ -1146,11 +1146,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1761222236,
-        "narHash": "sha256-Um296vYIWjSjm4btukpjyVPLIz5ovQgoAtEYXFb/Jr4=",
+        "lastModified": 1761483268,
+        "narHash": "sha256-2DipdLyDCgtFI7Jd4LlQn1bqsRQA6T3M3g6PocGZkHc=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "39443b9f5737b6f8ee0b654eb47d3a64daac1bd0",
+        "rev": "edfb052c7e52cd08b4c6290fc5fb7a794c64e060",
         "type": "github"
       },
       "original": {
@@ -1321,11 +1321,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760725844,
-        "narHash": "sha256-RXbzCBjKrwTpdyH9howNF6QUgHZGSOwoOox1jB/fnHQ=",
+        "lastModified": 1761335699,
+        "narHash": "sha256-XB7nTWOv51eC1DcZ6iVzAiobtoDPcafuPyEK0EYwXOA=",
         "ref": "refs/heads/main",
-        "rev": "13ef8d0cd84f9f20e73ecebcaf863dc7a3a3394a",
-        "revCount": 524,
+        "rev": "751139c00fa01450337c1983d2d898929341ae16",
+        "revCount": 525,
         "type": "git",
         "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
       },
