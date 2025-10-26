@@ -109,6 +109,7 @@ in {
       defaultWrapper = "mesa"; # choose from nixGL options depending on GPU
     };
 
+    # NOTE: On Ubuntu, Need to link /run/wrappers/bin/polkit-agent-helper-1
     services.hyprpolkitagent.enable = true;
 
     services.flameshot.enable = true;
