@@ -9,6 +9,8 @@
     name = "start-Hyprland";
     text = ''
       unset LD_LIBRARY_PATH
+      export QT_QPA_PLATFORM=wayland
+      export GDK_BACKEND=wayland
       exec Hyprland
     '';
   };
@@ -309,8 +311,8 @@ in {
           kb_variant = "altgr-intl";
           kb_options = [
             "compose:menu"
+            "compose:rctrl"
             "compose:prsc"
-            "compose:rctrl "
             "lv3:ralt_switch"
             "eurosign:e"
             "nbsp:level3n"
