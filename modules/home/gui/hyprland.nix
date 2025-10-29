@@ -242,8 +242,8 @@ in {
           "Super, z, workspace, 10"
           "Super Shift, z, workspace, 8"
 
-          "Super Ctrl, i, exec, rofimoji -a type"
-          "Super Ctrl Shift, i, exec, rofimoji -a copy"
+          "Super, o, exec, rofimoji -a type"
+          "Super Ctrl, o, exec, rofimoji -a copy"
 
           ", XF86MonBrightnessUp, exec, sbacklight +5%"
           ", XF86MonBrightnessDown, exec, sbacklight -5%"
