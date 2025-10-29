@@ -242,7 +242,8 @@ in {
           "Super, z, workspace, 10"
           "Super Shift, z, workspace, 8"
 
-          "Super Ctrl, i, exec, rofimoji -a copy"
+          "Super Ctrl, i, exec, rofimoji -a type"
+          "Super Ctrl Shift, i, exec, rofimoji -a copy"
 
           ", XF86MonBrightnessUp, exec, sbacklight +5%"
           ", XF86MonBrightnessDown, exec, sbacklight -5%"
@@ -622,6 +623,12 @@ in {
       text = ''
         [Manager]
         ManagerEnvironment="XDG_DATA_DIRS=/usr/local/share:/usr/share:${config.xdg.stateHome}/nix/profile/share:${config.home.homeDirectory}/.nix-profile/share:/nix/var/nix/profiles/default/share"
+      '';
+    };
+
+    home.file."${config.xdg.configHome}/rofimoji.rc" = {
+      text = ''
+        files = [arrows, miscellaneous_symbols, latin-1_supplement, letterlike_symbols, emojis_smileys_emotion, emojis_people_body, emojis_animals_nature, emojis_food_drink, emojis_activities, emojis_travel_places, emojis_objects, emojis_symbols, emojis_flags]
       '';
     };
 
