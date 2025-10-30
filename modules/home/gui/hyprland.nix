@@ -5,8 +5,8 @@
   nixGL,
   ...
 }: let
-  start-Hyprland = pkgs.writeShellApplication {
-    name = "start-Hyprland";
+  start-hyprland = pkgs.writeShellApplication {
+    name = "starth";
     text = ''
       unset LD_LIBRARY_PATH
       export QT_QPA_PLATFORM=wayland
@@ -658,7 +658,7 @@ in {
 
       pkgs.toggle-bluetooth-audio
 
-      start-Hyprland
+      start-hyprland
       pkgs.hyprdynamicmonitors
       pkgs.hyprnavi
 
