@@ -9,6 +9,7 @@
     fingers
     gruvbox
     sensible
+    tmux-fzf
     yank
   ];
 in {
