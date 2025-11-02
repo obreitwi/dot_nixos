@@ -7,10 +7,6 @@
 }: let
   google-chat = pkgs.writeShellApplication {
     name = "google-chat";
-    runtimeInputs = [
-      pkgs.picom
-      pkgs.glxinfo
-    ];
     text = ''
       exec google-chrome --app=https://chat.google.com "$@"
     '';

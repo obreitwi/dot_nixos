@@ -11,7 +11,7 @@
     name = "start-picom";
     runtimeInputs = [
       pkgs.picom
-      pkgs.glxinfo
+      pkgs.mesa-demos
     ];
     text = ''
       picom_args=(-b)
@@ -130,7 +130,7 @@ in {
         autorandr
         backlight
         feh
-        glxinfo
+        mesa-demos
         picom
         rofi
         xclip
