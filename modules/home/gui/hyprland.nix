@@ -68,6 +68,21 @@
     '';
   };
 
+  window-swap = pkgs.writeShellApplication {
+    name = "window-swap";
+    text = ''
+      windows=$(hyprctl clients -j | jq -r '.[] | select(.workspace.name | startswith("special:") | not) |  [.address, .title + " (" + .workspace.name + ")" ] | @tsv')
+
+      swap_target=$( \
+        ( echo "''${windows}" ) \
+          | sort | uniq \
+          | rofi -dmenu -match-only -display-columns 2 -display-column-separator "\t" -p "Window to swap" \
+          | awk -F "\t" '{ print $1 }'
+      )
+      hyprctl dispatch swapwindow "address:''${swap_target}"
+    '';
+  };
+
   workspace-action = pkgs.writeShellApplication {
     name = "workspace-action";
     text = ''
@@ -148,6 +163,7 @@ in {
           "Super Shift, Return, exec, alacritty"
           "Super, M, exec, rofi -show run -sort"
           "Super, I, exec, rofi -show window"
+          "Super Ctrl, I, exec, window-swap"
 
           "Super Shift, F4, exit"
 
@@ -664,6 +680,7 @@ in {
 
       scratchpad-journal
       toggle-minimize
+      window-swap
       workspace-action
       workspace-rename
     ];
