@@ -76,5 +76,7 @@
     pkgs.p7zip
 
     pkgs.ptpython
+
+    pkgs.fastgron
   ];
 }
