@@ -249,6 +249,7 @@ in {
           "Super, apostrophe, togglespecialworkspace, terminal"
           "Super Shift, T, togglespecialworkspace, ptpython"
           "Super Control, T, togglespecialworkspace, bluetooth"
+          "Super Control, B, exec, rofi-bluetooth"
           "Super Control, V, togglespecialworkspace, 1pw"
           "Super Shift, D, togglespecialworkspace, minimized"
           "Super, D, exec, toggle-minimize"
@@ -661,12 +662,12 @@ in {
 
     home.packages = [
       pkgs.blueman
+      pkgs.hyprshot
+      pkgs.jq
       pkgs.nwg-displays
       pkgs.wev
       pkgs.wl-clipboard
       pkgs.wlprop
-      pkgs.jq
-      pkgs.hyprshot
 
       pkgs.sunsetr # has automatic location
 
@@ -677,6 +678,10 @@ in {
       start-hyprland
       pkgs.hyprdynamicmonitors
       pkgs.hyprnavi
+
+      pkgs.rofi
+      pkgs.rofimoji
+      pkgs.rofi-bluetooth
 
       scratchpad-journal
       toggle-minimize
