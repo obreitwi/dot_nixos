@@ -136,12 +136,12 @@
         (final: prev: {
           stable = import nixpkgs-stable args-import-nixpkgs;
 
-          asfa-dev = asfa.packages.${prev.system}.default;
-          blobdrop = blobdrop.packages.${prev.system}.default;
+          asfa-dev = asfa.packages.${prev.stdenv.hostPlatform.system}.default;
+          blobdrop = blobdrop.packages.${prev.stdenv.hostPlatform.system}.default;
           grpcrl = prev.callPackage (import ./packages/grpcrl) {};
-          neorg-task-sync = neorg-task-sync.packages.${prev.system}.default;
+          neorg-task-sync = neorg-task-sync.packages.${prev.stdenv.hostPlatform.system}.default;
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
-          revcli = revcli.packages.${prev.system}.default;
+          revcli = revcli.packages.${prev.stdenv.hostPlatform.system}.default;
           toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
           ptpython = prev.callPackage (import ./packages/ptpython.nix) {};
           hyprnavi = prev.callPackage (import ./packages/hyprnavi.nix) {};
