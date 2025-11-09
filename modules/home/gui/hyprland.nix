@@ -138,7 +138,7 @@ in {
       package =
         if (config.my.isNixOS)
         then pkgs.hyprland
-        else config.lib.nixGL.wrap pkgs.hyprland;
+        else config.lib.targets.genericLinux.nixGL.wrap pkgs.hyprland;
 
       xwayland.enable = true;
 
