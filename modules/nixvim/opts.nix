@@ -42,6 +42,9 @@
     shiftwidth = 4;
     shiftround = true;
 
+    # update terminal title
+    title = true;
+
     completeopt = "menu,menuone,preview,noinsert,noselect";
 
     wildmenu = true;
