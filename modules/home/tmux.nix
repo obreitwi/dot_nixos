@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -17,9 +16,17 @@ in {
 
   xdg.configFile."tmux/tmux.conf".source = ../../config-files/tmux/tmux.conf;
 
-  xdg.configFile."tmux/load-plugins".text =
+  xdg.configFile."tmux/plugins.conf".text =
     lib.strings.concatMapStrings (
       p: "run-shell " + p.rtp + "\n"
     )
     tmuxPlugins;
+
+  xdg.configFile."tmux/generated.conf".text =
+    /*
+    conf
+    */
+    ''
+      bind-key "C-s" run-shell "${pkgs.tmuxPlugins.tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh switch"
+    '';
 }
