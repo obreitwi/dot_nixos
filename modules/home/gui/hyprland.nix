@@ -121,7 +121,7 @@ in {
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.hyprland.enable) {
-    nixGL = {
+    targets.genericLinux.nixGL = {
       packages = nixGL.packages; # you must set this or everything will be a noop
       defaultWrapper = "mesa"; # choose from nixGL options depending on GPU
     };
@@ -138,7 +138,7 @@ in {
       package =
         if (config.my.isNixOS)
         then pkgs.hyprland
-        else config.lib.targets.genericLinux.nixGL.wrap pkgs.hyprland;
+        else config.lib.nixGL.wrap pkgs.hyprland;
 
       xwayland.enable = true;
 
@@ -667,6 +667,7 @@ in {
       pkgs.nwg-displays
       pkgs.wev
       pkgs.wl-clipboard
+      pkgs.wlr-randr
       pkgs.wlprop
 
       pkgs.sunsetr # has automatic location
