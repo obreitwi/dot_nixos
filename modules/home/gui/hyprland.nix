@@ -288,7 +288,13 @@ in {
           "special:journal,    on-created-empty:[float; move 44% 15%; size 55% 70%] scratchpad-journal"
           "special:ptpython,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e ptpython"
           "special:terminal,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty"
-          "special:minimized,  pass"
+          "special:minimized,  gapsin:10, gapsout:10"
+        ];
+
+        windowrule = [
+          "bordersize 2, onworkspace:special:minimized"
+          "bordercolor rgb(fc0000), focus:1, onworkspace:special:minimized"
+          "bordercolor rgb(8a0a0a), focus:0, onworkspace:special:minimized"
         ];
 
         source = [
@@ -410,6 +416,7 @@ in {
           "pulseaudio"
           "backlight"
           "battery"
+          "custom/lock"
         ];
 
         "hyprland/workspaces" = {

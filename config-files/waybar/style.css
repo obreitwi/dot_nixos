@@ -163,6 +163,10 @@ window#waybar.empty #window {
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+#custom-lock {
+  padding-right: 1.0rem;
+}
+
 #bluetooth:hover,
 #pulseaudio:hover,
 #backlight:hover,
@@ -183,7 +187,8 @@ window#waybar.empty #window {
   border-bottom-left-radius: 6px;
 }
 
-#battery {
+/* rightmost module on the right */
+#custom-lock {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   margin-right: 7px;
