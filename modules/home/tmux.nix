@@ -27,6 +27,6 @@ in {
     conf
     */
     ''
-      bind-key "C-s" run-shell "${pkgs.tmuxPlugins.tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh switch"
+      bind-key "s" run-shell "${pkgs.tmuxPlugins.tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh switch"
     '';
 }
