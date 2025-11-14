@@ -316,6 +316,7 @@ in {
         monitor = ", preferred, auto, 1";
 
         decoration = {
+          dim_special = 0.4;
           rounding = 5;
           blur = {
             special = false;
