@@ -16,6 +16,7 @@
     ./nerdcommenter.nix
     ./oil.nix
     ./peekaboo.nix
+    ./quicker.nix
     ./silicon.nix
     ./tabular.nix
     ./telescope.nix
