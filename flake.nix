@@ -49,7 +49,7 @@
     # desktop inputs
     lanzaboote = {
       # support secure boot enabled (needed by programs running on dual booted windows)
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v0.4.3";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -143,7 +143,7 @@
 
           kotlin-lsp = prev.callPackage (import ./packages/kotlin-lsp) {};
 
-          hyprdynamicmonitors = hyprdynamicmonitors.packages.${system}.default;
+          hyprdynamicmonitors = hyprdynamicmonitors.packages.${prev.stdenv.hostPlatform.system}.default;
         })
       ];
 
@@ -227,6 +227,7 @@
           imports = [
             ./modules/home
             ./system/home-manager/common.nix
+
             (hm-nixvim {})
             {my.username = username;}
           ];
@@ -240,6 +241,7 @@
           modules =
             [
               stylix.nixosModules.stylix
+              hyprdynamicmonitors.nixosModules.default
               {
                 _module.args = specialArgs {inherit hostname;}; # make sure that regular home-modules can access special args as well
                 nixpkgs = {inherit overlays;};
@@ -259,6 +261,10 @@
               {
                 home-manager.useGlobalPkgs = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
                 home-manager.useUserPackages = true; # NOTE: Needs to be set for custom pkgs built in flake to be used!
+
+                home-manager.sharedModules = [
+                  hyprdynamicmonitors.homeManagerModules.default
+                ];
 
                 home-manager.users =
                   {

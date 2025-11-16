@@ -8,13 +8,13 @@
   xmonadrc = "x11/myxmonadrc";
 in {
   options = {
-    my.gui.enable = lib.mkOption {
-      default = true;
+    my.gui.useX11 = lib.mkOption {
+      default = false;
       type = lib.types.bool;
     };
   };
 
-  config = lib.mkIf config.my.gui.enable {
+  config = lib.mkIf (config.my.gui.enable && config.my.gui.useX11) {
     console.useXkbConfig = true;
     # Configure keymap in X11
     services = {

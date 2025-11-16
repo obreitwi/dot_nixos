@@ -121,7 +121,7 @@ in {
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.hyprland.enable) {
-    targets.genericLinux.nixGL = {
+    targets.genericLinux.nixGL = lib.mkIf (!config.my.isNixOS) {
       packages = nixGL.packages; # you must set this or everything will be a noop
       defaultWrapper = "mesa"; # choose from nixGL options depending on GPU
     };

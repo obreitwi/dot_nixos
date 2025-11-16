@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./common.nix
+    ../../modules/home/mac
   ];
 
   my = {

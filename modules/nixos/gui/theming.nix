@@ -29,7 +29,7 @@
 
           targets = {
             gnome.enable = true; # even if not installed
-            dunst.enable = false;
+            #dunst.enable = false; // does not exist?
           };
         };
       }

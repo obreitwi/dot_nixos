@@ -86,7 +86,7 @@
         zoxide
       ]
       ++ (
-        if pkgs.stdenv.system == "x86_64-linux"
+        if pkgs.stdenv.hostPlatform.system == "x86_64-linux"
         then [
           # fzf based systemctl tui
           isd # trying out against sysz
