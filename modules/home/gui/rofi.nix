@@ -5,6 +5,6 @@
 }: {
   config = lib.mkIf (config.my.gui.enable) {
     programs.rofi.enable = true;
-    programs.rofi.theme = "gruvbox-dark";
+    programs.rofi.theme = lib.mkForce "gruvbox-dark";
   };
 }
