@@ -170,6 +170,10 @@
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/460794.diff";
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/464773.diff";
+            hash = "sha256-MakGDl/d0AJvG/refj7xhmx52ufCtGQkv8KZ9845gjk=";
+          })
         ];
       };
 
