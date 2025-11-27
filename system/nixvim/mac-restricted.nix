@@ -17,6 +17,7 @@
       postgres = true;
       typescript = true;
       typst = true;
+      pl1 = true;
 
       angular.disable = false;
     };
