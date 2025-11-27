@@ -78,5 +78,6 @@
     pkgs.ptpython
 
     pkgs.fastgron
+    pkgs.sqlite-interactive
   ];
 }

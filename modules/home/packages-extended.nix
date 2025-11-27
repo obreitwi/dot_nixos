@@ -25,6 +25,8 @@
         dateutils
         moreutils
 
+        sqlite-interactive
+
         # disabled since not in use right now
         # k9s
         # kubecolor
