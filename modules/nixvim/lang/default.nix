@@ -10,6 +10,7 @@
     ./java.nix
     ./kotlin.nix
     ./nix.nix
+    ./pl1.nix
     ./postgres.nix
     ./python.nix
     ./rust.nix
