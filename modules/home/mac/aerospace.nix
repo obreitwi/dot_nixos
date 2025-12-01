@@ -16,7 +16,7 @@
 
       launchd.enable = true;
 
-      userSettings = {
+      settings = {
         # attempt to prevent the creation of a tenth workspace
         after-startup-command = [
           "workspace B"
