@@ -276,22 +276,6 @@
         "type": "github"
       }
     },
-    "dot-vim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1739625323,
-        "narHash": "sha256-yo2GAiwWbis4RvQiUAann8HjfGvYeo2A1+qnNXsULfU=",
-        "owner": "obreitwi",
-        "repo": "dot_vim",
-        "rev": "e20934fac048819a9d7715ebb303965212911db7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "obreitwi",
-        "repo": "dot_vim",
-        "type": "github"
-      }
-    },
     "dot-zsh": {
       "flake": false,
       "locked": {
@@ -1325,7 +1309,6 @@
         "backlight": "backlight",
         "blobdrop": "blobdrop",
         "dot-desktop": "dot-desktop",
-        "dot-vim": "dot-vim",
         "dot-zsh": "dot-zsh",
         "home-manager": "home-manager",
         "hyprdynamicmonitors": "hyprdynamicmonitors",
