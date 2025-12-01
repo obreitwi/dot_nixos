@@ -1,6 +1,5 @@
 {
   config,
-  dot-vim,
   lib,
   pkgs,
   ...
@@ -13,8 +12,8 @@
           ++ [
             (pkgs.tree-sitter.buildGrammar {
               language = "timesheet";
-              version = dot-vim.rev;
-              src = "${dot-vim}/utils/treesitter-timesheet";
+              version = "dev";
+              src = ../../nixvim/treesitter/grammars/timesheet;
               generate = true;
             })
           ]

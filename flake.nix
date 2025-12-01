@@ -73,10 +73,6 @@
       url = "github:obreitwi/dotfiles_desktop";
       flake = false;
     };
-    dot-vim = {
-      url = "github:obreitwi/dot_vim";
-      flake = false;
-    };
     dot-zsh = {
       url = "github:obreitwi/dot_zsh";
       flake = false;
@@ -107,7 +103,6 @@
     backlight,
     blobdrop,
     dot-desktop,
-    dot-vim,
     dot-zsh,
     home-manager,
     hyprdynamicmonitors,
@@ -179,7 +174,7 @@
       # specialArgs computes inputs for nixos/hm modules
       baseSpecialArgs = {
         nixpkgs = nixpkgs-patched;
-        inherit dot-desktop dot-vim dot-zsh home-manager nixGL;
+        inherit dot-desktop dot-zsh home-manager nixGL;
       };
       specialArgs = {hostname}:
         baseSpecialArgs
