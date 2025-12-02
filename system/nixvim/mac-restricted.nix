@@ -14,10 +14,11 @@
       apl = true;
       kotlin = true;
       nix = true;
+      pl1 = true;
       postgres = true;
+      python = true;
       typescript = true;
       typst = true;
-      pl1 = true;
 
       angular.disable = false;
     };

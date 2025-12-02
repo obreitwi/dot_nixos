@@ -12,6 +12,7 @@
     plugins.lsp.servers = {
       pyright.enable = true;
       pylsp = {
+        enable = true;
         settings.plugins.black.enable = true;
       };
     };
