@@ -775,11 +775,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764788330,
-        "narHash": "sha256-hE/gXK+Z0j654T0tsW+KcndRqsgZXe8HyWchjBJgQpw=",
+        "lastModified": 1764872372,
+        "narHash": "sha256-uZuXRz9CzeCHsRbc2MQvKomwoX6GcFC5BUMEk3ouSFU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "fca4cba863e76c26cfe48e5903c2ff4bac2b2d5d",
+        "rev": "05a56dbf24f195c62286e3273a2671d3b4904b00",
         "type": "github"
       },
       "original": {
@@ -915,11 +915,11 @@
         "norg-meta": "norg-meta"
       },
       "locked": {
-        "lastModified": 1764800366,
-        "narHash": "sha256-bKUmeKjs0QCgLpSmJOmEiPhkAgbVeYEXB59xtYZ8IKg=",
+        "lastModified": 1764822595,
+        "narHash": "sha256-jrdFN3XUzMBw/0P3lwIrPW7BnLcObme6f+0PlaCM/fE=",
         "owner": "nvim-neorg",
         "repo": "nixpkgs-neorg-overlay",
-        "rev": "e9d341d742d718d3420191656b605fc8acb2ca49",
+        "rev": "d927a72cd6a7aba73bfab548f4663de93aaf92c2",
         "type": "github"
       },
       "original": {
@@ -1115,11 +1115,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1764764672,
-        "narHash": "sha256-BZN3w7AYQlXLKBK/FXu8K/tVTXxVsk/pAwEl6aAyxhE=",
+        "lastModified": 1764803799,
+        "narHash": "sha256-94SMf4Uw5iSoX37ui6LAdcadCUHUDfrvggGay0uWkis=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "8c9ba3b5d85cb985ab7372abf11af1954df15e4a",
+        "rev": "5d1c27e53c96e2c94e69f2e2d083ef147b3a3ccb",
         "type": "github"
       },
       "original": {
@@ -1290,11 +1290,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761335699,
-        "narHash": "sha256-XB7nTWOv51eC1DcZ6iVzAiobtoDPcafuPyEK0EYwXOA=",
+        "lastModified": 1764805244,
+        "narHash": "sha256-rjkzWX3CIMK3o0t5pZYwsLBjFPsf++muwveZMUy9cuU=",
         "ref": "refs/heads/main",
-        "rev": "751139c00fa01450337c1983d2d898929341ae16",
-        "revCount": 525,
+        "rev": "bbc074ff96acb655695ffabd2d495c9610bb6c29",
+        "revCount": 528,
         "type": "git",
         "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
       },
@@ -1368,11 +1368,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1764798099,
-        "narHash": "sha256-IIwR5ZWo7tjxjRpkz0tViF9KFbQ1YXs9Wkan46WQbfk=",
+        "lastModified": 1764860352,
+        "narHash": "sha256-bWrh2T6EPiiZC7jY0jK5cWRwkG0hltnPT1etfHIHiXM=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "4b9e0e7ba3cccb86fe2bf0f4a2dd18256bef1cc6",
+        "rev": "61a01b75f0a7e58dac486ddf022c628a71528399",
         "type": "github"
       },
       "original": {
