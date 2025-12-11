@@ -86,7 +86,7 @@ in {
             let l:save_cursor = getcurpos()
             normal! 0''$p
             call setpos('.', l:save_cursor)
-            normal! J
+            " normal! J
         endfunction
 
         " Replace the name of a task in personal time tracking
@@ -94,7 +94,7 @@ in {
             let l:save_cursor = getcurpos()
             normal! 0El"_D''$p
             call setpos('.', l:save_cursor)
-            normal! J
+            " normal! J
             normal! zO
         endfunction
 
