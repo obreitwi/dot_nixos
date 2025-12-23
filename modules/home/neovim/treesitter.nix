@@ -23,7 +23,6 @@
     ))
     nvim-treesitter-context
     nvim-treesitter-textobjects
-    playground
     rainbow-delimiters-nvim
     (pretty-fold-nvim.overrideAttrs (
       final: prev: {

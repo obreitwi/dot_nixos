@@ -24,14 +24,13 @@ in {
         indent.enable = true;
       };
 
-      folding = true;
+      folding.enable = true;
 
       luaConfig = {
         content =
           # lua
           ''
             require'nvim-treesitter.configs'.setup {
-              playground = { enable = true, },
               query_linter = {
                 enable = true,
                 use_virtual_text = true,
@@ -144,7 +143,6 @@ in {
   '';
 
   extraPlugins = with pkgs.vimPlugins; [
-    playground
     (pretty-fold-nvim.overrideAttrs (
       final: prev: {
         src = pkgs.fetchFromGitHub {
