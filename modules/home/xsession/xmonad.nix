@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  pkgs-stable,
   dot-desktop,
   ...
 }: let
@@ -56,7 +57,7 @@ in {
       myplayerctl
       pkgs.rofimoji
       pkgs.toggle-bluetooth-audio
-      pkgs.trayer # xmonad
+      pkgs-stable.trayer # xmonad
     ];
 
     services.stalonetray = {

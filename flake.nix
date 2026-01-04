@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-nixvim.url = "github:NixOS/nixpkgs/1882c6b7368fd284ad01b0a5b5601ef136321292";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     nixGL = {
@@ -30,9 +31,10 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/main";
+      #url = "github:nix-community/nixvim/main";
+      url = "github:nix-community/nixvim/63c957603751f0a107c4d9c2cbaff1c8749fc9f1";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        #nixpkgs.follows = "nixpkgs";
       };
     };
 
@@ -113,6 +115,7 @@
     nix-index-database,
     nixGL,
     nixpkgs,
+    nixpkgs-nixvim,
     nixpkgs-stable,
     nixvim,
     pydemx,
@@ -165,10 +168,23 @@
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/460794.diff";
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
+
+          # nvim-treesitter-textobjects
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/475611.diff";
+            hash = "sha256-W0ma9kVzO+ZQjJY8wMx7VQvxrQjX2ENKXQAIrSgt4+w=";
+          })
+
+          # silicon patch
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/476595.diff";
+            hash = "sha256-z9qBMdKQTsGBZtNuzeuUAaS5kBdCfIIopyvGutGzfm8=";
+          })
         ];
       };
 
       pkgs = import nixpkgs-patched args-import-nixpkgs;
+      pkgs-nixvim = import nixpkgs-nixvim args-import-nixpkgs;
       pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
       # specialArgs computes inputs for nixos/hm modules
@@ -180,7 +196,7 @@
         baseSpecialArgs
         // {
           myUtils = import ./utils/lib.nix;
-          inherit hostname pkgs-stable;
+          inherit hostname pkgs-nixvim pkgs-stable;
         };
 
       # nixvimLib = nixvim.lib.${system};
@@ -197,6 +213,7 @@
 
       hm-nixvim = {module ? null}: {
         pkgs,
+        pkgs-nixvim,
         hostname,
         ...
       }: let
@@ -209,7 +226,8 @@
           nvim =
             nixvim'.makeNixvimWithModule
             (nixvimModule {
-              inherit pkgs;
+              pkgs = nixpkgs-nixvim;
+              #inherit pkgs;
               module = module';
               specialArgs = specialArgs {inherit hostname;};
             });
