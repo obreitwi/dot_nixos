@@ -6,4 +6,5 @@
     neorg.enable = builtins.elem hostname ["mimir" "minir"];
     silicon.enable = builtins.elem hostname ["mimir" "minir" "mucku"];
   };
+  clipboard.providers.xclip.enable = builtins.elem hostname ["mucku"];
 }

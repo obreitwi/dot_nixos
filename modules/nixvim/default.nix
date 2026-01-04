@@ -13,6 +13,7 @@
     ./lsp.nix
     ./lsp-servers.nix
     ./opts.nix
+    #./performance.nix
     ./powersettings.nix
     ./prefix_maps.nix
     ./spelling.nix

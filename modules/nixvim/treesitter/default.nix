@@ -3,33 +3,43 @@
   lib,
   ...
 }: let
+  nvim-treesitter = pkgs.vimPlugins.nvim-treesitter-legacy;
+
+  timesheet-grammar = pkgs.tree-sitter.buildGrammar {
+    language = "timesheet";
+    version = "dev";
+    src = ./grammars/timesheet;
+    generate = true;
+  };
+
+  grammarPackages =
+    nvim-treesitter.allGrammars
+    ++ [
+      timesheet-grammar
+    ];
 in {
   plugins = {
     nvim-autopairs.enable = true;
     rainbow-delimiters.enable = true;
     treesitter = {
       enable = true;
-      grammarPackages =
-        pkgs.vimPlugins.nvim-treesitter.allGrammars
-        ++ [
-          (pkgs.tree-sitter.buildGrammar {
-            language = "timesheet";
-            version = "dev";
-            src = ./grammars/timesheet;
-            generate = true;
-          })
-        ];
+      inherit grammarPackages;
       settings = {
         highlight.enable = true;
         indent.enable = true;
       };
 
+      package = nvim-treesitter;
+
+      highlight.enable = true;
+      indent.enable = true;
       folding.enable = true;
 
       luaConfig = {
         content =
           # lua
           ''
+            -- The following is a) not working and b) might not be needed since the integration for playground into treesitter.
             require'nvim-treesitter.configs'.setup {
               query_linter = {
                 enable = true,
@@ -40,6 +50,8 @@ in {
             require'pretty-fold'.setup {}
           '';
       };
+
+      languageRegister.timesheet = "timesheet";
     };
 
     treesitter-context.enable = true;
@@ -135,6 +147,7 @@ in {
       use_default_keymaps = false;
     };
   };
+
   extraConfigVim = ''
     " treesj mappings
     nnoremap <leader>sj :TSJJoin<CR>
@@ -142,7 +155,38 @@ in {
     nnoremap <leader>st :TSJToggle<CR>
   '';
 
+  #extraConfigLua = ''
+  #vim.api.nvim_create_autocmd('FileType', {
+  #group = vim.api.nvim_create_augroup('treesitter.setup', {}),
+  #callback = function(args)
+  #local buf = args.buf
+  #local filetype = args.match
+
+  #-- you need some mechanism to avoid running on buffers that do not
+  #-- correspond to a language (like oil.nvim buffers), this implementation
+  #-- checks if a parser exists for the current language
+  #local language = vim.treesitter.language.get_lang(filetype) or filetype
+  #if not vim.treesitter.language.add(language) then
+  #return
+  #end
+
+  #-- replicate `fold = { enable = true }`
+  #vim.wo.foldmethod = 'expr'
+  #vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+  #-- replicate `highlight = { enable = true }`
+  #vim.treesitter.start(buf, language)
+
+  #-- replicate `indent = { enable = true }`
+  #vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+  #-- `incremental_selection = { enable = true }` cannot be easily replicated
+  #end,
+  #})
+  #'';
+
   extraPlugins = with pkgs.vimPlugins; [
+    timesheet-grammar
     (pretty-fold-nvim.overrideAttrs (
       final: prev: {
         src = pkgs.fetchFromGitHub {
@@ -156,6 +200,8 @@ in {
     # tabout-nvim
     # otter-nvim # currently not configured, see if useful
   ];
+  # manually add all treesitter parsers
+  #++ (lib.attrsets.attrValues (lib.attrsets.filterAttrs (k: v: lib.isDerivation v) pkgs.vimPlugins.nvim-treesitter-parsers));
 
   opts.conceallevel = 2;
 

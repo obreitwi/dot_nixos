@@ -15,7 +15,6 @@
     ./lsd.nix
     ./lsp.nix
     ./mac
-    ./neovim
     ./readline.nix
     ./revcli.nix
     ./packages-core.nix
