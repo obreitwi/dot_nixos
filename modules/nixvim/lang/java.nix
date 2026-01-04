@@ -18,6 +18,6 @@
       jdtls.enable = true;
     };
 
-    plugins.jdtls.enable = true;
+    #plugins.jdtls.enable = true;
   };
 }

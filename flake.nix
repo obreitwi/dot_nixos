@@ -36,11 +36,6 @@
       };
     };
 
-    neorg-overlay = {
-      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -108,7 +103,6 @@
     hyprdynamicmonitors,
     lanzaboote,
     mailserver,
-    neorg-overlay,
     neorg-task-sync,
     nix-index-database,
     nixGL,
@@ -125,7 +119,6 @@
 
     perSystem = system: let
       overlays = [
-        neorg-overlay.overlays.default
         backlight.overlays.default
 
         (final: prev: {
@@ -164,6 +157,12 @@
           (pkgs-init.fetchurl {
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/460794.diff";
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
+          })
+
+          # add nvim-treesitter-legacy
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/472119.diff";
+            hash = "sha256-ZUBvGZf0uvPO/JEhsqfDOIcQtwfQATWNm+Puxb5AiIE=";
           })
         ];
       };

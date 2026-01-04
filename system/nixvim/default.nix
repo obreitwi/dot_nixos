@@ -4,6 +4,4 @@
 
     ../../modules/nixvim
   ];
-
-  clipboard.providers.xclip.enable = true;
 }

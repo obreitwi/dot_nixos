@@ -11,7 +11,7 @@
       unset LD_LIBRARY_PATH
       export QT_QPA_PLATFORM=wayland
       export GDK_BACKEND=wayland
-      exec Hyprland
+      exec start-hyprland
     '';
   };
 
@@ -291,10 +291,16 @@ in {
           "special:minimized,  gapsin:10, gapsout:10"
         ];
 
+        #windowrule = [
+        #"bordersize 2, onworkspace:special:minimized"
+        #"bordercolor rgb(fc0000), focus:1, onworkspace:special:minimized"
+        #"bordercolor rgb(8a0a0a), focus:0, onworkspace:special:minimized"
+        #];
+
         windowrule = [
-          "bordersize 2, onworkspace:special:minimized"
-          "bordercolor rgb(fc0000), focus:1, onworkspace:special:minimized"
-          "bordercolor rgb(8a0a0a), focus:0, onworkspace:special:minimized"
+          "match:workspace name:special:minimized, border_size 2"
+          "match:workspace name:special:minimized, match:focus true,  border_color rgb(fc0000)"
+          "match:workspace name:special:minimized, match:focus false, border_color rgb(8a0a0a)"
         ];
 
         source = [
@@ -372,14 +378,13 @@ in {
       enable = true;
 
       settings = {
-        ipc = "on";
         splash = false;
-        splash_offset = 2.0;
-
-        preload = ["${config.home.homeDirectory}/wallpaper/current"];
 
         wallpaper = [
-          ",${config.home.homeDirectory}/wallpaper/current"
+          {
+            path = "${config.home.homeDirectory}/wallpaper/current";
+            monitor = "";
+          }
         ];
       };
     };

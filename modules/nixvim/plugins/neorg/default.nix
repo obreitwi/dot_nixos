@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   neorg-existing-day = ./neorg-existing-day;
@@ -58,6 +59,11 @@ in {
     };
     plugins.neorg.telescopeIntegration.enable = true;
     plugins.telescope.enable = true;
+
+    plugins.treesitter.grammarPackages = with pkgs.tree-sitter-grammars; [
+      tree-sitter-norg
+      tree-sitter-norg-meta
+    ];
 
     userCommands = {
       TS.command = ":!revcli progress timelog --show --file %";
