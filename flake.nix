@@ -158,12 +158,6 @@
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/460794.diff";
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
-
-          # add nvim-treesitter-legacy
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/472119.diff";
-            hash = "sha256-ZUBvGZf0uvPO/JEhsqfDOIcQtwfQATWNm+Puxb5AiIE=";
-          })
         ];
       };
 
