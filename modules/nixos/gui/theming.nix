@@ -29,7 +29,6 @@
 
           targets = {
             gnome.enable = true; # even if not installed
-            dunst.enable = false;
           };
         };
       }

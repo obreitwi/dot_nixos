@@ -11,7 +11,7 @@
     ./dunst.nix
     ./firefox.nix
     ./fonts.nix
-    ./hyprland.nix
+    #./hyprland.nix # TODO: figure out how to have home-manager and nixOS configs side-by-side in same repo.
     ./iwd.nix
     ./keepass.nix
     ./keynav.nix
