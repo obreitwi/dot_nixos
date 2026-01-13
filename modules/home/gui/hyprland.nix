@@ -254,6 +254,7 @@ in {
           "Super Shift, D, togglespecialworkspace, minimized"
           "Super, D, exec, toggle-minimize"
 
+          "Super, F5, exec, hyprctl reload"
           "Super, F9, exec, toggle-bluetooth-audio"
 
           "Super, z, workspace, 10"
