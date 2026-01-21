@@ -31,7 +31,7 @@
   waybar-uptime = pkgs.writeShellApplication {
     name = "waybar-uptime";
     text = ''
-      UPTIME_FORMATTED=$(uptime | awk '{ print $3 }' | tr -d ',')
+      UPTIME_FORMATTED=$(uptime | cut -d, -f 1 | sed -e "s:.*up\s*::")
 
       echo " $UPTIME_FORMATTED"
     '';
@@ -243,6 +243,7 @@ in {
 
           "Super, c, togglespecialworkspace, audio"
           "Super, slash, togglespecialworkspace, journal"
+          "Super Shift, slash, exec, btop"
           "Super Ctrl, slash, setfloating"
           "Super Ctrl, slash, moveactive, exact 44% 15%"
           "Super Ctrl, slash, resizeactive, exact 55% 70%"
