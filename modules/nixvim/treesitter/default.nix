@@ -12,11 +12,21 @@
     generate = true;
   };
 
+  pl1-grammar = pkgs.tree-sitter.buildGrammar {
+    language = "pli";
+    version = "dev";
+    src = ./grammars/pli;
+    generate = true;
+  };
+
+  customGrammars = [
+    timesheet-grammar
+    pl1-grammar
+  ];
+
   grammarPackages =
     nvim-treesitter.allGrammars
-    ++ [
-      timesheet-grammar
-    ];
+    ++ customGrammars;
 in {
   plugins = {
     nvim-autopairs.enable = true;
@@ -52,6 +62,7 @@ in {
       };
 
       languageRegister.timesheet = "timesheet";
+      languageRegister.pli = "pli";
     };
 
     treesitter-context.enable = true;
@@ -185,21 +196,22 @@ in {
   #})
   #'';
 
-  extraPlugins = with pkgs.vimPlugins; [
-    timesheet-grammar
-    (pretty-fold-nvim.overrideAttrs (
-      final: prev: {
-        src = pkgs.fetchFromGitHub {
-          owner = "bbjornstad";
-          repo = "pretty-fold.nvim";
-          rev = "1eb18f228972e86b7b8f5ef33ca8091e53fb1e49";
-          sha256 = "1j2q5ks5rxcydr8q0hcb5zaxsr5z2vids84iihn8c6jgwadwzhfi";
-        };
-      }
-    ))
-    # tabout-nvim
-    # otter-nvim # currently not configured, see if useful
-  ];
+  extraPlugins = with pkgs.vimPlugins;
+    [
+      (pretty-fold-nvim.overrideAttrs (
+        final: prev: {
+          src = pkgs.fetchFromGitHub {
+            owner = "bbjornstad";
+            repo = "pretty-fold.nvim";
+            rev = "1eb18f228972e86b7b8f5ef33ca8091e53fb1e49";
+            sha256 = "1j2q5ks5rxcydr8q0hcb5zaxsr5z2vids84iihn8c6jgwadwzhfi";
+          };
+        }
+      ))
+      # tabout-nvim
+      # otter-nvim # currently not configured, see if useful
+    ]
+    ++ customGrammars;
   # manually add all treesitter parsers
   #++ (lib.attrsets.attrValues (lib.attrsets.filterAttrs (k: v: lib.isDerivation v) pkgs.vimPlugins.nvim-treesitter-parsers));
 
