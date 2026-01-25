@@ -2,58 +2,98 @@
   lib,
   stdenv,
   fetchzip,
-  openjdk,
-  makeWrapper,
+  autoPatchelfHook,
+  wayland,
+  libgcc,
+  libx11,
+  libxi,
+  freetype,
+  alsa-lib,
+  libxrender,
+  libxtst,
+  zlib,
 }: let
-  version = "0.253.10629";
-in
-  stdenv.mkDerivation {
-    pname = "kotlin-lsp";
-    inherit version;
-    src = fetchzip {
-      url = "https://download-cdn.jetbrains.com/kotlin-lsp/${version}/kotlin-${version}.zip";
-      hash = "sha256-LCLGo3Q8/4TYI7z50UdXAbtPNgzFYtmUY/kzo2JCln0=";
-      stripRoot = false;
+  system = stdenv.hostPlatform.system;
+  platformSuffix =
+    {
+      "x86_64-linux" = "linux-x64";
+      "aarch64-linux" = "linux-aarch64";
+      "x86_64-darwin" = "mac-x64";
+      "aarch64-darwin" = "mac-aarch64";
+    }
+    .${
+      system
     };
 
+  hash =
+    {
+      "x86_64-linux" = "sha256-EweSqy30NJuxvlJup78O+e+JOkzvUdb6DshqAy1j9jE=";
+      "aarch64-linux" = "sha256-MhHEYHBctaDH9JVkN/guDCG1if9Bip1aP3n+JkvHCvA=";
+      "x86_64-darwin" = "sha256-zMuUcahT1IiCT1NTrMCIzUNM0U6U3zaBkJtbGrzF7I8=";
+      "aarch64-darwin" = "sha256-zwlzVt3KYN0OXKr6sI9XSijXSbTImomSTGRGa+3zCK8=";
+    }
+    .${
+      system
+    };
+in
+  stdenv.mkDerivation rec {
+    pname = "kotlin-lsp";
+    version = "261.13587.0";
+
+    src = fetchzip {
+      inherit hash;
+      stripRoot = false;
+      url = "https://download-cdn.jetbrains.com/kotlin-lsp/${version}/kotlin-lsp-${version}-${platformSuffix}.zip";
+    };
+
+    nativeBuildInputs = lib.optionals stdenv.hostPlatform.isLinux [
+      autoPatchelfHook
+    ];
+
+    buildInputs = lib.optionals stdenv.hostPlatform.isLinux [
+      alsa-lib
+      freetype
+      libgcc.lib
+      libx11
+      libxi
+      libxrender
+      libxtst
+      wayland
+      zlib
+    ];
+
+    dontConfigure = true;
     dontBuild = true;
 
     installPhase = ''
-      mkdir -p $out/lib
-      mkdir -p $out/native
-      mkdir -p $out/bin
-      cp -r lib/* $out/lib
-      cp -r native/* $out/native
-      cp kotlin-lsp.sh $out/kotlin-lsp
-      chmod +x $out/kotlin-lsp
+      runHook preInstall
+
+      mkdir -p $out/bin $out/lib/kotlin-lsp
+      cp -r * $out/lib/kotlin-lsp
+      find $out -name java -exec chmod +x {} \;
+      find $out -name kotlin-lsp.sh -exec chmod +x {} \; -exec ln -s {} $out/bin/kotlin-lsp \;
+
+      runHook postInstall
     '';
 
-    nativeBuildInputs = [
-      makeWrapper
-    ];
-    buildInputs = [
-      openjdk
-    ];
-
-    postFixup = ''
-      wrapProgram "$out/kotlin-lsp" --set JAVA_HOME ${openjdk} --prefix PATH : ${
-        lib.strings.makeBinPath [
-          openjdk
-        ]
-      }
-      ln -s $out/kotlin-lsp $out/bin
+    postInstall = ''
+      substituteInPlace $out/lib/kotlin-lsp/kotlin-lsp.sh \
+        --replace 'chmod +x "$LOCAL_JRE_PATH/bin/java"' '# chmod removed for NixOS'
     '';
 
     meta = {
-      description = "kotlin language server";
-      longDescription = ''
-        About Kotlin code completion, linting and more for any editor/IDE
-        using the Language Server Protocol Topics (official, but pre-alpha)'';
-      maintainers = with lib.maintainers; [obreitwi];
-      #homepage = "https://github.com/fwcd/kotlin-language-server";
-      #changelog = "https://github.com/fwcd/kotlin-language-server/blob/${version}/CHANGELOG.md";
-      license = lib.licenses.mit;
-      platforms = lib.platforms.unix;
+      description = "LSP implementation for Kotlin code completion, linting";
+      #maintainers = with lib.maintainers; [ p-louis ];
+      homepage = "https://github.com/Kotlin/kotlin-lsp";
+      changelog = "https://github.com/Kotlin/kotlin-lsp/blob/kotlin-lsp/v${version}/RELEASES.md";
+      license = lib.licenses.asl20;
+      platforms = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
       sourceProvenance = [lib.sourceTypes.binaryBytecode];
+      mainProgram = "kotlin-lsp";
     };
   }

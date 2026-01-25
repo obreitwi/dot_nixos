@@ -77,6 +77,9 @@
 
     pkgs.ptpython
 
+    # PDF manipulation
+    pkgs.poppler-utils
+
     pkgs.fastgron
     pkgs.sqlite-interactive
   ];

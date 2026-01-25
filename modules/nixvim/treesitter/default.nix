@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  nvim-treesitter = pkgs.vimPlugins.nvim-treesitter-legacy;
+  nvim-treesitter = pkgs.vimPlugins.nvim-treesitter;
 
   timesheet-grammar = pkgs.tree-sitter.buildGrammar {
     language = "timesheet";
@@ -45,21 +45,21 @@ in {
       indent.enable = true;
       folding.enable = true;
 
-      luaConfig = {
-        content =
-          # lua
-          ''
-            -- The following is a) not working and b) might not be needed since the integration for playground into treesitter.
-            require'nvim-treesitter.configs'.setup {
-              query_linter = {
-                enable = true,
-                use_virtual_text = true,
-                lint_events = {"BufWrite", "CursorHold"},
-              },
-            }
-            require'pretty-fold'.setup {}
-          '';
-      };
+      #luaConfig = {
+      #content =
+      ## lua
+      #''
+      #-- -- The following is a) not working and b) might not be needed since the integration for playground into treesitter.
+      #-- require'nvim-treesitter.configs'.setup {
+      #--   query_linter = {
+      #--     enable = true,
+      #--     use_virtual_text = true,
+      #--     lint_events = {"BufWrite", "CursorHold"},
+      #--   },
+      #-- }
+      #require'pretty-fold'.setup {}
+      #'';
+      #};
 
       languageRegister.timesheet = "timesheet";
       languageRegister.pli = "pli";
@@ -115,18 +115,20 @@ in {
               # lua
               ''
                 {
-                            query = "@local.scope";
-                            query_group = "locals";
-                            desc = "Next scope";
-                          }'';
+                  query = "@local.scope";
+                  query_group = "locals";
+                  desc = "Next scope";
+                }
+              '';
             "]z" =
               # lua
               ''
                 {
-                            query = "@fold",
-                            query_group = "folds",
-                            desc = "Next fold",
-                          }'';
+                  query = "@fold",
+                  query_group = "folds",
+                  desc = "Next fold",
+                }
+              '';
           };
           gotoNextEnd = {
             "]M" = "@function.outer";
@@ -159,11 +161,28 @@ in {
     };
   };
 
+  keymaps = [
+    {
+      key = "<leader>tss";
+      mode = "n";
+      action = ":lua vim.treesitter.start()<cr>";
+    }
+    {
+      key = "<leader>tst";
+      mode = "n";
+      action = ":lua vim.treesitter.stop()<cr>";
+    }
+  ];
+
   extraConfigVim = ''
     " treesj mappings
     nnoremap <leader>sj :TSJJoin<CR>
     nnoremap <leader>ss :TSJSplit<CR>
     nnoremap <leader>st :TSJToggle<CR>
+  '';
+
+  extraConfigLua = ''
+    require'pretty-fold'.setup {}
   '';
 
   #extraConfigLua = ''

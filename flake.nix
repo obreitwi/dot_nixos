@@ -158,6 +158,12 @@
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/460794.diff";
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
+
+          ## kotlin-lsp init (currently not building)
+          #(pkgs-init.fetchurl {
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/435169.diff";
+          #hash = "sha256-FMlZ8g2Cy+JNJ6XB2jKzgSVVGTfQjsQGAwF5fYoYAbI=";
+          #})
         ];
       };
 
