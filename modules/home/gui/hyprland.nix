@@ -303,6 +303,7 @@ in {
           "match:workspace name:special:minimized, border_size 2"
           "match:workspace name:special:minimized, match:focus true,  border_color rgb(fc0000)"
           "match:workspace name:special:minimized, match:focus false, border_color rgb(8a0a0a)"
+          "match:class (flameshot), workspace 0"
         ];
 
         source = [
