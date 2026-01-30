@@ -32,7 +32,7 @@
       # lua
       ''
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "[coc]E", vim.diagnostic.open_float, bufopts)
+        vim.keymap.set("n", "[coc]e", vim.diagnostic.open_float, bufopts)
       '';
   };
   plugins.lsp-format.enable = true;
