@@ -159,6 +159,9 @@
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
 
+          # crystal 1.19 introduces dependency onto failing llvm22
+          ./patches/nixpkgs/revert_pr_484749.patch
+
           ## kotlin-lsp init (currently not building)
           #(pkgs-init.fetchurl {
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/435169.diff";
