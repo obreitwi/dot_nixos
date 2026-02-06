@@ -38,6 +38,8 @@
   home.packages = [
     pkgs.gh
 
+    pkgs.moreutils
+
     pkgs.flameshot
 
     pkgs.duf
