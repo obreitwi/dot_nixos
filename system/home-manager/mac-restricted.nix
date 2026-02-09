@@ -2,6 +2,7 @@
 {
   pkgs,
   pkgs-stable,
+  lib,
   ...
 }: {
   imports = [
@@ -23,6 +24,9 @@
     lsp.all = false;
 
     packages.extended = false;
+
+    revcli.enable = lib.mkForce true;
+    revcli.sync-job = false;
   };
 
   programs = {
