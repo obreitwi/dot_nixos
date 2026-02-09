@@ -1012,15 +1012,15 @@
       "locked": {
         "lastModified": 1769785252,
         "narHash": "sha256-g6gTPop80UqS1stNaTmB2CrqDmqgQBrfR2j5Z76X7RI=",
-        "ref": "refs/heads/main",
+        "owner": "obreitwi",
+        "repo": "rev-cli-rs",
         "rev": "fc81e0f5e5d271c42d849a7c481ea2a5f2ac6e7f",
-        "revCount": 531,
-        "type": "git",
-        "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/obreitwi/rev-cli-rs"
+        "owner": "obreitwi",
+        "repo": "rev-cli-rs",
+        "type": "github"
       }
     },
     "root": {

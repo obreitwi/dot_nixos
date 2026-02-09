@@ -4,11 +4,11 @@
   ...
 }: {
   options.my.nixvim.claude-code.enable = lib.mkOption {
-    default = true;
+    default = false;
     type = lib.types.bool;
   };
 
-  config = lib.mkIf config.my.nixvim.neorg.enable {
+  config = lib.mkIf config.my.nixvim.claude-code.enable {
     plugins.claude-code = {
       enable = true;
     };

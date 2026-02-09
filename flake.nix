@@ -83,7 +83,7 @@
 
     # private repos:
     revcli = {
-      url = "git+ssh://git@github.com/obreitwi/rev-cli-rs";
+      url = "github:obreitwi/rev-cli-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
