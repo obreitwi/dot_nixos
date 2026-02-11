@@ -78,7 +78,7 @@ in
 
     postInstall = ''
       substituteInPlace $out/lib/kotlin-lsp/kotlin-lsp.sh \
-        --replace 'chmod +x "$LOCAL_JRE_PATH/bin/java"' '# chmod removed for NixOS'
+        --replace-fail 'chmod +x "$LOCAL_JRE_PATH/bin/java"' '# chmod removed for NixOS'
     '';
 
     meta = {
