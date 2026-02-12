@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   extraPlugins = [
-    pkgs.vimPlugins.Tabular
+    pkgs.vimPlugins.tabular
   ];
 
   extraConfigVim =
