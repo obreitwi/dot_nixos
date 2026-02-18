@@ -16,13 +16,13 @@
         {
           interactions = {
             chat = {
-              adapter = "anthropic",
+              adapter = "claude_code",
             },
             inline = {
-              adapter = "anthropic",
+              adapter = "claude_code",
             },
             cmd = {
-              adapter = "anthropic",
+              adapter = "claude_code",
             },
           },
         }
