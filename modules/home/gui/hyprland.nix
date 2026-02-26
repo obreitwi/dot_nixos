@@ -249,6 +249,7 @@ in {
           "Super Ctrl, slash, resizeactive, exact 55% 70%"
           "Super, apostrophe, togglespecialworkspace, terminal"
           "Super Shift, T, togglespecialworkspace, ptpython"
+          "Super Shift, O, togglespecialworkspace, numbat"
           "Super Control, T, togglespecialworkspace, bluetooth"
           "Super Control, B, exec, rofi-bluetooth"
           "Super Control, V, togglespecialworkspace, 1pw"
@@ -289,9 +290,10 @@ in {
           "special:audio,      on-created-empty:[float; move 44% 15%; size 55% 70%] pavucontrol"
           "special:bluetooth,  on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e bluetuith"
           "special:journal,    on-created-empty:[float; move 44% 15%; size 55% 70%] scratchpad-journal"
+          "special:minimized,  gapsin:10, gapsout:10"
+          "special:numbat,     on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e numbat"
           "special:ptpython,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e ptpython"
           "special:terminal,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty"
-          "special:minimized,  gapsin:10, gapsout:10"
         ];
 
         #windowrule = [

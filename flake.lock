@@ -279,11 +279,11 @@
     "dot-zsh": {
       "flake": false,
       "locked": {
-        "lastModified": 1762975381,
-        "narHash": "sha256-tvEQKu7uwakycQH+LqfDyT1XWHoo5kUlL8vCFTMi56g=",
+        "lastModified": 1772040158,
+        "narHash": "sha256-YoI46e5VBc44oJf+fl+eD9xDdqVwCpwOKcH2wM1iaIE=",
         "owner": "obreitwi",
         "repo": "dot_zsh",
-        "rev": "5efc5f487038bd8da5dc73e6e22523104870c9e7",
+        "rev": "5b60aef2c8bc75fd78d8b68622bc829dd043221e",
         "type": "github"
       },
       "original": {
@@ -1010,11 +1010,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771874454,
-        "narHash": "sha256-+eYBHqr2H2HTAfLEqpKndLZGeIBLOqxfZKC0YXr5M2s=",
+        "lastModified": 1771941623,
+        "narHash": "sha256-R6GDa3pH8S4RvrN74QxL90OheZcyoIZOCaaOTPciAmM=",
         "owner": "obreitwi",
         "repo": "rev-cli-rs",
-        "rev": "0bdbb1a16078704d4545520eb3cb2c7184d58ede",
+        "rev": "83b666a79c09d8926c02dd7e94307a9920847d38",
         "type": "github"
       },
       "original": {

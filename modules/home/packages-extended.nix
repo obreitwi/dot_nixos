@@ -36,7 +36,7 @@
 
         # formatter
         # nixpkgs-fmt # not used
-        nixfmt-rfc-style
+        nixfmt
         alejandra
 
         # nix tooling
