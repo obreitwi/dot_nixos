@@ -286,14 +286,14 @@ in {
 
           #"w[t1], border:false" # don't draw borders if there is only one window
           "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
-          "special:1pw,        on-created-empty:[float; move 44% 15%; size 55% 70%] 1password"
-          "special:audio,      on-created-empty:[float; move 44% 15%; size 55% 70%] pavucontrol"
-          "special:bluetooth,  on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e bluetuith"
-          "special:journal,    on-created-empty:[float; move 44% 15%; size 55% 70%] scratchpad-journal"
+          "special:1pw,        on-created-empty:[float; move 44% 15%; size 75% 70%] 1password"
+          "special:audio,      on-created-empty:[float; move 44% 15%; size 75% 70%] pavucontrol"
+          "special:bluetooth,  on-created-empty:[float; move 44% 15%; size 75% 70%] alacritty -e bluetuith"
+          "special:journal,    on-created-empty:[float; move 44% 15%; size 75% 70%] scratchpad-journal"
           "special:minimized,  gapsin:10, gapsout:10"
-          "special:numbat,     on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e numbat"
-          "special:ptpython,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e ptpython"
-          "special:terminal,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty"
+          "special:numbat,     on-created-empty:[float; move 44% 15%; size 75% 70%] alacritty -e numbat"
+          "special:ptpython,   on-created-empty:[float; move 44% 15%; size 75% 70%] alacritty -e ptpython"
+          "special:terminal,   on-created-empty:[float; move 44% 15%; size 75% 70%] alacritty"
         ];
 
         #windowrule = [
