@@ -11,6 +11,7 @@
       pkgs.nix-tree
       pkgs.nixVersions.nix_2_31
       pkgs.nurl
+      pkgs.dix
       pkgs.nvd
 
       # base setup
