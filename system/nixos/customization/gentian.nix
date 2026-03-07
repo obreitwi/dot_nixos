@@ -117,7 +117,7 @@ in {
     rootPubkeyEnable = true;
     fail2ban.enable = true;
     gitolite = {
-      enable = true;
+      enable = false; # disabled due to hash error
       hostName = "gitweb.zqnr.de";
       adminPubkey = "<not used since imported>";
     };
@@ -274,9 +274,8 @@ in {
     fqdn = "mail.${mailDomain}";
     inherit domains;
 
-    certificateScheme = "manual";
-    certificateFile = acme.sslCertificate;
-    keyFile = acme.sslCertificateKey;
+    x509.certificateFile = acme.sslCertificate;
+    x509.privateKeyFile = acme.sslCertificateKey;
 
     loginAccounts."oliver@breitwieser.eu" = {
       hashedPasswordFile = "/var/lib/secrets/mail/obreitwi";

@@ -375,10 +375,10 @@ in {
       };
     };
 
-    home.hyprdynamicmonitors = {
-      enable = true;
-      installExamples = false;
-    };
+    #home.hyprdynamicmonitors = {
+    #enable = true;
+    #installExamples = false;
+    #};
 
     services.hyprpaper = {
       enable = true;

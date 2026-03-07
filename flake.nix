@@ -281,6 +281,7 @@
           modules =
             [
               stylix.nixosModules.stylix
+              hyprdynamicmonitors.nixosModules.default
               {
                 _module.args = specialArgs {inherit hostname;}; # make sure that regular home-modules can access special args as well
                 nixpkgs = {inherit overlays;};

@@ -25,7 +25,7 @@ in {
   config = lib.mkIf nextcloud.enable {
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud31;
+      package = pkgs.nextcloud32;
       inherit (nextcloud) hostName;
 
       # Instead of using pkgs.nextcloud28Packages.apps,

@@ -20,7 +20,7 @@
     }
 
     (
-      lib.mkIf config.my.gui.stylix.enable {
+      lib.mkIf (config.my.gui.enable && config.my.gui.stylix.enable) {
         stylix = {
           enable = true;
           base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-hard.yaml";
