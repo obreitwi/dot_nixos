@@ -28,7 +28,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-      helvum # switchboard
+      crosspipe # was helvum # switchboard
       pavucontrol # volume control
     ];
   };

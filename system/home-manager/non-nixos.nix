@@ -2,6 +2,7 @@
 {...}: {
   imports = [
     ./common.nix
+    ../../modules/home/non-nixos
   ];
 
   my.isNixOS = false;

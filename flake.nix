@@ -44,7 +44,7 @@
     # desktop inputs
     lanzaboote = {
       # support secure boot enabled (needed by programs running on dual booted windows)
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v1.0.0";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
