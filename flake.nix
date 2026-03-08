@@ -124,6 +124,15 @@
         (final: prev: {
           stable = import nixpkgs-stable args-import-nixpkgs;
 
+          #flameshot = prev.flameshot.overrideAttrs (flameshot_final: flameshot_prev: {
+            #src = prev.fetchFromGitHub {
+              #owner = "flameshot-org";
+              #repo = "flameshot";
+              #rev = "53d4da8fcd0e00b755b3329674b756d9777d3a89";
+              #hash = "sha256-uBhu8y78/+80mnkKZjf9ArjycTGx4lPa9LZ2cc7VWFo=";
+            #};
+          #});
+
           asfa-dev = asfa.packages.${prev.stdenv.hostPlatform.system}.default;
           blobdrop = blobdrop.packages.${prev.stdenv.hostPlatform.system}.default;
           grpcrl = prev.callPackage (import ./packages/grpcrl) {};

@@ -36,8 +36,6 @@ in {
 
     keepass.enable = builtins.elem hostname ["mucku" "gentian"];
 
-    #hyprland.enable = builtins.elem hostname ["minir"];
-
     nextcloud.enable = builtins.elem hostname ["mucku"];
     redshift.enable = isDesktop;
     slock.enable = false;
