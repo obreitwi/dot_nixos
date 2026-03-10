@@ -146,6 +146,29 @@
           kotlin-lsp = prev.callPackage (import ./packages/kotlin-lsp) {};
 
           hyprdynamicmonitors = hyprdynamicmonitors.packages.${system}.default;
+
+          lsd = prev.lsd.overrideAttrs (
+            lsd-final: lsd-prev: let
+              src = prev.fetchFromGitHub {
+                owner = "jeffmylife";
+                repo = "lsd";
+                rev = "55c7f67a3c0197cc23bc74580ad6df627f8bffa7";
+                hash = "sha256-8C3K++lremIbIBDWNfgW9vPX/5HLBg58yWDsGLf5eSk=";
+              };
+            in {
+              inherit src;
+              version = "1.2.0-loc-dev";
+
+              cargoDeps = final.rustPlatform.fetchCargoVendor {
+                inherit src;
+                hash = "sha256-NeXUc+KRVl6g9VJd8jmUOxy44XwxAOMdn7B93hmAwQw=";
+              };
+            }
+          );
+
+          # pinned due to build failures
+          # https://hydra.nixos.org/build/323311772
+          ast-grep = prev.callPackage (import ./packages/nixpkgs/ast-grep_0_40_5.nix) {};
         })
       ];
 
@@ -168,8 +191,17 @@
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
 
+          # update claude-code-acp to 0.19.2
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/492473.diff";
+            hash = "sha256-dX2YlS2ieCllUmGu7lWXrUd6WtIKoqv2Idmmp/2QpB0";
+          })
+
           # crystal 1.19 introduces dependency onto failing llvm22
           ./patches/nixpkgs/revert_pr_484749.patch
+
+          # build failure nodejs 22.22.1
+          ./patches/nixpkgs/revert_pr_497389.patch
 
           ## kotlin-lsp init (currently not building)
           #(pkgs-init.fetchurl {
@@ -320,7 +352,7 @@
           }:
             lib.mkIf (!config.my.isNixOS) {
               nix.registry = {
-                nixpkgs.flake = nixpkgs;
+                nixpkgs.flake = nixpkgs-patched;
                 nixpkgs-stable.flake = nixpkgs-stable;
               };
             }

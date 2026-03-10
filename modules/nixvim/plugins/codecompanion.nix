@@ -13,7 +13,16 @@
       enable = true;
 
       settings.__raw = ''
-        {
+          {
+            adapters = {
+            claude_code = function()
+              return require("codecompanion.adapters").extend("claude_code", {
+                commands = {
+                  default = { "claude-code-acp" }, -- use until nix package has adapted to rename
+                }
+              })
+            end,
+          },
           interactions = {
             chat = {
               adapter = "claude_code",

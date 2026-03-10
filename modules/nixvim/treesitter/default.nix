@@ -12,16 +12,16 @@
     generate = true;
   };
 
-  pl1-grammar = pkgs.tree-sitter.buildGrammar {
-    language = "pli";
-    version = "dev";
-    src = ./grammars/pli;
-    generate = true;
-  };
+  #pl1-grammar = pkgs.tree-sitter.buildGrammar {
+  #language = "pli";
+  #version = "dev";
+  #src = ./grammars/pli;
+  #generate = true;
+  #};
 
   customGrammars = [
     timesheet-grammar
-    pl1-grammar
+    #pl1-grammar
   ];
 
   grammarPackages =
@@ -64,7 +64,7 @@ in {
       #};
 
       languageRegister.timesheet = "timesheet";
-      languageRegister.pli = "pli";
+      # languageRegister.pli = "pli"; # does not work, unfortunately
     };
 
     treesitter-context.enable = true;
