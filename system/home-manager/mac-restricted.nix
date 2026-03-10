@@ -58,6 +58,13 @@
     #pkgs.yarn
     #pkgs.nodejs_20
 
+    # JSON tooling
+    pkgs.fixjson
+
+    # code exploration
+    pkgs.cloc
+    pkgs.tokei
+
     # kubernetes tooling
     pkgs.kubectl
     pkgs-stable.kubelogin # latest version fails to build
@@ -88,5 +95,10 @@
 
     pkgs.fastgron
     pkgs.sqlite-interactive
+
+    # claude code stuff
+    pkgs.awscli2
+    pkgs.claude-code-bin
+    pkgs.claude-code-acp
   ];
 }

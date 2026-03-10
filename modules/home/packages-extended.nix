@@ -53,6 +53,9 @@
         vlc
         yt-dlp
 
+        # json tooling
+        fixjson
+
         # tools
         archivemount # mount archives as loopback
         ast-grep
