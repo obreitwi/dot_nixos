@@ -17,7 +17,6 @@
       # base setup
       pkgs.bashInteractive
       pkgs.coreutils-full
-      pkgs.curl
       pkgs.delta
       pkgs.gawk
       pkgs.gnused

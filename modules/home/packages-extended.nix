@@ -27,6 +27,8 @@
 
         sqlite-interactive
 
+        # curl on darwin does not use system CAs
+        curl
         # disabled since not in use right now
         # k9s
         # kubecolor
