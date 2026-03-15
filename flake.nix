@@ -194,7 +194,7 @@
           # update claude-code-acp to 0.19.2
           (pkgs-init.fetchurl {
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/492473.diff";
-            hash = "sha256-dX2YlS2ieCllUmGu7lWXrUd6WtIKoqv2Idmmp/2QpB0";
+            hash = "sha256-tA1zDb9Fa9V+WFaov4N+rMk+/uTeZM5dSMH8d4Becng=";
           })
 
           # crystal 1.19 introduces dependency onto failing llvm22
