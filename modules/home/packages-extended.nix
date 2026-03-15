@@ -42,6 +42,7 @@
         alejandra
 
         # nix tooling
+        hydra-check
         update-nix-fetchgit
 
         # pen-and-paper tools
