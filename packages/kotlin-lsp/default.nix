@@ -27,10 +27,10 @@
 
   hash =
     {
-      "x86_64-linux" = "sha256-EweSqy30NJuxvlJup78O+e+JOkzvUdb6DshqAy1j9jE=";
-      "aarch64-linux" = "sha256-MhHEYHBctaDH9JVkN/guDCG1if9Bip1aP3n+JkvHCvA=";
-      "x86_64-darwin" = "sha256-zMuUcahT1IiCT1NTrMCIzUNM0U6U3zaBkJtbGrzF7I8=";
-      "aarch64-darwin" = "sha256-zwlzVt3KYN0OXKr6sI9XSijXSbTImomSTGRGa+3zCK8=";
+      "x86_64-linux" = "";
+      "aarch64-linux" = "";
+      "x86_64-darwin" = "";
+      "aarch64-darwin" = "sha256-OFPQ7MfGjq6rB1y13aIF09Ij296AMg1PCCZn1pwjoQA=";
     }
     .${
       system
@@ -38,7 +38,7 @@
 in
   stdenv.mkDerivation rec {
     pname = "kotlin-lsp";
-    version = "261.13587.0";
+    version = "262.1817.0";
 
     src = fetchzip {
       inherit hash;
