@@ -1,4 +1,6 @@
 {
+  withPython3 = true;
+
   plugins = {
     cmp = {
       enable = true;
