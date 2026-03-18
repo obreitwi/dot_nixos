@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-stable,
   ...
 }: {
   options.my.aerospace.enable = lib.mkOption {

@@ -1,7 +1,6 @@
 # home manager config only used on desktops not running nixOS
 {
   pkgs,
-  pkgs-stable,
   lib,
   ...
 }: {
@@ -69,7 +68,7 @@
 
     # kubernetes tooling
     pkgs.kubectl
-    pkgs-stable.kubelogin # latest version fails to build
+    pkgs.stable.kubelogin # latest version fails to build
     pkgs.yq
 
     # database
