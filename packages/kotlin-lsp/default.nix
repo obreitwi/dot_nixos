@@ -27,7 +27,7 @@
 
   hash =
     {
-      "x86_64-linux" = "";
+      "x86_64-linux" = "sha256-BsjmllnZsB5i9NJBf8mb47aw6PoeZZbtp0OX8VV0VOA=";
       "aarch64-linux" = "";
       "x86_64-darwin" = "";
       "aarch64-darwin" = "sha256-OFPQ7MfGjq6rB1y13aIF09Ij296AMg1PCCZn1pwjoQA=";

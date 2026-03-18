@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  pkgs-stable,
   dot-desktop,
   ...
 }: let
@@ -58,7 +57,7 @@ in {
       pkgs.autorandr
       pkgs.rofimoji
       pkgs.toggle-bluetooth-audio
-      pkgs-stable.trayer # xmonad
+      pkgs.stable.trayer # xmonad
       pkgs.xclip
       pkgs.xss-lock
     ];

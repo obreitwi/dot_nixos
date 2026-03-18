@@ -212,7 +212,6 @@
       };
 
       pkgs = import nixpkgs-patched args-import-nixpkgs;
-      pkgs-stable = import nixpkgs-stable args-import-nixpkgs;
 
       # specialArgs computes inputs for nixos/hm modules
       baseSpecialArgs = {
@@ -223,7 +222,7 @@
         baseSpecialArgs
         // {
           myUtils = import ./utils/lib.nix;
-          inherit hostname pkgs-stable;
+          inherit hostname;
         };
 
       # nixvimLib = nixvim.lib.${system};
