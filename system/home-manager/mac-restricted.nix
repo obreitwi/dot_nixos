@@ -48,6 +48,8 @@
 
     pkgs.duf
 
+    pkgs.ast-grep
+
     # tech-stack (supplied via shell.ni)
     # backend
     #pkgs.jdk
