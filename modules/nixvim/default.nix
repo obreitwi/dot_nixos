@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: {
@@ -29,5 +30,7 @@
 
   config = {
     clipboard.providers.xclip.enable = !config.my.isMacOS;
+
+    extraConfigLuaPre = config.build.nvimPackage.passthru.providerLuaRc;
   };
 }

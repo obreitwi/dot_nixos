@@ -363,9 +363,11 @@
         pkgs
         ;
 
-      nvim = nixvim'.makeNixvimWithModule (nixvimModule {
-        inherit pkgs;
-      });
+      nvim = hostname:
+        nixvim'.makeNixvimWithModule (nixvimModule {
+          inherit pkgs;
+          specialArgs = {inherit hostname;};
+        });
     };
   in {
     checks = {
@@ -415,10 +417,10 @@
     };
 
     packages.${darwin} = {
-      inherit (perSystem darwin) nvim;
+      nvim = (perSystem darwin).nvim "generic-darwin";
     };
     packages.${linux} = {
-      inherit (perSystem linux) nvim;
+      nvim = (perSystem linux).nvim "generic-linux";
     };
 
     formatter.${linux} = (perSystem linux).pkgs.alejandra;
