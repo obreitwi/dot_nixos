@@ -215,6 +215,7 @@
       baseSpecialArgs = {
         nixpkgs = nixpkgs-patched;
         inherit dot-desktop dot-zsh home-manager nixGL;
+        nixvimOptions = nixvim.packages.${system}.options-json + /share/doc/nixos/options.json;
       };
       specialArgs = {hostname}:
         baseSpecialArgs
