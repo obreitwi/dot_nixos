@@ -2,6 +2,8 @@
   imports = [
     ./options.nix
 
+    ./mac
+
     ./atuin.nix
     ./azure.nix
     ./bat.nix
@@ -14,11 +16,11 @@
     ./libreoffice.nix
     ./lsd.nix
     ./lsp.nix
-    ./mac
     ./readline.nix
     ./revcli.nix
     ./packages-core.nix
     ./packages-extended.nix
+    ./television.nix
     ./terraform.nix
     ./tmux.nix
     ./work.nix
