@@ -27,10 +27,10 @@
 
   hash =
     {
-      "x86_64-linux" = "sha256-BsjmllnZsB5i9NJBf8mb47aw6PoeZZbtp0OX8VV0VOA=";
+      "x86_64-linux" = "sha256-Bf2qkFpNhQC/Mz563OapmCXeKN+dTrYyQbOcF6z6b48=";
       "aarch64-linux" = "";
       "x86_64-darwin" = "";
-      "aarch64-darwin" = "sha256-OFPQ7MfGjq6rB1y13aIF09Ij296AMg1PCCZn1pwjoQA=";
+      "aarch64-darwin" = "sha256-d9jImEUN4Np6PY7uczB5hIE89bq9O+hV+Ww1F8WLe68=";
     }
     .${
       system
@@ -38,7 +38,7 @@
 in
   stdenv.mkDerivation rec {
     pname = "kotlin-lsp";
-    version = "262.1817.0";
+    version = "262.2310.0";
 
     src = fetchzip {
       inherit hash;
