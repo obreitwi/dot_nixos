@@ -28,6 +28,10 @@
           keymap_mode = "auto";
           update_check = false;
           workspaces = true;
+          ai = {
+            # keep AI features disabled
+            enabled = false;
+          };
         };
       };
 
