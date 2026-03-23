@@ -20,7 +20,7 @@
     ./revcli.nix
     ./packages-core.nix
     ./packages-extended.nix
-    ./television.nix
+    ./television
     ./terraform.nix
     ./tmux.nix
     ./work.nix

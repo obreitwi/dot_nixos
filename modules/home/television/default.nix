@@ -1,4 +1,10 @@
-{nixvimOptions, ...}: {
+{
+  nixvimOptions,
+  pkgs,
+  ...
+}: {
+  imports = [./channels];
+
   programs.television = {
     enable = true;
 
