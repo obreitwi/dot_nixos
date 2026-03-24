@@ -79,5 +79,7 @@
   extraConfigVim = ''
     " don't give |ins-completion-menu| messages.
     set shortmess+=c
+    " no truncation
+    set shortmess-=tT
   '';
 }
