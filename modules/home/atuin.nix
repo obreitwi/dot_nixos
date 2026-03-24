@@ -28,6 +28,7 @@
           keymap_mode = "auto";
           update_check = false;
           workspaces = true;
+          search_mode = "daemon-fuzzy";
           ai = {
             # keep AI features disabled
             enabled = false;
