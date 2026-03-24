@@ -201,6 +201,9 @@
           # crystal 1.19 introduces dependency onto failing llvm22
           ./patches/nixpkgs/revert_pr_484749.patch
 
+          # revert hiding of lua_path
+          ./patches/nixpkgs/revert_pr_500416.patch
+
           ## kotlin-lsp init (currently not building)
           #(pkgs-init.fetchurl {
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/435169.diff";
