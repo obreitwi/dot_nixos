@@ -1,3 +1,6 @@
 {
-  imports = [./journal.nix];
+  imports = [
+    ./journal.nix
+    ./todos.nix
+  ];
 }
