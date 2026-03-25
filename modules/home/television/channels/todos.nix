@@ -5,7 +5,7 @@
       find ~/wiki/neorg/journal -mindepth 1 -maxdepth 1 -type f \
         | sort -r \
         | xargs grep -n '^\s*\(\*\|-\) \(( )\|\[[ .oO]\]\)' \
-        | sed -e 's/\(\*\|-\) \(( )\|\[ \]\) //g' -e 's/ %#taskid[^%]*%//g'
+        | sed -e 's/\(\*\|-\) \(( )\|\[ \]\) \s*//g' -e 's/ %#taskid[^%]*%//g'
     '';
   };
 in {
@@ -15,7 +15,7 @@ in {
       name = "todos";
     };
     preview = {
-      command = "${pkgs.bat}/bin/bat -l markdown '{split:::0}' -H {split:::1}";
+      command = "${pkgs.bat}/bin/bat --color always -l markdown '{split:::0}' -H {split:::1}";
     };
     source = {
       command = "${todos-list}/bin/todos-list";
