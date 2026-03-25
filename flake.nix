@@ -198,9 +198,6 @@
             hash = "sha256-tA1zDb9Fa9V+WFaov4N+rMk+/uTeZM5dSMH8d4Becng=";
           })
 
-          # crystal 1.19 introduces dependency onto failing llvm22
-          ./patches/nixpkgs/revert_pr_484749.patch
-
           # revert hiding of lua_path
           ./patches/nixpkgs/revert_pr_500416.patch
 
