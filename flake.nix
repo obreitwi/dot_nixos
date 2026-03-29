@@ -144,6 +144,8 @@
           ptpython = prev.callPackage (import ./packages/ptpython.nix) {};
           hyprnavi = prev.callPackage (import ./packages/hyprnavi.nix) {};
 
+          sem-diff = prev.callPackage (import ./packages/sem) {};
+
           kotlin-lsp = prev.callPackage (import ./packages/kotlin-lsp) {};
 
           hyprdynamicmonitors = hyprdynamicmonitors.packages.${system}.default;

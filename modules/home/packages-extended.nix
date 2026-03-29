@@ -34,6 +34,8 @@
         # kubecolor
         # kubectl
 
+        sem-diff
+
         circumflex # browser hackernews from terminal
 
         # formatter
