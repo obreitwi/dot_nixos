@@ -194,12 +194,6 @@
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
 
-          # update claude-code-acp to 0.19.2
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/492473.diff";
-            hash = "sha256-tA1zDb9Fa9V+WFaov4N+rMk+/uTeZM5dSMH8d4Becng=";
-          })
-
           # revert hiding of lua_path
           ./patches/nixpkgs/revert_pr_500416.patch
 
