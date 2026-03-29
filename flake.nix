@@ -179,6 +179,10 @@
         inherit system overlays;
         config = {
           allowUnfree = true;
+
+          permittedInsecurePackages = [
+            "libsoup-2.74.3" # needed for ctirx_workspace
+          ];
         };
       };
       pkgs-init = import nixpkgs args-import-nixpkgs;
