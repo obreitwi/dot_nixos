@@ -860,11 +860,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1774474794,
-        "narHash": "sha256-GaqTYOYWzij1wZ+mbmwlT4aMMY19fGApWgZQEZamiOw=",
+        "lastModified": 1774874530,
+        "narHash": "sha256-TWlBzaeAmLvsbv9WZAxVeu+Pz/OnX9xsKfMdB1XpK0s=",
         "owner": "obreitwi",
         "repo": "nixvim",
-        "rev": "fa5fc07303ebcccddbb332f4729e74c177cf1481",
+        "rev": "4c399c86d32729086035ed0e5530eb675a142b06",
         "type": "github"
       },
       "original": {
