@@ -48,6 +48,7 @@
     pkgs.duf
 
     pkgs.ast-grep
+    pkgs.sem-diff
 
     # tech-stack (supplied via shell.ni)
     # backend
@@ -100,6 +101,6 @@
     # claude code stuff
     pkgs.awscli2
     pkgs.claude-code-bin
-    pkgs.claude-code-acp
+    pkgs.claude-agent-acp
   ];
 }
