@@ -198,9 +198,6 @@
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
 
-          # revert hiding of lua_path
-          ./patches/nixpkgs/revert_pr_500416.patch
-
           ## kotlin-lsp init (currently not building)
           #(pkgs-init.fetchurl {
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/435169.diff";
