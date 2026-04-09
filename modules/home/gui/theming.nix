@@ -28,6 +28,8 @@
           gtk.cursorTheme.package = pkgs.bibata-cursors;
           gtk.cursorTheme.name = "Bibata-Modern-Ice";
 
+          gtk.gtk4.theme = config.gtk.theme;
+
           # Adwaita does not work for GTK2 which then uses an inconsistent default.
           gtk.theme.package = pkgs.adw-gtk3;
           gtk.theme.name = "adw-gtk3-dark";
