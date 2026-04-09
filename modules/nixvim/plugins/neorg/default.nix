@@ -44,9 +44,8 @@ in {
               template_name = "template.norg";
             };
           };
-          "core.integrations.telescope" = {
-            __empty = null;
-          };
+          "core.integrations.telescope" = {__empty = null;};
+          "core.itero" = {__empty = null;};
           "core.esupports.indent" = {
             config = {
               modifiers = {
