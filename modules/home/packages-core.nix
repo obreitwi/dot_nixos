@@ -9,7 +9,7 @@
       pkgs.nh
       pkgs.nix-output-monitor
       pkgs.nix-tree
-      pkgs.nixVersions.nix_2_31
+      pkgs.nixVersions.nix_2_34
       pkgs.nurl
       pkgs.dix
       pkgs.nvd
