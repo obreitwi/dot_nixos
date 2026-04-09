@@ -2,7 +2,7 @@
   pkgs,
   lib,
 }: let
-  version = "v0.3.13";
+  version = "v0.3.14";
 in
   pkgs.rustPlatform.buildRustPackage {
     pname = "sem";
@@ -12,10 +12,10 @@ in
       owner = "ataraxy-labs";
       repo = "sem";
       rev = version;
-      sha256 = "sha256-4D6BmtwpZcKeV6vCpbzOfs7dY3znUGjOapjGGVTOx3Y=";
+      sha256 = "sha256-GcPUXrIO+L2bUrc+wvP++aLAkYXnM0zBeC1153srXLE=";
     };
 
-    cargoHash = "sha256-Z0i1yGumKde8qb3Hd1PTXWS/CputhqbRZ4deIf0vl4s=";
+    cargoHash = "sha256-mNy4vKi2DmKaHvqaRtusN7TH6XpjOiKT6aXbioisWsM=";
 
     nativeBuildInputs = [
       pkgs.pkg-config
