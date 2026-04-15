@@ -30,8 +30,8 @@
     };
 
     nixvim = {
-      #url = "github:nix-community/nixvim/main";
-      url = "github:obreitwi/nixvim/ojb/include_provider_rc";
+      url = "github:nix-community/nixvim/main";
+      #url = "github:obreitwi/nixvim/ojb/include_provider_rc";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };
