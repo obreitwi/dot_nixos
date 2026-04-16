@@ -3,7 +3,15 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  gotoolsWithoutModernize = pkgs.symlinkJoin {
+    name = "gotools-without-modernize";
+    paths = [pkgs.gotools];
+    postBuild = ''
+      rm -f "$out/bin/modernize"
+    '';
+  };
+in {
   options.my.go.enable = lib.mkOption {
     default = true;
     type = lib.types.bool;
@@ -26,7 +34,7 @@
       gomodifytags
       gopls
       gotags
-      gotools
+      gotoolsWithoutModernize
       iferr
       impl
       go-motion
