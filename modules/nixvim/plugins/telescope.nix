@@ -76,7 +76,7 @@
       nmap <silent> <leader>be :lua require'telescope.builtin'.buffers{}<CR>
       nmap <silent> [unite]/ :lua require'telescope.builtin'.search_history{}<CR>
       nmap <silent> [unite]: :lua require'telescope.builtin'.command_history{}<CR>
-      nmap <silent> [unite]f :lua require'telescope.builtin'.find_files{}<CR>
+      nmap <silent> [unite]f :lua require'telescope.builtin'.find_files{no_ignore=true}<CR>
       nmap <silent> [unite]F :lua require'telescope.builtin'.find_files{cwd = require'telescope.utils'.buffer_dir()}<CR>
       nmap <silent> [unite]c :lua require'telescope.builtin'.commands{}<CR>
       nmap <silent> [unite]R :lua require'telescope.builtin'.registers{}<CR>
@@ -87,7 +87,7 @@
       vmap <silent> [unite]r :lua require'telescope.builtin'.grep_string{initial_mode='select'}<CR>
       nmap <silent> [unite]r :lua require'telescope.builtin'.grep_string{}<CR>
       " nmap <silent> [unite]g :lua require'telescope.builtin'.live_grep{}<CR>
-      nmap <silent> [unite]g :lua require'telescope'.extensions.live_grep_args.live_grep_args()<CR>
+      nmap <silent> [unite]g :lua require'telescope'.extensions.live_grep_args.live_grep_args{no_ignore=true}<CR>
       nmap <silent> [unite]G :lua require'telescope.builtin'.live_grep{cwd = require'telescope.utils'.buffer_dir()}<CR>
       nmap <silent> [unite]h :lua require'telescope.builtin'.help_tags{}<CR>
       nmap <silent> [unite]a :Telescope ast_grep<CR>

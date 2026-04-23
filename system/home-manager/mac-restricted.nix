@@ -47,6 +47,9 @@
 
     pkgs.duf
 
+    # for telescope
+    pkgs.fd
+
     pkgs.ast-grep
     pkgs.sem-diff
 
