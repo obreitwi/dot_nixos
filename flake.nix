@@ -203,6 +203,9 @@
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/435169.diff";
           #hash = "sha256-FMlZ8g2Cy+JNJ6XB2jKzgSVVGTfQjsQGAwF5fYoYAbI=";
           #})
+
+          # flameshot 14 broken with hyprland
+          ./patches/nixpkgs/revert_pr_507424.patch
         ];
       };
 
