@@ -53,6 +53,9 @@
         # encode qr codes
         qrencode
 
+        # reversing patches
+        patchutils
+
         # videos
         mpv
         vlc
