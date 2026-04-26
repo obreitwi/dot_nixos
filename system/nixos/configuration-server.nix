@@ -34,10 +34,8 @@ in {
 
   # Network (Hetzner uses static IP assignments, and we don't use DHCP here)
   networking.useDHCP = false;
-  # Initial empty root password for easy login:
-  # services.openssh.settings.PermitRootLogin = "prohibit-password";
   services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
+  services.openssh.settings.PermitRootLogin = "prohibit-password"; # needed for backups
   services.openssh.settings.PasswordAuthentication = false;
 
   environment.systemPackages = with pkgs; [

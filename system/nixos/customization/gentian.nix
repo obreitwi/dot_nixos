@@ -162,7 +162,7 @@ in {
         # contains HETZNER_API_KEY=<key>
         environmentFile = "/var/lib/secrets/hetzner_dns.conf";
 
-        postRun = "systemctl restart nginx postfix dovecot2";
+        postRun = "systemctl restart nginx postfix dovecot";
       };
     })
     [
@@ -277,7 +277,7 @@ in {
     x509.certificateFile = acme.sslCertificate;
     x509.privateKeyFile = acme.sslCertificateKey;
 
-    loginAccounts."oliver@breitwieser.eu" = {
+    accounts."oliver@breitwieser.eu" = {
       hashedPasswordFile = "/var/lib/secrets/mail/obreitwi";
       catchAll = domains;
     };
