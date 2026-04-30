@@ -146,8 +146,6 @@
 
           sem-diff = prev.callPackage (import ./packages/sem) {};
 
-          kotlin-lsp = prev.callPackage (import ./packages/kotlin-lsp) {};
-
           hyprdynamicmonitors = hyprdynamicmonitors.packages.${system}.default;
 
           lsd = prev.lsd.overrideAttrs (
@@ -198,11 +196,11 @@
             hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
           })
 
-          ## kotlin-lsp init (currently not building)
-          #(pkgs-init.fetchurl {
-          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/435169.diff";
-          #hash = "sha256-FMlZ8g2Cy+JNJ6XB2jKzgSVVGTfQjsQGAwF5fYoYAbI=";
-          #})
+          # kotlin-lsp init
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/514623.diff";
+            hash = "sha256-bHZnBp9XCJY71iJJevWN98pZtIONs+VFbTvV7j1EuXQ=";
+          })
 
           # flameshot 14 broken with hyprland
           ./patches/nixpkgs/revert_pr_507424.patch
