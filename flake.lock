@@ -35,11 +35,11 @@
     "advisory-db_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1774906818,
-        "narHash": "sha256-COucnjXdgN4H1Ze1EIAxmdrv2CtGKIAMv9Fp9GCMMf0=",
+        "lastModified": 1777580196,
+        "narHash": "sha256-kpGGUaPqU1LdnDroQg4AqOZxtF7ADKVNwr+jK3MbB2g=",
         "owner": "rustsec",
         "repo": "advisory-db",
-        "rev": "4d2c416daab78050bd9bf5d84e3d91c43d7b04c9",
+        "rev": "99560d3445a05a2798df890a9aec45156c7dfeb4",
         "type": "github"
       },
       "original": {
@@ -247,11 +247,11 @@
     },
     "crane_4": {
       "locked": {
-        "lastModified": 1774313767,
-        "narHash": "sha256-hy0XTQND6avzGEUFrJtYBBpFa/POiiaGBr2vpU6Y9tY=",
+        "lastModified": 1777335812,
+        "narHash": "sha256-bEg5xoAxAwsyfnGhkEX7RJViTIBIYPd8ISg4O1c0HFc=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "3d9df76e29656c679c744968b17fbaf28f0e923d",
+        "rev": "5e0fb2f64edff2822249f21293b8304dedaaf676",
         "type": "github"
       },
       "original": {
@@ -351,11 +351,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774942139,
-        "narHash": "sha256-Wib0RDVsptJWQd2ldBgFpMF0kRjQKHejQq9an+ActYo=",
+        "lastModified": 1777538343,
+        "narHash": "sha256-tW6Szt8/FmRTEi3KdB2TAwZZ3jEwjDD74zIL7uGLsgk=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "0beafd2252f80385610e2f12cbecfdb9d2dfb0a0",
+        "rev": "298b12d701ef0d12c0f2e4858d4208bee24d14e5",
         "type": "github"
       },
       "original": {
@@ -654,11 +654,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777518431,
-        "narHash": "sha256-SwgiG2T5pbyo33Vz7/vUCAhEMgwCK8Pa2nDSx5a6/WE=",
+        "lastModified": 1777659959,
+        "narHash": "sha256-ax3229dUvNuwTQwo2o68kOQ24dvOlJ/BrVYY4miD1bI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2e54a938cdd4c8e414b2518edc3d82308027c670",
+        "rev": "5c1b74905c7261e8280dcda3623dbe677a1bc158",
         "type": "github"
       },
       "original": {
@@ -965,11 +965,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776948478,
-        "narHash": "sha256-eiZGIyzhnRmGYrtZePZLkWmuqgYBcnMz5IqZ6/p/jSc=",
+        "lastModified": 1777669138,
+        "narHash": "sha256-K17QuwamecQfXbFnqqAIm4f/Mg1Vqg9LO3o3IY+EVcw=",
         "owner": "obreitwi",
         "repo": "rev-cli-rs",
-        "rev": "8ba26dfa6da79c7e408e99266036707a32402514",
+        "rev": "31fb6c84d1d996e2ac636ada86b77547a691ab16",
         "type": "github"
       },
       "original": {

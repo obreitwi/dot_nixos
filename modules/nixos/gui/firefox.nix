@@ -10,5 +10,7 @@
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.firefox.enable) {
     programs.firefox.enable = true;
+    # TODO: Move to: programs.firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
+    programs.firefox.configPath = ".mozilla/firefox";
   };
 }
