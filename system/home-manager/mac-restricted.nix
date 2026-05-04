@@ -84,6 +84,7 @@
 
     # dev tooling
     pkgs.mergiraf
+    pkgs.git-filter-repo
 
     # build docker
     pkgs.colima
@@ -105,5 +106,19 @@
     pkgs.awscli2
     pkgs.claude-code-bin
     pkgs.claude-agent-acp
+    pkgs.pi-coding-agent
   ];
+
+  programs.zsh = {
+    initContent =
+      lib.mkOrder 9000
+      /*
+      zsh
+      */
+      ''
+        gh-pr-url() {
+          gh pr view --json additions,deletions,title,url | jq -r '.title + " (+" + (.additions | tostring ) + "|-" + (.deletions | tostring) + "): " + .url' | pbcopy
+        }
+      '';
+  };
 }
