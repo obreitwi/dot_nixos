@@ -80,7 +80,7 @@
 
     #pkgs.inkscape # does not work (missing icons)
 
-    pkgs.corkscrew
+    pkgs.stable.corkscrew # build failure
 
     # dev tooling
     pkgs.mergiraf
@@ -104,7 +104,7 @@
 
     # claude code stuff
     pkgs.awscli2
-    pkgs.claude-code-bin
+    pkgs.claude-code
     pkgs.claude-agent-acp
     pkgs.pi-coding-agent
   ];
