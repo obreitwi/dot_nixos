@@ -48,6 +48,8 @@
 
       pkgs.stable.gpick # pick color values from screen (build issue, probably gcc14)
 
+      nemo
+
       # drag & drop from terminal
       blobdrop
       ripdrag

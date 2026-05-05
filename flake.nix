@@ -169,7 +169,40 @@
 
           # pinned due to build failures
           # https://hydra.nixos.org/build/323311772
-          ast-grep = prev.callPackage (import ./packages/nixpkgs/ast-grep_0_40_5.nix) {};
+          #ast-grep = prev.callPackage (import ./packages/nixpkgs/ast-grep_0_40_5.nix) {};
+
+          # experimental drop-in replacement of oil.nvim with canola
+          #lua51packages.oil-nvim = prev.callPackage (
+          #{
+          #buildLuarocksPackage,
+          #fetchurl,
+          #fetchzip,
+          #luaOlder,
+          #nvim-web-devicons,
+          #}:
+          #buildLuarocksPackage {
+          #pname = "oil.nvim";
+          #version = "2.15.0-1";
+          #knownRockspec =
+          #(fetchurl {
+          #url = "mirror://luarocks/canola.nvim-0.1.0-1.rockspec";
+          #sha256 = "";
+          #}).outPath;
+          #src = fetchzip {
+          #url = "https://github.com/barrettruth/canola.nvim/archive/refs/tags/v0.1.0.zip";
+          #sha256 = "";
+          #};
+
+          #disabled = luaOlder "5.1";
+          #propagatedBuildInputs = [nvim-web-devicons];
+
+          #meta = {
+          #homepage = "https://github.com/barrettruth/canola.nvim";
+          #license.fullName = "MIT";
+          #description = "Neovim file explorer: edit your filesystem like a buffer";
+          #};
+          #}
+          #) {};
         })
       ];
 
