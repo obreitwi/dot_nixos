@@ -134,6 +134,8 @@ in {
     services.flameshot.settings.General.disabledGrimWarning = true;
 
     wayland.windowManager.hyprland = {
+      configType = "hyprlang";
+
       enable = true;
       package =
         if (config.my.isNixOS)
