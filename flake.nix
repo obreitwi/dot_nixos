@@ -148,24 +148,24 @@
 
           hyprdynamicmonitors = hyprdynamicmonitors.packages.${system}.default;
 
-          lsd = prev.lsd.overrideAttrs (
-            lsd-final: lsd-prev: let
-              src = prev.fetchFromGitHub {
-                owner = "jeffmylife";
-                repo = "lsd";
-                rev = "55c7f67a3c0197cc23bc74580ad6df627f8bffa7";
-                hash = "sha256-8C3K++lremIbIBDWNfgW9vPX/5HLBg58yWDsGLf5eSk=";
-              };
-            in {
-              inherit src;
-              version = "1.2.0-loc-dev";
+          #lsd = prev.lsd.overrideAttrs (
+          #lsd-final: lsd-prev: let
+          #src = prev.fetchFromGitHub {
+          #owner = "jeffmylife";
+          #repo = "lsd";
+          #rev = "55c7f67a3c0197cc23bc74580ad6df627f8bffa7";
+          #hash = "sha256-8C3K++lremIbIBDWNfgW9vPX/5HLBg58yWDsGLf5eSk=";
+          #};
+          #in {
+          #inherit src;
+          #version = "1.2.0-loc-dev";
 
-              cargoDeps = final.rustPlatform.fetchCargoVendor {
-                inherit src;
-                hash = "sha256-NeXUc+KRVl6g9VJd8jmUOxy44XwxAOMdn7B93hmAwQw=";
-              };
-            }
-          );
+          #cargoDeps = final.rustPlatform.fetchCargoVendor {
+          #inherit src;
+          #hash = "sha256-NeXUc+KRVl6g9VJd8jmUOxy44XwxAOMdn7B93hmAwQw=";
+          #};
+          #}
+          #);
 
           # pinned due to build failures
           # https://hydra.nixos.org/build/323311772
