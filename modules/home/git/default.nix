@@ -45,6 +45,8 @@
       path = "${hooks.prepare-commit-msg}/bin/prepare-commit-msg";
     }
   ];
+
+  mergiraf-gitattributes = pkgs.runCommand "mergiraf-gitattributes" {buildInputs = [pkgs.mergiraf];} "mergiraf languages --gitattributes > $out";
 in {
   home.file.".gitconfig".text =
     # gitconfig
@@ -58,11 +60,7 @@ in {
     ''
     + gitconfig;
 
-  home.file."${config.xdg.configHome}/git/attributes".text =
-    # gitconfig
-    ''
-      * merge=mergiraf
-    '';
+  home.file."${config.xdg.configHome}/git/attributes".source = mergiraf-gitattributes;
 
   home.packages = [
     pkgs.delta
