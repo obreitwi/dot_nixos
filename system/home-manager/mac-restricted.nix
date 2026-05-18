@@ -82,10 +82,6 @@
 
     pkgs.stable.corkscrew # build failure
 
-    # dev tooling
-    pkgs.mergiraf
-    pkgs.git-filter-repo
-
     # build docker
     pkgs.colima
     pkgs.docker

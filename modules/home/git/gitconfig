@@ -65,10 +65,13 @@
     autoSetupRemote = true
 [merge]
     tool = diffconflicts
+    conflictstyle = diff3
 [mergetool "diffconflicts"]
     cmd = nvim -c DiffConflictsWithHistory "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
-    conflictstyle = diff3
     trustExitCode = true
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [init]
     defaultBranch = main
 [diff]

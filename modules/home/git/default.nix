@@ -58,10 +58,18 @@ in {
     ''
     + gitconfig;
 
+  home.file."${config.xdg.configHome}/git/attributes".text =
+    # gitconfig
+    ''
+      * merge=mergiraf
+    '';
+
   home.packages = [
     pkgs.delta
     pkgs.difftastic
     pkgs.git
+    pkgs.git-filter-repo
+    pkgs.mergiraf
   ];
 
   # taken from https://github.com/nix-community/home-manager/issues/2765#issuecomment-1054129334

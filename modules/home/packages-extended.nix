@@ -81,7 +81,6 @@
         gum # for shell scripts
         htop-vim
         hyperfine
-        mergiraf
         miller
         mtr
         numbat # scientific calculator
