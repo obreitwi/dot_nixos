@@ -238,7 +238,7 @@
           #})
 
           # flameshot 14 broken with hyprland
-          ./patches/nixpkgs/revert_pr_507424.patch
+          #./patches/nixpkgs/revert_pr_507424.patch
         ];
       };
 
