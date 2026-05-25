@@ -340,7 +340,6 @@ in {
         #follow_mouse = 2; # focus follows on click
 
         dwindle = {
-          pseudotile = true;
           preserve_split = true;
         };
 
