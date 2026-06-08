@@ -1,0 +1,12 @@
+diff --git i/pkgs/applications/editors/vim/plugins/overrides.nix w/pkgs/applications/editors/vim/plugins/overrides.nix
+index dd87bdf7fb58..74c59acac29c 100644
+--- i/pkgs/applications/editors/vim/plugins/overrides.nix
++++ w/pkgs/applications/editors/vim/plugins/overrides.nix
+@@ -902,6 +902,7 @@ assertNoAdditions {
+   };
+ 
+   codecompanion-nvim = super.codecompanion-nvim.overrideAttrs {
++    doCheck = false;
+     checkInputs = with self; [
+       # Optional completion
+       blink-cmp

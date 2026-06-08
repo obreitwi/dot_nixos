@@ -233,12 +233,15 @@
 
           # kotlin-lsp init
           #(pkgs-init.fetchurl {
-            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/514623.diff";
-            #hash = "sha256-bHZnBp9XCJY71iJJevWN98pZtIONs+VFbTvV7j1EuXQ=";
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/514623.diff";
+          #hash = "sha256-bHZnBp9XCJY71iJJevWN98pZtIONs+VFbTvV7j1EuXQ=";
           #})
 
           # flameshot 14 broken with hyprland
           #./patches/nixpkgs/revert_pr_507424.patch
+
+          # fzf-lua fails on darwin -> disable checks to unblock build
+          ./patches/nixpkgs/codecompanion_disable_checks.patch
         ];
       };
 
