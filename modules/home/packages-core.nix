@@ -11,7 +11,7 @@
       pkgs.nix-tree
       pkgs.nixVersions.nix_2_34
       pkgs.nurl
-      pkgs.dix
+      # pkgs.dix # not building atm
       pkgs.nvd
 
       # base setup

@@ -102,7 +102,7 @@
     pkgs.awscli2
     pkgs.claude-code
     pkgs.claude-agent-acp
-    pkgs.pi-coding-agent
+    # pkgs.pi-coding-agent # disabled since not needed right now
   ];
 
   programs.zsh = {
