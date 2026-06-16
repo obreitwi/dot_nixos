@@ -245,7 +245,7 @@ in {
 
           "Super, c, togglespecialworkspace, audio"
           "Super, slash, togglespecialworkspace, journal"
-          "Super Shift, slash, exec, btop"
+          "Super Shift, slash, togglespecialworkspace, btop"
           "Super Ctrl, slash, setfloating"
           "Super Ctrl, slash, moveactive, exact 44% 15%"
           "Super Ctrl, slash, resizeactive, exact 55% 70%"
@@ -291,6 +291,7 @@ in {
           "special:1pw,        on-created-empty:[float; move 44% 15%; size 55% 70%] 1password"
           "special:audio,      on-created-empty:[float; move 44% 15%; size 55% 70%] pavucontrol"
           "special:bluetooth,  on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e bluetuith"
+          "special:btop,       on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e btop"
           "special:journal,    on-created-empty:[float; move 44% 15%; size 55% 70%] scratchpad-journal"
           "special:minimized,  gapsin:10, gapsout:10"
           "special:numbat,     on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e numbat"
@@ -615,11 +616,11 @@ in {
         animations = {
           enabled = true;
           fade_in = {
-            duration = 300;
+            #duration = 300;
             bezier = "easeOutQuint";
           };
           fade_out = {
-            duration = 300;
+            #duration = 300;
             bezier = "easeOutQuint";
           };
         };
