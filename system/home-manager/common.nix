@@ -10,6 +10,8 @@
     "minir"
     "mucku"
   ];
+
+  hasXmonad = builtins.elem hostname ["mucku"];
   isWork = builtins.elem hostname ["mimir" "minir"];
 in {
   imports = [
@@ -44,8 +46,8 @@ in {
       "minir"
       "mucku"
     ];
-    xmobar.enable = isDesktop;
-    xmonad.enable = isDesktop;
+    xmobar.enable = hasXmonad;
+    xmonad.enable = hasXmonad;
   };
 
   my.latex.enable = builtins.elem hostname ["mucku"];
