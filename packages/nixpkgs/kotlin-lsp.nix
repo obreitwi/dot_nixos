@@ -23,10 +23,10 @@
     } or (throw "kotlin-lsp does not support ${system}");
   archiveHash =
     {
-      "x86_64-linux" = "sha256-MzyyEhXizgSBcle71caTy71KmRIawQCBRgHtwfktJXA=";
+      "x86_64-linux" = "";
       "aarch64-linux" = "";
       "x86_64-darwin" = "";
-      "aarch64-darwin" = "sha256-4wdrZQDbjx1A4IeoAiPsuzoUz0/SIh4DHEJKlMYJRiA";
+      "aarch64-darwin" = "sha256-4gGDJieEu35mXOGupIVYcqixbyEeu0eNRSdzVTcy2fs=";
     }
     .${
       system
@@ -34,12 +34,12 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "kotlin-lsp";
-    version = "262.7569.0";
+    version = "262.8190.0";
     __structuredAttrs = true;
     strictDeps = true;
 
     src = fetchurl {
-      url = "https://download-cdn.jetbrains.com/kotlin-lsp/${finalAttrs.version}/${archiveFile finalAttrs.version}";
+      url = "https://download-cdn.jetbrains.com/language-server/kotlin-server/${finalAttrs.version}/${archiveFile finalAttrs.version}";
       hash = archiveHash;
     };
 
