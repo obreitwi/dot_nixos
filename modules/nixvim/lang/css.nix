@@ -16,7 +16,7 @@
         onAttach.function = "client.server_capabilities.documentFormattingProvider = false";
       };
       stylelint_lsp = {
-        enable = true;
+        enable = false; # Currently broken since depending on old pnpm 9 version with insecurities.
         settings = {
           autoFixOnFormat = true;
         };
