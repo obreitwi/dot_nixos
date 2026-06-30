@@ -130,8 +130,8 @@ in {
     services.hyprpolkitagent.enable = true;
 
     services.flameshot.enable = true;
-    services.flameshot.settings.General.useGrimAdapter = true;
-    services.flameshot.settings.General.disabledGrimWarning = true;
+    #services.flameshot.settings.General.useGrimAdapter = true;
+    #services.flameshot.settings.General.disabledGrimWarning = true;
 
     wayland.windowManager.hyprland = {
       configType = "hyprlang";
