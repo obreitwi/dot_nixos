@@ -35,6 +35,8 @@
       enableZshIntegration = true;
     };
     k9s.enable = true;
+
+    pi-coding-agent.enable = true;
   };
 
   # packages explicitly needed on mac to operate
@@ -102,7 +104,6 @@
     pkgs.awscli2
     pkgs.claude-code
     pkgs.claude-agent-acp
-    pkgs.pi-coding-agent # disabled since not needed right now
   ];
 
   programs.zsh = {
