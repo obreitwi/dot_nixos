@@ -111,6 +111,25 @@ in {
 
   my.gui.enable = false;
 
+  # Allow users to mount FUSE filesystems (e.g. rclone/gdrive via home-manager).
+  programs.fuse.enable = true;
+
+  # Ensure user systemd services can locate the setuid fusermount3 wrapper.
+  #
+  # The user manager may start with a minimal PATH (only the bare systemd
+  # bin dir) before the PAM login environment is fully propagated.  Without
+  # /run/wrappers/bin in the PATH, rclone's bash wrapper prepends its own
+  # bundled fuse3 store path instead, handing the non-setuid fusermount3 to
+  # rclone — which then fails with EPERM when attempting the mount syscall.
+  #
+  # DefaultEnvironment in user.conf is read by every user manager instance
+  # at startup and passed as the default environment to all user services,
+  # so it takes effect even when the manager was started before a full login
+  # shell ran /etc/set-environment.
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=/run/wrappers/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin"
+  '';
+
   my.server = {
     acme.staging = false;
     adminPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATV2dhRTcF0n4H2cGRixu1q/P8hlsDULqzk1BS1VtxB";
