@@ -26,6 +26,8 @@
 
     revcli.enable = lib.mkForce true;
     revcli.sync-job = false;
+
+    pi-coding-agent.enable = true;
   };
 
   programs = {
@@ -36,7 +38,11 @@
     };
     k9s.enable = true;
 
-    pi-coding-agent.enable = true;
+    pi-coding-agent.settings = {
+      defaultProvider = "amazon-bedrock";
+      defaultModel = "eu.anthropic.claude-opus-4-6-v1";
+      enabledModels = ["eu.anthropic.*"];
+    };
   };
 
   # packages explicitly needed on mac to operate

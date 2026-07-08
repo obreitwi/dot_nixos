@@ -5,6 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    nixpkgs-typst.url = "github:NixOS/nixpkgs/9214c62a66d958ec8f1a40558dab61fd48f9351b";
+
     nixGL = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -109,6 +111,7 @@
     nixGL,
     nixpkgs,
     nixpkgs-stable,
+    nixpkgs-typst,
     nixvim,
     pydemx,
     revcli,
@@ -124,6 +127,7 @@
 
         (final: prev: {
           stable = import nixpkgs-stable args-import-nixpkgs;
+          typst_0_14_2 = (import nixpkgs-typst args-import-nixpkgs).typst;
 
           #flameshot = prev.flameshot.overrideAttrs (flameshot_final: flameshot_prev: {
           #src = prev.fetchFromGitHub {
@@ -233,8 +237,8 @@
 
           # grim for xdg-desktop-portal-hyprland
           #(pkgs-init.fetchurl {
-            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/518010.diff";
-            #hash = "sha256-5j3eAXhHsPl+h+hrGgLoumxmig1e1FjkIjc6XsFkXIs=";
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/518010.diff";
+          #hash = "sha256-5j3eAXhHsPl+h+hrGgLoumxmig1e1FjkIjc6XsFkXIs=";
           #})
 
           # kotlin-lsp init

@@ -8,9 +8,19 @@
     count-lines = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"
     cp = "cherry-pick"
     d = "diff"
-    dft = difftool
-    dft = difftool
-    ds = "diff --staged"
+
+    # Difftastic aliases, so `git dlog -p` is `git log -p`
+    # with difftastic and likewise for the other subcommands.
+    dlog = -c diff.external=difft log --ext-diff
+    dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
+    # `git log` with patches shown with difftastic.
+    dl = -c diff.external=difft log -p --ext-diff
+    # Show the most recent commit with difftastic.
+    ds = -c diff.external=difft show --ext-diff
+    # `git diff` with difftastic.
+    dft = -c diff.external=difft diff
+
     each = "!f () { find . -name .git -type d -prune -printf \"\\n%h\\n\" -exec git -C {}/.. \"$@\" \\; ; }; f"
     f = "fetch"
     g = "pull" ; mnemonic: get
@@ -74,16 +84,17 @@
     driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [init]
     defaultBranch = main
-[diff]
-    tool = difftastic
-    algorithm = histogram
-    colorMoved = plain
-    mnemonicPrefix = true
-    renames = true
-[difftool]
-     prompt = false
-[difftool "difftastic"]
-     cmd = difft "$LOCAL" "$REMOTE"
+# [diff]
+#     tool = difftastic
+#     algorithm = histogram
+#     colorMoved = plain
+#     mnemonicPrefix = true
+#     renames = true
+# difftool not recommended
+# [difftool]
+#      prompt = false
+# [difftool "difftastic"]
+#      cmd = difft "$LOCAL" "$REMOTE"
 # Use a pager for large output, just like other git commands.
 [pager]
     difftool = true

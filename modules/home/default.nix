@@ -21,6 +21,7 @@
     ./packages-core.nix
     ./packages-extended.nix
     ./packages-work.nix
+    ./pi-coding-agent
     ./television
     ./terraform.nix
     ./tmux.nix

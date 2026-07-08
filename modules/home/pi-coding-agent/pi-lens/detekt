@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+#
+# pi-lens detekt shim
+# -------------------
+# pi-lens ships a built-in, enabled-by-default detekt runner, but its output
+# parser expects the compiler-style line format
+#
+#     path/File.kt:LINE:COL: <severity>: <message> [RuleId]
+#
+# The detekt 1.23.x CLI console reporter instead emits
+#
+#     path/File.kt:LINE:COL: <message> [RuleId]
+#
+# i.e. without the `error:`/`warning:` severity token. Because of that missing
+# token, pi-lens parses zero findings and silently reports nothing for Kotlin
+# files even though detekt itself flags them (e.g. MultilineRawStringIndentation).
+#
+# This wrapper runs the real detekt and injects a `warning:` severity token into
+# each finding line so pi-lens's parser can pick them up. detekt findings are
+# advisory style issues, so `warning` (non-blocking) is the correct mapping.
+#
+# It is discovered automatically by pi-lens via the symlink
+# `.venv/bin/detekt -> ../../util/pi-lens/detekt` at the repo root (pi-lens looks
+# for a project-local `detekt` under `.venv/bin` / `venv/bin` before falling back
+# to PATH). It is otherwise inert for humans and the Gradle build, which invoke
+# detekt directly.
+set -euo pipefail
+
+# Resolve the *real* detekt on PATH, skipping this wrapper's own directory so we
+# never recurse into ourselves. No hard-coded store paths -> portable across
+# machines and nix GC.
+self="$(cd "$(dirname "$0")" && pwd -P)"
+real=""
+IFS=':' read -ra _dirs <<<"${PATH:-}"
+for d in "${_dirs[@]}"; do
+  [ -n "$d" ] || continue
+  cand="$d/detekt"
+  [ -x "$cand" ] || continue
+  canddir="$(cd "$d" && pwd -P)"
+  # skip our own dir and the .venv/bin symlink dir that points here
+  if [ "$canddir" = "$self" ]; then continue; fi
+  if [ "$(cd "$(dirname "$(readlink -f "$cand" 2>/dev/null || echo "$cand")")" && pwd -P)" = "$self" ]; then continue; fi
+  real="$cand"
+  break
+done
+
+if [ -z "$real" ]; then
+  echo "pi-lens detekt shim: could not locate the real 'detekt' on PATH" >&2
+  exit 127
+fi
+
+# Run detekt, merge stderr into stdout (pi-lens reads both), and add the
+# `warning:` severity token to finding lines of the form:
+#   <file>:<line>:<col>: <message> [<RuleId>]
+# Lines that already carry a severity token, and non-finding output (progress,
+# `--version`, config errors), are left untouched.
+rc=0
+out="$("$real" "$@" 2>&1)" || rc=$?
+printf '%s\n' "$out" | sed -E 's/^(.+:[0-9]+:[0-9]+): (.+ \[[A-Za-z0-9_.]+\])$/\1: warning: \2/'
+exit "$rc"
