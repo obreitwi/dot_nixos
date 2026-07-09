@@ -11,10 +11,19 @@
       mv "$out/bin/yq" "$out/bin/yq-go"
     '';
   };
+
+  pi-lens-detekt = pkgs.writeShellApplication {
+    name = "detekt";
+    text = builtins.readFile ./pi-lens/detekt;
+    runtimeInputs = [pkgs.detekt];
+  };
+
+  pi-resume = pkgs.callPackage (import ./pi-resume.nix) {};
 in {
   options.my.pi-coding-agent.enable = lib.mkOption {default = true;};
 
   config = lib.mkIf config.my.pi-coding-agent.enable {
+    home.packages = [pi-resume];
     programs.pi-coding-agent = {
       enable = true;
       extraPackages = [
@@ -29,7 +38,7 @@ in {
         pkgs.gradle
         pkgs.jdk
         pkgs.kotlin
-        pkgs.detekt
+        pi-lens-detekt
         pkgs.maven
         pkgs.typst_0_14_2
         pkgs.typstyle
