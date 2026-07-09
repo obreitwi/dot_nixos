@@ -59,6 +59,7 @@ in {
           "npm:pi-lens" # lsp/linter integration
           "npm:pi-mcp-adapter" # mcp support
           "npm:pi-vim" # vim mode
+          "git:github.com/jonjonrankin/pi-caveman" # caveman
         ];
       };
     };
