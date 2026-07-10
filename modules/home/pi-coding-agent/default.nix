@@ -20,7 +20,7 @@
 
   pi-resume = pkgs.callPackage (import ./pi-resume.nix) {};
 in {
-  options.my.pi-coding-agent.enable = lib.mkOption {default = true;};
+  options.my.pi-coding-agent.enable = lib.mkOption {default = false;};
 
   config = lib.mkIf config.my.pi-coding-agent.enable {
     home.packages = [pi-resume];

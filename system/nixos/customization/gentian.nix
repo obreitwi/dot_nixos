@@ -111,6 +111,8 @@ in {
 
   my.gui.enable = false;
 
+  my.nextcloud-client.enable = false;
+
   my.server = {
     acme.staging = false;
     adminPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATV2dhRTcF0n4H2cGRixu1q/P8hlsDULqzk1BS1VtxB";

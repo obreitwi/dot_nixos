@@ -1,9 +1,21 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    nextcloud-client
-  ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
+  options.my.nextcloud-client.enable = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
+  };
 
-  # for nextcloud
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.lightdm.enableGnomeKeyring = true;
+  config = lib.mkIf config.my.iwd.enable {
+    environment.systemPackages = with pkgs; [
+      nextcloud-client
+    ];
+
+    # for nextcloud
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.lightdm.enableGnomeKeyring = true;
+  };
 }
