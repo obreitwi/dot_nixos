@@ -251,11 +251,11 @@
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";
             hash = "sha256-s7KhC1Q4OmsW4WyTzCgFXm9NllbEzZUbJw5j3Y5sGiQ=";
           })
-          # fix arandr
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/540391.diff";
-            hash = "sha256-fofQf8a3TSR1xt8r65WhZosS5ZWidz87+MXKqB8I1/U=";
-          })
+          ## fix arandr
+          #(pkgs-init.fetchurl {
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/540391.diff";
+          #hash = "sha256-fofQf8a3TSR1xt8r65WhZosS5ZWidz87+MXKqB8I1/U=";
+          #})
 
           # flameshot 14 broken with hyprland
           #./patches/nixpkgs/revert_pr_507424.patch
