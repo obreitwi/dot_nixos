@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.my.nixvim.lang.typst = lib.mkOption {
@@ -17,6 +18,8 @@
         };
       };
     };
+
+    extraPlugins = [pkgs.vimPlugins.typst-preview-nvim];
 
     plugins.typst-vim.enable = true;
   };
