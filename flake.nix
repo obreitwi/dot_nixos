@@ -252,10 +252,10 @@
           #hash = "sha256-bHZnBp9XCJY71iJJevWN98pZtIONs+VFbTvV7j1EuXQ=";
           #})
           # fix envy-code-r
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";
-            hash = "sha256-s7KhC1Q4OmsW4WyTzCgFXm9NllbEzZUbJw5j3Y5sGiQ=";
-          })
+          #(pkgs-init.fetchurl {
+            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";
+            #hash = "sha256-s7KhC1Q4OmsW4WyTzCgFXm9NllbEzZUbJw5j3Y5sGiQ=";
+          #})
 
           # flameshot 14 broken with hyprland
           #./patches/nixpkgs/revert_pr_507424.patch
