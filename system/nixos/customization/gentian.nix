@@ -293,4 +293,6 @@ in {
     home-manager
     rrsync
   ];
+
+  nix.settings.trusted-users = ["obreitwi" "vkarasen"];
 }
