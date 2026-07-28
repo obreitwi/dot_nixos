@@ -30,6 +30,11 @@ in {
         pkgs.nodejs
 
         #pkgs.bun
+        # einzel-FID START
+        pkgs.antiword
+        pkgs.catdoc
+        pkgs.pandoc
+        # einzel-FID END
 
         # backend START
         pkgs.kotlin-lsp
@@ -52,7 +57,7 @@ in {
         # backend END
       ];
       settings = {
-        theme = "dark";
+        theme = "gruvbox-dark-hard";
         packages = [
           "npm:@zaganjade/pi-usage" # aggregated usage
           "npm:pi-fzfp" # fuzzy picker for files
@@ -60,6 +65,7 @@ in {
           "npm:pi-mcp-adapter" # mcp support
           "npm:pi-vim" # vim mode
           "npm:pi-caveman" # caveman
+          "git:https://github.com/hasit/pi-community-themes" # for theme
         ];
       };
     };
