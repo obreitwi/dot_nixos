@@ -18,7 +18,7 @@
               "<C-k>" = {
                 __raw = "require'telescope-live-grep-args.actions'.quote_prompt()";
               };
-              "<C-space>" = {
+              "<C-f>" = {
                 __raw = "require'telescope.actions'.to_fuzzy_refine";
               };
             };
