@@ -86,6 +86,8 @@
     # database
     pkgs.postgresql
 
+    pkgs.neovide
+
     #pkgs.inkscape # does not work (missing icons)
 
     pkgs.stable.corkscrew # build failure
