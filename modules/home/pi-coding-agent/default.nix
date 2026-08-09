@@ -23,7 +23,11 @@ in {
   options.my.pi-coding-agent.enable = lib.mkOption {default = false;};
 
   config = lib.mkIf config.my.pi-coding-agent.enable {
-    home.packages = [pi-resume];
+    home.packages = [
+      pi-resume
+      pkgs.agent-safehouse
+    ];
+
     programs.pi-coding-agent = {
       enable = true;
       extraPackages = [

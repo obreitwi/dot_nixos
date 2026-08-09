@@ -159,6 +159,11 @@
 
           hyprdynamicmonitors = hyprdynamicmonitors.packages.${system}.default;
 
+          mergiraf = prev.mergiraf.overrideAttrs {
+            # Checks currently pull in an otherwise unused jujutsu which fails to build on MacOS
+            doCheck = false;
+          };
+
           #lsd = prev.lsd.overrideAttrs (
           #lsd-final: lsd-prev: let
           #src = prev.fetchFromGitHub {
@@ -253,8 +258,8 @@
           #})
           # fix envy-code-r
           #(pkgs-init.fetchurl {
-            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";
-            #hash = "sha256-s7KhC1Q4OmsW4WyTzCgFXm9NllbEzZUbJw5j3Y5sGiQ=";
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";
+          #hash = "sha256-s7KhC1Q4OmsW4WyTzCgFXm9NllbEzZUbJw5j3Y5sGiQ=";
           #})
 
           # flameshot 14 broken with hyprland
