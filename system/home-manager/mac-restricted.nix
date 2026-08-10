@@ -40,8 +40,8 @@
 
     pi-coding-agent.settings = {
       defaultProvider = "amazon-bedrock";
-      defaultModel = "eu.anthropic.claude-opus-4-8";
-      enabledModels = ["eu.anthropic.claude-opus-4-8" "eu.anthropic.claude-sonnet-5" "eu.anthropic.claude-opus-5"];
+      defaultModel = "eu.anthropic.claude-opus-5";
+      enabledModels = ["eu.anthropic.claude-opus-5" "eu.anthropic.claude-sonnet-5"];
     };
   };
 

@@ -70,6 +70,7 @@ in {
           "npm:pi-vim" # vim mode
           "npm:pi-caveman" # caveman
           "git:https://github.com/hasit/pi-community-themes" # for theme
+          "npm:pi-sandbox" # sandboxing in pi until agent safehouse certificate issues are worked out
         ];
       };
     };
