@@ -30,4 +30,8 @@ in {
       bind-key "s" run-shell "${pkgs.tmuxPlugins.tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh switch"
       bind-key "w" run-shell "${pkgs.tmuxPlugins.tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/window.sh switch"
     '';
+
+  programs.zsh.shellAliases = {
+    tsn = "tmux new-session -s";
+  };
 }
