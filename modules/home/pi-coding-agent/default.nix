@@ -33,6 +33,8 @@ in {
       extraPackages = [
         pkgs.nodejs
 
+        pkgs.git
+
         #pkgs.bun
         # einzel-FID START
         pkgs.antiword
