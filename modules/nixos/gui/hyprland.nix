@@ -14,6 +14,11 @@
       xwayland.enable = true;
     };
 
+    services = {
+      displayManager.gdm.enable = false;
+      desktopManager.gnome.enable = false;
+    };
+
     environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
   };
 }

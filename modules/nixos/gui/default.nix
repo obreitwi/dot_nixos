@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ./firefox.nix
     ./hyprland.nix
@@ -6,4 +6,9 @@
     ./theming.nix
     ./udiskie.nix
   ];
+
+  options.my.gui.enable = lib.mkOption {
+    default = false;
+    type = lib.types.bool;
+  };
 }

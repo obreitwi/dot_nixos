@@ -8,87 +8,90 @@
   xmonadrc = "x11/myxmonadrc";
 in {
   options = {
-    my.gui.enable = lib.mkOption {
-      default = true;
+    my.gui.x11.enable = lib.mkOption {
+      default = false;
       type = lib.types.bool;
     };
   };
 
-  config = lib.mkIf config.my.gui.enable {
-    console.useXkbConfig = true;
-    # Configure keymap in X11
-    services = {
-      displayManager.gdm.enable = false;
-      desktopManager.gnome.enable = false;
+  config =
+    {
+      console.useXkbConfig = true;
+    }
+    // lib.mkIf config.my.gui.x11.enable {
+      # Configure keymap in X11
+      services = {
+        displayManager.gdm.enable = false;
+        desktopManager.gnome.enable = false;
 
-      xserver = {
-        enable = true;
-        exportConfiguration = true;
-
-        autoRepeatDelay = 250;
-        autoRepeatInterval = 30;
-
-        # TODO keep in sync with home manager config in x11base
-        xkb = {
-          layout = "us";
-          variant = "altgr-intl";
-          model = "pc105";
-          options = lib.strings.concatStrings (
-            lib.strings.intersperse " " [
-              "compose:menu"
-              "compose:prsc"
-              "lv3:ralt_switch"
-              "eurosign:e"
-              "nbsp:level3n"
-            ]
-            ++ (lib.optionals (hostname != "nimir") ["caps:escape"])
-          );
-        };
-
-        displayManager = {
-          lightdm.enable = true;
-
-          session = [
-            {
-              manage = "desktop";
-              name = "myxmonad";
-              start = "exec /etc/${xmonadrc}";
-            }
-            {
-              manage = "desktop";
-              name = "startx";
-              start = "startx";
-            }
-          ];
-        };
-
-        windowManager.xmonad = {
+        xserver = {
           enable = true;
-          enableContribAndExtras = true;
+          exportConfiguration = true;
+
+          autoRepeatDelay = 250;
+          autoRepeatInterval = 30;
+
+          # TODO keep in sync with home manager config in x11base
+          xkb = {
+            layout = "us";
+            variant = "altgr-intl";
+            model = "pc105";
+            options = lib.strings.concatStrings (
+              lib.strings.intersperse " " [
+                "compose:menu"
+                "compose:prsc"
+                "lv3:ralt_switch"
+                "eurosign:e"
+                "nbsp:level3n"
+              ]
+              ++ (lib.optionals (hostname != "nimir") ["caps:escape"])
+            );
+          };
+
+          displayManager = {
+            lightdm.enable = true;
+
+            session = [
+              {
+                manage = "desktop";
+                name = "myxmonad";
+                start = "exec /etc/${xmonadrc}";
+              }
+              {
+                manage = "desktop";
+                name = "startx";
+                start = "startx";
+              }
+            ];
+          };
+
+          windowManager.xmonad = {
+            enable = true;
+            enableContribAndExtras = true;
+          };
+        };
+
+        libinput = {
+          enable = true;
+
+          # disabling mouse acceleration
+          mouse = {
+            accelProfile = "flat";
+          };
+
+          # disabling touchpad acceleration
+          touchpad = {
+            accelProfile = "flat";
+          };
         };
       };
 
-      libinput = {
-        enable = true;
+      services.displayManager = {
+        defaultSession = "myxmonad";
+      };
 
-        # disabling mouse acceleration
-        mouse = {
-          accelProfile = "flat";
-        };
-
-        # disabling touchpad acceleration
-        touchpad = {
-          accelProfile = "flat";
-        };
+      environment.etc."${xmonadrc}" = {
+        source = "${dot-desktop}/x11/xinitrc";
       };
     };
-
-    services.displayManager = {
-      defaultSession = "myxmonad";
-    };
-
-    environment.etc."${xmonadrc}" = {
-      source = "${dot-desktop}/x11/xinitrc";
-    };
-  };
 }
