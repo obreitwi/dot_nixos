@@ -240,10 +240,7 @@
         src = nixpkgs;
         patches = [
           # pending update for tmux-fzf
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/460794.diff";
-            hash = "sha256-g5GAPI5CerYAwuSQ4/1w6kYx7MHjeXvdFxHV9dx/jkk=";
-          })
+          ./patches/nixpkgs/pr_460794.patch
 
           # grim for xdg-desktop-portal-hyprland
           #(pkgs-init.fetchurl {
