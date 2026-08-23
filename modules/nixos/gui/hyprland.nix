@@ -11,6 +11,7 @@
   config = lib.mkIf config.my.gui.hyprland.enable {
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
       xwayland.enable = true;
     };
 
@@ -18,6 +19,8 @@
       displayManager.gdm.enable = false;
       desktopManager.gnome.enable = false;
     };
+
+    programs.uwsm.enable = true;
 
     environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
   };
