@@ -1,28 +1,18 @@
-commit ef4e2992a12a11fbd2b70b652d1519261fff1323
+commit cf45505bc7713f344a4b51b64fb0a64c20b2c04f
 Author:     Oliver Breitwieser <oliver@breitwieser.eu>
 AuthorDate: 2025-11-11 21:51:49 +0100
 Commit:     Oliver Breitwieser <oliver@breitwieser.eu>
-CommitDate: 2025-11-11 23:39:27 +0100
+CommitDate: 2026-08-23 15:13:27 +0200
 
     tmux-fzf: unstable-2023-10-24 -> 2025-09-24
 
 diff --git a/pkgs/misc/tmux-plugins/default.nix b/pkgs/misc/tmux-plugins/default.nix
-index ce5dd347c49c..9c10cb5dd163 100644
+index 4bfefe112979..e2157af86c19 100644
 --- a/pkgs/misc/tmux-plugins/default.nix
 +++ b/pkgs/misc/tmux-plugins/default.nix
-@@ -886,31 +886,45 @@ in
-   tmux-fzf = mkTmuxPlugin {
-     pluginName = "tmux-fzf";
-     rtpFilePath = "main.tmux";
--    version = "unstable-2023-10-24";
-+    version = "unstable-2025-09-24";
-     src = fetchFromGitHub {
-       owner = "sainnhe";
-       repo = "tmux-fzf";
--      rev = "d62b6865c0e7c956ad1f0396823a6f34cf7452a7";
--      hash = "sha256-hVkSQYvBXrkXbKc98V9hwwvFp6z7/mX1K4N3N9j4NN4=";
-+      rev = "05af76daa2487575b93a4f604693b00969f19c2f";
-+      hash = "sha256-ay7z0MkeDCpxdwNTKFrkxi/hUE7a5K7P7oFhfn94aLA=";
+@@ -1036,24 +1036,38 @@ in
+       rev = "05af76daa2487575b93a4f604693b00969f19c2f";
+       hash = "sha256-ay7z0MkeDCpxdwNTKFrkxi/hUE7a5K7P7oFhfn94aLA=";
      };
 +
 +    # NOTE: not patching calls to copyq as these would introduce a fixed dependency
