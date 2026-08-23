@@ -4,6 +4,7 @@
 {pkgs, ...}: {
   imports = [../../modules/nixos];
 
+  my.gui.hyprland.enable = true;
   my.gui.stylix.enable = true;
 
   # Set your time zone.

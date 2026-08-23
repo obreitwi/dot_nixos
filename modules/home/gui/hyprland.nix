@@ -121,7 +121,7 @@ in {
   };
 
   config = lib.mkIf (config.my.gui.enable && config.my.gui.hyprland.enable) {
-    targets.genericLinux.nixGL = {
+    targets.genericLinux.nixGL = lib.mkIf (!config.my.isNixOS) {
       packages = nixGL.packages; # you must set this or everything will be a noop
       defaultWrapper = "mesa"; # choose from nixGL options depending on GPU
     };
@@ -399,7 +399,7 @@ in {
 
     programs.waybar = {
       enable = true;
-      style = ../../../../config-files/waybar/style.css;
+      style = lib.mkForce ../../../config-files/waybar/style.css;
       settings.mainBar = {
         layer = "top";
         position = "top";
@@ -607,7 +607,7 @@ in {
 
     programs.hyprlock = {
       enable = true;
-      settings = {
+      settings = lib.mkForce {
         general = {
           hide_cursor = true;
           ignore_empty_input = true;

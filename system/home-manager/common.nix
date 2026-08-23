@@ -11,7 +11,7 @@
     "mucku"
   ];
 
-  hasXmonad = builtins.elem hostname ["mucku"];
+  hasXmonad = builtins.elem hostname [];
   isWork = builtins.elem hostname ["mimir" "minir"];
 in {
   imports = [
@@ -37,6 +37,8 @@ in {
     stylix.enable = lib.mkDefault isDesktop;
 
     keepass.enable = builtins.elem hostname ["mucku" "gentian"];
+
+    hyprland.enable = builtins.elem hostname ["minir" "mucku"];
 
     nextcloud.enable = builtins.elem hostname ["mucku"];
     redshift.enable = isDesktop;
