@@ -153,6 +153,10 @@ in {
         source ${dot-zsh}/zprofile
       '';
 
+    shellAliases = {
+      "da" = "direnv allow";
+    };
+
     syntaxHighlighting.enable = true;
 
     # Already called in my zshrc
