@@ -240,7 +240,7 @@
         src = nixpkgs;
         patches = [
           # pending update for tmux-fzf
-          ./patches/nixpkgs/pr_460794.patch
+          #./patches/nixpkgs/pr_460794.patch
 
           # grim for xdg-desktop-portal-hyprland
           #(pkgs-init.fetchurl {
