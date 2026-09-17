@@ -305,6 +305,13 @@ in {
         #"bordercolor rgb(8a0a0a), focus:0, onworkspace:special:minimized"
         #];
 
+        device = [
+          {
+            name = "logitech-mx-vertical-advanced-ergonomic-mouse";
+            sensitivity = -0.5;
+          }
+        ];
+
         windowrule = [
           "match:workspace name:special:minimized, border_size 2"
           "match:workspace name:special:minimized, match:focus true,  border_color rgb(fc0000)"
