@@ -13,9 +13,11 @@
     # keep in sync with nixos fonts
     home.packages = with pkgs.nerd-fonts; [
       dejavu-sans-mono
-      iosevka
-      iosevka-term
       mononoki
+
+      # newer versions have partial emoji support which looks ugly, waiting for an option to remove them alltogher
+      pkgs.stable.nerd-fonts.iosevka
+      pkgs.stable.nerd-fonts.iosevka-term
     ];
     fonts.fontconfig.enable = true;
   };
