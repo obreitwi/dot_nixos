@@ -310,6 +310,10 @@ in {
             name = "logitech-mx-vertical-advanced-ergonomic-mouse";
             sensitivity = -0.5;
           }
+          {
+            name = "keychron--keychron-link-";
+            sensitivity = -0.7;
+          }
         ];
 
         windowrule = [
