@@ -27,5 +27,8 @@
       enableSshSupport = true;
       enableExtraSocket = true;
     };
+
+    # disable gcr-ssh-agent because it would conflict
+    #services.gnome.gcr-ssh-agent.enable = false;
   };
 }

@@ -26,7 +26,7 @@
 
     services.fail2ban = {
       enable = config.my.server.fail2ban.enable;
-      package = pkgs.stable.fail2ban;
+      package = pkgs.fail2ban;
       # Ban IP after 5 failures
       maxretry = 5;
       ignoreIP = [

@@ -288,6 +288,8 @@ in {
     enablePop3Ssl = true;
   };
 
+  services.gnome.gcr-ssh-agent.enable = false;
+
   environment.systemPackages = with pkgs; [
     # should be enabled via home.packages.home-manager.enable, but is not.
     home-manager
