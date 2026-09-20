@@ -379,6 +379,10 @@ in {
           #"blueman-applet"
           "gnome-keyring-daemon --start --components=secrets"
           "hyprdynamicmonitors run"
+
+          # Fixes cursor themes in gnome apps under hyprland
+          "gsettings set org.gnome.desktop.interface cursor-theme '${config.home.pointerCursor.name}'"
+          "gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
         ];
       };
 
@@ -690,6 +694,21 @@ in {
           "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
         };
       };
+    };
+
+    stylix = {
+      targets.hyprland.enable = true;
+    };
+
+    home.pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      # x11.enable = true;
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 16;
+
+      hyprcursor.enable = true;
     };
 
     programs.zsh.initContent =

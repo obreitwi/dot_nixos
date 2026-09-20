@@ -6,6 +6,7 @@
 
   my.gui.x11.enable = false;
   my.gui.hyprland.enable = true;
+  my.gui.enable = true;
   my.gui.stylix.enable = true;
 
   # Set your time zone.
