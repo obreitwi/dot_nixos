@@ -960,11 +960,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787573594,
-        "narHash": "sha256-W4R0Yu+8Hh7+egtI1OkOy8lNI8nwYa4dn2S5LFdp9d8=",
+        "lastModified": 1790163644,
+        "narHash": "sha256-yRWYxW+peuf3WGHIjYFwjJGF3dFEOktRzlJEDszyuPA=",
         "owner": "obreitwi",
         "repo": "rev-cli-rs",
-        "rev": "97b7890ee9ef934b49d659ab2dba1db985988dca",
+        "rev": "041dd9cd0ad003063ed8555f4a0ab5cdc53c9fbe",
         "type": "github"
       },
       "original": {
