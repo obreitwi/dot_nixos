@@ -138,6 +138,7 @@ in {
 
   users.users.vkarasen = {
     isNormalUser = true;
+    linger = true; # allow user services (e.g. vaultwarden, backup timer) to run without an active session
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -189,7 +190,13 @@ in {
         sha256 = "16yzbyp296abirl77xk3fw5jqgcjf3frmwxph22sfxam8npkxcq6";
       };
     in
-      optionalString traceRequestsWithLua ''
+      ''
+        map $http_upgrade $connection_upgrade {
+          default upgrade;
+          ''' close;
+        }
+      ''
+      + optionalString traceRequestsWithLua ''
         lua_package_path "${resty}/lib/lua/5.1/?.lua;${lrucache}/lib/lua/5.1/?.lua;${luaJson}/?.lua;;";
       '';
 
@@ -220,6 +227,29 @@ in {
               proxy_set_header Accept-Encoding "";
 
               subs_filter https://grocy.nas.zqnr.de/ https://grocy.zqnr.de/;
+            '';
+          };
+        }
+      ];
+
+      "vault.zqnr.de" = lib.mkMerge [
+        (myUtils.nginxACME "zqnr.de")
+        {
+          locations."/" = {
+            extraConfig = ''
+              proxy_pass http://127.0.0.1:8222;
+
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+
+              # allow large attachment uploads
+              client_max_body_size 128M;
+
+              # WebSocket support (notifications)
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection $connection_upgrade;
             '';
           };
         }

@@ -22,6 +22,12 @@
           failregex = ^.*, client: <HOST>,.*, request: "GET /(wp-|admin|boaform|phpmyadmin|\.env|\.git)|\.(dll|so|cfm|asp)|(\?|&)(=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000|=PHPE9568F36-D428-11d2-A769-00AA001ACF42|=PHPE9568F35-D428-11d2-A769-00AA001ACF42|=PHPE9568F34-D428-11d2-A769-00AA001ACF42)|\\x[0-9a-zA-Z]{2}"
         ''
       );
+
+      "fail2ban/filter.d/vaultwarden.local".text = ''
+        [Definition]
+        failregex = ^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username: .*$
+        ignoreregex =
+      '';
     };
 
     services.fail2ban = {
@@ -78,6 +84,16 @@
         };
         postfix-sasl = {
           enabled = true;
+        };
+        vaultwarden = {
+          enabled = true;
+          settings = {
+            filter = "vaultwarden";
+            backend = "systemd";
+            # Vaultwarden runs as a *user* service, hence _SYSTEMD_USER_UNIT.
+            journalmatch = "_SYSTEMD_USER_UNIT=vaultwarden.service";
+            findtime = 600;
+          };
         };
       };
     };
