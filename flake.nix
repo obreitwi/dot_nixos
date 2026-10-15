@@ -243,10 +243,10 @@
           #./patches/nixpkgs/pr_460794.patch
 
           # grim for xdg-desktop-portal-hyprland
-          #(pkgs-init.fetchurl {
-          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/518010.diff";
-          #hash = "sha256-5j3eAXhHsPl+h+hrGgLoumxmig1e1FjkIjc6XsFkXIs=";
-          #})
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/572951.diff";
+            hash = "sha256-hzOY3pZwJBoroQOMMKLStnE9M1DE65F+t3kVnp+kigA=";
+          })
 
           # kotlin-lsp init
           #(pkgs-init.fetchurl {
