@@ -92,6 +92,7 @@
         spacer # spacer for command output
         speedtest-cli
         sttr # string conversions
+        trippy # rust bases replacement for mtr
         viddy
         zoxide
       ]

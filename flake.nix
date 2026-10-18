@@ -242,12 +242,6 @@
           # pending update for tmux-fzf
           #./patches/nixpkgs/pr_460794.patch
 
-          # grim for xdg-desktop-portal-hyprland
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/572951.diff";
-            hash = "sha256-hzOY3pZwJBoroQOMMKLStnE9M1DE65F+t3kVnp+kigA=";
-          })
-
           # kotlin-lsp init
           #(pkgs-init.fetchurl {
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/514623.diff";
