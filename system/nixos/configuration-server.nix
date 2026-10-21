@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   mdadmConf = ''
     HOMEHOST <ignore>
   '';
@@ -39,12 +36,14 @@ in {
 
   environment.systemPackages = with pkgs; [
     git
+    alacritty.terminfo
+    ghostty.terminfo
   ];
 
   system.stateVersion = "20.03"; # Did you read the comment?
 
   # need all terminfos
-  environment.enableAllTerminfo = true;
+  #environment.enableAllTerminfo = true; # urxvt broken
   environment.variables.EDITOR = "nvim";
   environment.variables.LOCALE_ARCHIVE = "/run/current-system/sw/lib/locale/locale-archive";
   environment.pathsToLink = ["/share/zsh"];
