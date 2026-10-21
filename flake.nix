@@ -241,12 +241,13 @@
         patches = [
           # pending update for tmux-fzf
           #./patches/nixpkgs/pr_460794.patch
+          #
 
-          # kotlin-lsp init
-          #(pkgs-init.fetchurl {
-          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/514623.diff";
-          #hash = "sha256-bHZnBp9XCJY71iJJevWN98pZtIONs+VFbTvV7j1EuXQ=";
-          #})
+          # php fixes
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/576865.diff";
+            hash = "sha256-rXtcsxlvOHbbBKlWG0ditYTrVNunFRoMQO1K3874cjY=";
+          })
           # fix envy-code-r
           #(pkgs-init.fetchurl {
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";

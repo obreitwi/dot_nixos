@@ -39,7 +39,9 @@ in {
       };
       extraAppsEnable = false;
 
-      config.adminpassFile = "/var/lib/secrets/nextcloud_admin.pw";
+      # - The option definition `services.nextcloud.config.adminpassFile' in `/nix/store/33injb090x4iq8d33ic608fg0xblm580-source/modules/nixos/server/nextcloud.nix' no longer has any effect; please remove it.
+      # To create an admin user after the installation, use nextcloud-occ user:add <username> and nextcloud-occ group:adduser admin <username>.
+      #config.adminpassFile = "/var/lib/secrets/nextcloud_admin.pw";
       config.dbtype = "sqlite";
       https = true;
       maxUploadSize = "10G";
