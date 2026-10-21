@@ -23,10 +23,10 @@
     } or (throw "kotlin-lsp does not support ${system}");
   archiveHash =
     {
-      "x86_64-linux" = "sha256-HhHS5f77+eohWtjda+lfIiKJfNCG6Mt6ZhpSCEpZBAU=";
+      "x86_64-linux" = "";
       "aarch64-linux" = "";
       "x86_64-darwin" = "";
-      "aarch64-darwin" = "sha256-ldo/xtO5CSx2FjRQRKBe24XlQI3GSNCB5OQzWVyJK+w=";
+      "aarch64-darwin" = "sha256-6+8uE81K3E7J4ECEuEgACj7HqdKRfGTyaVdM4u/p7K0=";
     }
     .${
       system
@@ -34,17 +34,17 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "kotlin-lsp";
-    version = "263.4702.0";
+    version = "263.6379.0";
     __structuredAttrs = true;
     strictDeps = true;
 
     src = fetchurl {
-      url = "https://download-cdn.jetbrains.com/language-server/kotlin-server/${finalAttrs.version}/${archiveFile finalAttrs.version}";
+      url = "https://download.jetbrains.com/language-server/kotlin-server/${finalAttrs.version}/${archiveFile finalAttrs.version}";
       hash = archiveHash;
     };
 
     # Add support for .sit archive using unar
-    preUnpack = lib.optionalString stdenv.isDarwin ''
+    preUnpack = lib.optionalString stdenv.hostPlatform.isDarwin ''
       _tryUnar() {
         if ! [[ "$curSrc" =~ \.sit$ ]]; then return 1; fi
         ${lib.getExe unar} "$curSrc"
@@ -56,7 +56,7 @@ in
     dontBuild = true;
 
     # Stripping breaks the binary on Darwin (code signing issues)
-    dontStrip = stdenv.isDarwin;
+    dontStrip = stdenv.hostPlatform.isDarwin;
 
     # (on Linux only) X11/Wayland/sound/font libs are GUI-only backends in the bundled JBR;
     # the LSP server itself runs headless so these are safe to ignore.
@@ -75,7 +75,7 @@ in
     ];
     nativeBuildInputs = (
       lib.optionals stdenv.isLinux [autoPatchelfHook]
-      ++ lib.optionals stdenv.isDarwin [
+      ++ lib.optionals stdenv.hostPlatform.isDarwin [
         fixDarwinDylibNames
         unar
         darwin.autoSignDarwinBinariesHook

@@ -243,6 +243,10 @@
           #./patches/nixpkgs/pr_460794.patch
           #
 
+          # revert: antiword: 0.37 -> 0.37-unstable-2026-06-03
+          # (does not build)
+          ./patches/nixpkgs/revert_pr_565374.patch
+
           # php fixes
           (pkgs-init.fetchurl {
             url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/576865.diff";

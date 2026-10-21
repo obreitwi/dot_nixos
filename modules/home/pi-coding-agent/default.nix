@@ -65,14 +65,19 @@ in {
       settings = {
         theme = "gruvbox-dark-hard";
         packages = [
+          "git:https://github.com/hasit/pi-community-themes" # for theme
+
           "npm:@zaganjade/pi-usage" # aggregated usage
+
+          "npm:pi-caveman" # caveman
+          "npm:agent-ste" # palin english in output
+
           "npm:pi-fzfp" # fuzzy picker for files
           "npm:pi-lens" # lsp/linter integration
-          "npm:pi-mcp-adapter" # mcp support
-          "npm:pi-vim" # vim mode
-          "npm:pi-caveman" # caveman
-          "git:https://github.com/hasit/pi-community-themes" # for theme
           "npm:pi-sandbox" # sandboxing in pi until agent safehouse certificate issues are worked out
+          "npm:pi-subagents"
+          "npm:pi-vim" # vim mode
+          #"npm:pi-mcp-adapter" # mcp support (no provided by default)
         ];
       };
     };

@@ -88,81 +88,84 @@ in {
 
     pi-coding-agent.settings = {
       defaultProvider = "amazon-bedrock";
-      defaultModel = "eu.anthropic.claude-opus-5";
-      enabledModels = ["eu.anthropic.claude-opus-5" "eu.anthropic.claude-sonnet-5"];
+      defaultModel = "eu.anthropic.claude-opus-5-5";
+      enabledModels = ["eu.anthropic.claude-opus-5-5" "eu.anthropic.claude-sonnet-5-5" "eu.anthropic.claude-opus-5" "eu.anthropic.claude-sonnet-5"];
     };
   };
 
   # packages explicitly needed on mac to operate
-  home.packages =
-    [
-      pkgs.gh
+  home.packages = [
+    pkgs.gh
 
-      pkgs.moreutils
+    pkgs.moreutils
 
-      pkgs.flameshot
+    pkgs.flameshot
 
-      pkgs.duf
+    pkgs.duf
 
-      # for telescope
-      pkgs.fd
+    # for telescope
+    pkgs.fd
 
-      pkgs.ast-grep
-      pkgs.sem-diff
+    pkgs.ast-grep
+    pkgs.sem-diff
 
-      # tech-stack (supplied via shell.ni)
-      # backend
-      #pkgs.jdk
-      #pkgs.typst
-      #pkgs.typstyle
+    pkgs.imagemagick
 
-      # frontend
-      #pkgs.yarn
-      #pkgs.nodejs_20
+    # tech-stack (supplied via shell.ni)
+    # backend
+    #pkgs.jdk
+    #pkgs.typst
+    #pkgs.typstyle
 
-      # JSON tooling
-      pkgs.fixjson
+    # frontend
+    #pkgs.yarn
+    #pkgs.nodejs_20
 
-      # code exploration
-      pkgs.cloc
-      pkgs.tokei
+    # JSON tooling
+    pkgs.fixjson
 
-      # kubernetes tooling
-      pkgs.kubectl
-      pkgs.stable.kubelogin # latest version fails to build
-      pkgs.yq
+    # code exploration
+    pkgs.cloc
+    pkgs.tokei
 
-      # database
-      pkgs.postgresql
+    pkgs.htop-vim
 
-      pkgs.neovide
+    # kubernetes tooling
+    pkgs.kubectl
+    pkgs.stable.kubelogin # latest version fails to build
+    pkgs.yq
 
-      #pkgs.inkscape # does not work (missing icons)
+    # database
+    pkgs.postgresql
 
-      pkgs.stable.corkscrew # build failure
+    pkgs.neovide
 
-      # build docker
-      pkgs.colima
-      pkgs.docker
-      pkgs.docker-compose
+    #pkgs.inkscape # does not work (missing icons)
 
-      pkgs.gnupg
-      pkgs.p7zip
+    pkgs.stable.corkscrew # build failure
 
-      pkgs.ptpython
+    # build docker
+    pkgs.colima
+    pkgs.docker
+    pkgs.docker-compose
 
-      # PDF manipulation
-      pkgs.poppler-utils
+    pkgs.gnupg
+    pkgs.p7zip
 
-      pkgs.fastgron
-      pkgs.sqlite-interactive
+    pkgs.ptpython
 
-      # claude code stuff
-      pkgs.awscli2
-      pkgs.claude-code
-      pkgs.claude-agent-acp
-    ];
-    #++ direnv.backend ++ direnv.frontend;
+    # PDF manipulation
+    pkgs.poppler-utils
+
+    pkgs.fastgron
+    pkgs.sqlite-interactive
+
+    # claude code stuff
+    pkgs.awscli2
+    pkgs.claude-code
+    pkgs.claude-agent-acp
+  ];
+  #++ direnv.backend ++ direnv.frontend;
 
   programs.zsh = {
     initContent =
