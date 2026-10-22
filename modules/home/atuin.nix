@@ -1,8 +1,26 @@
 {
   config,
+  pkgs,
   lib,
   ...
-}: {
+}: let
+  ## atuin 18.23.0's bash-preexec e2e PTY tests fail in the Darwin build sandbox
+  ## ("bash: atuin: command not found"); the zsh/fish/ble.sh variants pass, as
+  ## does everything on Linux, where Hydra caches the build. Drop this override
+  ## once nixpkgs' atuin builds on macOS again.
+  #atuin =
+    #if pkgs.stdenv.hostPlatform.isDarwin
+    #then
+      #pkgs.atuin.overrideAttrs (old: {
+        #checkFlags =
+          #old.checkFlags
+          #++ [
+            #"--skip=filtered_commands_leave_no_captured_output"
+            #"--skip=bash_preexec"
+          #];
+      #})
+    #else pkgs.atuin;
+in {
   options.my.atuin.enable = lib.mkOption {
     default = true;
     type = lib.types.bool;
@@ -14,6 +32,8 @@
       programs.atuin = {
         enable = true;
         enableZshIntegration = true;
+
+        #package = atuin;
 
         daemon.enable = true;
 

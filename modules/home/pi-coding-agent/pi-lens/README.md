@@ -53,3 +53,40 @@ detekt --version           # -> 1.23.8 (unchanged; shim is transparent here)
 > Note: pi-lens's `.venv/bin` / `venv/bin` auto-discovery path is **not** usable
 > for the shim — pi-lens double-quotes venv-resolved tool paths on non-Windows
 > hosts, which breaks the spawn. PATH is the supported route.
+
+## pi-lens ↔ memelint integration
+
+memelint (Simplified Technical English linter) has no LSP mode and pi-lens has
+no generic "CLI runner" hook. So `default.nix` does the following:
+
+- Generates `~/.pi-lens/config.json` from the nix store (`home.file`). It
+  overrides the launcher of the built-in `marksman` server.
+- The override starts `marksman-memelint`: `rass` (rassumfrassum, LSP
+  multiplexer) runs `marksman server` **and** `efm-langserver`. efm runs
+  `memelint check <file>` and reports the findings as diagnostics with severity
+  *warning* and source `memelint`.
+- pi-lens still sees one primary server (`marksman`) with its original
+  capabilities. memelint only adds advisory warnings. marksman diagnostics are
+  streamed by `rass` without waiting for memelint.
+
+Notes:
+
+- A failing `memelint` call is ignored by efm (it publishes empty diagnostics
+  at once, so the file is not left unconfirmed). But if the efm *process* dies,
+  `rass` exits and so does marksman (pi-lens then sees a failed server).
+- Code/config files: a custom pi-lens server `memelint` (plain
+  `efm-langserver`, extensions in `memelintExtensions`) is registered via
+  `lsp.servers`. pi-lens cannot make custom servers *auxiliary* (their `role`
+  is ignored), and write-time checks only run the first built-in server of a
+  file. So for files that have a built-in server (e.g. `.py`, `.kt`, `.nix`)
+  memelint only runs in full scans (`lens_diagnostics mode=full`), not on
+  every write. It is the primary (and checked at write time) only for
+  extensions without a built-in server: `.scala`, `.sql`, `.hcl`.
+- memelint does not lint `.yaml`, `.html` or `.tf`, so they are not listed.
+- memelint cannot lint Typst (`.typ`) yet, so tinymist is not wrapped.
+- An existing hand-written `~/.pi-lens/config.json` must be moved away before
+  the first `home-manager switch`.
+
+Verify: `effective_config file=README.md` shows the `marksman` override; write a
+`.md` file containing a contraction (e.g. "don't") and expect a `memelint`
+warning next to marksman's diagnostics.

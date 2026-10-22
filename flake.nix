@@ -58,6 +58,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # memelint package
+    memelint = {
+      url = "github:antimemes/memelint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # custom (own) packages:
     asfa = {
       url = "github:obreitwi/asfa";
@@ -106,6 +112,7 @@
     hyprdynamicmonitors,
     lanzaboote,
     mailserver,
+    memelint,
     neorg-task-sync,
     nix-index-database,
     nixGL,
@@ -147,6 +154,8 @@
           toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
           ptpython = prev.callPackage (import ./packages/ptpython.nix) {};
           hyprnavi = prev.callPackage (import ./packages/hyprnavi.nix) {};
+
+          memelint = memelint.packages.${prev.stdenv.hostPlatform.system}.default;
 
           sem-diff = prev.callPackage (import ./packages/sem) {};
 

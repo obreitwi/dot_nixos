@@ -715,6 +715,26 @@
         "type": "gitlab"
       }
     },
+    "memelint": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792608400,
+        "narHash": "sha256-HP94s+phJfHp0Agb4m9W0jSxsYrZRhG1tZY/jds9xCo=",
+        "owner": "antimemes",
+        "repo": "memelint",
+        "rev": "bf5518cc9e43ae2afd3b6252d06daa2ac7176934",
+        "type": "github"
+      },
+      "original": {
+        "owner": "antimemes",
+        "repo": "memelint",
+        "type": "github"
+      }
+    },
     "neorg-task-sync": {
       "inputs": {
         "advisory-db": "advisory-db_2",
@@ -984,6 +1004,7 @@
         "hyprdynamicmonitors": "hyprdynamicmonitors",
         "lanzaboote": "lanzaboote",
         "mailserver": "mailserver",
+        "memelint": "memelint",
         "neorg-task-sync": "neorg-task-sync",
         "nix-index-database": "nix-index-database",
         "nixGL": "nixGL",
