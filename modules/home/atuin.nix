@@ -9,17 +9,17 @@
   ## does everything on Linux, where Hydra caches the build. Drop this override
   ## once nixpkgs' atuin builds on macOS again.
   #atuin =
-    #if pkgs.stdenv.hostPlatform.isDarwin
-    #then
-      #pkgs.atuin.overrideAttrs (old: {
-        #checkFlags =
-          #old.checkFlags
-          #++ [
-            #"--skip=filtered_commands_leave_no_captured_output"
-            #"--skip=bash_preexec"
-          #];
-      #})
-    #else pkgs.atuin;
+  #if pkgs.stdenv.hostPlatform.isDarwin
+  #then
+  #pkgs.atuin.overrideAttrs (old: {
+  #checkFlags =
+  #old.checkFlags
+  #++ [
+  #"--skip=filtered_commands_leave_no_captured_output"
+  #"--skip=bash_preexec"
+  #];
+  #})
+  #else pkgs.atuin;
 in {
   options.my.atuin.enable = lib.mkOption {
     default = true;
@@ -65,6 +65,8 @@ in {
           zvm_after_init_commands+=(
             'bindkey -M vicmd "^R" atuin-search-vicmd'
             'bindkey -M viins "^R" atuin-search-viins'
+            'bindkey -M vicmd "^U" atuin-up-search-vicmd'
+            'bindkey -M viins "^U" atuin-up-search-viins'
           )
         '';
     };
