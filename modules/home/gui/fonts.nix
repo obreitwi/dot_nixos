@@ -19,7 +19,7 @@
       pkgs.stable.nerd-fonts.iosevka
       pkgs.stable.nerd-fonts.iosevka-term
 
-      pkgs.corefonts
+      #pkgs.corefonts # microsoft fonts
     ];
     fonts.fontconfig.enable = true;
   };

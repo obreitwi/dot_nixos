@@ -256,11 +256,11 @@
           # (does not build)
           ./patches/nixpkgs/revert_pr_565374.patch
 
-          # php fixes
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/576865.diff";
-            hash = "sha256-rXtcsxlvOHbbBKlWG0ditYTrVNunFRoMQO1K3874cjY=";
-          })
+          ## php fixes
+          #(pkgs-init.fetchurl {
+            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/576865.diff";
+            #hash = "sha256-rXtcsxlvOHbbBKlWG0ditYTrVNunFRoMQO1K3874cjY=";
+          #})
           # fix envy-code-r
           #(pkgs-init.fetchurl {
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";
