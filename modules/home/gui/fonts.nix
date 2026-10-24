@@ -18,6 +18,8 @@
       # newer versions have partial emoji support which looks ugly, waiting for an option to remove them alltogher
       pkgs.stable.nerd-fonts.iosevka
       pkgs.stable.nerd-fonts.iosevka-term
+
+      pkgs.corefonts
     ];
     fonts.fontconfig.enable = true;
   };

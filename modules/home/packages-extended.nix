@@ -64,6 +64,8 @@
         # json tooling
         fixjson
 
+        libreoffice
+
         # tools
         archivemount # mount archives as loopback
         ast-grep

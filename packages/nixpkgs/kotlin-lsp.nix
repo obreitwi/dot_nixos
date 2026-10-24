@@ -23,7 +23,7 @@
     } or (throw "kotlin-lsp does not support ${system}");
   archiveHash =
     {
-      "x86_64-linux" = "";
+      "x86_64-linux" = "sha256-q4ykRV3C/F/hok2yvMxGwQQlTSxGUVXEJR7mXfjz98w=";
       "aarch64-linux" = "";
       "x86_64-darwin" = "";
       "aarch64-darwin" = "sha256-6+8uE81K3E7J4ECEuEgACj7HqdKRfGTyaVdM4u/p7K0=";
