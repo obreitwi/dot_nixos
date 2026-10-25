@@ -64,9 +64,10 @@ no generic "CLI runner" hook. So `default.nix` does the following:
 - The override starts `marksman-memelint`: `rass` (rassumfrassum, LSP
   multiplexer) runs `marksman server` **and** `efm-langserver`. efm runs
   `memelint check <file>` and reports the findings as diagnostics with severity
-  *warning* and source `memelint`.
+  *error* and source `memelint`, so that pi-lens reports them to the agent
+  (warnings are not picked up).
 - pi-lens still sees one primary server (`marksman`) with its original
-  capabilities. memelint only adds advisory warnings. marksman diagnostics are
+  capabilities. memelint only adds diagnostics. marksman diagnostics are
   streamed by `rass` without waiting for memelint.
 
 Notes:
@@ -89,4 +90,4 @@ Notes:
 
 Verify: `effective_config file=README.md` shows the `marksman` override; write a
 `.md` file containing a contraction (e.g. "don't") and expect a `memelint`
-warning next to marksman's diagnostics.
+error next to marksman's diagnostics.

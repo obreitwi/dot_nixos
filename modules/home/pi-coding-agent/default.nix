@@ -20,7 +20,7 @@
 
   pi-resume = pkgs.callPackage (import ./pi-resume.nix) {};
 
-  ## memelint has no LSP mode: efm-langserver turns its output into (warning)
+  ## memelint has no LSP mode: efm-langserver turns its output into (error)
   ## diagnostics (see pi-lens/README.md). "=" applies to every languageId;
   ## memelint itself decides what to lint in a file.
   efmMemelintConfig = (pkgs.formats.yaml {}).generate "efm-memelint.yaml" {
@@ -32,7 +32,7 @@
         lint-ignore-exit-code = true;
         lint-after-open = true;
         lint-formats = ["%f:%l:%c: error: %m" "%f:%l:%c: warning: %m"];
-        lint-severity = 2; # warning: never block
+        lint-severity = 1; # error: pi-lens only surfaces errors to the agent
         lint-source = "memelint";
       }
     ];
