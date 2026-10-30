@@ -111,6 +111,8 @@ in {
 
     pkgs.imagemagick
 
+    pkgs.toggle-external-monitor
+
     # tech-stack (supplied via shell.ni)
     # backend
     #pkgs.jdk

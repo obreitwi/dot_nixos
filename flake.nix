@@ -152,6 +152,7 @@
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
           revcli = revcli.packages.${prev.stdenv.hostPlatform.system}.default;
           toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
+          toggle-external-monitor = prev.callPackage (import ./packages/toggle-external-monitor) {};
           ptpython = prev.callPackage (import ./packages/ptpython.nix) {};
           hyprnavi = prev.callPackage (import ./packages/hyprnavi.nix) {};
 

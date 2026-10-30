@@ -24,7 +24,7 @@
       pkgs.ripgrep
       pkgs.ugrep
 
-      # json handling
+      # json tools
       pkgs.jq
       pkgs.ijq
       pkgs.jo
