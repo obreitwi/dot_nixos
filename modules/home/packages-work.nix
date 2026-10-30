@@ -7,6 +7,7 @@
   config = lib.mkIf config.my.work.enable {
     home.packages = [
       #pkgs.citrix_workspace # currently marked broken
+      pkgs.webex
     ];
   };
 }
