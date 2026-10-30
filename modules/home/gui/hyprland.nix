@@ -15,6 +15,13 @@
     '';
   };
 
+  hyprctl-disable-external-monitor = pkgs.writeShellApplication {
+    name = "hyprctl-disable-external-monitor";
+    text = ''
+      hyprctl keyword monitor "$(hyprctl -j monitors  all | jq -r '.[] | select(.id == 1) | .name'),disable"
+    '';
+  };
+
   toggle-minimize = pkgs.writeShellApplication {
     name = "toggle-minimize";
     text = ''
@@ -259,6 +266,7 @@ in {
           "Super, D, exec, toggle-minimize"
 
           "Super, F5, exec, hyprctl reload"
+          "Super Shift, F5, exec, hyprctl-disable-external-monitor"
           "Super, F9, exec, toggle-bluetooth-audio"
 
           "Super, z, workspace, 10"
@@ -748,6 +756,7 @@ in {
       pkgs.rofimoji
       pkgs.rofi-bluetooth
 
+      hyprctl-disable-external-monitor
       scratchpad-journal
       toggle-minimize
       window-swap
