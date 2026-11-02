@@ -23,10 +23,10 @@
     } or (throw "kotlin-lsp does not support ${system}");
   archiveHash =
     {
-      "x86_64-linux" = "sha256-q4ykRV3C/F/hok2yvMxGwQQlTSxGUVXEJR7mXfjz98w=";
-      "aarch64-linux" = "";
+      "x86_64-linux" = "";
+      "aarch64-linux" = "sha256-RQq3wdgOSBBqpCm0jLQibYLKEqiiQARHrgI4Z5R4DKw=";
       "x86_64-darwin" = "";
-      "aarch64-darwin" = "sha256-6+8uE81K3E7J4ECEuEgACj7HqdKRfGTyaVdM4u/p7K0=";
+      "aarch64-darwin" = "sha256-tAO/ilS9RY47pnMc+KuzNAvgi0OcA1dt/AKxP682lLg=";
     }
     .${
       system
@@ -34,7 +34,7 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "kotlin-lsp";
-    version = "263.6379.0";
+    version = "263.7084.0";
     __structuredAttrs = true;
     strictDeps = true;
 
@@ -43,7 +43,7 @@ in
       hash = archiveHash;
     };
 
-    # Add support for .sit archive using unar
+    # Add support for .sit archive via unar
     preUnpack = lib.optionalString stdenv.hostPlatform.isDarwin ''
       _tryUnar() {
         if ! [[ "$curSrc" =~ \.sit$ ]]; then return 1; fi
