@@ -5,8 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
-    nixpkgs-typst.url = "github:NixOS/nixpkgs/9214c62a66d958ec8f1a40558dab61fd48f9351b";
-
     nixGL = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -82,7 +80,7 @@
       flake = false;
     };
     neorg-task-sync = {
-      url = "github:obreitwi/neorg-task-sync?submodules=1";
+      url = "github:obreitwi/neorg-task-sync";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pydemx = {
@@ -118,7 +116,6 @@
     nixGL,
     nixpkgs,
     nixpkgs-stable,
-    nixpkgs-typst,
     nixvim,
     pydemx,
     revcli,
@@ -134,7 +131,6 @@
 
         (final: prev: {
           stable = import nixpkgs-stable args-import-nixpkgs;
-          typst_0_14_2 = (import nixpkgs-typst args-import-nixpkgs).typst;
 
           #flameshot = prev.flameshot.overrideAttrs (flameshot_final: flameshot_prev: {
           #src = prev.fetchFromGitHub {
@@ -147,6 +143,7 @@
 
           asfa-dev = asfa.packages.${prev.stdenv.hostPlatform.system}.default;
           blobdrop = blobdrop.packages.${prev.stdenv.hostPlatform.system}.default;
+          agent-container = prev.callPackage (import ./packages/agent-container) {};
           grpcrl = prev.callPackage (import ./packages/grpcrl) {};
           neorg-task-sync = neorg-task-sync.packages.${prev.stdenv.hostPlatform.system}.default;
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
@@ -259,8 +256,8 @@
 
           ## php fixes
           #(pkgs-init.fetchurl {
-            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/576865.diff";
-            #hash = "sha256-rXtcsxlvOHbbBKlWG0ditYTrVNunFRoMQO1K3874cjY=";
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/576865.diff";
+          #hash = "sha256-rXtcsxlvOHbbBKlWG0ditYTrVNunFRoMQO1K3874cjY=";
           #})
           # fix envy-code-r
           #(pkgs-init.fetchurl {
@@ -407,6 +404,14 @@
             ++ modules ++ hm-modules-default;
         };
 
+      # home-manager config baked into the agent-base docker image (see docker/agent-base)
+      agent-base-home =
+        (home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [./system/home-manager/agent-base.nix];
+        })
+        .activationPackage;
+
       hm-modules-default = [
         ./system/home-manager/non-nixos.nix
         nix-index-database.homeModules.nix-index
@@ -430,6 +435,7 @@
         nixOS
         nixvim'
         nixvimModule
+        agent-base-home
         pkgs
         ;
 
@@ -491,6 +497,10 @@
     };
     packages.${linux} = {
       nvim = (perSystem linux).nvim "generic-linux";
+      inherit (perSystem linux) agent-base-home;
+    };
+    packages.aarch64-linux = {
+      inherit (perSystem "aarch64-linux") agent-base-home;
     };
 
     formatter.${linux} = (perSystem linux).pkgs.alejandra;

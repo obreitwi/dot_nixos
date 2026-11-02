@@ -18,6 +18,8 @@
     runtimeInputs = [pkgs.detekt];
   };
 
+  cfg = config.my.pi-coding-agent;
+
   pi-resume = pkgs.callPackage (import ./pi-resume.nix) {};
 
   ## memelint has no LSP mode: efm-langserver turns its output into (error)
@@ -83,15 +85,26 @@
     '';
   };
 in {
-  options.my.pi-coding-agent.enable = lib.mkOption {default = false;};
+  options.my.pi-coding-agent = {
+    enable = lib.mkOption {default = false;};
+    bedrock.enable = lib.mkEnableOption "amazon-bedrock as default provider";
+    devPackages = lib.mkOption {
+      default = true;
+      description = "Add development dependencies (jdk, gradle, …) to pi's PATH.";
+    };
+    inContainer = lib.mkEnableOption "running inside the agent-base container (no host sandboxing, no agent-container wrapper)";
+  };
 
-  config = lib.mkIf config.my.pi-coding-agent.enable {
-    home.packages = [
-      pi-resume
-      pkgs.agent-safehouse
-
-      pkgs.memelint # to ensure it is also available locally
-    ];
+  config = lib.mkIf cfg.enable {
+    home.packages =
+      [
+        pi-resume
+        pkgs.memelint # to ensure it is also available locally
+      ]
+      ++ lib.optionals (!cfg.inContainer) [
+        pkgs.agent-safehouse
+        pkgs.agent-container
+      ];
 
     ## pi-lens global config (replaces a hand-written ~/.pi-lens/config.json)
     home.file.".pi-lens/config.json".source = (pkgs.formats.json {}).generate "pi-lens-config.json" {
@@ -107,58 +120,84 @@ in {
 
     programs.pi-coding-agent = {
       enable = true;
-      extraPackages = [
-        pkgs.nodejs
+      extraPackages =
+        [
+          pkgs.ast-grep
+          pkgs.git
+          pkgs.memelint
+          pkgs.nodejs
+          pkgs.shellcheck
+        ]
+        ++ lib.optionals cfg.devPackages [
+          #pkgs.bun
+          # einzel-FID START
+          pkgs.antiword
+          pkgs.catdoc
+          pkgs.pandoc
+          # einzel-FID END
 
-        pkgs.git
+          # backend START
+          pkgs.kotlin-lsp
 
-        #pkgs.bun
-        # einzel-FID START
-        pkgs.antiword
-        pkgs.catdoc
-        pkgs.pandoc
-        # einzel-FID END
+          pkgs.detekt
+          pkgs.gradle
+          pkgs.jdk
+          pkgs.kotlin
+          pi-lens-detekt
+          pkgs.maven
+          pkgs.typst
+          pkgs.typstyle
 
-        # backend START
-        pkgs.kotlin-lsp
+          pkgs.tree-sitter
 
-        pkgs.memelint
+          pkgs.openapi-generator-cli
 
-        pkgs.detekt
-        pkgs.gradle
-        pkgs.jdk
-        pkgs.kotlin
-        pi-lens-detekt
-        pkgs.maven
-        pkgs.typst_0_14_2
-        pkgs.typstyle
+          pkgs.asciidoc
+          pkgs.asciidoctor
 
-        pkgs.ast-grep
-        pkgs.tree-sitter
+          pkgs.detekt
+          pkgs.gradle
+          pkgs.jdk
+          pkgs.tinymist
 
-        pkgs.openapi-generator-cli
+          # dependencies
+          pkgs.jdk
+          pkgs.python3
+          pkgs.wdiff
+          #pkgs.xidel # build issues
 
-        yq-go
-        # backend END
-      ];
-      settings = {
-        theme = "gruvbox-dark-hard";
-        packages = [
-          "git:https://github.com/hasit/pi-community-themes" # for theme
-
-          "npm:@zaganjade/pi-usage" # aggregated usage
-
-          "npm:pi-caveman" # caveman
-          #"npm:agent-ste" # plain english in output (disabled because it lints everything, not just markdown)
-
-          "npm:pi-fzfp" # fuzzy picker for files
-          "npm:pi-lens" # lsp/linter integration
-          "npm:pi-sandbox" # sandboxing in pi until agent safehouse certificate issues are worked out
-          "npm:pi-subagents"
-          "npm:pi-vim" # vim mode
-          #"npm:pi-mcp-adapter" # mcp support (no provided by default)
+          yq-go
+          # backend END
         ];
-      };
+      settings =
+        {
+          theme = "gruvbox-dark-hard";
+          packages =
+            [
+              "git:https://github.com/hasit/pi-community-themes" # for theme
+
+              "npm:@zaganjade/pi-usage" # aggregated usage
+
+              "npm:pi-caveman" # caveman
+              #"npm:agent-ste" # plain english in output (disabled because it lints everything, not just markdown)
+
+              "npm:pi-fzfp" # fuzzy picker for files
+              "npm:pi-lens" # lsp/linter integration
+            ]
+            ++ lib.optionals (!cfg.inContainer) [
+              "npm:pi-sandbox" # sandbox in pi until agent safehouse certificate issues are worked out
+            ]
+            ++ [
+              "npm:pi-subagents"
+              "npm:pi-vim" # vim mode
+              #"npm:pi-mcp-adapter" # mcp support (no provided by default)
+            ];
+        }
+        // lib.optionalAttrs cfg.bedrock.enable {
+          defaultProvider = "amazon-bedrock";
+          defaultModel = "eu.anthropic.claude-opus-5-5";
+          enabledModels = ["eu.anthropic.claude-opus-5-5" "eu.anthropic.claude-sonnet-5-5" "eu.anthropic.claude-opus-5" "eu.anthropic.claude-sonnet-5"];
+        };
     };
   };
 }
