@@ -155,13 +155,9 @@ in {
           pkgs.asciidoc
           pkgs.asciidoctor
 
-          pkgs.detekt
-          pkgs.gradle
-          pkgs.jdk
           pkgs.tinymist
 
           # dependencies
-          pkgs.jdk
           pkgs.python3
           pkgs.wdiff
           #pkgs.xidel # build issues

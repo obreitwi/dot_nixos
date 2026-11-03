@@ -141,9 +141,9 @@
           #};
           #});
 
+          agent-container = prev.callPackage (import ./packages/agent-container) {};
           asfa-dev = asfa.packages.${prev.stdenv.hostPlatform.system}.default;
           blobdrop = blobdrop.packages.${prev.stdenv.hostPlatform.system}.default;
-          agent-container = prev.callPackage (import ./packages/agent-container) {};
           grpcrl = prev.callPackage (import ./packages/grpcrl) {};
           neorg-task-sync = neorg-task-sync.packages.${prev.stdenv.hostPlatform.system}.default;
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake

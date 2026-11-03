@@ -189,6 +189,7 @@ mount_args() {
   else
     path="$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
   fi
+  [ "$path" != "$PWD" ] || die "--mount: $path is the current directory, which is always mounted"
   args+=(-v "$path:$path$mode")
 }
 
