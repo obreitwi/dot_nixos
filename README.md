@@ -41,9 +41,10 @@ the pi module (host only).
   Built and fetched nix paths persist in a docker build cache mount. It is a
   signed local binary cache (see `docker/agent-base/build-root.sh`), so rebuilds
   do not fetch or compile again. Clear it via `agent-container prune`.
-* `agent-container pi|claude [--image IMG] [--network NET] [--] [agent-args...]`:
+* `agent-container pi|claude [--image IMG] [--network NET] [--mount PATH[:ro]]... [--] [agent-args...]`:
   run the agent in the current directory. The directory is mounted at the same
-  path as on the host, the CA read-only. AWS credentials are forwarded as env
+  path as on the host, the CA read-only. Each `--mount` adds another path at the
+  same path (read-only with `:ro`). AWS credentials are forwarded as env
   variables (an `AWS_PROFILE` is resolved via `aws configure export-credentials`).
   The GitHub token (`GH_TOKEN`/`GH_ENTERPRISE_TOKEN`, else `gh auth token`),
   `GH_HOST` and the git author (`GIT_AUTHOR_*`/`GIT_COMMITTER_*`, else

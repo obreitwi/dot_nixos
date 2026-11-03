@@ -13,7 +13,8 @@ usage() {
   cat <<EOF
 Usage:
   agent-container build [--uid N] [--gid N] [docker-build-args...]
-  agent-container pi|claude [--image IMG] [--network NET] [--] [agent-args...]
+  agent-container pi|claude [--image IMG] [--network NET] [--mount PATH[:ro]]...
+                            [--] [agent-args...]
   agent-container prune-cache [docker-buildx-prune-args...]
   agent-container -h|--help
 
@@ -34,6 +35,8 @@ Build options:
 Run options:
   --image IMG         Image to run (default: agent-base:latest)
   --network NET       Docker network to attach to
+  --mount PATH[:ro]   Also mount PATH at the same path (read-only with :ro);
+                      repeatable. The current directory is always mounted.
   --                  Pass all remaining arguments to the agent
 
 Environment:
@@ -171,6 +174,24 @@ claude_args() {
     ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL
 }
 
+# mount a host path at the same path in the container: PATH or PATH:ro
+mount_args() {
+  local path="$1" mode=""
+  case "$path" in
+    *:ro) path="${path%:ro}"; mode=":ro" ;;
+  esac
+  [ -n "$path" ] || die "--mount needs a path"
+  # must exist, else docker creates it as a root-owned directory
+  [ -e "$path" ] || die "--mount: $path does not exist"
+  # absolute (not symlink-resolved) path, as on the host
+  if [ -d "$path" ]; then
+    path="$(cd "$path" && pwd)"
+  else
+    path="$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+  fi
+  args+=(-v "$path:$path$mode")
+}
+
 cmd_run() {
   local agent="$1"
   shift
@@ -180,6 +201,7 @@ cmd_run() {
     case "$1" in
       --image) image="$2"; shift 2 ;;
       --network) network=(--network "$2"); shift 2 ;;
+      --mount) mount_args "$2"; shift 2 ;;
       -h | --help) usage; exit 0 ;;
       --) shift; break ;;
       *) break ;;
