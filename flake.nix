@@ -2,7 +2,9 @@
   description = "Full NixOS configuration (still in evaulation phase)";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # pin for hyprland 0.56 until config is migrated
+    nixpkgs.url = "github:NixOS/nixpkgs/7d9ae42e3e5247f0d05a712316e9f1606baf66a8";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixGL = {

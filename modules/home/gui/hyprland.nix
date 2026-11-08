@@ -332,7 +332,7 @@ in {
         ];
 
         source = [
-          "~/.config/hypr/monitors.conf"
+          "~/.config/hypr/hyprmoncfg-monitors.conf"
         ];
 
         general = {
@@ -386,7 +386,7 @@ in {
 
           #"blueman-applet"
           "gnome-keyring-daemon --start --components=secrets"
-          "hyprdynamicmonitors run"
+          "hyprmoncfgd"
 
           # Fixes cursor themes in gnome apps under hyprland
           "gsettings set org.gnome.desktop.interface cursor-theme '${config.home.pointerCursor.name}'"
@@ -399,11 +399,6 @@ in {
         variables = ["--all"];
       };
     };
-
-    #home.hyprdynamicmonitors = {
-    #enable = true;
-    #installExamples = false;
-    #};
 
     services.hyprpaper = {
       enable = true;
@@ -749,7 +744,7 @@ in {
       pkgs.toggle-bluetooth-audio
 
       start-hyprland
-      pkgs.hyprdynamicmonitors
+      pkgs.hyprmoncfg
       pkgs.hyprnavi
 
       pkgs.rofi
