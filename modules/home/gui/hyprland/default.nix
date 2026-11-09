@@ -27,10 +27,10 @@
     text = ''
       if hyprctl activewindow -j | jq --exit-status '.workspace.name | match("special:minimized")' >/dev/null; then
         # current window is minimized
-        hyprctl dispatch movetoworkspace "$(hyprctl activeworkspace -j | jq -r .id)"
+        hyprctl dispatch "hl.dsp.window.move{{ workspace = $(hyprctl activeworkspace -j | jq -r .id) })"
       else
         # current window is NOT minimized
-        hyprctl dispatch movetoworkspacesilent special:minimized
+        hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:minimized", follow = false })'
       fi
     '';
   };
@@ -111,7 +111,7 @@
           | rofi -dmenu -match-only -display-columns 2 -display-column-separator "\t" -p "Window to swap" \
           | awk -F "\t" '{ print $1 }'
       )
-      hyprctl dispatch swapwindow "address:''${swap_target}"
+      hyprctl dispatch "hl.dsp.window.swap({ target = \"address:''${swap_target}\" })"
     '';
   };
 
@@ -121,11 +121,7 @@
       action="''$1"
       shift 1
 
-      default_targets=$( \
-        grep -o 'workspace=[0-9]\+,defaultName:[^"]\+' ~/.config/hypr/hyprland.conf \
-          | sed -e 's/defaultName://' -e 's/workspace=//' \
-          | tr ',' "\t" \
-      )
+      default_targets=$(hyprctl workspacerules -j | jq -r '.[] | select(.defaultName != null) | [.workspaceString, .defaultName] | @tsv')
       custom_targets=$(hyprctl workspaces -j | jq -r '.[] | select(.name | startswith("special:") | not) | [.id, .name] | @tsv')
 
       jump_target=$( \
@@ -134,7 +130,19 @@
           | rofi -dmenu -match-only -display-columns 2 -display-column-separator "\t" -p "Workspace" \
           | awk -F "\t" '{ print $1 }'
       )
-      hyprctl dispatch "''${action}" "''${jump_target}"
+
+      case "''${action}" in
+        "focus")
+          dispatcher="hl.dsp.focus({ workspace = \"''${jump_target}\" })"
+          ;;
+        "move")
+          dispatcher="hl.dsp.window.move({ workspace = \"''${jump_target}\", follow = false })"
+          ;;
+        *)
+          exit 1
+          ;;
+      esac
+      hyprctl dispatch "''${dispatcher}"
     '';
   };
 
@@ -166,7 +174,7 @@ in {
     #services.flameshot.settings.General.disabledGrimWarning = true;
 
     wayland.windowManager.hyprland = {
-      configType = "hyprlang";
+      configType = "lua";
 
       enable = true;
       package =
@@ -176,249 +184,29 @@ in {
 
       xwayland.enable = true;
 
-      settings = {
-        debug.disable_logs = false;
-
-        binds = {
-          allow_workspace_cycles = true;
-          movefocus_cycles_fullscreen = true;
-          drag_threshold = 10; # Fire a drag event only after dragging for more than 10px
+      extraLuaFiles = {
+        config = {
+          autoLoad = true;
+          content = ./hyprland.lua;
         };
 
-        bindm = [
-          "Super, mouse:272, movewindow" # Super + LMB: Move a window by dragging more than 10px.
-          "Super, mouse:273, resizewindow" # Super + RMB: Move a window by dragging more than 10px.
-        ];
-        bindc = [
-          "Super, mouse:272, togglefloating" # Super + LMB: Floats a window by clicking
-        ];
-
-        bind = [
-          "Super Shift, Return, exec, alacritty"
-          "Super, M, exec, rofi -show run -sort"
-          "Super, I, exec, rofi -show window"
-          "Super Ctrl, I, exec, window-swap"
-
-          "Super Shift, F4, exit"
-
-          "Super Shift, C, killactive,"
-          "Super, Y, togglefloating,"
-
-          "Super, P, fullscreen, 1"
-          "Super Shift, P, fullscreen, 0"
-
-          "Super, W, layoutmsg, movetoroot"
-          "Super Shift, W, layoutmsg, movetoroot active unstable"
-
-          # Move focus with modifier + arrow keys
-          "Super, H, exec, hyprnavi l"
-          "Super, L, exec, hyprnavi r"
-          "Super, K, movefocus, u"
-          "Super, J, movefocus, d"
-
-          # Move window with modifier + Shift + arrow keys
-          "Super Shift, H, movewindow, l"
-          "Super Shift, L, movewindow, r"
-          "Super Shift, K, movewindow, u"
-          "Super Shift, J, movewindow, d"
-
-          # Switch workspaces with modifier + [0-9]
-          "Super, 1, workspace, 1"
-          "Super, 2, workspace, 2"
-          "Super, 3, workspace, 3"
-          "Super, 4, workspace, 4"
-          "Super, 5, workspace, 5"
-          "Super, 6, workspace, 6"
-          "Super, 7, workspace, 7"
-          "Super, 8, workspace, 8"
-          "Super, 9, workspace, 9"
-          "Super, 0, workspace, 10"
-
-          "Shift Super, 1, movetoworkspacesilent, 1"
-          "Shift Super, 2, movetoworkspacesilent, 2"
-          "Shift Super, 3, movetoworkspacesilent, 3"
-          "Shift Super, 4, movetoworkspacesilent, 4"
-          "Shift Super, 5, movetoworkspacesilent, 5"
-          "Shift Super, 6, movetoworkspacesilent, 6"
-          "Shift Super, 7, movetoworkspacesilent, 7"
-          "Shift Super, 8, movetoworkspacesilent, 8"
-          "Shift Super, 9, movetoworkspacesilent, 9"
-          "Shift Super, 0, movetoworkspacesilent, 10"
-
-          "Super, semicolon, exec, workspace-action workspace"
-          "Super Shift, semicolon, exec, workspace-action movetoworkspacesilent"
-          "Super Shift, m, exec, workspace-rename"
-
-          "Super Shift, n, togglegroup"
-          "Super, N, changegroupactive"
-          "Super, T, layoutmsg, togglesplit"
-
-          "Super Alt, H, movetoworkspacesilent, r-1" # Go to workspace on the left
-          "Super Alt, L, movetoworkspacesilent, r+1" # Go to workspace on the right
-
-          # monitors
-          "Super, E, focusmonitor, 0"
-          "Super, R, focusmonitor, 1"
-          "Super Shift, E, movecurrentworkspacetomonitor, 0"
-          "Super Shift, R, movecurrentworkspacetomonitor, 1"
-
-          # Move between monitors
-          "Super, S, swapactiveworkspaces, 0 1"
-
-          "Super, A, workspace, previous"
-
-          "Super Ctrl, L, exec, hyprlock"
-
-          "Super Ctrl, P, exec, flameshot gui"
-
-          "Super Ctrl, SPACE, exec, dunstctl history-pop"
-          "Super, B, exec, dunstctl close-all"
-          "Super Shift, B, exec, dunstctl history-clear"
-
-          "Super, c, togglespecialworkspace, audio"
-          "Super, slash, togglespecialworkspace, journal"
-          "Super Shift, slash, togglespecialworkspace, btop"
-          "Super Ctrl, slash, setfloating"
-          "Super Ctrl, slash, moveactive, exact 44% 15%"
-          "Super Ctrl, slash, resizeactive, exact 55% 70%"
-          "Super, apostrophe, togglespecialworkspace, terminal"
-          "Super Shift, T, togglespecialworkspace, ptpython"
-          "Super Shift, O, togglespecialworkspace, numbat"
-          "Super Control, T, togglespecialworkspace, bluetooth"
-          "Super Control, B, exec, rofi-bluetooth"
-          "Super Control, V, togglespecialworkspace, 1pw"
-          "Super Shift, D, togglespecialworkspace, minimized"
-          "Super, D, exec, toggle-minimize"
-
-          "Super, F5, exec, hyprctl reload"
-          "Super, F6, exec, hyprmoncfg-apply"
-          "Super Shift, F5, exec, hyprctl-disable-external-monitor"
-          "Super, F9, exec, toggle-bluetooth-audio"
-
-          "Super, z, workspace, 10"
-          "Super Shift, z, workspace, 8"
-
-          "Super Ctrl, o, exec, rofimoji -a type"
-          "Super, o, exec, rofimoji -a copy"
-
-          ", XF86MonBrightnessUp, exec, sbacklight +5%"
-          ", XF86MonBrightnessDown, exec, sbacklight -5%"
-        ];
-
-        workspace = [
-          "2,defaultName:code"
-          "3,defaultName:debug"
-          "4,defaultName:fdc"
-          "5,defaultName:gchat"
-          "6,defaultName:private"
-          "7,defaultName:web"
-          "8,defaultName:meetings"
-          "9,defaultName:nix"
-          "10,defaultName:media"
-          "11,defaultName:recruiting"
-          "12,defaultName:rust"
-          "13,defaultName:root"
-          "14,defaultName:1pw"
-
-          #"w[t1], border:false" # don't draw borders if there is only one window
-          "f[1],  border:false, gapsin:0, gapsout:0, rounding:false" # don't draw borders if we maximise one window
-          "special:1pw,        on-created-empty:[float; move 44% 15%; size 55% 70%] 1password"
-          "special:audio,      on-created-empty:[float; move 44% 15%; size 55% 70%] pavucontrol"
-          "special:bluetooth,  on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e bluetuith"
-          "special:btop,       on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e btop"
-          "special:journal,    on-created-empty:[float; move 44% 15%; size 55% 70%] scratchpad-journal"
-          "special:minimized,  gapsin:10, gapsout:10"
-          "special:numbat,     on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e numbat"
-          "special:ptpython,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty -e ptpython"
-          "special:terminal,   on-created-empty:[float; move 44% 15%; size 55% 70%] alacritty"
-        ];
-
-        #windowrule = [
-        #"bordersize 2, onworkspace:special:minimized"
-        #"bordercolor rgb(fc0000), focus:1, onworkspace:special:minimized"
-        #"bordercolor rgb(8a0a0a), focus:0, onworkspace:special:minimized"
-        #];
-
-        device = [
-          {
-            name = "logitech-mx-vertical-advanced-ergonomic-mouse";
-            sensitivity = -0.5;
-          }
-          {
-            name = "keychron--keychron-link-";
-            sensitivity = -0.7;
-          }
-        ];
-
-        windowrule = [
-          "match:workspace name:special:minimized, border_size 2"
-          "match:workspace name:special:minimized, match:focus true,  border_color rgb(fc0000)"
-          "match:workspace name:special:minimized, match:focus false, border_color rgb(8a0a0a)"
-          #"match:class (flameshot), workspace 0" (does not work)
-        ];
-
-        source = [
-          "~/.config/hypr/hyprmoncfg-monitors.conf"
-        ];
-
-        general = {
-          gaps_in = 2;
-          gaps_out = 2;
-          border_size = 1;
-          layout = "dwindle";
-          resize_on_border = true;
+        startup = {
+          autoLoad = true;
+          content =
+            /*
+            lua
+            */
+            ''
+              hl.on("hyprland.start", function()
+                  hl.exec_cmd("waybar")
+                  hl.exec_cmd("sunsetr")
+                  hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
+                  hl.exec_cmd("hyprmoncfgd")
+                  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme '${config.home.pointerCursor.name}'")
+                  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}")
+              end)
+            '';
         };
-
-        misc = {
-          disable_hyprland_logo = true;
-        };
-
-        monitor = ", preferred, auto, 1";
-
-        decoration = {
-          dim_special = 0.4;
-          rounding = 5;
-          blur = {
-            special = false;
-          };
-        };
-
-        #follow_mouse = 2; # focus follows on click
-
-        dwindle = {
-          preserve_split = true;
-        };
-
-        input = {
-          kb_model = "pc105";
-          kb_layout = "us";
-          kb_variant = "altgr-intl";
-          kb_options = [
-            "compose:menu"
-            "compose:rctrl"
-            "compose:prsc"
-            "lv3:ralt_switch"
-            "eurosign:e"
-            "nbsp:level3n"
-            "caps:escape"
-          ];
-
-          follow_mouse = 2;
-        };
-        exec-once = [
-          "waybar"
-          #"iwgtk -i"
-          "sunsetr"
-
-          #"blueman-applet"
-          "gnome-keyring-daemon --start --components=secrets"
-          #"hyprmoncfgd"
-          "hyprmoncfg-apply"
-
-          # Fixes cursor themes in gnome apps under hyprland
-          "gsettings set org.gnome.desktop.interface cursor-theme '${config.home.pointerCursor.name}'"
-          "gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}"
-        ];
       };
 
       systemd = {
@@ -444,7 +232,7 @@ in {
 
     programs.waybar = {
       enable = true;
-      style = lib.mkForce ../../../config-files/waybar/style.css;
+      style = lib.mkForce ../../../../config-files/waybar/style.css;
       settings.mainBar = {
         layer = "top";
         position = "top";
@@ -773,7 +561,6 @@ in {
       start-hyprland
       hyprmoncfg
       hyprmoncfg-apply
-      pkgs.hyprnavi
 
       pkgs.rofi
       pkgs.rofimoji
