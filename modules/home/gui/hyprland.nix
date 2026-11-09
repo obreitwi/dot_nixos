@@ -74,6 +74,17 @@
       '';
   });
 
+  # Start hyprmoncfgd for 10 seconds to generate new config
+  hyprmoncfg-apply = pkgs.writeShellApplication {
+    name = "hyprmoncfg-apply";
+    text = ''
+      hyprmoncfgd &
+      pid=$!
+      sleep 10
+      kill "$pid"
+    '';
+  };
+
   notification-count = pkgs.writeShellApplication {
     name = "notification-count";
     text = ''
@@ -280,6 +291,7 @@ in {
           "Super, D, exec, toggle-minimize"
 
           "Super, F5, exec, hyprctl reload"
+          "Super, F6, exec, hyprmoncfg-apply"
           "Super Shift, F5, exec, hyprctl-disable-external-monitor"
           "Super, F9, exec, toggle-bluetooth-audio"
 
@@ -400,7 +412,8 @@ in {
 
           #"blueman-applet"
           "gnome-keyring-daemon --start --components=secrets"
-          "hyprmoncfgd"
+          #"hyprmoncfgd"
+          "hyprmoncfg-apply"
 
           # Fixes cursor themes in gnome apps under hyprland
           "gsettings set org.gnome.desktop.interface cursor-theme '${config.home.pointerCursor.name}'"
@@ -759,6 +772,7 @@ in {
 
       start-hyprland
       hyprmoncfg
+      hyprmoncfg-apply
       pkgs.hyprnavi
 
       pkgs.rofi
