@@ -60,6 +60,20 @@
     '';
   };
 
+  hyprmoncfg = pkgs.hyprmoncfg.overrideAttrs (oldAttrs: {
+    nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [pkgs.installShellFiles];
+
+    postInstall =
+      (oldAttrs.postInstall or "")
+      + ''
+        $out/bin/hyprmoncfg completion zsh > _hyprmoncfg.zsh
+        $out/bin/hyprmoncfgd completion zsh > _hyprmoncfgd.zsh
+
+        installShellCompletion --zsh _hyprmoncfg.zsh
+        installShellCompletion --zsh _hyprmoncfgd.zsh
+      '';
+  });
+
   notification-count = pkgs.writeShellApplication {
     name = "notification-count";
     text = ''
@@ -744,7 +758,7 @@ in {
       pkgs.toggle-bluetooth-audio
 
       start-hyprland
-      pkgs.hyprmoncfg
+      hyprmoncfg
       pkgs.hyprnavi
 
       pkgs.rofi
