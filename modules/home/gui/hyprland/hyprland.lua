@@ -1,3 +1,7 @@
+local sort_windows_horizontal = function(left, right)
+	return left.at.x < right.at.x
+end
+
 hl.bind("SUPER + SHIFT + Return", hl.dsp.exec_cmd("alacritty"))
 hl.bind("SUPER + M", hl.dsp.exec_cmd("rofi -show run -sort"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("rofi -show window"))
@@ -24,24 +28,38 @@ hl.bind("SUPER + H",
 		if ws_current == nil then
 			return
 		end
-		local workspaces_all = hl.get_workspaces()
 		local workspaces = {}
 		local num_workspaces = 0
-		for _, w in ipairs(workspaces_all) do
+		for _, w in ipairs(hl.get_workspaces()) do
 			if w.monitor == ws_current.monitor then
 				num_workspaces = num_workspaces + 1
 				workspaces[num_workspaces] = w
 			end
 		end
+		table.sort(workspaces, function(left, right) return left.id < right.id end)
+		local target_workspace = nil
 		for i, w in ipairs(workspaces) do
 			if w.id == ws_current.id then
 				if i > 1 then
-					hl.dispatch(hl.dsp.focus({ workspace = workspaces[i - 1].id }))
+					target_workspace = workspaces[i - 1]
 				else
-					hl.dispatch(hl.dsp.focus({ workspace = workspaces[#workspaces].id }))
+					target_workspace = workspaces[#workspaces]
 				end
 			end
 		end
+		if target_workspace == nil then
+			return
+		end
+		hl.dispatch(hl.dsp.focus({ workspace = target_workspace.id }))
+
+		-- focus rightmost window
+		local windows = hl.get_windows({ workspace = target_workspace })
+		if #windows == 0 then
+			return
+		end
+
+		table.sort(windows, sort_windows_horizontal)
+		hl.dispatch(hl.dsp.focus({ window = windows[#windows] }))
 	end
 )
 hl.bind("SUPER + L",
@@ -57,25 +75,38 @@ hl.bind("SUPER + L",
 		if ws_current == nil then
 			return
 		end
-		local workspaces_all = hl.get_workspaces()
 		local workspaces = {}
 		local num_workspaces = 0
-		for _, w in ipairs(workspaces_all) do
+		for _, w in ipairs(hl.get_workspaces()) do
 			if w.monitor == ws_current.monitor then
 				num_workspaces = num_workspaces + 1
 				workspaces[num_workspaces] = w
 			end
 		end
-
+		table.sort(workspaces, function(left, right) return left.id < right.id end)
+		local target_workspace = nil
 		for i, w in ipairs(workspaces) do
 			if w.id == ws_current.id then
 				if i < #workspaces then
-					hl.dispatch(hl.dsp.focus({ workspace = workspaces[i + 1].id }))
+					target_workspace = workspaces[i + 1]
 				else
-					hl.dispatch(hl.dsp.focus({ workspace = workspaces[1].id }))
+					target_workspace = workspaces[1]
 				end
 			end
 		end
+		if target_workspace == nil then
+			return
+		end
+		hl.dispatch(hl.dsp.focus({ workspace = target_workspace.id }))
+
+		-- focus leftmost window
+		local windows = hl.get_windows({ workspace = target_workspace })
+		if #windows == 0 then
+			return
+		end
+
+		table.sort(windows, sort_windows_horizontal)
+		hl.dispatch(hl.dsp.focus({ window = windows[1] }))
 	end
 )
 hl.bind("SUPER + K", hl.dsp.focus({ direction = "up" }))

@@ -2,9 +2,7 @@
   description = "Full NixOS configuration (still in evaulation phase)";
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # pin for hyprland 0.56 until config is migrated
-    nixpkgs.url = "github:NixOS/nixpkgs/7d9ae42e3e5247f0d05a712316e9f1606baf66a8";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixGL = {
@@ -160,7 +158,7 @@
           sem-diff = prev.callPackage (import ./packages/sem) {};
 
           kotlin-lsp = prev.callPackage (import ./packages/nixpkgs/kotlin-lsp.nix) {
-            unar = pkgs.stable.unar;
+            #unar = pkgs.stable.unar;
             /*
             unar from unstable has build issue
             */
@@ -255,6 +253,12 @@
           # revert: antiword: 0.37 -> 0.37-unstable-2026-06-03
           # (does not build)
           ./patches/nixpkgs/revert_pr_565374.patch
+
+          # viddy fix
+          (pkgs-init.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/585402.diff";
+            hash = "sha256-AvyGYVnqtEsX5VY4AhkoyX1xMJUtqEDz7PwuWnPT9+0=";
+          })
 
           ## php fixes
           #(pkgs-init.fetchurl {

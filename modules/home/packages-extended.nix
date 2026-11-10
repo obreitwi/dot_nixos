@@ -34,7 +34,7 @@
         # kubecolor
         # kubectl
 
-        sem-diff
+        #sem-diff # build issues
 
         circumflex # browser hackernews from terminal
 
