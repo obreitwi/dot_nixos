@@ -15,6 +15,7 @@ hl.bind("SUPER + H",
 		local w_pre = hl.get_active_window()
 		hl.dispatch(hl.dsp.focus({ direction = "left" }))
 		local w_post = hl.get_active_window()
+
 		if w_pre ~= nil and w_post ~= nil and w_pre.at.x > w_post.at.x then
 			return
 		end
@@ -167,7 +168,6 @@ hl.bind("SUPER + SHIFT + D", hl.dsp.workspace.toggle_special("minimized"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("toggle-minimize"))
 hl.bind("SUPER + F5", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind("SUPER + F5", hl.dsp.exec_cmd("hyprmoncfg-apply"))
-hl.bind("SUPER + SHIFT + F5", hl.dsp.exec_cmd("hyprctl-disable-external-monitor"))
 hl.bind("SUPER + F9", hl.dsp.exec_cmd("toggle-bluetooth-audio"))
 hl.bind("SUPER + z", hl.dsp.focus({ workspace = 10 }))
 hl.bind("SUPER + SHIFT + z", hl.dsp.focus({ workspace = 8 }))
@@ -175,6 +175,16 @@ hl.bind("SUPER + CTRL + o", hl.dsp.exec_cmd("rofimoji -a type"))
 hl.bind("SUPER + o", hl.dsp.exec_cmd("rofimoji -a copy"))
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("sbacklight +5%"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("sbacklight -5%"))
+
+hl.bind("SUPER + SHIFT + F5", function()
+	-- disable external monitor(s)
+	local laptop_prefix = "eDP"
+	for _, m in pairs(hl.get_monitors()) do
+		if string.sub(m.name, 1, #laptop_prefix) ~= laptop_prefix then
+			hl.monitor({ output = m.name, disabled = true })
+		end
+	end
+end)
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.float({ action = "toggle" }), { release = true, click = true })
 
