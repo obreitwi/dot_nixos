@@ -194,7 +194,7 @@ in {
                   hl.exec_cmd("waybar")
                   hl.exec_cmd("sunsetr")
                   hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
-                  hl.exec_cmd("hyprmoncfgd")
+                  hl.exec_cmd("hyprmoncfgd-apply")
                   hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme '${config.home.pointerCursor.name}'")
                   hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size ${toString config.home.pointerCursor.size}")
               end)
