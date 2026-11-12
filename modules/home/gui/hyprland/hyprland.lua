@@ -39,7 +39,7 @@ hl.bind("SUPER + H",
 		table.sort(workspaces, function(left, right) return left.id < right.id end)
 		local target_workspace = nil
 		for i, w in ipairs(workspaces) do
-			if w.id == ws_current.id then
+			if ~w.special and w.id == ws_current.id then
 				if i > 1 then
 					target_workspace = workspaces[i - 1]
 				else
@@ -54,7 +54,7 @@ hl.bind("SUPER + H",
 
 		-- focus rightmost window
 		local windows = hl.get_windows({ workspace = target_workspace })
-		if #windows == 0 then
+		if windows == nil or #windows == 0 then
 			return
 		end
 
@@ -78,12 +78,12 @@ hl.bind("SUPER + L",
 		local workspaces = {}
 		local num_workspaces = 0
 		for _, w in ipairs(hl.get_workspaces()) do
-			if w.monitor == ws_current.monitor then
+			if ~w.special and w.monitor == ws_current.monitor then
 				num_workspaces = num_workspaces + 1
 				workspaces[num_workspaces] = w
 			end
 		end
-		table.sort(workspaces, function(left, right) return left.id < right.id end)
+		table.sort(workspaces, function(left, right) return left.id ~= nil and right.id ~= nil and left.id < right.id end)
 		local target_workspace = nil
 		for i, w in ipairs(workspaces) do
 			if w.id == ws_current.id then
@@ -101,7 +101,7 @@ hl.bind("SUPER + L",
 
 		-- focus leftmost window
 		local windows = hl.get_windows({ workspace = target_workspace })
-		if #windows == 0 then
+		if windows == nil or #windows == 0 then
 			return
 		end
 
