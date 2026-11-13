@@ -1,5 +1,28 @@
+print("Reloading config.")
+
 local sort_windows_horizontal = function(left, right)
 	return left.at.x < right.at.x
+end
+
+local remove_prefix = function(str, prefix)
+	if str:sub(1, #prefix) == prefix then
+		return str:sub(#prefix + 1)
+	else
+		return str
+	end
+end
+
+local get_monitor_workspaces = function(ws_current)
+	local workspaces = {}
+	local num_workspaces = 0
+	for _, w in ipairs(hl.get_workspaces()) do
+		if not w.special and w.monitor == ws_current.monitor then
+			num_workspaces = num_workspaces + 1
+			workspaces[num_workspaces] = w
+		end
+	end
+	table.sort(workspaces, function(left, right) return left.id ~= nil and right.id ~= nil and left.id < right.id end)
+	return workspaces
 end
 
 hl.bind("SUPER + SHIFT + Return", hl.dsp.exec_cmd("alacritty"))
@@ -28,18 +51,10 @@ hl.bind("SUPER + H",
 		if ws_current == nil then
 			return
 		end
-		local workspaces = {}
-		local num_workspaces = 0
-		for _, w in ipairs(hl.get_workspaces()) do
-			if w.monitor == ws_current.monitor then
-				num_workspaces = num_workspaces + 1
-				workspaces[num_workspaces] = w
-			end
-		end
-		table.sort(workspaces, function(left, right) return left.id < right.id end)
+		local workspaces = get_monitor_workspaces(ws_current)
 		local target_workspace = nil
 		for i, w in ipairs(workspaces) do
-			if ~w.special and w.id == ws_current.id then
+			if not w.special and w.id == ws_current.id then
 				if i > 1 then
 					target_workspace = workspaces[i - 1]
 				else
@@ -75,15 +90,7 @@ hl.bind("SUPER + L",
 		if ws_current == nil then
 			return
 		end
-		local workspaces = {}
-		local num_workspaces = 0
-		for _, w in ipairs(hl.get_workspaces()) do
-			if ~w.special and w.monitor == ws_current.monitor then
-				num_workspaces = num_workspaces + 1
-				workspaces[num_workspaces] = w
-			end
-		end
-		table.sort(workspaces, function(left, right) return left.id ~= nil and right.id ~= nil and left.id < right.id end)
+		local workspaces = get_monitor_workspaces(ws_current)
 		local target_workspace = nil
 		for i, w in ipairs(workspaces) do
 			if w.id == ws_current.id then
@@ -328,52 +335,61 @@ hl.workspace_rule({
 	no_rounding = true,
 })
 
-local layout_floating = "[float; move 44% 15%; size 55% 70%] "
+local rules_floating = {
+	float = true,
+	move = { "monitor_w * 0.44", "monitor_h * 0.15" },
+	size = { "monitor_w * 0.55", "monitor_h * 0.70" },
+}
+local special_prefix = "special:"
+local special_workspaces = {
+	["1pw"]       = { "1password", {} },
+	["audio"]     = { "pavucontrol", {} },
+	["bluetooth"] = { "alacritty -e bluetuith", {} },
+	["btop"]      = { "alacritty -e btop", {} },
+	["journal"]   = { "scratchpad-journal", {} },
+	["numbat"]    = { "alacritty -e numbat", {} },
+	["ptpython"]  = { "alacritty -e ptpython", {} },
+	["terminal"]  = { "alacritty", {} },
+}
 
-hl.workspace_rule({
-	workspace = "special:1pw",
-	on_created_empty = layout_floating .. "1password",
-})
+-- auto start on special workspaces
+hl.on("workspace.created", function(ws)
+	if not ws.special or not ws.is_empty then
+		return
+	end
 
-hl.workspace_rule({
-	workspace = "special:audio",
-	on_created_empty = layout_floating .. "pavucontrol",
-})
+	local autostart = special_workspaces[remove_prefix(ws.name, special_prefix)]
+	if autostart == nil then
+		return
+	end
 
-hl.workspace_rule({
-	workspace = "special:bluetooth",
-	on_created_empty = layout_floating .. "alacritty -e bluetuith",
-})
+	local cmd, provided_rules = table.unpack(autostart)
+	if cmd == nil then
+		return
+	end
 
-hl.workspace_rule({
-	workspace = "special:btop",
-	on_created_empty = layout_floating .. "alacritty -e btop",
-})
+	-- shallow-copy the rules table so we can add the workspace to it
+	local rules = {}
 
-hl.workspace_rule({
-	workspace = "special:journal",
-	on_created_empty = layout_floating .. "scratchpad-journal",
-})
+	for k, v in pairs(rules_floating) do
+		rules[k] = v
+	end
+
+	if provided_rules ~= nil then
+		for k, v in pairs(provided_rules) do
+			rules[k] = v
+		end
+	end
+	rules.workspace = (ws.id and tostring(ws.id) or ws.name) .. " silent"
+
+	hl.exec_cmd(cmd, rules)
+end)
+
 
 hl.workspace_rule({
 	workspace = "special:minimized",
 	gaps_in = 10,
 	gaps_out = 10,
-})
-
-hl.workspace_rule({
-	workspace = "special:numbat",
-	on_created_empty = layout_floating .. "alacritty -e numbat",
-})
-
-hl.workspace_rule({
-	workspace = "special:ptpython",
-	on_created_empty = layout_floating .. "alacritty -e ptpython",
-})
-
-hl.workspace_rule({
-	workspace = "special:terminal",
-	on_created_empty = layout_floating .. "alacritty",
 })
 
 hl.monitor({
