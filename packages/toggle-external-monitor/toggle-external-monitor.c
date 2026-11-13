@@ -38,9 +38,9 @@ static void state_path(char *buf, size_t len) {
   const char *cache = getenv("XDG_CACHE_HOME");
   const char *home = getenv("HOME");
   if (cache && *cache) {
-    snprintf(buf, len, "%s/toggle-external-monitor", cache);
+    snprintf(buf, len, "%s/toggle-external-monitor.state", cache);
   } else {
-    snprintf(buf, len, "%s/.cache/toggle-external-monitor", home ? home : "/tmp");
+    snprintf(buf, len, "%s/.cache/toggle-external-monitor.state", home ? home : "/tmp");
   }
 }
 
