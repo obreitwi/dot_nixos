@@ -125,6 +125,16 @@ in {
           source ${dot-zsh}/widgets
         ''
       )
+      /*
+      zsh
+      */
+      ''
+        nix-fetchurl-hash() {
+          local url=''${1:?usage: fetchurl-hash <url>}
+          nix --extra-experimental-features nix-command \
+            store prefetch-file --json --hash-type sha256 "$url" | jq -r .hash
+        }
+      ''
       (
         lib.mkOrder 2000 # should be highest order
         
