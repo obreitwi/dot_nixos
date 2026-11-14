@@ -254,11 +254,11 @@
           # (does not build)
           ./patches/nixpkgs/revert_pr_565374.patch
 
-          # viddy fix
-          (pkgs-init.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/585402.diff";
-            hash = "sha256-AvyGYVnqtEsX5VY4AhkoyX1xMJUtqEDz7PwuWnPT9+0=";
-          })
+          ## viddy fix
+          #(pkgs-init.fetchurl {
+            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/585402.diff";
+            #hash = "sha256-AvyGYVnqtEsX5VY4AhkoyX1xMJUtqEDz7PwuWnPT9+0=";
+          #})
 
           ## php fixes
           #(pkgs-init.fetchurl {
