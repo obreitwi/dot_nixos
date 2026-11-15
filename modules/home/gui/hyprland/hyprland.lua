@@ -25,6 +25,62 @@ local get_monitor_workspaces = function(ws_current)
 	return workspaces
 end
 
+local move_workspace = function(direction)
+	local supported_directions = {
+		l = true,
+		r = true,
+	}
+	if supported_directions[direction] == nil then
+		print("ERROR: Direction <" .. direction .. "> not supported.")
+		return
+	end
+
+	local ws_current = hl.get_active_workspace()
+	if ws_current == nil then
+		return
+	end
+
+	local workspaces = get_monitor_workspaces(ws_current)
+	local target_workspace = nil
+	for i, w in ipairs(workspaces) do
+		if not w.special and w.id == ws_current.id then
+			if direction == "l" then
+				if i > 1 then
+					target_workspace = workspaces[i - 1]
+				else
+					target_workspace = workspaces[#workspaces]
+				end
+			else
+				if i < #workspaces then
+					target_workspace = workspaces[i + 1]
+				else
+					target_workspace = workspaces[1]
+				end
+			end
+		end
+	end
+	if target_workspace == nil then
+		return
+	end
+	hl.dispatch(hl.dsp.focus({ workspace = target_workspace.id }))
+
+	local windows = hl.get_windows({ workspace = target_workspace })
+	if windows == nil or #windows == 0 then
+		return
+	end
+
+	table.sort(windows, sort_windows_horizontal)
+
+	if direction == "l" then
+		-- focus rightmost window
+		hl.dispatch(hl.dsp.focus({ window = windows[#windows] }))
+	else
+		-- focus leftmost window
+		hl.dispatch(hl.dsp.focus({ window = windows[1] }))
+	end
+end
+
+
 hl.bind("SUPER + SHIFT + Return", hl.dsp.exec_cmd("alacritty"))
 hl.bind("SUPER + M", hl.dsp.exec_cmd("rofi -show run -sort"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("rofi -show window"))
@@ -47,34 +103,7 @@ hl.bind("SUPER + H",
 			return
 		end
 
-		local ws_current = hl.get_active_workspace()
-		if ws_current == nil then
-			return
-		end
-		local workspaces = get_monitor_workspaces(ws_current)
-		local target_workspace = nil
-		for i, w in ipairs(workspaces) do
-			if not w.special and w.id == ws_current.id then
-				if i > 1 then
-					target_workspace = workspaces[i - 1]
-				else
-					target_workspace = workspaces[#workspaces]
-				end
-			end
-		end
-		if target_workspace == nil then
-			return
-		end
-		hl.dispatch(hl.dsp.focus({ workspace = target_workspace.id }))
-
-		-- focus rightmost window
-		local windows = hl.get_windows({ workspace = target_workspace })
-		if windows == nil or #windows == 0 then
-			return
-		end
-
-		table.sort(windows, sort_windows_horizontal)
-		hl.dispatch(hl.dsp.focus({ window = windows[#windows] }))
+		move_workspace("l")
 	end
 )
 hl.bind("SUPER + L",
@@ -90,34 +119,14 @@ hl.bind("SUPER + L",
 		if ws_current == nil then
 			return
 		end
-		local workspaces = get_monitor_workspaces(ws_current)
-		local target_workspace = nil
-		for i, w in ipairs(workspaces) do
-			if w.id == ws_current.id then
-				if i < #workspaces then
-					target_workspace = workspaces[i + 1]
-				else
-					target_workspace = workspaces[1]
-				end
-			end
-		end
-		if target_workspace == nil then
-			return
-		end
-		hl.dispatch(hl.dsp.focus({ workspace = target_workspace.id }))
 
-		-- focus leftmost window
-		local windows = hl.get_windows({ workspace = target_workspace })
-		if windows == nil or #windows == 0 then
-			return
-		end
-
-		table.sort(windows, sort_windows_horizontal)
-		hl.dispatch(hl.dsp.focus({ window = windows[1] }))
+		move_workspace("r")
 	end
 )
 hl.bind("SUPER + K", hl.dsp.focus({ direction = "up" }))
 hl.bind("SUPER + J", hl.dsp.focus({ direction = "down" }))
+hl.bind("SUPER + CTRL + H", function() move_workspace("l") end)
+hl.bind("SUPER + CTRL + L", function() move_workspace("r") end)
 hl.bind("SUPER + SHIFT + H", hl.dsp.window.move({ direction = "l" }))
 hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "r" }))
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
@@ -171,7 +180,7 @@ hl.bind("SUPER + SHIFT + R",
 	end)
 hl.bind("SUPER + S", hl.dsp.workspace.swap_monitors({ monitor1 = "0", monitor2 = "1" }))
 hl.bind("SUPER + A", hl.dsp.focus({ workspace = "previous" }))
-hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("SUPER + CTRL + Q", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("SUPER + CTRL + P", hl.dsp.exec_cmd("flameshot gui"))
 hl.bind("SUPER + CTRL + SPACE", hl.dsp.exec_cmd("dunstctl history-pop"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("dunstctl close-all"))
