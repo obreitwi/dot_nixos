@@ -246,10 +246,6 @@
         name = "nixpkgs-patched-${nixpkgs.shortRev}";
         src = nixpkgs;
         patches = [
-          # pending update for tmux-fzf
-          #./patches/nixpkgs/pr_460794.patch
-          #
-
           ## viddy fix
           #(pkgs-init.fetchurl {
             #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/585402.diff";
@@ -266,9 +262,6 @@
           #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/539721.diff";
           #hash = "sha256-s7KhC1Q4OmsW4WyTzCgFXm9NllbEzZUbJw5j3Y5sGiQ=";
           #})
-
-          # flameshot 14 broken with hyprland
-          #./patches/nixpkgs/revert_pr_507424.patch
 
           # fzf-lua fails on darwin -> disable checks to unblock build
           ./patches/nixpkgs/codecompanion_disable_checks.patch
