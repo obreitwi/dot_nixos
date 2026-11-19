@@ -20,7 +20,7 @@
     text = ''
       if hyprctl activewindow -j | jq --exit-status '.workspace.name | match("special:minimized")' >/dev/null; then
         # current window is minimized
-        hyprctl dispatch "hl.dsp.window.move{{ workspace = $(hyprctl activeworkspace -j | jq -r .id) })"
+        hyprctl dispatch "hl.dsp.window.move({ workspace = $(hyprctl activeworkspace -j | jq -r .id) })"
       else
         # current window is NOT minimized
         hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:minimized", follow = false })'
@@ -261,7 +261,8 @@ in {
 
         "hyprland/workspaces" = {
           # "format"= "{id}:{name} {icon}";
-          "format" = "{id}:{name}";
+          #"format" = "{id}:{name}";
+          "format" = "{name}";
           "format-icons" = {
             "active" = "";
             "default" = "";
@@ -558,6 +559,10 @@ in {
       pkgs.rofi
       pkgs.rofimoji
       pkgs.rofi-bluetooth
+
+      # testing
+      pkgs.hyprpicker
+      pkgs.wl-color-picker
 
       scratchpad-journal
       toggle-minimize
