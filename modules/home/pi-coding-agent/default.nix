@@ -192,7 +192,7 @@ in {
         // lib.optionalAttrs cfg.bedrock.enable {
           defaultProvider = "amazon-bedrock";
           defaultModel = "eu.anthropic.claude-opus-5-5";
-          enabledModels = ["eu.anthropic.claude-opus-5-5" "eu.anthropic.claude-sonnet-5-5" "eu.anthropic.claude-opus-5" "eu.anthropic.claude-sonnet-5"];
+          enabledModels = ["eu.anthropic.claude-opus-5-5" "eu.anthropic.claude-sonnet-5-5" "eu.anthropic.claude-haiku-5-5" "eu.anthropic.claude-opus-5" "eu.anthropic.claude-sonnet-5"];
         };
     };
   };
