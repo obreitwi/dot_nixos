@@ -113,6 +113,15 @@ in {
 
   my.nextcloud-client.enable = false;
 
+  # Setuid fusermount3 so rclone's rootless FUSE mounts (gdrive/nextcloud)
+  # work. rclone's mount unit resolves fusermount3 via /run/wrappers/bin first.
+  security.wrappers.fusermount3 = {
+    source = "${pkgs.fuse3}/bin/fusermount3";
+    owner = "root";
+    group = "root";
+    setuid = true;
+  };
+
   my.server = {
     acme.staging = false;
     adminPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATV2dhRTcF0n4H2cGRixu1q/P8hlsDULqzk1BS1VtxB";
