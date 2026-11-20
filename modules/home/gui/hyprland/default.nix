@@ -115,7 +115,7 @@
       shift 1
 
       default_targets=$(hyprctl workspacerules -j | jq -r '.[] | select(.defaultName != null) | [.workspaceString, .defaultName] | @tsv')
-      custom_targets=$(hyprctl workspaces -j | jq -r '.[] | select(.name | startswith("special:") | not) | [.id, .name] | @tsv')
+      custom_targets=$(hyprctl workspaces -j | jq -r '.[] | select(.name | startswith("special:") | not) | [(.id // .name), .name] | @tsv')
 
       jump_target=$( \
         ( echo "''${default_targets}"; echo "''${custom_targets}" ) \

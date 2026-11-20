@@ -62,7 +62,7 @@ local move_workspace = function(direction)
 	if target_workspace == nil then
 		return
 	end
-	hl.dispatch(hl.dsp.focus({ workspace = target_workspace.id }))
+	hl.dispatch(hl.dsp.focus({ workspace = target_workspace.name }))
 
 	local windows = hl.get_windows({ workspace = target_workspace })
 	if windows == nil or #windows == 0 then
