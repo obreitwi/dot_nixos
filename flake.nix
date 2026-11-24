@@ -147,7 +147,10 @@
           grpcrl = prev.callPackage (import ./packages/grpcrl) {};
           neorg-task-sync = neorg-task-sync.packages.${prev.stdenv.hostPlatform.system}.default;
           pydemx = prev.callPackage (import "${pydemx}") {}; # hacky way to include flake
-          revcli = revcli.packages.${prev.stdenv.hostPlatform.system}.default;
+          revcli = revcli.packages.${prev.stdenv.hostPlatform.system}.default.overrideAttrs (final: prev: {
+            __intentionallyOverridingVersion = true;
+            version = revcli.shortRev;
+          });
           toggle-bluetooth-audio = prev.callPackage (import ./packages/toggle-bluetooth-audio.nix) {};
           toggle-external-monitor = prev.callPackage (import ./packages/toggle-external-monitor) {};
           ptpython = prev.callPackage (import ./packages/ptpython.nix) {};
@@ -248,8 +251,8 @@
         patches = [
           ## viddy fix
           #(pkgs-init.fetchurl {
-            #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/585402.diff";
-            #hash = "sha256-AvyGYVnqtEsX5VY4AhkoyX1xMJUtqEDz7PwuWnPT9+0=";
+          #url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/585402.diff";
+          #hash = "sha256-AvyGYVnqtEsX5VY4AhkoyX1xMJUtqEDz7PwuWnPT9+0=";
           #})
 
           ## php fixes
