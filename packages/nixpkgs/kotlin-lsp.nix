@@ -24,7 +24,7 @@
   archiveHash =
     {
       "x86_64-linux" = "";
-      "aarch64-linux" = "";
+      "aarch64-linux" = "sha256-h3ruYSoX2rSBREZigqZBTsWKtCihC5fH4T7dm2s9yW4=";
       "x86_64-darwin" = "";
       "aarch64-darwin" = "sha256-LSI4j1i+b036eo8YweIxhxFk3KzBbkB1WQKdcjKBa0o=";
     }
@@ -74,7 +74,7 @@ in
       "libxkbcommon.so.0"
     ];
     nativeBuildInputs = (
-      lib.optionals stdenv.isLinux [autoPatchelfHook]
+      lib.optionals stdenv.hostPlatform.isLinux [autoPatchelfHook]
       ++ lib.optionals stdenv.hostPlatform.isDarwin [
         fixDarwinDylibNames
         unar
