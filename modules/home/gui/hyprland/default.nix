@@ -425,8 +425,8 @@ in {
           }
           {
             timeout = 600;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
+            on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
+            on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
           }
         ];
       };
